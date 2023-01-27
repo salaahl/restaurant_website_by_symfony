@@ -1,0 +1,47 @@
+@media screen and (min-width: 769px) {
+  #footer {
+    padding: 1%;
+  }
+}
+@media screen and (max-width: 768px) {
+  #footer {
+    padding: 2%;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin: 1%;
+}
+
+#footer {
+  position: relative;
+  bottom: 0;
+  width: auto;
+}
+
+.contentFooter {
+  height: 100%;
+  color: white;
+  padding: 1%;
+}
+
+.contentFooter div:nth-child(1), .contentFooter div:nth-child(2) {
+  border-right:2px solid white;
+}
+
+.contentFooter div {
+  padding: inherit;
+}
+
+footer div {
+  display:inline-block;
+
+}
+
+.copyright {
+  display: inline-block;
+  z-index: 0;
+  color: white;
+}

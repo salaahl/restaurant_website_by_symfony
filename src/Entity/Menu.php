@@ -11,7 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Menu
 {
     #[ORM\Id]
-    #[ORM\Column(length: 50)]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $type = null;
 
     #[ORM\OneToMany(mappedBy: 'type', targetEntity: Dish::class, orphanRemoval: true)]
@@ -20,6 +24,11 @@ class Menu
     public function __construct()
     {
         $this->dishes = new ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     public function getType(): ?string

@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Accueil
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('css/home.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block main %}
+	<section>
+		<div class="carousel-container">
+			<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+				</div>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="{{ asset('img/me.jpg') }}" class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Restaurant "Le vingtième"</h5>
+							<p>Paris 20 ème</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="{{ asset('img/dish.jpg') }}" class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Premium dishs</h5>
+							<p>A progression of rare and beautiful ingredients where texture, flavour and harmony is paramount.
+							</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="{{ asset('img/dish.jpg') }}" class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Third slide label</h5>
+							<p>Some representative placeholder content for the third slide.</p>
+						</div>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div id="menu-title" class="menu-title">
+			<h5>Menu</h5>
+		</div>
+		<div class="sectionTwo-container">
+			<div class="A">
+				<div class="a-hover">
+					<p>
+						<b>EIGHT-COURSE</b><br><br>
+						<b>Shaved Black Lip abalone</b><br>
+						raw sea scallop, fresh bamboo<br>
+						tonburi, kombu, virgin soy, aged vinegar<br>
+						<br><br>
+						<b>Smoked eel cream</b><br>
+						sea cucumber crackling, Oscietra caviar<br>
+						<br><br>
+						<b>Native marron</b><br>
+						green almonds, seaweed broth<br>
+						chamomile, angelica
+						<br><br>
+						<b>Bone marrow noodles</b><br>
+						Mud crab, striped peanuts, sour koji butter<br>
+						<br><br>
+						<b>Roasted pasture raised duck</b><br>
+						Morello cherries, Kampot pepper, black garlic<br>
+						<br><br>
+						<b>Confit pig jowl</b><br>
+						Black Pearl mushrooms, Southern squid<br>
+						smoked trotter broth<br>
+						<br><br>
+						<b>Stone Fruit Fantasy</b><br>
+						<br><br>
+						<b>Feathers</b><br>
+						dark chocolate, prune<br>
+						(Menu subject to change)<br>
+						<br><br>
+						<b>Eight-Course Menu $340</b><br>
+						<b>Temperance Pairing $140</b><br>
+						<b>Quay Wine Pairing $200</b><br>
+						<b>Sommelier Wine Pairing $250</b><br>
+						<b>Benchmark Wine Pairing $1100</b>
+						<br><br>
+					</p>
+				</div>
+				<div class="a-type">
+					<p>EIGHT-COURSE MENU</p>
+				</div>
+			</div>
+			<div class="B">
+				<div class="b-hover">
+					<a href="#" class="menu-link">Cliquez ici</a>
+				</div>
+				<div class="b-type">
+					<p>SIX-COURSE MENU</p>
+				</div>
+			</div>
+			<div class="C">
+				<div class="c-hover">
+					<a href="#" class="menu-link">Cliquez ici</a>
+				</div>
+				<div class="c-type">
+					<p>FOUR-COURSE MENU</p>
+				</div>
+			</div>
+			<div class="D">
+				<div class="d-hover">
+					<a href="#" class="menu-link">Cliquez ici</a>
+				</div>
+				<div class="d-type">
+					<p>VEGETARIAN</p>
+				</div>
+			</div>
+			<div class="E">
+				<div class="e-hover">
+					<a href="#" class="menu-link">Cliquez ici</a>
+				</div>
+				<div class="e-type">
+					<p>DRINKS</p>
+				</div>
+			</div>
+			<div class="F">
+				<div class="f-hover">
+					<a href="#" class="menu-link">Cliquez ici</a>
+				</div>
+				<div class="f-type">
+					<p>DESSERTS</p>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

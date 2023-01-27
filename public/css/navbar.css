@@ -1,0 +1,59 @@
+/* Breakpoints */
+@media screen and (min-width: 769px) {
+  .navbar-brand {
+    font-size: 2vw;
+  }
+}
+@media screen and (max-width: 768px) {
+  .navbar-brand {
+    font-size: 5vw;
+  }
+}
+/* FIN */
+
+/* GLOBAL */
+.navbar {
+  z-index: 3;
+  height: 10vh;
+  width: 96%;
+  left: 2%;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  transition: background-color 0.5s;
+}
+.navbar-nav {
+  display: flex;
+  width: -webkit-fill-available;
+  justify-content: flex-end;
+  font-weight: bold;
+}
+.navbar-brand {
+  font-weight: 800;
+  text-transform: uppercase;
+  color: black;
+}
+.nav-link {
+  color: black;
+  border-radius: 50px;
+  transition: background 0.5s ease;
+}
+.nav-link:hover {
+  color: white;
+  background-color: black;
+}
+.nav-item {
+  margin: 1%;
+}
+.navbar-toggler {
+  border: transparent;
+}
+.navbar-no-scroll {
+  background-color : transparent;
+}
+.navbar-scroll {
+  background-color : black;
+}
+.navbar-scroll .navbar-brand, 
+.navbar-scroll .navbar-collapse .navbar-nav li a,
+.navbar-scroll .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
+  filter: invert(100%);
+}

@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Réserver une table
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('css/reservation.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block main %}
+	<div class="img-container">
+		<img src="{{ asset('img/background-recette-card.jpg') }}" class="d-block" alt="...">
+	</div>
+	<div id="redirect-reservation-container" class="redirect-reservation">
+		<button id="check-reservation" class="button-58">Vérifier sa réservation</button>
+		<button id="new-reservation" class="button-58">Faire une nouvelle réservation</button>
+	</div>
+	<div id="check-reservation-container" class="check-reservation">
+		<h2>Vérifier sa réservation :</h2>
+		<form id="check_reservation-form">
+			<div class="row">
+				<div class="col">
+					<label for="email">Entrez votre email :</label>
+					<input type="email" class="form-control" name="mail" required>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<label for="surname">Entrez votre nom de famille :</label>
+					<input type="text" class="form-control" name="surname" required>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<button class="btn btn-primary" type="submit">Rechercher</button>
+				</div>
+			</div>
+		</form>
+		<div class="availablity"></div>
+	</div>
+	<div id="new-reservation-container" class="reservation-container">
+		<h2>Faire une réservation :</h2>
+		<!-- Envoyer ce formulaire en async, récupérer les heures dispo, les afficher dans des petites pastilles et ouvrir
+		        une nouvelle page en cas de clic avec un formulaire demandant nom, prénom, téléphone et mail -->
+		<form id="new_reservation-form">
+			<div class="row">
+				<div class="col">
+					<select class="form-select" name="seats" required>
+						<option selected disabled value="">Nombre de personnes</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<label for="date">Date</label>
+					<input type="date" class="form-control" name="date">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<button class="btn btn-primary" type="submit">Voir les disponibilités</button>
+				</div>
+			</div>
+		</form>
+		<div class="availablity"></div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('js/ajax/reservation.js') }}"></script>
+	<script src="{{ asset('js/script/reservation_div.js') }}"></script>
+{% endblock %}

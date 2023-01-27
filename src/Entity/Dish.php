@@ -10,22 +10,30 @@ use Doctrine\ORM\Mapping as ORM;
 class Dish
 {
     #[ORM\Id]
-    #[ORM\Column(length: 100)]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $name = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $description = null;
+
+    #[ORM\Column]
+    private ?float $price = null;
+
+    #[ORM\Column(type: Types::BINARY, nullable: true)]
+    private $picture = null;
 
     #[ORM\ManyToOne(inversedBy: 'dishes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Menu $type = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
-
-    #[ORM\Column(length: 5)]
-    private $price = null;
-
-    #[ORM\Column(type: Types::BLOB)]
-    private $pictures = null;
-
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getName(): ?string
     {
@@ -35,18 +43,6 @@ class Dish
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getType(): ?Menu
-    {
-        return $this->type;
-    }
-
-    public function setType(?Menu $type): self
-    {
-        $this->type = $type;
 
         return $this;
     }
@@ -63,26 +59,38 @@ class Dish
         return $this;
     }
 
-    public function getPrice(): ?string
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(string $price): self
+    public function setPrice(float $price): self
     {
         $this->price = $price;
 
         return $this;
     }
 
-    public function getPictures()
+    public function getPicture()
     {
-        return $this->pictures;
+        return $this->picture;
     }
 
-    public function setPictures($pictures): self
+    public function setPicture($picture): self
     {
-        $this->pictures = $pictures;
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getType(): ?Menu
+    {
+        return $this->type;
+    }
+
+    public function setType(?Menu $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

@@ -1,0 +1,109 @@
+/* Breakpoints */
+@media screen and (min-width: 769px) {
+  #block-one, #block-two, #block-three, .text-container, .img-container {
+    height: 100vh;
+  }
+  .text-container, .img-container, .img-container > img {
+    width: 50vw;
+  }
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 768px) {
+  #block-one, #block-three {
+    flex-direction: column;
+  }
+  #block-two {
+    flex-direction: column-reverse;
+  }
+  .text-container, .img-container {
+    min-height: 50vh;
+    width: 100vw;
+  }
+}
+/* FIN */
+
+/* NAVBAR */
+.navbar {
+  position: sticky;
+  top: 1%;
+  border-radius: 40px;
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2800, 0, 0, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+/* FIN */
+
+/* DIVERS */
+html, body {
+  font-family: 'Montserrat';
+}
+main {
+  width: 100vw;
+}
+h2 {
+  margin: 5% 0 5% 0;
+  font-weight: 800;
+  font-size: 5vw;
+  text-transform: uppercase;
+}
+#block-one, #block-two, #block-three {
+  display: flex;
+  justify-content: space-between;
+  width: inherit;
+}
+.text-container {
+  width: inherit;
+  padding: 2%;
+}
+.img-container > img {
+  width: inherit;
+  height: inherit;
+}
+/* FIN */
+
+/* ANIMATIONS */
+.visible .title-word {
+  animation: color-animation 3s linear infinite;
+  animation-timing-function: step-end;
+}
+
+.title-word-1 {
+  --color-1: #3D8DAE;
+  --color-2: #000000;
+  --color-3: #000000;
+  --color-4: #000000;
+}
+
+.title-word-2 {
+  --color-1: #000000;
+  --color-2: #ACCFCB;
+  --color-3: #000000;
+  --color-4: #000000;
+}
+
+.title-word-3 {
+  --color-1: #000000;
+  --color-2: #000000;
+  --color-3: #DBAD4A;
+  --color-4: #000000;
+}
+
+.title-word-4 {
+  --color-1: #000000;
+  --color-2: #000000;
+  --color-3: #000000;
+  --color-4: #DF8453;
+}
+
+@keyframes color-animation {
+  0%  {color: var(--color-1)}
+  25%  {color: var(--color-2)}
+  50%  {color: var(--color-3)}
+  75%  {color: var(--color-4)}
+  100%  {color: var(--color-1)}
+}
+/* FIN */

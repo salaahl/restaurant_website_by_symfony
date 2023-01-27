@@ -1,0 +1,117 @@
+/* Breakpoints */
+@media screen and (min-width: 769px) {
+  main {
+    justify-content: space-between;
+  }
+  .redirect-reservation {
+    width: 50vw;
+  }
+  #check-reservation-container, #new-reservation-container {
+    width: 100vw;
+  }
+  .button-58 {
+    min-width: 170px;
+  }
+}
+@media screen and (max-width: 768px) {
+  main {
+    justify-content: center;
+  }
+  .img-container {
+    display: none;
+  }
+  .redirect-reservation {
+    height: 60vh;
+    width: 100vw;
+    margin: 10%;
+    border: 3px solid lightslategrey;
+  }
+  #check-reservation-container, #new-reservation-container {
+    height: 60vh;
+    width: 100vw;
+    margin: 5%;
+    border: 3px solid lightslategrey;
+  }
+}
+/* FIN */
+
+html, body {
+  font-family: 'Montserrat';
+}
+main {
+  display: flex;
+}
+.img-container > img {
+  width: 50vw;
+}
+.redirect-reservation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
+}
+.redirect-reservation button {
+  margin: 2%;
+}
+#check-reservation-container, #new-reservation-container {
+  display: none;
+  padding: 2%;
+}
+.row {
+  --bs-gutter-y: 30;
+}
+.availablity {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10%;
+}
+.hour {
+  background-color: red;
+  display: initial;
+  margin: auto;
+  padding: 2%;
+  border-radius: 5px;
+}
+
+/* CSS button */
+.button-58 {
+  align-items: center;
+  background-color: #06f;
+  border: 2px solid #06f;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.button-58:focus {
+  color: #171e29;
+}
+.button-58:hover {
+  background-color: #3385ff;
+  border-color: #3385ff;
+  fill: #06f;
+}
+.button-58:active {
+  background-color: #3385ff;
+  border-color: #3385ff;
+  fill: #06f;
+}

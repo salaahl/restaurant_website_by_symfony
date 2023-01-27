@@ -1,0 +1,199 @@
+/* Breakpoints */
+@media screen and (min-width: 769px) {
+  .carousel-container {
+    height: 100vh;  
+  }
+  .sectionTwo-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .A p, .B p, .C p, .D p, .E p, .F p {
+    max-height: 50vh;
+  }
+}
+@media screen and (max-width: 768px) {
+  .sectionTwo-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .sectionTwo-container div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+  }
+  .A p, .B p, .C p, .D p, .E p, .F p {
+    max-height: 30vh;
+  }
+}
+/* FIN */
+
+/* Animations : */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+/* FIN */
+
+/* Barre de défilement custom : */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ ::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+/* FIN */
+
+html, body {
+  font-family: 'Montserrat';
+}
+/* NAVBAR */
+.navbar {
+  position: sticky;
+  top: 1%;
+  border-radius: 40px;
+}
+.navbar-brand {
+  color: white!important;
+}
+.nav-link {
+  color: white!important;
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar-scroll .navbar-brand, .navbar-scroll .navbar-collapse .navbar-nav li a,
+.navbar-scroll .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
+  filter: none!important;
+}
+.navbar-scroll .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
+  color: black!important;
+  background-color: white;
+}
+main {
+  margin-top: -10vh;
+}
+.carousel-control-next, .carousel-control-prev {
+  top: 10%;
+}
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    padding: 15%;
+    border-radius: 50%;
+}
+#carouselExampleCaptions, .carousel-inner, .carousel-item {
+  height: inherit;
+}
+.carousel-caption > h5 {
+  font-weight: bold;
+}
+.menu-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    background-color: lightgoldenrodyellow;
+}
+.menu-title h5 {
+  font-size: xxx-large;
+  font-weight: bold;
+}
+/* Penser à optimiser la taille et le système de grid... */
+.sectionTwo-container {
+  min-height: 100vh;
+  width: inherit;
+}
+.sectionTwo-container div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.A p, .B p, .C p, .D p, .E p, .F p {
+  padding: inherit;
+}
+.A {
+  background-color: green;
+}
+.B {
+  background-color: white;
+}
+.C {
+  background-color: fuchsia;
+}
+.D {
+  background-color: azure;
+}
+.E {
+  background-color: beige;
+}
+.F {
+  background-color: palegreen;
+}
+.a-type, .b-type, .c-type, .d-type, .e-type, .f-type {
+  font-weight: bold;
+}
+.a-hover, 
+.b-hover, 
+.c-hover, 
+.d-hover, 
+.e-hover, 
+.f-hover {
+  display: none!important;
+  max-height: 50vh;
+  font-size: small;
+  padding: 5%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  animation: fade-out 1s;
+}
+.A:hover .a-type, 
+.B:hover .b-type, 
+.C:hover .c-type, 
+.D:hover .d-type, 
+.E:hover .e-type, 
+.F:hover .f-type {
+  display: none!important;
+  animation: fade-out 1s;
+}
+.A:hover .a-hover,
+.B:hover .b-hover,
+.C:hover .c-hover,
+.D:hover .d-hover,
+.E:hover .e-hover,
+.F:hover .f-hover {
+  display: flex!important;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  color: white;
+  animation: fade-in 1s;
+}
+.menu-link {
+  text-decoration: none;
+  color: white;
+}
+.menu-link:focus .b-menu {
+  display: block;
+}

@@ -1,0 +1,56 @@
+#loader {
+  position: fixed;
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  opacity: 1;
+}
+.loader {
+  animation: color-animation 1s linear infinite;
+  animation-timing-function: step-end;
+  -webkit-text-stroke: 1px black;
+}
+.loader-word-1 {
+  --color-1: #3d8dae;
+  --color-2: #000000;
+  --color-3: #000000;
+  --color-4: #000000;
+}
+.loader-word-2 {
+  --color-1: #000000;
+  --color-2: #accfcb;
+  --color-3: #000000;
+  --color-4: #000000;
+}
+.loader-word-3 {
+  --color-1: #000000;
+  --color-2: #000000;
+  --color-3: #dbad4a;
+  --color-4: #000000;
+}
+.loader-word-4 {
+  --color-1: #000000;
+  --color-2: #000000;
+  --color-3: #000000;
+  --color-4: #df8453;
+}
+@keyframes color-animation {
+  0% {
+    color: var(--color-1);
+  }
+  25% {
+    color: var(--color-2);
+  }
+  50% {
+    color: var(--color-3);
+  }
+  75% {
+    color: var(--color-4);
+  }
+  100% {
+    color: var(--color-1);
+  }
+}

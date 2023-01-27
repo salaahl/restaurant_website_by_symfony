@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Qui sommes-nous ?
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('css/about.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block main %}
+	<div id="block-one">
+		<div class="text-container">
+			<h2 id="section-one">
+				<span class="title-word title-word-1">A</span>
+				<span class="title-word title-word-2">propos</span><br>
+				<span class="title-word title-word-3">de</span>
+				<span class="title-word title-word-4">nous</span>
+			</h2>
+			<div>
+				<p>
+					"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+				</p>
+			</div>
+		</div>
+		<div class="img-container">
+			<img src="{{ asset('img/background-recette-card.jpg') }}" class="d-block" alt="...">
+		</div>
+	</div>
+	<div id="block-two">
+		<div class="img-container">
+			<img src="{{ asset('img/background-recette-card.jpg') }}" class="d-block" alt="...">
+		</div>
+		<div class="text-container">
+			<h2 id="section-two">
+				<span class="title-word title-word-1">Section</span>
+				<span class="title-word title-word-2">2</span>
+			</h2>
+			<div>
+				<p>
+					"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+				</p>
+			</div>
+		</div>
+	</div>
+	<div id="block-three">
+		<div class="text-container">
+			<h2 id="section-three">
+				<span class="title-word title-word-1">Section</span>
+				<span class="title-word title-word-2">3</span>
+			</h2>
+			<div>
+				<p>
+					"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+				</p>
+			</div>
+		</div>
+		<div class="img-container">
+			<img src="{{ asset('img/background-recette-card.jpg') }}" class="d-block" alt="...">
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('js/script/about.js') }}"></script>
+{% endblock %}

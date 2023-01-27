@@ -3,31 +3,40 @@
 namespace App\Entity;
 
 use App\Repository\ReservationRepository;
-use Doctrine\DBAL\Types\Types;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
 {
     #[ORM\Id]
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 255)]
     private ?string $mail = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Restaurant $date = null;
+    #[ORM\JoinColumn(nullable:false, name:"ReservationDate", referencedColumnName:"reservation_date")]
+    private ?ReservationDate $reservation_date = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\OneToMany(mappedBy: 'mail', targetEntity: Seats::class)]
+    private Collection $seats;
+
+    #[ORM\Column(length: 255)]
     private ?string $surname = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $phone_number = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $seats_reserved = null;
+    #[ORM\Column]
+    private ?int $seat_reserved = null;
+
+    public function __construct()
+    {
+        $this->seats = new ArrayCollection();
+    }
 
     public function getMail(): ?string
     {
@@ -41,14 +50,44 @@ class Reservation
         return $this;
     }
 
-    public function getDate(): ?Restaurant
+    public function getReservationDate(): ?ReservationDate
     {
-        return $this->date;
+        return $this->reservation_date;
     }
 
-    public function setDate(?Restaurant $date): self
+    public function setReservationDate(?ReservationDate $reservation_date): self
     {
-        $this->date = $date;
+        $this->reservation_date = $reservation_date;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Seats>
+     */
+    public function getSeats(): Collection
+    {
+        return $this->seats;
+    }
+
+    public function addSeat(Seats $seat): self
+    {
+        if (!$this->seats->contains($seat)) {
+            $this->seats->add($seat);
+            $seat->setMail($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSeat(Seats $seat): self
+    {
+        if ($this->seats->removeElement($seat)) {
+            // set the owning side to null (unless already changed)
+            if ($seat->getMail() === $this) {
+                $seat->setMail(null);
+            }
+        }
 
         return $this;
     }
@@ -82,21 +121,21 @@ class Reservation
         return $this->phone_number;
     }
 
-    public function setPhoneNumber(string $phone_number): self
+    public function setPhoneNumber(?string $phone_number): self
     {
         $this->phone_number = $phone_number;
 
         return $this;
     }
 
-    public function getSeatsReserved(): ?int
+    public function getSeatReserved(): ?int
     {
-        return $this->seats_reserved;
+        return $this->seat_reserved;
     }
 
-    public function setSeatsReserved(int $seats_reserved): self
+    public function setSeatReserved(int $seat_reserved): self
     {
-        $this->seats_reserved = $seats_reserved;
+        $this->seat_reserved = $seat_reserved;
 
         return $this;
     }
