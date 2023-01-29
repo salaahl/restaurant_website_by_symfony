@@ -30,22 +30,24 @@ $(function () {
     $.ajax({
       type: 'post',
       data: $(this).serialize(),
-      datatype: "JSON",
+      datatype: 'JSON',
       success: function (data) {
         console.log(data);
         if (data != '') {
-          let availablity = data;
-          availablity.forEach(hour => {
+          let reservation = data;
+          reservation.forEach((availablity) => {
             $('.availablity').append(
-              '<div class="hour">' + hour + '</div>'
+              '<button class="hour">' +
+              availablity.hour +
+              '</button>'
             );
-          })
+          });
         } else {
-        $('.availablity').append(
-          '<div class="hour">Aucune disponibilité. Veuillez réessayer sur un autre jour.</div>'
-        );
-      }
-    },
+          $('.availablity').append(
+            '<div>Aucune disponibilité sur cette date. Veuillez réessayer avec un autre jour.</div>'
+          );
+        }
+      },
       error: function () {
         alert('Erreur');
       },

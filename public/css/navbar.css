@@ -8,13 +8,25 @@
   .navbar-brand {
     font-size: 5vw;
   }
+  .navbar-collapse {
+    display: none;
+  }
+  .show {
+    display: block;
+  }
+  .black-navbar {
+    background-color: black;
+  }
+  .main-margin {
+    margin-top: -38vh;
+  }
 }
 /* FIN */
 
 /* GLOBAL */
 .navbar {
+  position: sticky;
   z-index: 3;
-  height: 10vh;
   width: 96%;
   left: 2%;
   padding: 0.5rem 1rem 0.5rem 1rem;
@@ -37,8 +49,8 @@
   transition: background 0.5s ease;
 }
 .nav-link:hover {
-  color: white;
   background-color: black;
+  color: white;
 }
 .nav-item {
   margin: 1%;
@@ -47,12 +59,12 @@
   border: transparent;
 }
 .navbar-no-scroll {
-  background-color : transparent;
+  background-color: transparent;
 }
 .navbar-scroll {
-  background-color : black;
+  background-color: black;
 }
-.navbar-scroll .navbar-brand, 
+.navbar-scroll .navbar-brand,
 .navbar-scroll .navbar-collapse .navbar-nav li a,
 .navbar-scroll .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
   filter: invert(100%);

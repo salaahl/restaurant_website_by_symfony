@@ -13,11 +13,11 @@
 	<div class="img-container">
 		<img src="{{ asset('img/background-recette-card.jpg') }}" class="d-block" alt="...">
 	</div>
-	<div id="redirect-reservation-container" class="redirect-reservation">
-		<button id="check-reservation" class="button-58">Vérifier sa réservation</button>
-		<button id="new-reservation" class="button-58">Faire une nouvelle réservation</button>
+	<div id="redirect-reservation">
+		<button id="check-reservation-button" class="button-58">Vérifier sa réservation</button>
+		<button id="new-reservation-button" class="button-58">Faire une nouvelle réservation</button>
 	</div>
-	<div id="check-reservation-container" class="check-reservation">
+	<div id="check-reservation">
 		<h2>Vérifier sa réservation :</h2>
 		<form id="check_reservation-form">
 			<div class="row">
@@ -40,14 +40,14 @@
 		</form>
 		<div class="availablity"></div>
 	</div>
-	<div id="new-reservation-container" class="reservation-container">
+	<div id="new-reservation">
 		<h2>Faire une réservation :</h2>
 		<!-- Envoyer ce formulaire en async, récupérer les heures dispo, les afficher dans des petites pastilles et ouvrir
 		        une nouvelle page en cas de clic avec un formulaire demandant nom, prénom, téléphone et mail -->
 		<form id="new_reservation-form">
 			<div class="row">
 				<div class="col">
-					<select class="form-select" name="seats" required>
+					<select class="form-select" name="check-seats" required>
 						<option selected disabled value="">Nombre de personnes</option>
 						<option>1</option>
 						<option>2</option>
@@ -59,7 +59,7 @@
 			<div class="row">
 				<div class="col">
 					<label for="date">Date</label>
-					<input type="date" class="form-control" name="date">
+					<input type="date" class="form-control" name="check-date">
 				</div>
 			</div>
 			<div class="row">
@@ -70,10 +70,43 @@
 		</form>
 		<div class="availablity"></div>
 	</div>
+	<div id="complete-reservation">
+        <h2>Vous y êtes presque !</h2>
+        <p>Entrez vos infos :</p>
+        <form id ="complete-reservation-form">
+          <div class="row">
+            <div class="col-6">
+              <input id="form-date" type="text" class="form-control" name="date" disabled>
+            </div>
+            <div class="col-6">
+              <input id="form-hour" type="text" class="form-control" name="hour" disabled>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <input type="text" class="form-control" name="surname" placeholder="Nom">
+            </div>
+            <div class="col-6">
+              <input type="text" class="form-control" name="name" placeholder="Prénom">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <input type="tel" class="form-control" name="phone_number" placeholder="Numéro de téléphone">
+            </div>
+            <div class="col-6">
+              <input type="email" class="form-control" name="mail" placeholder="Mail">
+            </div>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">Valider ma réservation</button>
+          </div>
+        </form>
+      </div>
 {% endblock %}
 
 {% block javascripts %}
 	{{ parent() }}
 	<script src="{{ asset('js/ajax/reservation.js') }}"></script>
-	<script src="{{ asset('js/script/reservation_div.js') }}"></script>
+	<script src="{{ asset('js/script/reservation.js') }}"></script>
 {% endblock %}

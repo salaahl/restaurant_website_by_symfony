@@ -23,11 +23,11 @@ class ReservationController extends AbstractController
         {
             $response = [];
 
-            if (isset($_POST['seats']) && isset($_POST['date']))
+            if (isset($_POST['check-seats']) && isset($_POST['check-date']))
             {
-                $seats = $_POST['seats'];
+                $seats = $_POST['check-seats'];
                 // Timestamp pour avoir une valeur plus fiable
-                $date = strtotime($_POST['date']);
+                $date = strtotime($_POST['check-date']);
                 // A utiliser pour savoir si la date demandée est antérieure à celle d'aujourd'hui ?
                 $today = date('Y/m/d', strtotime("now"));
                 
@@ -68,9 +68,11 @@ class ReservationController extends AbstractController
                     "SELECT hour
                     FROM seats
                     WHERE seat >= ?
+                    AND
+                    ReservationDate = ?
                     ORDER BY hour ASC"
                 )
-                ->executeQuery([$seats])
+                ->executeQuery([$seats, $date])
                 ->fetchAllAssociative();
 
                 // Table réservation (actuelle), table "heure" (avec tranches horaires ?), table "places"
@@ -106,7 +108,7 @@ class ReservationController extends AbstractController
                     }
                 }
             }
-            
+
             return new JsonResponse($response);
         }
 
@@ -115,10 +117,10 @@ class ReservationController extends AbstractController
         ]);
     }
 
-    #[Route('/complete_reservation', name: 'app_complete_reservation')]
-    public function completeReservation(): Response
+    #[Route('/reservation_confirmed', name: 'app_reservation_confirmed')]
+    public function reservationConfirmed(): Response
     {
-        return $this->render('reservation/complete_reservation.html.twig', [
+        return $this->render('reservation/reservation_confirmed.html.twig', [
             'controller_name' => 'ReservationController',
         ]);
     }

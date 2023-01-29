@@ -3,16 +3,17 @@
   main {
     justify-content: space-between;
   }
-  .redirect-reservation {
+  #redirect-reservation {
     width: 50vw;
   }
-  #check-reservation-container, #new-reservation-container {
+  #check-reservation, #new-reservation, #complete-reservation {
     width: 100vw;
   }
   .button-58 {
     min-width: 170px;
   }
 }
+
 @media screen and (max-width: 768px) {
   main {
     justify-content: center;
@@ -20,13 +21,13 @@
   .img-container {
     display: none;
   }
-  .redirect-reservation {
+  #redirect-reservation {
     height: 60vh;
     width: 100vw;
     margin: 10%;
     border: 3px solid lightslategrey;
   }
-  #check-reservation-container, #new-reservation-container {
+  #check-reservation, #new-reservation, #complete-reservation {
     height: 60vh;
     width: 100vw;
     margin: 5%;
@@ -35,6 +36,7 @@
 }
 /* FIN */
 
+/* GLOBAL */
 html, body {
   font-family: 'Montserrat';
 }
@@ -44,17 +46,17 @@ main {
 .img-container > img {
   width: 50vw;
 }
-.redirect-reservation {
+#redirect-reservation {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 2%;
 }
-.redirect-reservation button {
+#redirect-reservation button {
   margin: 2%;
 }
-#check-reservation-container, #new-reservation-container {
+#check-reservation, #new-reservation, #complete-reservation {
   display: none;
   padding: 2%;
 }
@@ -115,3 +117,4 @@ main {
   border-color: #3385ff;
   fill: #06f;
 }
+/* FIN */

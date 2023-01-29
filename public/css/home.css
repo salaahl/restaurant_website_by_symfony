@@ -11,7 +11,7 @@
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
   }
-  .A p, .B p, .C p, .D p, .E p, .F p {
+  p {
     max-height: 50vh;
   }
 }
@@ -26,51 +26,16 @@
     align-items: center;
     height: 30vh;
   }
-  .A p, .B p, .C p, .D p, .E p, .F p {
+  p {
     max-height: 30vh;
   }
 }
 /* FIN */
 
-/* Animations : */
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-/* FIN */
-
-/* Barre de défilement custom : */
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-}
- ::-webkit-scrollbar-thumb {
-  background: #888; 
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-}
-/* FIN */
-
+/* GLOBAL */
 html, body {
   font-family: 'Montserrat';
 }
-/* NAVBAR */
 .navbar {
   position: sticky;
   top: 1%;
@@ -120,7 +85,6 @@ main {
   font-size: xxx-large;
   font-weight: bold;
 }
-/* Penser à optimiser la taille et le système de grid... */
 .sectionTwo-container {
   min-height: 100vh;
   width: inherit;
@@ -130,29 +94,32 @@ main {
   justify-content: center;
   align-items: center;
 }
-.A p, .B p, .C p, .D p, .E p, .F p {
-  padding: inherit;
-}
-.A {
-  background-color: green;
-}
-.B {
-  background-color: white;
-}
-.C {
-  background-color: fuchsia;
-}
-.D {
-  background-color: azure;
-}
-.E {
-  background-color: beige;
-}
-.F {
-  background-color: palegreen;
-}
 .a-type, .b-type, .c-type, .d-type, .e-type, .f-type {
   font-weight: bold;
+}
+.a-type p, .b-type p, .c-type p, .d-type p, .e-type p, .f-type p {
+  background-color: black;
+  padding: 2%;
+  color: white;
+  border-radius: 20px;
+}
+.a-type {
+  background-color: blue;
+}
+.b-type {
+  background-color: white;
+}
+.c-type {
+  background-color: red;
+}
+.d-type {
+  background-color: azure;
+}
+.e-type {
+  background-color: beige;
+}
+.f-type {
+  background-color: palegreen;
 }
 .a-hover, 
 .b-hover, 
@@ -160,35 +127,14 @@ main {
 .d-hover, 
 .e-hover, 
 .f-hover {
-  display: none!important;
   max-height: 50vh;
   font-size: small;
   padding: 5%;
+  color: white;
+  background-color: black;
   overflow-x: hidden;
   overflow-y: auto;
-  animation: fade-out 1s;
-}
-.A:hover .a-type, 
-.B:hover .b-type, 
-.C:hover .c-type, 
-.D:hover .d-type, 
-.E:hover .e-type, 
-.F:hover .f-type {
-  display: none!important;
-  animation: fade-out 1s;
-}
-.A:hover .a-hover,
-.B:hover .b-hover,
-.C:hover .c-hover,
-.D:hover .d-hover,
-.E:hover .e-hover,
-.F:hover .f-hover {
-  display: flex!important;
-  height: 100%;
-  width: 100%;
-  background-color: black;
-  color: white;
-  animation: fade-in 1s;
+  transform: rotateY(180deg);
 }
 .menu-link {
   text-decoration: none;
@@ -197,3 +143,56 @@ main {
 .menu-link:focus .b-menu {
   display: block;
 }
+.a-inner, .b-inner, .c-inner, .d-inner, .e-inner, .f-inner {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+.flip-card:hover .a-inner, .flip-card:hover .b-inner, .flip-card:hover .c-inner, .flip-card:hover .d-inner, .flip-card:hover .e-inner, .flip-card:hover .f-inner {
+  transform: rotateY(180deg);
+}
+.a-hover, .b-hover, .c-hover, .d-hover, .e-hover, .f-hover, 
+.a-type, .b-type, .c-type, .d-type, .e-type, .f-type {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Barre de défilement custom : */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ ::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+/* FIN */
+
+/* Animations : */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+/* FIN */

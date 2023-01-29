@@ -1,9 +1,15 @@
 /* Breakpoints */
 @media screen and (min-width: 769px) {
-  #block-one, #block-two, #block-three, .text-container, .img-container {
+  #block-one,
+  #block-two,
+  #block-three,
+  .text-container,
+  .img-container {
     height: 100vh;
   }
-  .text-container, .img-container, .img-container > img {
+  .text-container,
+  .img-container,
+  .img-container > img {
     width: 50vw;
   }
   .text-container {
@@ -13,13 +19,15 @@
   }
 }
 @media screen and (max-width: 768px) {
-  #block-one, #block-three {
+  #block-one,
+  #block-three {
     flex-direction: column;
   }
   #block-two {
     flex-direction: column-reverse;
   }
-  .text-container, .img-container {
+  .text-container,
+  .img-container {
     min-height: 50vh;
     width: 100vw;
   }
@@ -38,7 +46,8 @@
 /* FIN */
 
 /* DIVERS */
-html, body {
+html,
+body {
   font-family: 'Montserrat';
 }
 main {
@@ -50,7 +59,9 @@ h2 {
   font-size: 5vw;
   text-transform: uppercase;
 }
-#block-one, #block-two, #block-three {
+#block-one,
+#block-two,
+#block-three {
   display: flex;
   justify-content: space-between;
   width: inherit;
@@ -72,7 +83,7 @@ h2 {
 }
 
 .title-word-1 {
-  --color-1: #3D8DAE;
+  --color-1: #3d8dae;
   --color-2: #000000;
   --color-3: #000000;
   --color-4: #000000;
@@ -80,7 +91,7 @@ h2 {
 
 .title-word-2 {
   --color-1: #000000;
-  --color-2: #ACCFCB;
+  --color-2: #accfcb;
   --color-3: #000000;
   --color-4: #000000;
 }
@@ -88,7 +99,7 @@ h2 {
 .title-word-3 {
   --color-1: #000000;
   --color-2: #000000;
-  --color-3: #DBAD4A;
+  --color-3: #dbad4a;
   --color-4: #000000;
 }
 
@@ -96,14 +107,24 @@ h2 {
   --color-1: #000000;
   --color-2: #000000;
   --color-3: #000000;
-  --color-4: #DF8453;
+  --color-4: #df8453;
 }
 
 @keyframes color-animation {
-  0%  {color: var(--color-1)}
-  25%  {color: var(--color-2)}
-  50%  {color: var(--color-3)}
-  75%  {color: var(--color-4)}
-  100%  {color: var(--color-1)}
+  0% {
+    color: var(--color-1);
+  }
+  25% {
+    color: var(--color-2);
+  }
+  50% {
+    color: var(--color-3);
+  }
+  75% {
+    color: var(--color-4);
+  }
+  100% {
+    color: var(--color-1);
+  }
 }
 /* FIN */

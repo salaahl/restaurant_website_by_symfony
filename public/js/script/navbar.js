@@ -1,16 +1,24 @@
-const nav = document.getElementById("navbar");
-
-// Apply black background in navbar on scroll
-var prevScrollpos = window.pageYOffset;
-window.onscroll = function() {
+$( window ).scroll(function() {
   var currentScrollPos = window.pageYOffset;
+  
   if (currentScrollPos == '0') {
-    nav.style.top = "1%";
-    nav.style.background = "transparent";
+    ('#navbar').removeClass("navbar-scroll");
+    $('#navbar').addClass("navbar-non-scroll");
   }
-  else if (prevScrollpos < currentScrollPos) {
-    nav.style.top = "1%";
-    nav.style.background = "black";
+  else if ('0' < currentScrollPos) {
+    ('#navbar').removeClass("navbar-non-scroll");
+    $('#navbar').addClass("navbar-scroll");
   }
-  prevScrollpos = currentScrollPos;
-}
+});
+
+$( '#nav-toggler-icon' ).click(function() {
+  if($('.navbar-collapse').hasClass('show')) {
+    $('.navbar-collapse').removeClass("show");
+    $('.navbar').removeClass("black-navbar");
+    $('main').removeClass("main-margin");
+  } else {
+    $('.navbar-collapse').addClass("show");
+    $('.navbar').addClass("black-navbar");
+    $('main').addClass("main-margin");
+  }
+});
