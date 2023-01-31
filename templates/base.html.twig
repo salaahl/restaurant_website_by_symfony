@@ -14,9 +14,9 @@
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;800&display=swap" rel="stylesheet">
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
-			<link href="{{ asset('css/loader.css') }}" rel="stylesheet" type="text/css"/>
 			<link href="{{ asset('css/navbar.css') }}" rel="stylesheet" type="text/css"/>
 			<link href="{{ asset('css/footer.css') }}" rel="stylesheet" type="text/css"/>
+			<link href="{{ asset('css/loader.css') }}" rel="stylesheet" type="text/css"/>
 		{% endblock %}
 	</head>
 
@@ -24,22 +24,29 @@
 		{% block body %}
 			<div id="loader">
 				<h2>
-					<span class="loader loader-word-1">Le</span>
-					<span class="loader loader-word-2">Ving</span><span class="loader loader-word-3">t</span><span class="loader loader-word-4">ième</span>
+					<span class="loader-word loader-word-1">Le</span>
+					<span class="loader-word loader-word-2">Ving</span>
+					<span class="loader-word loader-word-3">t</span>
+					<span class="loader-word loader-word-4">ième</span>
 				</h2>
 			</div>
-			<div id="global-container" class="bg-light">
+			<nav class="navbar navbar-expand-lg navbar-light" id="navbar">
 				{% include('_navbar.html.twig') %}
+			</nav>
+			<div id="global-container" class="bg-light">
 				<main>
 					{% block main %}{% endblock %}
 				</main>
+				<footer id="footer" class="container-fluid bg-dark row g-0">
+					{% include('_footer.html.twig') %}
+				</footer>
 			</div>
-			{% include('_footer.html.twig') %}
 		{% endblock %}
 		{% block javascripts %}
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-			<script src="{{ asset('js/script/loader.js') }}"></script>
+			<script src="{{ asset('js/script/const.js') }}"></script>
 			<script src="{{ asset('js/script/navbar.js') }}"></script>
+			<script src="{{ asset('js/script/loader.js') }}"></script>
 		{% endblock %}
 	</body>
 </html>

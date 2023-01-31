@@ -3,25 +3,18 @@ $(function () {
     e.preventDefault();
     $.ajax({
       type: 'post',
+      url: '../index.php',
       data: $(this).serialize(),
       success: function (data) {
         if (data != '') {
-          $('.availablity').append(
-            '<div>Votre réservation au nom de ' +
-              data.surname +
-              ' ' +
-              data.name +
-              ' à' +
-              date.hour +
-              ' a bien été enregistrée. Au plaisir de vous voir !</div>'
-          );
+          console.log(data);
         } else {
-          $('.availablity').append(
-            "<div>Aucune réservation à ce nom n'a été trouvée</div>"
-          );
+          console.log('Aucune réservation à ce nom.');
         }
       },
-      error: function () {},
+      error: function () {
+        console.log('Erreur.');
+      },
     });
   });
 
@@ -29,17 +22,17 @@ $(function () {
     e.preventDefault();
     $.ajax({
       type: 'post',
+      url: '../index.php',
       data: $(this).serialize(),
-      datatype: 'JSON',
       success: function (data) {
-        console.log(data);
         if (data != '') {
-          let reservation = data;
-          reservation.forEach((availablity) => {
+          // Mettre dans l'objet "data" l'heure et le jour et les injecter dans le lien présent dans "hour"
+          let availablity = data;
+          availablity.forEach((hour) => {
             $('.availablity').append(
-              '<button class="hour">' +
-              availablity.hour +
-              '</button>'
+              '<div class="hour"><a href="./complete_reservation.html?">' +
+                hour +
+                '</a></div>'
             );
           });
         } else {

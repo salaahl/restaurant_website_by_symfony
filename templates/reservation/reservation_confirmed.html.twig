@@ -1,46 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Réserver une table
+	Réservation confirmée !
 {% endblock %}
 
 {% block stylesheets %}
 	{{ parent() }}
-	<link href="{{ asset('css/complete_reservation.css') }}" rel="stylesheet" type="text/css"/>
+	<link href="{{ asset('css/reservation_confirmed.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block main %}
+	<h2>Réservation confirmée !</h2>
 	<div class="img-container">
-		<img src="{{ asset('img/background-recette-card.jpg') }}" class="d-block" alt="...">
+		<img src="{{ asset('img/kitchen.jpg') }}" alt="...">
 	</div>
-	<div class="reservation-container">
-		<h2>Vous y êtes presque !</h2>
-		<p>Entrez vos infos :</p>
-		<form>
-			<div class="row">
-				<div class="col-6">
-					<input type="text" class="form-control" name="surname" placeholder="Nom">
-				</div>
-				<div class="col-6">
-					<input type="text" class="form-control" name="name" placeholder="Prénom">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-6">
-					<input type="tel" class="form-control" name="phone_number" placeholder="Numéro de téléphone">
-				</div>
-				<div class="col-6">
-					<input type="email" class="form-control" name="mail" placeholder="Mail">
-				</div>
-			</div>
-			<div class="col-12">
-				<button class="btn btn-primary" type="submit">Valider ma réservation</button>
-			</div>
-		</form>
+	<div
+		class="reservation-confirmed">
+		<!-- Mettre ici des données personalisées comme la date et l'heure. Passer par les variables TWIG pour ce faire -->
+		<p>Votre réservation le (mettre ici date) à (mettre ici heure) a bien été prise en compte.</p>
+		<p>Adresse :</p>
+		<p>N'hésitez pas à nous contacter pour toute demande d'infos complémentaires.</p>
+		<p>A bientôt !<br>Le vingtième.</p>
 	</div>
-{% endblock %}
-
-{% block javascripts %}
-	{{ parent() }}
-	<script src="{{ asset('js/ajax/complete_reservation.js') }}"></script>
 {% endblock %}

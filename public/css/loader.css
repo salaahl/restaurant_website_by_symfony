@@ -6,9 +6,9 @@
   align-items: center;
   height: 100vh;
   width: 100vw;
-  opacity: 1;
+  opacity:1;
 }
-.loader {
+.loader-word {
   margin: 5% 0 5% 0;
   font-weight: 800;
   font-size: 5vw;
@@ -17,44 +17,39 @@
   animation: color-animation 1s linear infinite;
   animation-timing-function: step-end;
 }
+
 .loader-word-1 {
-  --color-1: #3d8dae;
+  --color-1: #3D8DAE;
   --color-2: #000000;
   --color-3: #000000;
   --color-4: #000000;
 }
+
 .loader-word-2 {
   --color-1: #000000;
-  --color-2: #accfcb;
+  --color-2: #ACCFCB;
   --color-3: #000000;
   --color-4: #000000;
 }
+
 .loader-word-3 {
   --color-1: #000000;
   --color-2: #000000;
-  --color-3: #dbad4a;
+  --color-3: #DBAD4A;
   --color-4: #000000;
 }
+
 .loader-word-4 {
   --color-1: #000000;
   --color-2: #000000;
   --color-3: #000000;
-  --color-4: #df8453;
+  --color-4: #DF8453;
 }
+
 @keyframes color-animation {
-  0% {
-    color: var(--color-1);
-  }
-  25% {
-    color: var(--color-2);
-  }
-  50% {
-    color: var(--color-3);
-  }
-  75% {
-    color: var(--color-4);
-  }
-  100% {
-    color: var(--color-1);
-  }
+  0%  {color: var(--color-1)}
+  25%  {color: var(--color-2)}
+  50%  {color: var(--color-3)}
+  75%  {color: var(--color-4)}
+  100%  {color: var(--color-1)}
 }

@@ -12,7 +12,7 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
   p {
-    max-height: 50vh;
+    max-height: 45vh;
   }
 }
 @media screen and (max-width: 768px) {
@@ -27,7 +27,7 @@
     height: 30vh;
   }
   p {
-    max-height: 30vh;
+    max-height: 25vh;
   }
 }
 /* FIN */
@@ -35,11 +35,6 @@
 /* GLOBAL */
 html, body {
   font-family: 'Montserrat';
-}
-.navbar {
-  position: sticky;
-  top: 1%;
-  border-radius: 40px;
 }
 .navbar-brand {
   color: white!important;
@@ -54,12 +49,19 @@ html, body {
 .navbar-scroll .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
   filter: none!important;
 }
+.navbar-scroll .navbar-brand, .navbar-scroll .navbar-collapse .navbar-nav li {
+  margin: 0;
+}
 .navbar-scroll .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
   color: black!important;
   background-color: white;
 }
-main {
-  margin-top: -10vh;
+.global-container {
+  position: absolute;
+  bottom: 0;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 }
 .carousel-control-next, .carousel-control-prev {
   top: 10%;

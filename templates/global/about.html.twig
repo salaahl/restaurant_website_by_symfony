@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block main %}
-	<div id="block-one">
+	<section>
 		<div class="text-container">
 			<h2 id="section-one">
 				<span class="title-word title-word-1">A</span>
@@ -27,8 +27,8 @@
 		<div class="img-container">
 			<img src="{{ asset('img/background-recette-card.jpg') }}" class="d-block" alt="...">
 		</div>
-	</div>
-	<div id="block-two">
+	</section>
+	<section>
 		<div class="img-container">
 			<img src="{{ asset('img/background-recette-card.jpg') }}" class="d-block" alt="...">
 		</div>
@@ -43,8 +43,8 @@
 				</p>
 			</div>
 		</div>
-	</div>
-	<div id="block-three">
+	</section>
+	<section>
 		<div class="text-container">
 			<h2 id="section-three">
 				<span class="title-word title-word-1">Section</span>
@@ -59,10 +59,5 @@
 		<div class="img-container">
 			<img src="{{ asset('img/background-recette-card.jpg') }}" class="d-block" alt="...">
 		</div>
-	</div>
-{% endblock %}
-
-{% block javascripts %}
-	{{ parent() }}
-	<script src="{{ asset('js/script/about.js') }}"></script>
+	</section>
 {% endblock %}

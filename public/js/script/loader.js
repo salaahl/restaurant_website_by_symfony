@@ -1,21 +1,20 @@
-var loader = document.getElementById("loader");
-var globalContainer = document.getElementById("global-container");
-var footerContainer = document.getElementById("footer");
-
-globalContainer.style.opacity = '0';
-footerContainer.style.opacity = '0';
+navbar.css({ opacity: "0" });
+globalContainer.css({ opacity: "0" });
+footer.css({ opacity: "0" });
 
 function waithide() {
   window.setTimeout(
     function removethis() {
-      loader.style.display = 'none';
-      globalContainer.style.opacity = '1';
-      footerContainer.style.opacity = '1';
-      globalContainer.style.transition = 'opacity 1s';
-      footerContainer.style.transition = 'opacity 1s';
+      loader.css({ display: "none" });
+      navbar.css({ opacity: "1" });
+      globalContainer.css({ opacity: "1" });
+      footer.css({ opacity: "1" });
+      navbar.css({ transition: "all 1s" });
+      globalContainer.css({ transition: "all 1s" });
+      footer.css({ transition: "all 1s" });
     }, 3000);
 }
 
 $(document).ready(function() {
-  var myVar = waithide();
+  let removeLoader = waithide();
 });

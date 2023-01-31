@@ -13,7 +13,6 @@
     min-width: 170px;
   }
 }
-
 @media screen and (max-width: 768px) {
   main {
     justify-content: center;
@@ -36,7 +35,6 @@
 }
 /* FIN */
 
-/* GLOBAL */
 html, body {
   font-family: 'Montserrat';
 }
@@ -117,4 +115,3 @@ main {
   border-color: #3385ff;
   fill: #06f;
 }
-/* FIN */

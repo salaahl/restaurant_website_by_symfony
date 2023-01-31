@@ -1,3 +1,21 @@
 html, body {
   font-family: 'Montserrat';
 }
+h2 {
+  margin: 1% 0 1% 0;
+  font-weight: 800;
+  font-size: 3vw;
+  text-align: center;
+  text-transform: uppercase;
+}
+.img-container {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+}
+img {
+  max-width: 50%;
+  border-radius: 50px;
+  box-shadow: 10px 13px 20px 0px rgb(0,0,0, 0.5);
+  margin: 1% 0 2% 0;
+}
