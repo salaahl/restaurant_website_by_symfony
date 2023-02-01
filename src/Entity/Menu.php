@@ -11,10 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Menu
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
@@ -25,10 +21,11 @@ class Menu
     {
         $this->dishes = new ArrayCollection();
     }
-
-    public function getId(): ?int
+    
+    // Fonction ajoutée par moi-même. Impossible de lire l'objet dans un fichier TWIG sans...
+    public function __toString()
     {
-        return $this->id;
+        return $this->type;
     }
 
     public function getType(): ?string

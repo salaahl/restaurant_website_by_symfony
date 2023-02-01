@@ -20,7 +20,7 @@
 				</div>
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="{{ asset('img/me.jpg') }}"class="d-block w-100" alt="...">
+						<img src="{{ asset('img/me.jpg') }}" class="d-block w-100" alt="...">
 						<div class="carousel-caption d-none d-md-block">
 							<h5>Restaurant "Le vingtième"</h5>
 							<p>Paris 20 ème</p>
@@ -64,44 +64,17 @@
 				<div class="a-inner">
 					<div class="a-hover">
 						<p>
-							<b>EIGHT-COURSE</b><br><br>
-							<b>Shaved Black Lip abalone</b><br>
-							raw sea scallop, fresh bamboo<br>
-							tonburi, kombu, virgin soy, aged vinegar<br>
-							<br><br>
-							<b>Smoked eel cream</b><br>
-							sea cucumber crackling, Oscietra caviar<br>
-							<br><br>
-							<b>Native marron</b><br>
-							green almonds, seaweed broth<br>
-							chamomile, angelica
-							<br><br>
-							<b>Bone marrow noodles</b><br>
-							Mud crab, striped peanuts, sour koji butter<br>
-							<br><br>
-							<b>Roasted pasture raised duck</b><br>
-							Morello cherries, Kampot pepper, black garlic<br>
-							<br><br>
-							<b>Confit pig jowl</b><br>
-							Black Pearl mushrooms, Southern squid<br>
-							smoked trotter broth<br>
-							<br><br>
-							<b>Stone Fruit Fantasy</b><br>
-							<br><br>
-							<b>Feathers</b><br>
-							dark chocolate, prune<br>
-							(Menu subject to change)<br>
-							<br><br>
-							<b>Eight-Course Menu $340</b><br>
-							<b>Temperance Pairing $140</b><br>
-							<b>Quay Wine Pairing $200</b><br>
-							<b>Sommelier Wine Pairing $250</b><br>
-							<b>Benchmark Wine Pairing $1100</b>
-							<br><br>
+							<b>HALAL</b><br><br>
+							{% for dish in dishHalal %}
+								<b>{{ dish.name }}</b><br>
+								{{ dish.description }}<br>
+								{{ dish.price }}€<br>
+								<br><br>
+							{% endfor %}
 						</p>
 					</div>
 					<div class="a-type">
-						<p>EIGHT-COURSE MENU</p>
+						<p>HALAL MENU</p>
 					</div>
 				</div>
 			</div>

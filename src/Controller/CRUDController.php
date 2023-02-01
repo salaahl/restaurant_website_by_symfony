@@ -5,56 +5,82 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
-use App\Entity\Seats;
-
-use App\Repository\SeatsRepository;
-
-use Symfony\Component\Validator\Constraints\DateTime;
-
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
+
+use App\Form\DishFormType;
+use App\Entity\Dish;
+
+use App\Entity\Menu;
+use App\Repository\MenuRepository;
+use App\Repository\DishRepository;
 
 class CRUDController extends AbstractController
 {
-    #[Route('/c/r/u/d', name: 'app_c_r_u_d')]
-    public function index(
-        ManagerRegistry $doctrine
-    ): Response
-    {
-        $db = $doctrine->getManager()->getConnection();
-        $date = strtotime('25-01-2023');
+    #[Route('/add_something', name: 'app_add_something')]
+    public function addSomething(
+        MenuRepository $menuRepository,
+        DishRepository $dishRepository,
+        ManagerRegistry $doctrine,
+        Request $request
+    ): Response {
 
-        // Vérifie si la date existe :
-            $check_date = $db
-            ->prepare(
-                "SELECT reservation_date
-                FROM reservation_date
-                WHERE reservation_date = ?"
-            )
-            ->executeQuery([$date])
-            ->fetchAllAssociative();
+        $check_type = $menuRepository->findOneBy([
+            'type' => 'halal'
+        ]);
 
-            if(!$check_date) {
-                $add_date = $db
-                ->prepare(
-                    "INSERT INTO reservation_date (reservation_date)
-                    VALUES (?)"
-                )
-                ->executeQuery([$date]);
-            }
+        if($check_type == NULL)
+        {
+            $menu = new Menu();
+            $menu->setType('Halal');
 
-        $hours = ["13:00:00", "14:00:00", "15:00:00", "16:00:00", 
-                "17:00:00", "18:00:00", "19:00:00", "20:00:00", "21:00:00", "22:00:00"];
-                
-                foreach($hours as $hour) {
-                    $add_hour = $db
-                    ->prepare(
-                        "INSERT INTO seats (hour, seat, ReservationDate)
-                        VALUES (?, 20, ?)"
-                    )
-                    ->executeQuery([$hour, $date]);
-                }
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($menu);
+            $entityManager->flush();
+        }
 
-        return new Response(var_dump($hours));
+        $dishHalal = $dishRepository->findBy(
+            ['type' => 'halal'],
+            ['type' => 'ASC']
+        );
+
+
+        return new Response(var_dump($dishHalal));
+    }
+
+    #[Route('/add_dish', name: 'app_add_dish')]
+    public function addDish(
+        MenuRepository $menuRepository,
+        ManagerRegistry $doctrine,
+        Request $request
+    ): Response {
+        
+        $menus = $menuRepository->findAll();
+        $dishEntity = new Dish();
+        $dishForm = $this->createForm(DishFormType::class, $dishEntity);
+
+        $dishForm->handleRequest($request);
+        if ($dishForm->isSubmitted()) {
+            $name = $_POST['dish_form']['name'];
+            $description = $_POST['dish_form']['description'];
+            $price = $_POST['dish_form']['price'];
+            $type = $menuRepository->find($_POST['dish_type']);
+
+            $dishEntity->setName($name);
+            $dishEntity->setDescription($description);
+            $dishEntity->setPrice($price);
+            $dishEntity->setType($type);
+
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($dishEntity);
+            $entityManager->flush();
+
+            return new Response('Plat enregistré !');
+        }
+
+        return $this->render('form/dish.html.twig', [
+            'dishForm' => $dishForm->createView(),
+            'menus' => $menus,
+        ]);
     }
 }
