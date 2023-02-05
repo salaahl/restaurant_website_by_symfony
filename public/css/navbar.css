@@ -54,13 +54,15 @@
   color: white;
 }
 .nav-item {
+  display: flex;
+  align-items: center;
   margin: 1%;
 }
 .navbar-toggler {
   border: transparent;
 }
 .navbar-no-scroll {
-  background-color : transparent;
+  background-color: transparent;
 }
 .navbar-scroll {
   top: 2%;
@@ -73,7 +75,7 @@
   margin-right: auto;
   margin-left: auto;
 }
-.navbar-scroll .navbar-brand, 
+.navbar-scroll .navbar-brand,
 .navbar-scroll .navbar-collapse .navbar-nav li a,
 .navbar-scroll .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
   filter: invert(100%);
