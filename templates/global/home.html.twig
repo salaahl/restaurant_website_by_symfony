@@ -54,80 +54,196 @@
 		</div>
 	</section>
 	<section>
-		<div id="menu">
-			<div id="menu-title" class="menu-title">
-				<h5>Menu</h5>
+		<div id="menu-container">
+			<div id="menu-title">
+				<div class="straight-lines">
+					<div class="straight straight-one">
+						<div class="straight straight-50"></div>
+					</div>
+					<div class="straight straight-two">
+						<div class="straight straight-50"></div>
+					</div>
+					<div class="straight straight-three">
+						<div class="straight straight-50"></div>
+					</div>
+					<div class="straight straight-four">
+						<div class="straight straight-50"></div>
+					</div>
+					<div class="straight straight-five">
+						<div class="straight straight-50"></div>
+					</div>
+					<div class="straight straight-six">
+						<div class="straight straight-50"></div>
+					</div>
+				</div>
+				<div id="title">
+					<h5>Titre</h5>
+				</div>
+				<div class="straight-lines mirror">
+					<div class="straight straight-one">
+						<div class="straight straight-50"></div>
+					</div>
+					<div class="straight straight-two">
+						<div class="straight straight-50"></div>
+					</div>
+					<div class="straight straight-three">
+						<div class="straight straight-50"></div>
+					</div>
+					<div class="straight straight-four">
+						<div class="straight straight-50"></div>
+					</div>
+					<div class="straight straight-five">
+						<div class="straight straight-50"></div>
+					</div>
+					<div class="straight straight-six">
+						<div class="straight straight-50"></div>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="sectionTwo-container">
-			<div class="flip-card">
-				<div class="a-inner">
-					<div class="a-hover">
-						<p>
-							<b>HALAL</b><br><br>
+			<div class="flip-card flip-card-one">
+				<div class="inner">
+					<div class="type">
+						<p>HALAL</p>
+					</div>
+					<div class="dishs">
+						<h6>Halal</h6>
+						{% if dishHalal is defined and dishHalal is not empty %}
 							{% for dish in dishHalal %}
-								<b>{{ dish.name }}</b><br>
-								{{ dish.description }}<br>
-								{{ dish.price }}€<br>
-								<br><br>
+								<div class="dish">
+									<div class="verticalLineTop"></div>
+									<b>{{ dish.name }}</b><br>
+									{{ dish.description }}<br>
+									{{ dish.price }}€
+								</div>
 							{% endfor %}
-						</p>
-					</div>
-					<div class="a-type">
-						<p>HALAL MENU</p>
-					</div>
-				</div>
-			</div>
-			<div class="flip-card">
-				<div class="b-inner">
-					<div class="b-type">
-						<p>SIX-COURSE MENU</p>
-					</div>
-					<div class="b-hover">
-						<a href="#" class="menu-link">Cliquez ici</a>
+						{% else %}
+							<div class="h-100 w-100 d-flex justify-content-center align-items-center">
+								<b>En construction.</b>
+							</div>
+						{% endif %}
 					</div>
 				</div>
 			</div>
-			<div class="flip-card">
-				<div class="c-inner">
-					<div class="c-hover">
-						<a href="#" class="menu-link">Cliquez ici</a>
+			<div class="flip-card flip-card-two">
+				<div class="inner">
+					<div class="type">
+						<p>MENU 2</p>
 					</div>
-					<div class="c-type">
-						<p>FOUR-COURSE MENU</p>
-					</div>
-				</div>
-			</div>
-			<div class="flip-card">
-				<div class="d-inner">
-					<div class="d-hover">
-						<a href="#" class="menu-link">Cliquez ici</a>
-					</div>
-					<div class="d-type">
-						<p>VEGETARIAN</p>
-					</div>
-				</div>
-			</div>
-			<div class="flip-card">
-				<div class="e-inner">
-					<div class="e-hover">
-						<a href="#" class="menu-link">Cliquez ici</a>
-					</div>
-					<div class="e-type">
-						<p>DRINKS</p>
+					<div class="dishs">
+						<h6>Menu 2</h6>
+						{% if thisDish is defined and thisDish is not empty %}
+							{% for dish in dishHalal %}
+								<div class="dish">
+									<div class="verticalLineTop"></div>
+									<b>{{ dish.name }}</b><br>
+									{{ dish.description }}<br>
+									{{ dish.price }}€
+								</div>
+							{% endfor %}
+						{% else %}
+							<div class="h-100 w-100 d-flex justify-content-center align-items-center">
+								<b>En construction.</b>
+							</div>
+						{% endif %}
 					</div>
 				</div>
 			</div>
-			<div class="flip-card">
-				<div class="f-inner">
-					<div class="f-hover">
-						<a href="#" class="menu-link">Cliquez ici</a>
+			<div class="flip-card flip-card-three">
+				<div class="inner">
+					<div class="type">
+						<p>MENU 3</p>
 					</div>
-					<div class="f-type">
+					<div class="dishs">
+						<h6>Menu 3</h6>
+						{% if thisDish is defined and thisDish is not empty %}
+							{% for dish in dishHalal %}
+								<div class="dish">
+									<div class="verticalLineTop"></div>
+									<b>{{ dish.name }}</b><br>
+									{{ dish.description }}<br>
+									{{ dish.price }}€
+								</div>
+							{% endfor %}
+						{% else %}
+							<div class="h-100 w-100 d-flex justify-content-center align-items-center">
+								<b>En construction.</b>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="flip-card flip-card-four">
+				<div class="inner">
+					<div class="type">
+						<p>MENU 4</p>
+					</div>
+					<div class="dishs">
+						<h6>Menu 4</h6>
+						{% if thisDish is defined and thisDish is not empty %}
+							{% for dish in dishHalal %}
+								<div class="dish">
+									<div class="verticalLineTop"></div>
+									<b>{{ dish.name }}</b><br>
+									{{ dish.description }}<br>
+									{{ dish.price }}€
+								</div>
+							{% endfor %}
+						{% else %}
+							<div class="h-100 w-100 d-flex justify-content-center align-items-center">
+								<b>En construction.</b>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="flip-card flip-card-five">
+				<div class="inner">
+					<div class="type">
 						<p>DESSERTS</p>
 					</div>
+					<div class="dishs">
+						<h6>Desserts</h6>
+						{% if thisDish is defined and thisDish is not empty %}
+							{% for dish in dishHalal %}
+								<div class="dish">
+									<div class="verticalLineTop"></div>
+									<b>{{ dish.name }}</b><br>
+									{{ dish.description }}<br>
+									{{ dish.price }}€
+								</div>
+							{% endfor %}
+						{% else %}
+							<div class="h-100 w-100 d-flex justify-content-center align-items-center">
+								<b>En construction.</b>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="flip-card flip-card-six">
+				<div class="inner">
+					<div class="type">
+						<p>BOISSONS</p>
+					</div>
+					<div class="dishs">
+						<h6>Boissons</h6>
+						{% if thisDish is defined and thisDish is not empty %}
+							{% for dish in dishHalal %}
+								<div class="dish">
+									<div class="verticalLineTop"></div>
+									<b>{{ dish.name }}</b><br>
+									{{ dish.description }}<br>
+									{{ dish.price }}€
+								</div>
+							{% endfor %}
+						{% else %}
+							<div class="h-100 w-100 d-flex justify-content-center align-items-center">
+								<b>En construction.</b>
+							</div>
+						{% endif %}
+					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-{% endblock %}
+	</div>
+</section>{% endblock %}

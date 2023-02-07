@@ -1,20 +1,19 @@
-navbar.css({ opacity: "0" });
-globalContainer.css({ opacity: "0" });
-footer.css({ opacity: "0" });
+let navbarDisplay = navbar.css('display');
+let globalContainerDisplay = globalContainer.css('display');
+
+navbar.css({ display: 'none' });
+globalContainer.css({ display: 'none' });
 
 function waithide() {
-  window.setTimeout(
-    function removethis() {
-      loader.css({ display: "none" });
-      navbar.css({ opacity: "1" });
-      globalContainer.css({ opacity: "1" });
-      footer.css({ opacity: "1" });
-      navbar.css({ transition: "all 1s" });
-      globalContainer.css({ transition: "all 1s" });
-      footer.css({ transition: "all 1s" });
-    }, 3000);
+  window.setTimeout(function removethis() {
+    loader.css({ display: 'none' });
+    navbar.css({ display: navbarDisplay });
+    globalContainer.css({ display: globalContainerDisplay });
+    navbar.css({ transition: 'all 1s' });
+    globalContainer.css({ transition: 'all 1s' });
+  }, 3000);
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   let removeLoader = waithide();
 });

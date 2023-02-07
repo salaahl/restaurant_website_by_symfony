@@ -14,11 +14,8 @@
   .show {
     display: block;
   }
-  .black-navbar {
-    background-color: black;
-  }
-  .main-margin {
-    margin-top: -38vh;
+  .navbar .black-navbar {
+    background-color: lightgray;
   }
 }
 /* FIN */
@@ -26,10 +23,11 @@
 /* GLOBAL */
 /* Les transitions sont géréees par le script 'loader' */
 .navbar {
-  position: fixed;
-  z-index: 3;
+  position: sticky;
+  z-index: 2;
   height: 10vh;
   width: 100%;
+  margin: 0 auto;
   padding: 0.5rem 1rem 0.5rem 1rem;
   box-shadow: 0px 20px 20px 0px rgb(0 0 0 / 5%);
 }
@@ -61,19 +59,18 @@
 .navbar-toggler {
   border: transparent;
 }
-.navbar-no-scroll {
-  background-color: transparent;
-}
 .navbar-scroll {
   top: 2%;
   left: 0%;
   right: 0%;
+  height: auto;
   width: 65%;
   background-color: black;
   border-radius: 40px;
   justify-content: center;
   margin-right: auto;
   margin-left: auto;
+  box-shadow: 0px 0px 0px 4px rgb(0 0 0 / 70%);
 }
 .navbar-scroll .navbar-brand,
 .navbar-scroll .navbar-collapse .navbar-nav li a,

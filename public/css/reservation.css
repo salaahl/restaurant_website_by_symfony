@@ -3,11 +3,11 @@
   main {
     justify-content: space-between;
   }
-  #redirect-reservation {
-    width: 50vw;
-  }
-  #check-reservation, #new-reservation, #complete-reservation {
-    width: 100vw;
+  #redirect-reservation,
+  #check-reservation,
+  #new-reservation,
+  #complete-reservation {
+    width: 50%;
   }
   .button-58 {
     min-width: 170px;
@@ -22,26 +22,37 @@
   }
   #redirect-reservation {
     height: 60vh;
-    width: 100vw;
+    width: 100%;
     margin: 10%;
     border: 3px solid lightslategrey;
   }
-  #check-reservation, #new-reservation, #complete-reservation {
+  #check-reservation,
+  #new-reservation,
+  #complete-reservation {
     height: 60vh;
-    width: 100vw;
+    width: 100%;
     margin: 5%;
     border: 3px solid lightslategrey;
   }
 }
 /* FIN */
 
-html, body {
+html,
+body {
   font-family: 'Montserrat';
 }
+
+.global-container {
+  height: 90vh;
+}
+
 main {
   display: flex;
+  height: inherit;
 }
+.img-container,
 .img-container > img {
+  height: inherit;
   width: 50vw;
 }
 #redirect-reservation {
@@ -54,25 +65,29 @@ main {
 #redirect-reservation button {
   margin: 2%;
 }
-#check-reservation, #new-reservation, #complete-reservation {
-  display: none;
+#check-reservation,
+#new-reservation,
+#complete-reservation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 2%;
 }
 .row {
   --bs-gutter-y: 30;
 }
-.availablity {
+.response {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 10%;
+  align-items: center;
+  height: auto;
 }
-.hour {
-  background-color: red;
-  display: initial;
-  margin: auto;
+.check-reservation-response {
   padding: 2%;
-  border-radius: 5px;
+  border-radius: 15px;
+  background-color: lightgreen;
+  transition: all 2s;
 }
 
 /* CSS button */
@@ -85,19 +100,19 @@ main {
   cursor: pointer;
   display: inline-flex;
   fill: #000;
-  font-family: Inter,sans-serif;
+  font-family: Inter, sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 48px;
   justify-content: center;
-  letter-spacing: -.8px;
+  letter-spacing: -0.8px;
   line-height: 24px;
   min-width: 140px;
   outline: 0;
   padding: 0 17px;
   text-align: center;
   text-decoration: none;
-  transition: all .3s;
+  transition: all 0.3s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;

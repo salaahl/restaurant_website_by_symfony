@@ -18,8 +18,8 @@
 		<button id="new-reservation-button" class="button-58">Faire une nouvelle réservation</button>
 	</div>
 	<div id="check-reservation">
-		<h2>Vérifier sa réservation :</h2>
 		<form id="check_reservation-form">
+			<h2>Vérifier sa réservation :</h2>
 			<div class="row">
 				<div class="col">
 					<label for="email">Entrez votre email :</label>
@@ -38,16 +38,21 @@
 				</div>
 			</div>
 		</form>
-		<div class="availablity"></div>
+		<div class="response">
+			<div class="check-reservation-response">
+				(Prénom NOM),<br>
+				Une réservation à votre nom est bien enregistrée pour le (date) à (heure)<br>
+				Cordialement,<br>
+				L'équipe du Vingtième
+			</div>
+		</div>
 	</div>
 	<div id="new-reservation">
-		<h2>Faire une réservation :</h2>
-		<!-- Envoyer ce formulaire en async, récupérer les heures dispo, les afficher dans des petites pastilles et ouvrir
-		        une nouvelle page en cas de clic avec un formulaire demandant nom, prénom, téléphone et mail -->
 		<form id="new_reservation-form">
+			<h2>Faire une réservation :</h2>
 			<div class="row">
 				<div class="col">
-					<select class="form-select" name="check-seats" required>
+					<select class="form-select" name="number" required>
 						<option selected disabled value="">Nombre de personnes</option>
 						<option>1</option>
 						<option>2</option>
@@ -59,7 +64,7 @@
 			<div class="row">
 				<div class="col">
 					<label for="date">Date</label>
-					<input type="date" class="form-control" name="check-date">
+					<input id="check-date" type="date" class="form-control" name="date_de_fin">
 				</div>
 			</div>
 			<div class="row">
@@ -68,41 +73,43 @@
 				</div>
 			</div>
 		</form>
-		<div class="availablity"></div>
+		<div class="response">
+			<button class="hour button-58">hour</button>
+		</div>
 	</div>
 	<div id="complete-reservation">
-        <h2>Vous y êtes presque !</h2>
-        <p>Entrez vos infos :</p>
-        <form id ="complete-reservation-form">
-          <div class="row">
-            <div class="col-6">
-              <input id="form-date" type="text" class="form-control" name="date" disabled>
-            </div>
-            <div class="col-6">
-              <input id="form-hour" type="text" class="form-control" name="hour" disabled>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <input type="text" class="form-control" name="surname" placeholder="Nom">
-            </div>
-            <div class="col-6">
-              <input type="text" class="form-control" name="name" placeholder="Prénom">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <input type="tel" class="form-control" name="phone_number" placeholder="Numéro de téléphone">
-            </div>
-            <div class="col-6">
-              <input type="email" class="form-control" name="mail" placeholder="Mail">
-            </div>
-          </div>
-          <div class="col-12">
-            <button class="btn btn-primary" type="submit">Valider ma réservation</button>
-          </div>
-        </form>
-      </div>
+		<form id="complete-reservation-form" method="POST">
+			<h2>Vous y êtes presque !</h2>
+			<p>Entrez vos infos :</p>
+			<div class="row">
+				<div class="col-6">
+					<input id="form-date" type="text" class="form-control" name="date" disabled>
+				</div>
+				<div class="col-6">
+					<input id="form-hour" type="text" class="form-control" name="hour" disabled>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-6">
+					<input type="text" class="form-control" name="surname" placeholder="Nom" required>
+				</div>
+				<div class="col-6">
+					<input type="text" class="form-control" name="name" placeholder="Prénom" required>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-6">
+					<input type="tel" class="form-control" name="phone_number" placeholder="Numéro de téléphone" required>
+				</div>
+				<div class="col-6">
+					<input type="email" class="form-control" name="mail" placeholder="Mail" required>
+				</div>
+			</div>
+			<div class="col-12">
+				<button class="btn btn-primary" type="submit">Valider ma réservation</button>
+			</div>
+		</form>
+	</div>
 {% endblock %}
 
 {% block javascripts %}
