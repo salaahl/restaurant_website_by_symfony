@@ -1,65 +1,93 @@
 /* Breakpoints */
-@media screen and (min-width: 769px) {
+@media screen and (max-width: 991px) {
+  .global-container {
+    height: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+  }
+
+  .navbar,
+  main,
+  footer {
+    scroll-snap-align: start;
+  }
+
+  .navbar-scroll {
+    top: initial !important;
+    height: initial !important;
+    width: initial !important;
+    background-color: initial !important;
+    border-radius: initial !important;
+    box-shadow: initial !important;
+  }
+
   main {
+    height: 100vh;
+    align-items: center;
+  }
+
+  .img-container {
+    display: none;
+  }
+
+  #redirect-reservation,
+  #check-reservation,
+  #new-reservation,
+  #complete-reservation {
+    height: 90%;
+    width: 100%;
+    margin: 5%;
+    border: 3px solid lightslategrey;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  main {
+    height: 90vh;
     justify-content: space-between;
   }
   #redirect-reservation,
   #check-reservation,
   #new-reservation,
   #complete-reservation {
+    height: inherit;
     width: 50%;
   }
+
+  #redirect-reservation {
+    align-items: center;
+  }
+
   .button-58 {
     min-width: 170px;
   }
 }
-@media screen and (max-width: 768px) {
-  main {
-    justify-content: center;
-  }
-  .img-container {
-    display: none;
-  }
-  #redirect-reservation {
-    height: 60vh;
-    width: 100%;
-    margin: 10%;
-    border: 3px solid lightslategrey;
-  }
-  #check-reservation,
-  #new-reservation,
-  #complete-reservation {
-    height: 60vh;
-    width: 100%;
-    margin: 5%;
-    border: 3px solid lightslategrey;
-  }
-}
-/* FIN */
 
 html,
 body {
   font-family: 'Montserrat';
 }
 
-.global-container {
-  height: 90vh;
-}
-
 main {
   display: flex;
-  height: inherit;
 }
 .img-container,
 .img-container > img {
   height: inherit;
   width: 50vw;
+  object-fit: cover;
+  object-position: center;
+}
+h2 {
+  margin: 5% 0 5% 0;
+  font-weight: 800;
+  font-size: 4vw;
+  text-transform: uppercase;
 }
 #redirect-reservation {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   padding: 2%;
 }
 #redirect-reservation button {

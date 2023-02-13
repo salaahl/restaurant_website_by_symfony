@@ -1,22 +1,20 @@
-<!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
-		<meta
-		charset="UTF-8">
-		<!-- Ne pas oublier les balises META -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
 		<title>
 			{% block title %}{% endblock %}
 		</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;800&display=swap" rel="stylesheet">
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
+			<link href="{{ asset('css/normalize.css') }}" rel="stylesheet" type="text/css"/>
+			<link href="{{ asset('css/loader.css') }}" rel="stylesheet" type="text/css"/>
 			<link href="{{ asset('css/navbar.css') }}" rel="stylesheet" type="text/css"/>
 			<link href="{{ asset('css/footer.css') }}" rel="stylesheet" type="text/css"/>
-			<link href="{{ asset('css/loader.css') }}" rel="stylesheet" type="text/css"/>
 		{% endblock %}
 	</head>
 
@@ -30,10 +28,11 @@
 					<span class="loader-word loader-word-4">ième</span>
 				</h2>
 			</div>
-			<nav class="navbar navbar-expand-lg navbar-light">
-				{% include('_navbar.html.twig') %}
-			</nav>
 			<div class="global-container bg-light">
+				<nav class="navbar navbar-expand-lg">
+					{% include('_navbar.html.twig') %}
+				</nav>
+				{% block background %}{% endblock %}
 				<main>
 					{% block main %}{% endblock %}
 				</main>
@@ -44,6 +43,7 @@
 		{% endblock %}
 		{% block javascripts %}
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 			<script src="{{ asset('js/script/const.js') }}"></script>
 			<script src="{{ asset('js/script/navbar.js') }}"></script>
 			<script src="{{ asset('js/script/loader.js') }}"></script>

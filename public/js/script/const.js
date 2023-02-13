@@ -1,4 +1,4 @@
 const loader = $(".loader");
-let navbar = $("nav");
+let navbar = $(".navbar");
 const globalContainer = $(".global-container");
 const footer = $("footer");

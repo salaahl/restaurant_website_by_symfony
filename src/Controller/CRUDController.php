@@ -14,11 +14,13 @@ use App\Entity\Dish;
 use App\Entity\Menu;
 use App\Repository\MenuRepository;
 use App\Repository\DishRepository;
+use App\Repository\SeatsRepository;
 
 class CRUDController extends AbstractController
 {
     #[Route('/add_something', name: 'app_add_something')]
     public function addSomething(
+        SeatsRepository $seatsRepository,
         MenuRepository $menuRepository,
         DishRepository $dishRepository,
         ManagerRegistry $doctrine,
@@ -44,8 +46,44 @@ class CRUDController extends AbstractController
             ['type' => 'ASC']
         );
 
+        $db = $doctrine->getManager()->getConnection();
+        $response = [];
+        $mail = 'sokhona.salaha@gmail.com';
+        $surname = 'Sokhona';
 
-        return new Response(var_dump($dishHalal));
+        $check_reservation = $db
+        ->prepare(
+            "SELECT surname, name, ReservationDate, hour
+            FROM reservation
+            WHERE mail = ?
+            AND
+            surname = ?"
+        )
+        ->executeQuery([$mail, $surname])
+        ->fetchAllAssociative();
+
+        if($check_reservation) {
+
+            $surname = [];
+            $name = [];
+            $date = [];
+            $hour = [];
+
+            foreach($check_reservation as $reservation) {
+                $surname[] = $reservation['surname'];
+                $name[] = $reservation['name'];
+                $date[] = $reservation['ReservationDate'];
+                $hour[] = $reservation['hour'];
+            }
+
+            $response['surname'] = $surname;
+            $response['name'] = $name;
+            $response['date'] = $date;
+            $response['hour'] = $hour;
+        }
+
+
+        return new Response(var_dump($response));
     }
 
     #[Route('/add_dish', name: 'app_add_dish')]

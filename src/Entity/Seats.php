@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SeatsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -24,9 +26,6 @@ class Seats
     #[ORM\JoinColumn(nullable:false, name:"ReservationDate", referencedColumnName:"reservation_date")]
     private ?ReservationDate $date = null;
 
-    #[ORM\ManyToOne(inversedBy: 'seats')]
-    #[ORM\JoinColumn(nullable:true, name:"Reservation", referencedColumnName:"mail")]
-    private ?Reservation $mail = null;
 
     public function getId(): ?int
     {
@@ -65,18 +64,6 @@ class Seats
     public function setDate(?ReservationDate $date): self
     {
         $this->date = $date;
-
-        return $this;
-    }
-
-    public function getMail(): ?Reservation
-    {
-        return $this->mail;
-    }
-
-    public function setMail(?Reservation $mail): self
-    {
-        $this->mail = $mail;
 
         return $this;
     }

@@ -1,28 +1,17 @@
-/* Breakpoints */
-@media screen and (min-width: 769px) {
-  section,
-  .text-container,
-  .img-container {
-    height: 100vh;
+@media screen and (max-width: 991px) {
+  .navbar-scroll {
+    justify-content: space-around;
   }
-  .text-container,
-  .img-container,
-  .img-container > img {
-    width: 50vw;
+  /* Inversion de la couleur du switch */
+  .navbar-scroll .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
   }
-  .text-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-}
 
-@media screen and (max-width: 768px) {
-  section:nth-of-type(1),
-  section:nth-of-type(3) {
+  article:nth-of-type(1),
+  article:nth-of-type(3) {
     flex-direction: column;
   }
-  section:nth-of-type(2) {
+  article:nth-of-type(2) {
     flex-direction: column-reverse;
   }
   .text-container,
@@ -32,20 +21,44 @@
   }
 }
 
-/* Inversion de la couleur du switch */
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2800, 0, 0, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+@media screen and (min-width: 992px) {
+  html {
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+  }
+
+  article,
+  footer {
+    scroll-snap-align: start;
+  }
+
+  main {
+    margin-top: -10vh;
+  }
+
+  article,
+  .text-container,
+  .img-container {
+    height: 100vh;
+  }
+
+  .text-container,
+  .img-container,
+  .img-container > img {
+    width: 50vw;
+  }
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
-html {
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-}
+
 body {
   font-family: 'Montserrat';
 }
-.global-container {
-  margin-top: -10vh;
-}
+
 h2 {
   margin: 5% 0 5% 0;
   font-weight: 800;
@@ -53,7 +66,7 @@ h2 {
   text-transform: uppercase;
 }
 
-section {
+article {
   display: flex;
   justify-content: space-between;
   width: inherit;
@@ -68,6 +81,8 @@ section {
 .img-container > img {
   width: inherit;
   height: inherit;
+  object-fit: cover;
+  object-position: center;
 }
 
 .word {
@@ -86,6 +101,6 @@ section {
 }
 
 footer,
-section {
+article {
   scroll-snap-align: start;
 }

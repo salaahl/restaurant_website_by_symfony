@@ -5,21 +5,23 @@ namespace App\Entity;
 use App\Repository\ReservationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
 {
     #[ORM\Id]
-    #[ORM\Column(length: 255)]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $mail = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable:false, name:"ReservationDate", referencedColumnName:"reservation_date")]
     private ?ReservationDate $reservation_date = null;
-
-    #[ORM\OneToMany(mappedBy: 'mail', targetEntity: Seats::class)]
-    private Collection $seats;
 
     #[ORM\Column(length: 255)]
     private ?string $surname = null;
@@ -33,9 +35,13 @@ class Reservation
     #[ORM\Column]
     private ?int $seat_reserved = null;
 
-    public function __construct()
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $hour = null;
+
+
+    public function getId(): ?int
     {
-        $this->seats = new ArrayCollection();
+        return $this->id;
     }
 
     public function getMail(): ?string
@@ -58,36 +64,6 @@ class Reservation
     public function setReservationDate(?ReservationDate $reservation_date): self
     {
         $this->reservation_date = $reservation_date;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Seats>
-     */
-    public function getSeats(): Collection
-    {
-        return $this->seats;
-    }
-
-    public function addSeat(Seats $seat): self
-    {
-        if (!$this->seats->contains($seat)) {
-            $this->seats->add($seat);
-            $seat->setMail($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSeat(Seats $seat): self
-    {
-        if ($this->seats->removeElement($seat)) {
-            // set the owning side to null (unless already changed)
-            if ($seat->getMail() === $this) {
-                $seat->setMail(null);
-            }
-        }
 
         return $this;
     }
@@ -136,6 +112,18 @@ class Reservation
     public function setSeatReserved(int $seat_reserved): self
     {
         $this->seat_reserved = $seat_reserved;
+
+        return $this;
+    }
+
+    public function getHour(): ?\DateTimeInterface
+    {
+        return $this->hour;
+    }
+
+    public function setHour(\DateTimeInterface $hour): self
+    {
+        $this->hour = $hour;
 
         return $this;
     }

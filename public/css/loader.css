@@ -15,7 +15,7 @@
 }
 
 .loader-word-1 {
-  --color-1: #3D8DAE;
+  --color-1: #3d8dae;
   --color-2: #000000;
   --color-3: #000000;
   --color-4: #000000;
@@ -23,15 +23,16 @@
 
 .loader-word-2 {
   --color-1: #000000;
-  --color-2: #ACCFCB;
+  --color-2: #accfcb;
   --color-3: #000000;
   --color-4: #000000;
 }
 
 .loader-word-3 {
+  margin: 0 -0.8% 0 -0.8%;
   --color-1: #000000;
   --color-2: #000000;
-  --color-3: #DBAD4A;
+  --color-3: #dbad4a;
   --color-4: #000000;
 }
 
@@ -39,13 +40,23 @@
   --color-1: #000000;
   --color-2: #000000;
   --color-3: #000000;
-  --color-4: #DF8453;
+  --color-4: #df8453;
 }
 
 @keyframes color-animation {
-  0%  {color: var(--color-1)}
-  25%  {color: var(--color-2)}
-  50%  {color: var(--color-3)}
-  75%  {color: var(--color-4)}
-  100%  {color: var(--color-1)}
+  0% {
+    color: var(--color-1);
+  }
+  25% {
+    color: var(--color-2);
+  }
+  50% {
+    color: var(--color-3);
+  }
+  75% {
+    color: var(--color-4);
+  }
+  100% {
+    color: var(--color-1);
+  }
 }

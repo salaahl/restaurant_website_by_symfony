@@ -23,13 +23,13 @@
 			<div class="row">
 				<div class="col">
 					<label for="email">Entrez votre email :</label>
-					<input type="email" class="form-control" name="mail" required>
+					<input type="email" class="form-control" name="check-reservation-mail" required>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col">
 					<label for="surname">Entrez votre nom de famille :</label>
-					<input type="text" class="form-control" name="surname" required>
+					<input type="text" class="form-control" name="check-reservation-surname" required>
 				</div>
 			</div>
 			<div class="row">
@@ -52,7 +52,7 @@
 			<h2>Faire une réservation :</h2>
 			<div class="row">
 				<div class="col">
-					<select class="form-select" name="number" required>
+					<select class="form-select" name="check-seats" required>
 						<option selected disabled value="">Nombre de personnes</option>
 						<option>1</option>
 						<option>2</option>
@@ -64,7 +64,7 @@
 			<div class="row">
 				<div class="col">
 					<label for="date">Date</label>
-					<input id="check-date" type="date" class="form-control" name="date_de_fin">
+					<input id="check-date" type="date" class="form-control" name="check-date" min="{{ "now"|date("Y-m-d") }}">
 				</div>
 			</div>
 			<div class="row">
@@ -73,20 +73,21 @@
 				</div>
 			</div>
 		</form>
-		<div class="response">
-			<button class="hour button-58">hour</button>
-		</div>
+		<div class="response"></div>
 	</div>
 	<div id="complete-reservation">
 		<form id="complete-reservation-form" method="POST">
 			<h2>Vous y êtes presque !</h2>
 			<p>Entrez vos infos :</p>
 			<div class="row">
-				<div class="col-6">
-					<input id="form-date" type="text" class="form-control" name="date" disabled>
+				<div class="col-4">
+					<input id="form-seats" type="text" class="form-control" name="seats" readonly="true">
 				</div>
-				<div class="col-6">
-					<input id="form-hour" type="text" class="form-control" name="hour" disabled>
+				<div class="col-4">
+					<input id="form-date" type="text" class="form-control" name="date" readonly="true">
+				</div>
+				<div class="col-4">
+					<input id="form-hour" type="text" class="form-control" name="hour" readonly="true">
 				</div>
 			</div>
 			<div class="row">

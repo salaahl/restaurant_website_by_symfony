@@ -12,14 +12,15 @@
 {% block main %}
 	<h2>Réservation confirmée !</h2>
 	<div class="img-container">
-		<img src="{{ asset('img/kitchen.jpg') }}" alt="...">
+		<img src="{{ asset('img/kitchen.jpg') }}" alt="placeholder">
 	</div>
-	<div
-		class="reservation-confirmed">
-		<!-- Mettre ici des données personalisées comme la date et l'heure. Passer par les variables TWIG pour ce faire -->
-		<p>Votre réservation le (mettre ici date) à (mettre ici heure) a bien été prise en compte.</p>
-		<p>Adresse :</p>
-		<p>N'hésitez pas à nous contacter pour toute demande d'infos complémentaires.</p>
+	<div class="reservation-confirmed">
+		<p>Votre réservation le
+			{{ date }}
+			a
+			{{ hour }}
+			a bien été prise en compte.<br>
+			N'hésitez pas à nous contacter pour toute demande d'infos complémentaires.</p>
 		<p>A bientôt !<br>Le vingtième.</p>
 	</div>
 {% endblock %}

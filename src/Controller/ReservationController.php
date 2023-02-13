@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Reservation;
+use App\Repository\SeatsRepository;
+use App\Repository\ReservationDateRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,6 +16,8 @@ class ReservationController extends AbstractController
 {
     #[Route('/reservation', name: 'app_reservation')]
     public function reservation(
+    SeatsRepository $seatsRepository,
+    ReservationDateRepository $reservationDateRepository,
     Request $request,
     ManagerRegistry $doctrine
     ): Response
@@ -75,38 +80,81 @@ class ReservationController extends AbstractController
                 ->executeQuery([$seats, $date])
                 ->fetchAllAssociative();
 
-                // Table réservation (actuelle), table "heure" (avec tranches horaires ?), table "places"
-                // Chaque table "places" serait reliée à une tranche horaire par clé étrangère
-                // Hour : hour (id), date (fk)
-                // Seats : seats (défaut : 20), hour (fk)
                 if($check_hour) {
                     foreach($check_hour as $hour) {
                         $response[] = $hour;
                     }
                 }
             }
-            else if (isset($_POST['surname']) && isset($_POST['mail']))
+            else if (isset($_POST['check-reservation-surname']) && isset($_POST['check-reservation-mail']))
             {
-                $mail = $_POST['mail'];
-                $surname = $_POST['surname'];
+                $mail = $_POST['check-reservation-mail'];
+                $surname = $_POST['check-reservation-surname'];
 
                 $check_reservation = $db
                 ->prepare(
-                    "SELECT mail, hour
-                    FROM seats
+                    "SELECT surname, name, ReservationDate, hour
+                    FROM reservation
                     WHERE mail = ?
                     AND
-                    (SELECT surname FROM Reservation WHERE surname = ?) = ?"
+                    surname = ?"
                 )
-                ->executeQuery([$mail, $surname, $surname])
+                ->executeQuery([$mail, $surname])
                 ->fetchAllAssociative();
 
                 if($check_reservation) {
+
+                    $surname = [];
+                    $name = [];
+                    $date = [];
+                    $hour = [];
+
                     foreach($check_reservation as $reservation) {
-                        $response['mail'] = $reservation['mail'];
-                        $response['hour'] = $reservation['hour'];
+                        $surname[] = $reservation['surname'];
+                        $name[] = $reservation['name'];
+                        $date[] = $reservation['ReservationDate'];
+                        $hour[] = $reservation['hour'];
                     }
+
+                    $response['surname'] = $surname;
+                    $response['name'] = $name;
+                    $response['date'] = $date;
+                    $response['hour'] = $hour;
                 }
+            }
+            else if (isset($_POST['phone_number']) && isset($_POST['mail']))
+            {
+                $date = strtotime($_POST['date']);
+                $hour = \DateTimeImmutable::createFromFormat('H:i:s', $_POST['hour']);
+                $seats_number = $_POST['seats'];
+                $name = $_POST['name'];
+                $surname = $_POST['surname'];
+                $phone_number = $_POST['phone_number'];
+                $mail = $_POST['mail'];
+
+                $reservationEntity = new Reservation();
+                $reservationDate = $reservationDateRepository->find($date);
+
+                $reservationEntity->setReservationDate($reservationDate);
+                $reservationEntity->setHour($hour);
+                $reservationEntity->setSeatReserved($seats_number);
+                $reservationEntity->setName($name);
+                $reservationEntity->setSurname($surname);
+                $reservationEntity->setPhoneNumber($phone_number);
+                $reservationEntity->setMail($mail);
+
+                $seats = $seatsRepository->findOneBy([
+                    'date' => $date,
+                    'hour' => $hour
+                ]);
+                $seats_actualised = $seats->getSeat() - $seats_number;
+                $seats->setSeat($seats_actualised);
+
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($reservationEntity, $seats);
+                $entityManager->flush();
+
+                return new Response('réservation enregistrée !');
             }
 
             return new JsonResponse($response);

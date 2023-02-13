@@ -1,79 +1,101 @@
 /* Breakpoints */
-@media screen and (min-width: 769px) {
-  .navbar-brand {
-    font-size: 2vw;
+@media screen and (max-width: 991px) {
+  .navbar {
+    background-color: black;
   }
-}
-@media screen and (max-width: 768px) {
+
   .navbar-brand {
     font-size: 5vw;
   }
-  .navbar-collapse {
-    display: none;
+
+  .navbar-brand,
+  .nav-link {
+    color: white;
   }
-  .show {
-    display: block;
+
+  .navbar-scroll {
+    height: 7vh;
+    min-height: auto!important;
   }
-  .navbar .black-navbar {
-    background-color: lightgray;
+
+  .navbar-scroll .navbar-brand {
+    font-size: 3vw;
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
   }
 }
-/* FIN */
+
+@media screen and (min-width: 992px) {
+  .navbar-brand {
+    font-size: 2vw;
+  }
+
+  .nav-link {
+    color: black;
+  }
+
+  .navbar-scroll .navbar-brand,
+  .navbar-scroll .navbar-collapse .navbar-nav .nav-link,
+  .navbar-scroll .navbar-collapse .navbar-nav .nav-link:hover {
+    filter: invert(100%);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .navbar-scroll {
+    height: auto !important;
+    width: 50% !important;
+  }
+  .navbar-scroll .navbar-brand {
+    font-size: 1.2vw;
+  }
+}
 
 /* GLOBAL */
-/* Les transitions sont géréees par le script 'loader' */
 .navbar {
   position: sticky;
-  z-index: 2;
-  height: 10vh;
+  z-index: 3;
+  min-height: 10vh;
   width: 100%;
   margin: 0 auto;
   padding: 0.5rem 1rem 0.5rem 1rem;
   box-shadow: 0px 20px 20px 0px rgb(0 0 0 / 5%);
+  transition: all 1s;
 }
+
 .navbar-nav {
-  display: flex;
   width: -webkit-fill-available;
   justify-content: flex-end;
   font-weight: bold;
 }
+
 .navbar-brand {
   font-weight: 800;
   text-transform: uppercase;
-  color: black;
+  transition: all 0.4s;
 }
+
 .nav-link {
-  color: black;
   border-radius: 50px;
-  transition: background 0.5s ease;
+  transition: background 0.5s;
 }
+
 .nav-link:hover {
+  color: white !important;
   background-color: black;
-  color: white;
 }
-.nav-item {
-  display: flex;
-  align-items: center;
-  margin: 1%;
-}
+
 .navbar-toggler {
   border: transparent;
 }
+
 .navbar-scroll {
   top: 2%;
-  left: 0%;
-  right: 0%;
   height: auto;
-  width: 65%;
+  width: 70%;
   background-color: black;
   border-radius: 40px;
-  justify-content: center;
-  margin-right: auto;
-  margin-left: auto;
   box-shadow: 0px 0px 0px 4px rgb(0 0 0 / 70%);
-}
-.navbar-scroll .navbar-brand,
-.navbar-scroll .navbar-collapse .navbar-nav li a,
-.navbar-scroll .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
-  filter: invert(100%);
 }

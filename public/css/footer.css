@@ -1,9 +1,9 @@
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 991px) {
   footer {
     padding: 1%;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   footer {
     padding: 2%;
   }
@@ -27,17 +27,18 @@ footer {
   padding: 1%;
 }
 
-.contentFooter div:nth-child(1), .contentFooter div:nth-child(2) {
-  border-right:2px solid white;
+.contentFooter div:nth-child(1),
+.contentFooter div:nth-child(2) {
+  border-right: 2px solid white;
 }
 
 .contentFooter div {
+  text-align: center;
   padding: inherit;
 }
 
 footer div {
-  display:inline-block;
-
+  display: inline-block;
 }
 
 .copyright {
