@@ -63,3 +63,8 @@
 		</article>
 	</section>
 {% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('js/script/observer.js') }}"></script>
+{% endblock %}

@@ -11,14 +11,7 @@
 
 {% block background %}
 	<div class="bg-doodle">
-		<css-doodle>
-			@grid: 16 / 100%;
-																					        
-			@size: 1px calc(141.4% + 1px);
-			transform: rotate(@p(±45deg));
-			background: #AEACFB;
-			margin: auto;
-		</css-doodle>
+		<css-doodle use="var(--rule)"></css-doodle>
 	</div>
 {% endblock %}
 
@@ -261,6 +254,12 @@
 			</div>
 		</div>
 	</div>
-</section>{% endblock %}{% block javascripts %}
+</section>
+{% endblock %}
+
+{% block javascripts %}
 {{ parent() }}
-<script src="https://unpkg.com/css-doodle@0.33.1/css-doodle.min.js"></script>{% endblock %}
+<script src="https://unpkg.com/css-doodle@0.33.1/css-doodle.min.js"></script>
+<script src="{{ asset('js/script/navbar-scroll.js') }}"></script>
+<script src="{{ asset('js/script/observer.js') }}"></script>
+{% endblock %}

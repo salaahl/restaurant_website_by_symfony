@@ -1,57 +1,62 @@
 /* Breakpoints */
 @media screen and (max-width: 991px) {
-  .global-container {
-    height: 100%;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-  }
-
-  .navbar,
-  main,
-  footer {
-    scroll-snap-align: start;
-  }
-
-  .navbar-scroll {
-    top: initial !important;
-    height: initial !important;
-    width: initial !important;
-    background-color: initial !important;
-    border-radius: initial !important;
-    box-shadow: initial !important;
+  .navbar {
+    min-height: 8%;
+    background-color: rgb(0, 0, 0, 0.8);
   }
 
   main {
-    height: 100vh;
-    align-items: center;
+    height: 92%;
   }
 
   .img-container {
     display: none;
   }
 
+  .lds-hourglass {
+    width: 100%;
+  }
+
+  h2 {
+    margin: 5% 0 5% 0;
+    font-size: 8vw;
+  }
+
   #redirect-reservation,
   #check-reservation,
   #new-reservation,
   #complete-reservation {
-    height: 90%;
-    width: 100%;
-    margin: 5%;
-    border: 3px solid lightslategrey;
+    width: 95%;
+  }
+
+  #check-reservation,
+  #new-reservation,
+  #complete-reservation {
+    margin: 0 auto;
   }
 }
 
 @media screen and (min-width: 992px) {
+  h2 {
+    margin: 0 0 5% 0;
+    font-size: 4vw;
+  }
+
   main {
-    height: 90vh;
+    height: 90%;
     justify-content: space-between;
   }
+
+  .lds-hourglass {
+    width: 50%;
+  }
+
   #redirect-reservation,
   #check-reservation,
   #new-reservation,
   #complete-reservation {
-    height: inherit;
-    width: 50%;
+    margin: auto;
+    padding: 2%;
   }
 
   #redirect-reservation {
@@ -68,54 +73,81 @@ body {
   font-family: 'Montserrat';
 }
 
+.global-container {
+  height: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.navbar,
+footer {
+  scroll-snap-align: start;
+}
+
+main button {
+  width: 100%;
+}
+
 main {
   display: flex;
 }
+
+.hidden {
+  display: none !important;
+}
+
 .img-container,
 .img-container > img {
-  height: inherit;
+  height: 100%;
   width: 50vw;
   object-fit: cover;
   object-position: center;
 }
+
 h2 {
-  margin: 5% 0 5% 0;
   font-weight: 800;
-  font-size: 4vw;
   text-transform: uppercase;
 }
+
 #redirect-reservation {
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   padding: 2%;
 }
+
 #redirect-reservation button {
   margin: 2%;
 }
+
+#redirect-reservation,
 #check-reservation,
 #new-reservation,
 #complete-reservation {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 2%;
+  transition: filter 1s;
 }
+
 .row {
   --bs-gutter-y: 30;
 }
+
 .response {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: auto;
+  margin: auto 0;
 }
+
+.response .hour {
+  margin: 0.5vw;
+}
+
 .check-reservation-response {
+  text-align: center;
+  width: 100%;
   padding: 2%;
-  border-radius: 15px;
   background-color: lightgreen;
-  transition: all 2s;
 }
 
 /* CSS button */
@@ -145,6 +177,7 @@ h2 {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
+
 .button-58:focus {
   color: #171e29;
 }
@@ -157,4 +190,42 @@ h2 {
   background-color: #3385ff;
   border-color: #3385ff;
   fill: #06f;
+}
+
+/* Response loader */
+.lds-hourglass {
+  display: none;
+  position: absolute;
+  height: inherit;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  z-index: 2;
+}
+
+.lds-hourglass:after {
+  content: ' ';
+  display: block;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 32px solid #fff;
+  border-color: black transparent black transparent;
+  animation: lds-hourglass 1.2s infinite;
+}
+
+@keyframes lds-hourglass {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  100% {
+    transform: rotate(1800deg);
+  }
 }

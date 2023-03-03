@@ -2,20 +2,16 @@
 
 namespace App\Form;
 
-use App\Entity\Dish;
+use App\Entity\Menu;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class DishFormType extends AbstractType
+class MenuType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('description')
-            ->add('price')
-            ->add('picture')
             ->add('type')
         ;
     }
@@ -23,7 +19,7 @@ class DishFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Dish::class,
+            'data_class' => Menu::class,
         ]);
     }
 }

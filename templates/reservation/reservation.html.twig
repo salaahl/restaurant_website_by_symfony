@@ -13,11 +13,12 @@
 	<div class="img-container">
 		<img src="{{ asset('img/background-recette-card.jpg') }}" class="d-block" alt="...">
 	</div>
+	<div class="lds-hourglass"></div>
 	<div id="redirect-reservation">
 		<button id="check-reservation-button" class="button-58">Vérifier sa réservation</button>
 		<button id="new-reservation-button" class="button-58">Faire une nouvelle réservation</button>
 	</div>
-	<div id="check-reservation">
+	<div id="check-reservation" class="hidden">
 		<form id="check_reservation-form">
 			<h2>Vérifier sa réservation :</h2>
 			<div class="row">
@@ -38,21 +39,14 @@
 				</div>
 			</div>
 		</form>
-		<div class="response">
-			<div class="check-reservation-response">
-				(Prénom NOM),<br>
-				Une réservation à votre nom est bien enregistrée pour le (date) à (heure)<br>
-				Cordialement,<br>
-				L'équipe du Vingtième
-			</div>
-		</div>
+		<div class="response"></div>
 	</div>
-	<div id="new-reservation">
+	<div id="new-reservation" class="hidden">
 		<form id="new_reservation-form">
 			<h2>Faire une réservation :</h2>
 			<div class="row">
 				<div class="col">
-					<select class="form-select" name="check-seats" required>
+					<select id="check-seats" class="form-select" name="check-seats" required>
 						<option selected disabled value="">Nombre de personnes</option>
 						<option>1</option>
 						<option>2</option>
@@ -75,7 +69,7 @@
 		</form>
 		<div class="response"></div>
 	</div>
-	<div id="complete-reservation">
+	<div id="complete-reservation" class="hidden">
 		<form id="complete-reservation-form" method="POST">
 			<h2>Vous y êtes presque !</h2>
 			<p>Entrez vos infos :</p>

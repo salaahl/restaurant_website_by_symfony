@@ -12,5 +12,5 @@ $(window).scroll(() => {
       navbar.removeClass('navbar-no-scroll');
       navbar.addClass('navbar-scroll');
     }
-  }, 100);
+  }, 25);
 });

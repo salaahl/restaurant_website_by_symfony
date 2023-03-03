@@ -1,9 +1,5 @@
 /* Breakpoints */
 @media screen and (max-width: 991px) {
-  .navbar {
-    background-color: black;
-  }
-
   .navbar-brand {
     font-size: 5vw;
   }
@@ -13,27 +9,51 @@
     color: white;
   }
 
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+
+  /* Mini-animation */
+  .navbar-toggler:focus .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M0 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    transition: background-image 1s;
+  }
+
+  .nav-link:hover {
+    color: initial;
+    background-color: initial;
+  }
+
   .navbar-scroll {
     height: 7vh;
-    min-height: auto!important;
   }
 
   .navbar-scroll .navbar-brand {
     font-size: 3vw;
   }
-
-  .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-  }
 }
 
 @media screen and (min-width: 992px) {
+  .navbar {
+    height: 10%;
+  }
+
   .navbar-brand {
     font-size: 2vw;
   }
 
+  .navbar-brand,
   .nav-link {
     color: black;
+  }
+
+  .nav-link:hover {
+    color: white;
+    background-color: black;
   }
 
   .navbar-scroll .navbar-brand,
@@ -57,7 +77,6 @@
 .navbar {
   position: sticky;
   z-index: 3;
-  min-height: 10vh;
   width: 100%;
   margin: 0 auto;
   padding: 0.5rem 1rem 0.5rem 1rem;
@@ -66,7 +85,7 @@
 }
 
 .navbar-nav {
-  width: -webkit-fill-available;
+  width: 100%;
   justify-content: flex-end;
   font-weight: bold;
 }
@@ -82,11 +101,6 @@
   transition: background 0.5s;
 }
 
-.nav-link:hover {
-  color: white !important;
-  background-color: black;
-}
-
 .navbar-toggler {
   border: transparent;
 }
@@ -94,6 +108,7 @@
 .navbar-scroll {
   top: 2%;
   height: auto;
+  min-height: auto;
   width: 70%;
   background-color: black;
   border-radius: 40px;
