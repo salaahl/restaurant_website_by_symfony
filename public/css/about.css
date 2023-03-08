@@ -42,15 +42,15 @@
   }
 
   article:nth-child(1) {
-    background-image: url('img/me.jpg');
+    background-image: url('/img/me.jpg');
   }
 
   article:nth-child(2) {
-    background-image: url('img/dish.jpg');
+    background-image: url('/img/dish.jpg');
   }
 
   article:nth-child(3) {
-    background-image: url('img/background-recette-card.jpg');
+    background-image: url('/img/background-recette-card.jpg');
   }
 
   .animate {
