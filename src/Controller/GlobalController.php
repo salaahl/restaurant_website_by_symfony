@@ -21,16 +21,13 @@ class GlobalController extends AbstractController
         );
 
         return $this->render('global/home.html.twig', [
-            'controller_name' => 'GlobalController',
-            'dishHalal' => $dishHalal,
+            'dishHalal' => $dishHalal
         ]);
     }
 
     #[Route('/about', name: 'app_about')]
     public function about(): Response
     {
-        return $this->render('global/about.html.twig', [
-            'controller_name' => 'GlobalController',
-        ]);
+        return $this->render('global/about.html.twig');
     }
 }

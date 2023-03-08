@@ -3,6 +3,7 @@ $('#check_reservation-form').on('submit', function (e) {
 
   $('#check-reservation').css('filter', 'blur(10px)');
   $('.lds-hourglass').css('display', 'flex');
+  $('.response').html("");
 
   $.ajax({
     type: 'post',
@@ -64,6 +65,7 @@ $('#new_reservation-form').on('submit', function (e) {
 
   $('#new-reservation').css('filter', 'blur(10px)');
   $('.lds-hourglass').css('display', 'flex');
+  $('.response').html("");
 
   $.ajax({
     type: 'post',
@@ -84,8 +86,7 @@ $('#new_reservation-form').on('submit', function (e) {
         );
       }
     },
-    error: function (xhr) {
-      console.log(xhr.responseText)
+    error: function () {
       alert('Erreur. Veuillez contacter un administrateur.');
     },
   });

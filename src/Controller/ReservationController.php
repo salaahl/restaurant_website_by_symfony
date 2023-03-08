@@ -33,9 +33,9 @@ class ReservationController extends AbstractController
             $db = $doctrine->getManager()->getConnection();
             $response = [];
 
-            if (isset($_POST['check-seats']) && isset($_POST['check-date'])) {
-                $seats = $_POST['check-seats'];
-                $date = strtotime($_POST['check-date']);
+            if (isset($_POST['new_reservation'])) {
+                $seats = $_POST['seats'];
+                $date = strtotime($_POST['date']);
 
                 $check_date = $reservationDateRepository->find($date);
 
@@ -81,17 +81,17 @@ class ReservationController extends AbstractController
                 foreach ($check_hour as $hour) {
                     $response[] = $hour;
                 }
-            } else if (isset($_POST['check-reservation-surname']) && isset($_POST['check-reservation-mail'])) {
-                $mail = $_POST['check-reservation-mail'];
-                $surname = $_POST['check-reservation-surname'];
+            } else if (isset($_POST['check_reservation'])) {
+                $mail = $_POST['mail'];
+                $surname = $_POST['surname'];
 
                 $check_reservation = $db
                     ->prepare(
                         "SELECT surname, name, ReservationDate, hour
-                    FROM reservation
-                    WHERE mail = ?
-                    AND
-                    surname = ?"
+                        FROM reservation
+                        WHERE mail = ?
+                        AND
+                        surname = ?"
                     )
                     ->executeQuery([$mail, $surname])
                     ->fetchAllAssociative();
@@ -114,23 +114,21 @@ class ReservationController extends AbstractController
                     $response['date'] = $date;
                     $response['hour'] = $hour;
                 }
-            } else if (isset($_POST['new_phone_number']) && isset($_POST['new_mail'])) {
-                $date = strtotime($_POST['new_date']);
-                $hour = \DateTimeImmutable::createFromFormat('H:i:s', $_POST['new_hour']);
-                $seats_reserved = $_POST['new_seats'];
-                $name = $_POST['new_name'];
-                $surname = $_POST['new_surname'];
-                $phone_number = $_POST['new_phone_number'];
-                $mail = function () {
-                    $sanitize = filter_var($_POST['new_mail'], FILTER_SANITIZE_EMAIL);
-                    return filter_var($sanitize, FILTER_VALIDATE_EMAIL);
-                };
+            } else if (isset($_POST['complete_reservation'])) {
+                $date = strtotime($_POST['date']);
+                $hour = \DateTimeImmutable::createFromFormat('H:i:s', $_POST['hour']);
+                $seats_reserved = $_POST['seats'];
+                $name = $_POST['name'];
+                $surname = $_POST['surname'];
+                $phone_number = $_POST['phone_number'];
+                $sanitize_mail = filter_var($_POST['mail'], FILTER_SANITIZE_EMAIL);
+                $mail = filter_var($sanitize_mail, FILTER_VALIDATE_EMAIL);
 
                 $newReservation = new Reservation();
                 $reservationDate = $reservationDateRepository->find($date);
 
                 // OU mettre directement le contenu de la variable ici
-                $newReservation->setReservationDate($reservationDate->getReservationDate());
+                $newReservation->setReservationDate($reservationDate);
                 $newReservation->setHour($hour);
                 $newReservation->setSeatReserved($seats_reserved);
                 $newReservation->setName($name);
@@ -158,16 +156,6 @@ class ReservationController extends AbstractController
             return new JsonResponse($response);
         }
 
-        return $this->render('reservation/reservation.html.twig', [
-            'controller_name' => 'ReservationController',
-        ]);
-    }
-
-    #[Route('/reservation_confirmed', name: 'app_reservation_confirmed')]
-    public function reservationConfirmed(): Response
-    {
-        return $this->render('reservation/reservation_confirmed.html.twig', [
-            'controller_name' => 'ReservationController',
-        ]);
+        return $this->render('reservation/reservation.html.twig');
     }
 }

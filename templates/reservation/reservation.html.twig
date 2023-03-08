@@ -19,18 +19,19 @@
 		<button id="new-reservation-button" class="button-58">Faire une nouvelle réservation</button>
 	</div>
 	<div id="check-reservation" class="hidden">
-		<form id="check_reservation-form">
+		<form id="check_reservation-form" method="POST">
+			<input type="hidden" name="check_reservation" value="1"/>
 			<h2>Vérifier sa réservation :</h2>
 			<div class="row">
 				<div class="col">
-					<label for="email">Entrez votre email :</label>
-					<input type="email" class="form-control" name="check-reservation-mail" required>
+					<label for="check_reservation_mail">Entrez votre email :</label>
+					<input type="email" class="form-control" name="mail" required>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col">
-					<label for="surname">Entrez votre nom de famille :</label>
-					<input type="text" class="form-control" name="check-reservation-surname" required>
+					<label for="check_reservation_surname">Entrez votre nom de famille :</label>
+					<input type="text" class="form-control" name="surname" required>
 				</div>
 			</div>
 			<div class="row">
@@ -42,11 +43,12 @@
 		<div class="response"></div>
 	</div>
 	<div id="new-reservation" class="hidden">
-		<form id="new_reservation-form">
+		<form id="new_reservation-form" method="POST">
+			<input type="hidden" name="new_reservation" value="1"/>
 			<h2>Faire une réservation :</h2>
 			<div class="row">
 				<div class="col">
-					<select id="check-seats" class="form-select" name="check-seats" required>
+					<select id="check-seats" class="form-select" name="seats" required>
 						<option selected disabled value="">Nombre de personnes</option>
 						<option>1</option>
 						<option>2</option>
@@ -57,20 +59,19 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<label for="date">Date</label>
-					<input id="check-date" type="date" class="form-control" name="check-date" min="{{ "now"|date("Y-m-d") }}">
+					<label for="check_date">Date</label>
+					<input type="date" id="check-date" class="form-control" name="date" min="{{ "now"|date("Y-m-d") }}">
 				</div>
 			</div>
 			<div class="row">
-				<div class="col">
-					<button class="btn btn-primary" type="submit">Voir les disponibilités</button>
-				</div>
+				<button class="btn btn-primary" type="submit">Voir les disponibilités</button>
 			</div>
 		</form>
 		<div class="response"></div>
 	</div>
 	<div id="complete-reservation" class="hidden">
 		<form id="complete-reservation-form" method="POST">
+			<input type="hidden" name="complete_reservation" value="1"/>
 			<h2>Vous y êtes presque !</h2>
 			<p>Entrez vos infos :</p>
 			<div class="row">
@@ -100,7 +101,7 @@
 					<input type="email" class="form-control" name="mail" placeholder="Mail" required>
 				</div>
 			</div>
-			<div class="col-12">
+			<div class="row">
 				<button class="btn btn-primary" type="submit">Valider ma réservation</button>
 			</div>
 		</form>
