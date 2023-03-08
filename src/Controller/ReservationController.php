@@ -44,6 +44,10 @@ class ReservationController extends AbstractController
                     $add_date = new ReservationDate();
                     $add_date->setReservationDate($date);
 
+                    $entityManager = $doctrine->getManager();
+                    $entityManager->persist($add_date);
+                    $entityManager->flush();
+
                     $hours = [
                         "13:00:00", "14:00:00", "15:00:00", "16:00:00",
                         "17:00:00", "18:00:00", "19:00:00", "20:00:00", "21:00:00", "22:00:00"
@@ -54,7 +58,7 @@ class ReservationController extends AbstractController
 
                         $add_hour->setHour(\DateTimeImmutable::createFromFormat('H:i:s', $hour));
                         $add_hour->setSeat($seats);
-                        $add_hour->setDate($reservationDateRepository->getReservationDate($date));
+                        $add_hour->setDate($reservationDateRepository->find($date));
 
                         $entityManager = $doctrine->getManager();
                         $entityManager->persist($add_hour);
