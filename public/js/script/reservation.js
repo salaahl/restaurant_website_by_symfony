@@ -8,7 +8,7 @@ $('#check-reservation-button').click(function () {
   $('#redirect-reservation').css({ display: 'none' });
 });
 
-$('.hour').click(function () {
+$(document).on("click", ".hour", function(){
   let date = $('#check-date').val();
   let hour = $(this).text();
   $('#new-reservation').css({ display: 'none' });
