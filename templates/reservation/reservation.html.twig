@@ -13,25 +13,24 @@
 	<div class="img-container">
 		<img src="{{ asset('img/background-recette-card.jpg') }}" class="d-block" alt="...">
 	</div>
-	<div class="lds-hourglass"></div>
+	<div id="lds-hourglass"></div>
 	<div id="redirect-reservation">
 		<button id="check-reservation-button" class="button-58">Vérifier sa réservation</button>
 		<button id="new-reservation-button" class="button-58">Faire une nouvelle réservation</button>
 	</div>
 	<div id="check-reservation" class="hidden">
 		<form id="check_reservation-form" method="POST">
-			<input type="hidden" name="check_reservation" value="1"/>
 			<h2>Vérifier sa réservation :</h2>
 			<div class="row">
 				<div class="col">
 					<label for="check_reservation_mail">Entrez votre email :</label>
-					<input type="email" class="form-control" name="mail" required>
+					<input type="email" class="form-control" id="mail" name="mail" required>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col">
 					<label for="check_reservation_surname">Entrez votre nom de famille :</label>
-					<input type="text" class="form-control" name="surname" required>
+					<input type="text" class="form-control" id="surname" name="surname" required>
 				</div>
 			</div>
 			<div class="row">
@@ -42,7 +41,6 @@
 	</div>
 	<div id="new-reservation" class="hidden">
 		<form id="new_reservation-form" method="POST">
-			<input type="hidden" name="new_reservation" value="1"/>
 			<h2>Faire une réservation :</h2>
 			<div class="row">
 				<div class="col">
@@ -108,6 +106,7 @@
 
 {% block javascripts %}
 	{{ parent() }}
+	<script src="{{ asset('js/ajax/fetch_method.js') }}"></script>
 	<script src="{{ asset('js/ajax/reservation.js') }}"></script>
 	<script src="{{ asset('js/script/reservation.js') }}"></script>
 {% endblock %}

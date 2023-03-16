@@ -28,7 +28,15 @@ class ReservationController extends AbstractController
 
         if ($request->isMethod('POST')) {
 
-            $_POST = array_map("trim", $_POST);
+            $headers = getallheaders();
+            $_POST;
+
+            if(isset($headers['X-Requested-With']) && $headers['X-Requested-With'] === 'XMLHttpRequest') {
+                $json = file_get_contents('php://input');
+                $_POST = array_map("trim", json_decode($json, true));
+            } else {
+                $_POST = array_map("trim", $_POST);
+            }
 
             $db = $doctrine->getManager()->getConnection();
             $response = [];
@@ -127,7 +135,6 @@ class ReservationController extends AbstractController
                 $newReservation = new Reservation();
                 $reservationDate = $reservationDateRepository->find($date);
 
-                // OU mettre directement le contenu de la variable ici
                 $newReservation->setReservationDate($reservationDate);
                 $newReservation->setHour($hour);
                 $newReservation->setSeatReserved($seats_reserved);

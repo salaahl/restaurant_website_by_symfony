@@ -3,7 +3,7 @@ body {
   font-family: 'Montserrat';
 }
 
-.global-container {
+#global-container {
   height: 100%;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;

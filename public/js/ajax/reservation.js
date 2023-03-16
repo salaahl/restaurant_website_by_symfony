@@ -1,21 +1,37 @@
-$('#check_reservation-form').on('submit', function (e) {
-  e.preventDefault();
+document
+  .getElementById('check_reservation-form')
+  .addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  $('#check-reservation').css('filter', 'blur(10px)');
-  $('.lds-hourglass').css('display', 'flex');
-  $('.response').html("");
+    let $ = (id) => {
+      document.getElementById(id);
+    };
 
-  $.ajax({
-    type: 'post',
-    data: $(this).serialize(),
-    success: function (data) {
-      $('#check-reservation').css('filter', 'blur(0px)');
-      $('.lds-hourglass').css('display', 'none');
+    let checkReservation = document.getElementById('check-reservation');
+    let hourglass = document.getElementById('lds-hourglass');
+    let response = document.getElementsByClassName('response');
+    let mail = document.getElementById('mail').value;
+    let surname = document.getElementById('surname').value;
 
-      if (data != '') {
-        if ((data.hour.length === 1)) {
-          $('.response').append(
-            '<div class="check-reservation-response">' +
+    checkReservation.style.filter = 'blur(10px)';
+    hourglass.style.display = 'flex';
+    for (let i = 0; i < response.length; i++) {
+      response[i].innerHTML = '';
+    }
+
+    postData('', {
+      check_reservation: 'initialize',
+      mail: mail,
+      surname: surname,
+    })
+      .then((data) => {
+        checkReservation.style.filter = 'blur(0px)';
+        hourglass.style.display = 'none';
+        let html;
+        if (data != '') {
+          if (data.hour.length === 1) {
+            html =
+              '<div class="check-reservation-response">' +
               data.name +
               ' ' +
               data.surname +
@@ -27,67 +43,116 @@ $('#check_reservation-form').on('submit', function (e) {
               '<br>' +
               'Cordialement,<br>' +
               "L'équipe du Vingtième" +
-              '</div>'
-          );
-        } else {
-          $('.response').append(
-            '<div class="check-reservation-response">' +
+              '</div>';
+
+            for (let i = 0; i < response.length; i++) {
+              response[i].innerHTML += html;
+            }
+          } else {
+            html =
+              '<div class="check-reservation-response">' +
               data.name +
               ' ' +
               data.surname +
               ',<br>' +
               'Voici pour vos réservations :' +
-              '<br>'
-          );
-          for (let index = 0; index < data.hour.length; index++) {
-            $('.check-reservation-response').append(
-              data.date[index] + ' à ' + data.hour[index] + ',<br>'
+              '<br>';
+
+            for (let i = 0; i < response.length; i++) {
+              response[i].innerHTML += html;
+            }
+
+            let checkReservation = document.getElementsByClassName(
+              'check-reservation-response'
             );
+            for (let index = 0; index < data.hour.length; index++) {
+              html = data.date[index] + ' à ' + data.hour[index] + ',<br>';
+
+              for (let i = 0; i < response.length; i++) {
+                checkReservation[i].innerHTML += html;
+              }
+            }
+            html = 'Cordialement,<br>' + "L'équipe du Vingtième" + '</div>';
+
+            checkReservation.innerHTML += html;
           }
-          $('.check-reservation-response').append(
-            'Cordialement,<br>' + "L'équipe du Vingtième" + '</div>'
-          );
+        } else {
+          for (let i = 0; i < response.length; i++) {
+            response[i].innerHTML +=
+              '<div class="check-reservation-response">Aucune réservation à ce nom.</div>';
+          }
         }
-      } else {
-        $('.response').append(
-          '<div class="check-reservation-response">Aucune réservation à ce nom.</div>'
-        );
-      }
-    },
-    error: function () {
-      alert('Erreur. Veuillez contacter un administrateur.')
-    },
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   });
-});
 
-$('#new_reservation-form').on('submit', function (e) {
-  e.preventDefault();
+document
+  .getElementById('new_reservation-form')
+  .addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  $('#new-reservation').css('filter', 'blur(10px)');
-  $('.lds-hourglass').css('display', 'flex');
-  $('.response').html("");
+    let $ = (id) => {
+      document.getElementById(id);
+    };
 
-  $.ajax({
-    type: 'post',
-    data: $(this).serialize(),
-    success: function (data) {
-      $('#new-reservation').css('filter', 'blur(0px)');
-      $('.lds-hourglass').css('display', 'none');
+    let newReservation = document.getElementById('new-reservation');
+    let hourglass = document.getElementById('lds-hourglass');
+    let response = document.getElementsByClassName('response');
+    let seats = document.getElementById('check-seats').value;
+    let date = document.getElementById('check-date').value;
 
-      if (data != '') {
-        for (let index = 0; index < data.length; index++) {
-          $('.response').append(
-            '<button class="hour button-58">' + data[index].hour + '</button>'
-          );
+    newReservation.style.filter = 'blur(10px)';
+    hourglass.style.display = 'flex';
+    for (let i = 0; i < response.length; i++) {
+      response[i].innerHTML = '';
+    }
+
+    postData('', {
+      new_reservation: 'initialize',
+      seats: seats,
+      date: date,
+    })
+      .then((data) => {
+        newReservation.style.filter = 'blur(0px)';
+        hourglass.style.display = 'none';
+
+        if (data != '') {
+          for (let index = 0; index < data.length; index++) {
+            html =
+              '<button class="hour button-58">' +
+              data[index].hour +
+              '</button>';
+            for (let i = 0; i < response.length; i++) {
+              response[i].innerHTML += html;
+            }
+          }
+
+          let hours = document.getElementsByClassName('hour');
+          for (let index = 0; index < hours.length; index++) {
+            hours[index].onclick = () => {
+              let seats = document.getElementById('check-seats').value;
+              let date = document.getElementById('check-date').value;
+              let hour = hours[index].innerHTML;
+              document.getElementById('new-reservation').style.display = 'none';
+              document
+                .getElementById('complete-reservation')
+                .classList.remove('hidden');
+              document.getElementById('form-seats').value = seats;
+              document.getElementById('form-date').value = date;
+              document.getElementById('form-hour').value = hour;
+            };
+          }
+        } else {
+          html =
+            '<div>Aucune disponibilité sur cette date. Veuillez réessayer avec un autre jour.</div>';
+          for (let i = 0; i < response.length; i++) {
+            response[i].innerHTML += html;
+          }
         }
-      } else {
-        $('.response').append(
-          '<div>Aucune disponibilité sur cette date. Veuillez réessayer avec un autre jour.</div>'
-        );
-      }
-    },
-    error: function () {
-      alert('Erreur. Veuillez contacter un administrateur.');
-    },
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   });
-});

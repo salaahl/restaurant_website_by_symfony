@@ -13,7 +13,7 @@
     display: none;
   }
 
-  .lds-hourglass {
+  #lds-hourglass {
     width: 100%;
   }
 
@@ -47,7 +47,7 @@
     justify-content: space-between;
   }
 
-  .lds-hourglass {
+  #lds-hourglass {
     width: 50%;
   }
 
@@ -73,7 +73,7 @@ body {
   font-family: 'Montserrat';
 }
 
-.global-container {
+#global-container {
   height: 100%;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
@@ -195,7 +195,7 @@ h2 {
 }
 
 /* Response loader */
-.lds-hourglass {
+#lds-hourglass {
   display: none;
   position: absolute;
   height: inherit;
@@ -205,7 +205,7 @@ h2 {
   z-index: 2;
 }
 
-.lds-hourglass:after {
+#lds-hourglass:after {
   content: ' ';
   display: block;
   border-radius: 50%;
