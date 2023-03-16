@@ -72,9 +72,11 @@ document
                 checkReservation[i].innerHTML += html;
               }
             }
+            
             html = 'Cordialement,<br>' + "L'équipe du Vingtième" + '</div>';
-
-            checkReservation.innerHTML += html;
+            for (let i = 0; i < response.length; i++) {
+                checkReservation[i].innerHTML += html;
+            }
           }
         } else {
           for (let i = 0; i < response.length; i++) {
