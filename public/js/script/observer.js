@@ -14,7 +14,7 @@ function handleIntersection(entries) {
   });
 }
 
-$(window).on('load', function () {
+window.addEventListener("load", () => {
   target.forEach((index) => {
     let container = document.querySelectorAll(index);
     if (container) {

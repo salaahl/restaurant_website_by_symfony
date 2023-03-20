@@ -7,21 +7,23 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Repository\DishRepository;
+use App\Repository\MenuRepository;
 use Doctrine\ORM\Mapping\OrderBy;
 
 class GlobalController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
     public function home(
+        MenuRepository $menuRepository,
         DishRepository $dishRepository
     ): Response {
-        $dishHalal = $dishRepository->findBy(
-            ['type' => 'halal'],
-            ['type' => 'ASC']
-        );
+
+        $menus = $menuRepository->findAll();
+        $dishs = $dishRepository->findAll();
 
         return $this->render('global/home.html.twig', [
-            'dishHalal' => $dishHalal
+            'menus' => $menus,
+            'dishs' => $dishs
         ]);
     }
 

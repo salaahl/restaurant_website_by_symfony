@@ -55,12 +55,6 @@
     color: white;
     background-color: black;
   }
-
-  .navbar-scroll .navbar-brand,
-  .navbar-scroll .navbar-collapse .navbar-nav .nav-link,
-  .navbar-scroll .navbar-collapse .navbar-nav .nav-link:hover {
-    filter: invert(100%);
-  }
 }
 
 @media screen and (min-width: 1200px) {

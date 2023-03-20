@@ -1,16 +1,16 @@
 let timer;
 
-$(window).scroll(() => {
+window.addEventListener('scroll', () => {
   if (timer) {
     clearTimeout(timer);
   }
   timer = setTimeout(() => {
-    if ($(this).scrollTop() == 0) {
-      navbar.removeClass('navbar-scroll');
-      navbar.addClass('navbar-no-scroll');
+    if (this.scrollY == 0) {
+      navbar.classList.remove('navbar-scroll');
+      navbar.classList.add('navbar-no-scroll');
     } else {
-      navbar.removeClass('navbar-no-scroll');
-      navbar.addClass('navbar-scroll');
+      navbar.classList.remove('navbar-no-scroll');
+      navbar.classList.add('navbar-scroll');
     }
   }, 25);
 });

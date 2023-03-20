@@ -16,6 +16,7 @@ use App\Form\DishType;
 use App\Form\MenuType;
 
 use App\Repository\DishRepository;
+use App\Repository\MenuRepository;
 
 class MenuController extends AbstractController
 {
@@ -44,17 +45,18 @@ class MenuController extends AbstractController
 
     #[Route('/add_dish', name: 'app_add_dish')]
     public function addDish(
-        DishRepository $dishRepository,
+        MenuRepository $menuRepository,
         Request $request,
         ManagerRegistry $doctrine
     ): Response {
 
         $dish = new Dish();
-        $menus = $dishRepository->findAll();
+        $menus = $menuRepository->findAll();
+        
         $form = $this->createForm(DishType::class, $dish);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() /*&& $form->isValid()*/) {
 
             $entityManager = $doctrine->getManager();
             $entityManager->persist($dish);

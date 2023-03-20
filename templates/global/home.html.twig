@@ -83,7 +83,7 @@
 					</div>
 				</div>
 				<div id="title">
-					<h5>Titre</h5>
+					<h5>Menu</h5>
 				</div>
 				<div class="straight-lines mirror">
 					<div class="straight straight-one">
@@ -107,159 +107,36 @@
 				</div>
 			</div>
 			<div id="menu">
-				<div class="flip-card flip-card-one">
-					<div class="inner">
-						<div class="type">
-							<p>HALAL</p>
-						</div>
-						<div class="dishs">
-							<h6>Halal</h6>
-							{% if dishHalal is defined and dishHalal is not empty %}
-								{% for dish in dishHalal %}
-									<div class="dish">
-										<div class="verticalLineTop"></div>
-										<b>{{ dish.name }}</b><br>
-										{{ dish.description }}<br>
-										{{ dish.price }}€
-									</div>
-								{% endfor %}
-							{% else %}
-								<div class="h-100 w-100 d-flex justify-content-center align-items-center">
-									<b>En construction.</b>
-								</div>
-							{% endif %}
-						</div>
-					</div>
-				</div>
-				<div class="flip-card flip-card-two">
-					<div class="inner">
-						<div class="type">
-							<p>MENU 2</p>
-						</div>
-						<div class="dishs">
-							<h6>Menu 2</h6>
-							{% if thisDish is defined and thisDish is not empty %}
-								{% for dish in dishHalal %}
-									<div class="dish">
-										<div class="verticalLineTop"></div>
-										<b>{{ dish.name }}</b><br>
-										{{ dish.description }}<br>
-										{{ dish.price }}€
-									</div>
-								{% endfor %}
-							{% else %}
-								<div class="h-100 w-100 d-flex justify-content-center align-items-center">
-									<b>En construction.</b>
-								</div>
-							{% endif %}
+				{% set number = ['one', 'two', 'three', 'four', 'five', 'six'] %}
+				{% set i = 0 %}
+				{% for menu in menus %}
+					<div class="flip-card flip-card-{{number[i]}}">
+						<div class="inner">
+							<div class="type">
+								<p>{{ menu.type }}</p>
+							</div>
+							<div class="dishs">
+								<h6>{{ menu.type }}</h6>
+									{% for dish in dishs %}
+										{% if dish.type == menu.type %}
+											<div class="dish">
+												<div class="verticalLineTop"></div>
+												<b>{{ dish.name }}</b><br>
+												{{ dish.description }}<br>
+												{{ dish.price }}€
+											</div>
+										{% endif %}
+									{% endfor %}
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="flip-card flip-card-three">
-					<div class="inner">
-						<div class="type">
-							<p>MENU 3</p>
-						</div>
-						<div class="dishs">
-							<h6>Menu 3</h6>
-							{% if thisDish is defined and thisDish is not empty %}
-								{% for dish in dishHalal %}
-									<div class="dish">
-										<div class="verticalLineTop"></div>
-										<b>{{ dish.name }}</b><br>
-										{{ dish.description }}<br>
-										{{ dish.price }}€
-									</div>
-								{% endfor %}
-							{% else %}
-								<div class="h-100 w-100 d-flex justify-content-center align-items-center">
-									<b>En construction.</b>
-								</div>
-							{% endif %}
-						</div>
-					</div>
-				</div>
-				<div class="flip-card flip-card-four">
-					<div class="inner">
-						<div class="type">
-							<p>MENU 4</p>
-						</div>
-						<div class="dishs">
-							<h6>Menu 4</h6>
-							{% if thisDish is defined and thisDish is not empty %}
-								{% for dish in dishHalal %}
-									<div class="dish">
-										<div class="verticalLineTop"></div>
-										<b>{{ dish.name }}</b><br>
-										{{ dish.description }}<br>
-										{{ dish.price }}€
-									</div>
-								{% endfor %}
-							{% else %}
-								<div class="h-100 w-100 d-flex justify-content-center align-items-center">
-									<b>En construction.</b>
-								</div>
-							{% endif %}
-						</div>
-					</div>
-				</div>
-				<div class="flip-card flip-card-five">
-					<div class="inner">
-						<div class="type">
-							<p>DESSERTS</p>
-						</div>
-						<div class="dishs">
-							<h6>Desserts</h6>
-							{% if thisDish is defined and thisDish is not empty %}
-								{% for dish in dishHalal %}
-									<div class="dish">
-										<div class="verticalLineTop"></div>
-										<b>{{ dish.name }}</b><br>
-										{{ dish.description }}<br>
-										{{ dish.price }}€
-									</div>
-								{% endfor %}
-							{% else %}
-								<div class="h-100 w-100 d-flex justify-content-center align-items-center">
-									<b>En construction.</b>
-								</div>
-							{% endif %}
-						</div>
-					</div>
-				</div>
-				<div class="flip-card flip-card-six">
-					<div class="inner">
-						<div class="type">
-							<p>BOISSONS</p>
-						</div>
-						<div class="dishs">
-							<h6>Boissons</h6>
-							{% if thisDish is defined and thisDish is not empty %}
-								{% for dish in dishHalal %}
-									<div class="dish">
-										<div class="verticalLineTop"></div>
-										<b>{{ dish.name }}</b><br>
-										{{ dish.description }}<br>
-										{{ dish.price }}€
-									</div>
-								{% endfor %}
-							{% else %}
-								<div class="h-100 w-100 d-flex justify-content-center align-items-center">
-									<b>En construction.</b>
-								</div>
-							{% endif %}
-						</div>
-					</div>
-				</div>
+					{% set i = i + 1 %}
+				{% endfor %}
 			</div>
 		</div>
 	</div>
-</section>
-{% endblock %}
-
-{% block javascripts %}
+</section>{% endblock %}{% block javascripts %}
 {{ parent() }}
-<script src="https://unpkg.com/css-doodle@0.33.1/css-doodle.min.js"></script>
+<script src="https://unpkg.com/css-doodle@0.34.5/css-doodle.min.js"></script>
 <script src="{{ asset('js/script/navbar-scroll.js') }}"></script>
-<script src="{{ asset('js/script/observer.js') }}"></script>
-{% endblock %}
+<script src="{{ asset('js/script/observer.js') }}"></script>{% endblock %}

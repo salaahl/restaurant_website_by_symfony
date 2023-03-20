@@ -3,7 +3,7 @@
   css-doodle {
     --rule: (
       @grid: 10x30 / 100%; @size: 1px calc(141.4% + 1px) ; width: 4px; transform:
-        rotate(@p (±45deg)) ; background: #AEACFB; margin: auto;
+        rotate(@p(±45deg)) ; background: #AEACFB; margin: auto;
     );
   }
 
@@ -25,31 +25,56 @@
   }
 
   #title {
-    display: block !important;
     width: 100%;
     text-align: center;
   }
 
+  #title h5 {
+    width: inherit;
+    margin-bottom: 0%;
+    padding: 10% 10vw 10% 10vw;
+  }
+
   .straight-lines {
-    display: none !important;
+    display: none;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  css-doodle {
+    --rule: (
+      @grid: 16 / 100%; @size: 1px calc(141.4% + 1px) ; transform:
+        rotate(@p(±45deg)) ; background: #AEACFB; margin: auto;
+    );
+  }
+
+  .straight-lines {
+    display: block;
+    width: 100%;
+  }
+
+  .straight-lines.mirror {
+    display: flex;
   }
 
   #title h5 {
-    margin-bottom: 0%;
-    border-radius: 0% !important;
-    box-shadow: non!importante;
-    padding: 10% 10vw 10% 10vw;
+    padding: 10% 100% 10% 100%;
+    border-radius: 5px;
+    box-shadow: 25px 25px 0px 0px rgb(0 0 0 / 35%);
+  }
+
+  #menu {
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    height: 100vh;
+  }
+
+  #menu-container {
+    z-index: 3;
   }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
-  css-doodle {
-    --rule: (
-      @grid: 16 / 100%; @size: 1px calc(141.4% + 1px) ; transform:
-        rotate(@p (±45deg)) ; background: #AEACFB; margin: auto;
-    );
-  }
-
   .navbar-scroll .navbar-collapse .navbar-nav .nav-link:hover {
     color: black !important;
     background-color: white !important;
@@ -64,33 +89,12 @@
     width: auto;
   }
 
-  #menu-container {
-    z-index: 3;
-  }
-
   #menu-title {
     margin: 1vh 0 1vh 0;
-  }
-
-  #menu {
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(3, 1fr);
-    height: 100vh;
-  }
-
-  #title h5 {
-    padding: 10% 100% 10% 100%;
   }
 }
 
 @media screen and (min-width: 1200px) {
-  css-doodle {
-    --rule: (
-      @grid: 16 / 100%; @size: 1px calc(141.4% + 1px) ; transform:
-        rotate(@p (±45deg)) ; background: #AEACFB; margin: auto;
-    );
-  }
-
   .navbar {
     top: 2vh;
     height: 7vh !important;
@@ -135,18 +139,7 @@
     border-radius: 50px !important;
   }
 
-  #menu-container {
-    z-index: 3;
-  }
-
-  #title h5 {
-    padding: 10% 100% 10% 100%;
-  }
-
   #menu {
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(3, 1fr);
-    height: 100vh;
     margin: 2vh 0% 2vh 0%;
   }
 
@@ -270,8 +263,6 @@ main {
   text-transform: uppercase;
   color: white;
   backdrop-filter: invert(1);
-  border-radius: 5px;
-  box-shadow: 25px 25px 0px 0px rgb(0 0 0 / 35%);
 }
 #menu {
   display: grid;
@@ -370,10 +361,6 @@ main {
   border-radius: 5px;
 }
 
-/* CSS du titre "MENU" */
-.straight-lines {
-  width: 100%;
-}
 .straight {
   height: 35px;
   border-top-right-radius: 50px;
@@ -417,7 +404,6 @@ main {
 }
 
 .mirror {
-  display: flex;
   flex-direction: column-reverse;
   direction: rtl;
 }

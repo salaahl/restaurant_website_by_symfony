@@ -18,6 +18,7 @@
 			}
 		}) 
 	}}
+	<h1>Ajouter un nouveau plat :</h1>
 	<p class='field required'>
 		{{
 			form_widget(form.name, {
@@ -63,23 +64,11 @@
 	<div class='field required'>
 		<label class='label'>Type</label>
 		<ul class='checkboxes'>
-			{% for menu in menus %}
-				<li class='checkbox'>
-					{{
-						form_widget(form.type, {
-							'attr': {
-								'class': 'checkbox-input',
-								'type': 'radio',
-								'value': menu
-							},
-							'label': 'Nom', 
-							'label_attr': {
-								'class': 'label'
-							},
-						}) 
-					}}
-				</li>
-			{% endfor %}
+			<li class='checkbox'>
+				{{
+					form_widget(form.type) 
+				}}
+			</li>
 		</ul>
 	</div>
 	<p class='field'>

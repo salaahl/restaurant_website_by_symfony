@@ -74,7 +74,9 @@ document
             }
             html = 'Cordialement,<br>' + "L'équipe du Vingtième" + '</div>';
 
-            checkReservation.innerHTML += html;
+            for (let i = 0; i < response.length; i++) {
+              checkReservation[i].innerHTML += html;
+            }
           }
         } else {
           for (let i = 0; i < response.length; i++) {
@@ -84,7 +86,9 @@ document
         }
       })
       .catch((error) => {
-        console.log(error.message);
+        alert(
+          'Impossible de récupérer la liste de vos réservations. Veuillez prendre contact avec le restaurant.'
+        );
       });
   });
 
@@ -153,6 +157,8 @@ document
         }
       })
       .catch((error) => {
-        console.log(error.message);
+        alert(
+          'Impossible de faire une nouvelle réservation pour le moment. Veuillez prendre contact avec le restaurant.'
+        );
       });
   });

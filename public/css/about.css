@@ -53,14 +53,6 @@
     background-image: url('/img/background-recette-card.jpg');
   }
 
-  .animate {
-    animation: none !important;
-  }
-
-  .img-container {
-    display: none;
-  }
-
   .text-container {
     padding: 10%;
     background-color: rgb(255, 255, 255, 0.2);
@@ -96,9 +88,17 @@
     padding: 2%;
   }
 
+  .img-container {
+    display: block!important;
+  }
+
   .text-container,
   .img-container {
     width: 50%;
+  }
+
+  .animate {
+    animation: translate 1s;
   }
 }
 
@@ -118,6 +118,10 @@ article {
   justify-content: space-between;
   width: inherit;
   height: 100%;
+}
+
+.img-container {
+  display: none;
 }
 
 .text-container,
@@ -173,7 +177,6 @@ article {
 
 .animate {
   opacity: 1;
-  animation: translate 1s;
 }
 
 @keyframes translate {

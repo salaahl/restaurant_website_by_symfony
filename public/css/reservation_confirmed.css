@@ -15,15 +15,15 @@ footer {
 }
 
 main {
-  height: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  height: 90%;
+  padding: 2%;
 }
 h2 {
   margin: 1% 0 1% 0;
   font-weight: 800;
-  font-size: 3vw;
   text-align: center;
   text-transform: uppercase;
   -webkit-text-stroke-width: thin;
@@ -43,6 +43,5 @@ img {
 }
 
 .reservation-confirmed {
-  font-size: 1.4vw;
   text-align: center;
 }
