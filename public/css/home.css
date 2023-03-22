@@ -235,7 +235,6 @@ main {
 }
 
 #menu-container {
-  opacity: 0;
   display: flex;
   flex-flow: wrap;
   justify-content: center;
