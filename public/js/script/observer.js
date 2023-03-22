@@ -1,4 +1,4 @@
-const target = ['#menu-container', '.text-container'];
+const target = ['.text-container'];
 
 const options = {
   threshold: 0.1,

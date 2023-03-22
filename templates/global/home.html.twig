@@ -117,16 +117,16 @@
 							</div>
 							<div class="dishs">
 								<h6>{{ menu.type }}</h6>
-									{% for dish in dishs %}
-										{% if dish.type == menu.type %}
-											<div class="dish">
-												<div class="verticalLineTop"></div>
-												<b>{{ dish.name }}</b><br>
-												{{ dish.description }}<br>
-												{{ dish.price }}€
-											</div>
-										{% endif %}
-									{% endfor %}
+								{% for dish in dishs %}
+									{% if dish.type == menu.type %}
+										<div class="dish">
+											<div class="verticalLineTop"></div>
+											<b>{{ dish.name }}</b><br>
+											{{ dish.description }}<br>
+											{{ dish.price }}€
+										</div>
+									{% endif %}
+								{% endfor %}
 							</div>
 						</div>
 					</div>
@@ -135,8 +135,11 @@
 			</div>
 		</div>
 	</div>
-</section>{% endblock %}{% block javascripts %}
+</section>
+{% endblock %}
+
+{% block javascripts %}
 {{ parent() }}
 <script src="https://unpkg.com/css-doodle@0.34.5/css-doodle.min.js"></script>
 <script src="{{ asset('js/script/navbar-scroll.js') }}"></script>
-<script src="{{ asset('js/script/observer.js') }}"></script>{% endblock %}
+{% endblock %}

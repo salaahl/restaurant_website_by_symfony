@@ -14,6 +14,10 @@ footer {
   scroll-snap-align: start;
 }
 
+.navbar {
+  background-color: black;
+}
+
 main {
   display: flex;
   flex-direction: column;
