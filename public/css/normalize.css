@@ -1,4 +1,4 @@
-*:read-only {
+input:read-only {
     filter: brightness(0.5);
 }
 
