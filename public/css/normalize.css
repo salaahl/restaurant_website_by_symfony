@@ -1,3 +1,10 @@
+@media (prefers-color-scheme: dark) {
+  html, body {
+    color: rgb(156, 163, 175);
+    background-color: rgb(31, 41, 55);
+  }
+}
+
 input:read-only {
     filter: brightness(0.5);
 }
