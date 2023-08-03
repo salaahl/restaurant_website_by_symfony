@@ -1,3 +1,15 @@
+@media (prefers-color-scheme: light) {
+  #title h5 {
+    backdrop-filter: invert(1);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #title h5 {
+    backdrop-filter: brightness(0.5);
+  }
+}
+
 /* Breakpoints */
 @media screen and (max-width: 991px) {
   css-doodle {
@@ -261,8 +273,8 @@ main {
   font-weight: bold;
   text-transform: uppercase;
   color: white;
-  backdrop-filter: invert(1);
 }
+
 #menu {
   display: grid;
   width: 100%;
