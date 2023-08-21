@@ -32,8 +32,8 @@
     width: inherit;
   }
 
-  #menu {
-    height: 250vh;
+  .flip-card {
+    height: 25vh;
   }
 
   #title {
