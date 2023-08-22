@@ -115,6 +115,10 @@
     margin-top: -10vh;
   }
 
+  .carousel-inner {
+    border-radius: 20px;
+  }
+
   .carousel-item img {
     height: 100vh;
     width: auto;
@@ -163,7 +167,6 @@
   .carousel-item img {
     height: 87vh;
     width: 100%;
-    border-radius: 20px;
   }
 
   section,
