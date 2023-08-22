@@ -80,7 +80,7 @@
 /* GLOBAL */
 .navbar {
   position: sticky;
-  z-index: 3;
+  z-index: 4;
   width: 100%;
   margin: 0 auto;
   padding: 0.5rem 1rem 0.5rem 1rem;
