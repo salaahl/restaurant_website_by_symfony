@@ -306,31 +306,31 @@ main {
 
 /* En attendant de trouver de plus jolies couleurs... */
 .flip-card .inner .type {
-  background-color: #677381 !important;
+  background-color: #677381;
 }
 
 .flip-card-one .inner .type {
-  background-color: #845ec2;
+  background-color: #F1DEDE;
 }
 
 .flip-card-two .inner .type {
-  background-color: #2c73d2;
+  background-color: #D496A7;
 }
 
 .flip-card-three .inner .type {
-  background-color: #0081cf;
+  background-color: #5D576B;
 }
 
 .flip-card-four .inner .type {
-  background-color: #0089ba;
+  background-color: #6CD4FF;
 }
 
 .flip-card-five .inner .type {
-  background-color: #008e9b;
+  background-color: #FE938C;
 }
 
 .flip-card-six .inner .type {
-  background-color: #008f7a;
+  background-color: #A08794;
 }
 
 .flip-card .inner {
