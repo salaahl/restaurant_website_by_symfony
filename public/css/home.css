@@ -78,10 +78,6 @@
     height: 100%;
   }
 
-  .carousel-inner {
-    border-radius: 20px;
-  }
-
   .straight-lines {
     display: block;
     width: 100%;
@@ -162,6 +158,10 @@
 
   .carousel-container {
     margin: 4vh 0 2vh 0;
+  }
+
+  .carousel-inner {
+    border-radius: 20px;
   }
 
   .carousel-item img {
