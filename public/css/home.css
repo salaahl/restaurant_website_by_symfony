@@ -43,7 +43,8 @@
   }
 
   .flip-card {
-    height: 300px;
+    aspect-ratio: 1;
+    width: 100%;
   }
 
   #title {
