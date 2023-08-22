@@ -70,6 +70,13 @@
     );
   }
 
+  .bg-doodle {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   .straight-lines {
     display: block;
     width: 100%;
@@ -310,27 +317,27 @@ main {
 }
 
 .flip-card-one .inner .type {
-  background-color: #F1DEDE;
+  background-color: #2f2c36;
 }
 
 .flip-card-two .inner .type {
-  background-color: #D496A7;
+  background-color: #383440;
 }
 
 .flip-card-three .inner .type {
-  background-color: #5D576B;
+  background-color: #413d4b;
 }
 
 .flip-card-four .inner .type {
-  background-color: #6CD4FF;
+  background-color: #4a4656;
 }
 
 .flip-card-five .inner .type {
-  background-color: #FE938C;
+  background-color: #544e60;
 }
 
 .flip-card-six .inner .type {
-  background-color: #A08794;
+  background-color: #5d576b;
 }
 
 .flip-card .inner {
