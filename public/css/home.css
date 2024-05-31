@@ -78,6 +78,11 @@
     height: 100%;
   }
 
+  .nav-link:hover {
+      color: black;
+      background-color: white;
+  }
+  
   .straight-lines {
     display: block;
     width: 100%;
@@ -244,7 +249,7 @@ body {
 
 .navbar-brand,
 .nav-link {
-  color: white !important;
+  color: white;
 }
 
 main {
