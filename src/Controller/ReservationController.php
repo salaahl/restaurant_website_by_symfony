@@ -48,7 +48,6 @@ class ReservationController extends AbstractController
                 $check_date = $reservationDateRepository->find($date);
 
                 if (!$check_date) {
-
                     $add_date = new ReservationDate();
                     $add_date->setReservationDate($date);
 
@@ -74,6 +73,7 @@ class ReservationController extends AbstractController
                     }
                 }
 
+                // Vérifie s'il reste des places pour l'horaire choisi
                 $check_hour =
                     $db->prepare(
                         "SELECT hour
@@ -163,6 +163,6 @@ class ReservationController extends AbstractController
             return new JsonResponse($response);
         }
 
-        return $this->render('reservation/reservation.html.twig');
+        return $this->render('reservation/manage.html.twig');
     }
 }
