@@ -14,22 +14,22 @@ use App\Repository\MenuRepository;
 
 class DishController extends AbstractController
 {
+    protected MenuRepository $menuRepository;
+    protected DishRepository $dishRepository;
+    
     #[Route('/dish/create', name: 'dish.create')]
     public function create(
-        MenuRepository $menuRepository,
         Request $request,
-        DishRepository $dishRepository
     ): Response {
 
         $dish = new Dish();
-        $menus = $menuRepository->findAll();
+        $menus = $this->menuRepository->findAll();
         
         $form = $this->createForm(DishType::class, $dish);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Voir si je ne peux pas plutôt passer par un construct pour éviter d'avoir à appeler à chaque fois le DishRepository dans la méthode
-            $dishRepository->save($dish, true);
+            $this->dishRepository->save($dish, true);
             return new Response(true);
         }
 
