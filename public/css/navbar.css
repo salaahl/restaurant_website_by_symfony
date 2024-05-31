@@ -61,6 +61,11 @@
     color: black;
   }
 
+  .nav-link {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+
   .nav-link:hover {
     color: white;
     background-color: black;
