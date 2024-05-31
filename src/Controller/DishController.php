@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Persistence\ManagerRegistry;
 
 use App\Entity\Dish;
 use App\Form\DishType;
@@ -19,7 +18,7 @@ class DishController extends AbstractController
     public function create(
         MenuRepository $menuRepository,
         Request $request,
-        ManagerRegistry $doctrine
+        DishRepository $dishRepository
     ): Response {
 
         $dish = new Dish();
@@ -29,9 +28,8 @@ class DishController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($dish);
-            $entityManager->flush();
+            // Voir si je ne peux pas plutôt passer par un construct pour éviter d'avoir à appeler à chaque fois le DishRepository dans la méthode
+            $dishRepository->save($dish, true);
             return new Response(true);
         }
 
@@ -44,7 +42,6 @@ class DishController extends AbstractController
     #[Route('/dish/update', name: 'dish.update')]
     public function update(
         Request $request,
-        ManagerRegistry $doctrine
     ): Response {
         //
     }
@@ -52,7 +49,6 @@ class DishController extends AbstractController
     #[Route('/dish/edit', name: 'dish.edit')]
     public function edit(
         Request $request,
-        ManagerRegistry $doctrine
     ): Response {
         //
     }
@@ -60,7 +56,6 @@ class DishController extends AbstractController
     #[Route('/dish/delete', name: 'dish.delete')]
     public function delete(
         Request $request,
-        ManagerRegistry $doctrine
     ): Response {
         //
     }
