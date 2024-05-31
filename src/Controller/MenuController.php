@@ -17,7 +17,7 @@ class MenuController extends AbstractController
     #[Route('/menu/create', name: 'menu.create')]
     public function create(
         Request $request,
-        ManagerRegistry $doctrine
+        MenuRepository $menuRepository
     ): Response {
 
         $menu = new Menu();
@@ -25,9 +25,7 @@ class MenuController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($menu);
-            $entityManager->flush();
+            $menuRepository->save($menu, true);
             return new Response(true);
         }
         
@@ -39,7 +37,7 @@ class MenuController extends AbstractController
     #[Route('/menu/update', name: 'menu.update')]
     public function update(
         Request $request,
-        ManagerRegistry $doctrine
+        MenuRepository $menuRepository
     ): Response {
         //
     }
@@ -47,7 +45,7 @@ class MenuController extends AbstractController
     #[Route('/menu/edit', name: 'menu.edit')]
     public function edit(
         Request $request,
-        ManagerRegistry $doctrine
+        MenuRepository $menuRepository
     ): Response {
         //
     }
@@ -55,7 +53,7 @@ class MenuController extends AbstractController
     #[Route('/menu/delete', name: 'menu.delete')]
     public function delete(
         Request $request,
-        ManagerRegistry $doctrine
+        MenuRepository $menuRepository
     ): Response {
         //
     }
