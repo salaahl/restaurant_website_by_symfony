@@ -11,11 +11,14 @@ use App\Entity\Menu;
 use App\Form\MenuType;
 use App\Repository\MenuRepository;
 
+/**
+ * @Route("/menu/")
+ */
 class MenuController extends AbstractController
 {
     protected MenuRepository $menuRepository;
     
-    #[Route('/menu/create', name: 'menu.create')]
+    #[Route('create', name: 'menu.create')]
     public function create(
         Request $request,
     ): Response {
@@ -34,21 +37,21 @@ class MenuController extends AbstractController
         ]);
     }
 
-    #[Route('/menu/update', name: 'menu.update')]
+    #[Route('update', name: 'menu.update')]
     public function update(
         Request $request,
     ): Response {
         //
     }
 
-    #[Route('/menu/edit', name: 'menu.edit')]
+    #[Route('edit', name: 'menu.edit')]
     public function edit(
         Request $request,
     ): Response {
         //
     }
 
-    #[Route('/menu/delete', name: 'menu.delete')]
+    #[Route('delete', name: 'menu.delete')]
     public function delete(
         Request $request,
     ): Response {
