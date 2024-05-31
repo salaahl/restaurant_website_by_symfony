@@ -12,12 +12,15 @@ use App\Form\DishType;
 use App\Repository\DishRepository;
 use App\Repository\MenuRepository;
 
+/**
+ * @Route("/dish/")
+ */
 class DishController extends AbstractController
 {
     protected MenuRepository $menuRepository;
     protected DishRepository $dishRepository;
     
-    #[Route('/dish/create', name: 'dish.create')]
+    #[Route('create', name: 'dish.create')]
     public function create(
         Request $request,
     ): Response {
@@ -39,21 +42,21 @@ class DishController extends AbstractController
         ]);
     }
   
-    #[Route('/dish/update', name: 'dish.update')]
+    #[Route('update', name: 'dish.update')]
     public function update(
         Request $request,
     ): Response {
         //
     }
 
-    #[Route('/dish/edit', name: 'dish.edit')]
+    #[Route('edit', name: 'dish.edit')]
     public function edit(
         Request $request,
     ): Response {
         //
     }
 
-    #[Route('/dish/delete', name: 'dish.delete')]
+    #[Route('delete', name: 'dish.delete')]
     public function delete(
         Request $request,
     ): Response {
