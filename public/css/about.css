@@ -1,116 +1,8 @@
-/* Breakpoints */
-@media screen and (max-width: 991px) {
-  html {
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-  }
-
-  main {
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-  }
-
-  .navbar,
-  article,
-  footer {
-    scroll-snap-align: start;
-  }
-
-  .navbar {
-    position: fixed !important;
-    background-color: rgb(0, 0, 0, 0.2);
-  }
-
-  /* Inversion de la couleur du switch : */
-  .navbar-scroll .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-  }
-
-  h2 {
-    font-size: 8vw;
-  }
-
-  section {
-    display: flex;
-    height: 100%;
-    width: 300%;
-  }
-
-  article {
-    font-weight: bolder;
-    background-size: cover;
-  }
-
-  article:nth-child(1) {
-    background-image: url('/img/me.jpg');
-  }
-
-  article:nth-child(2) {
-    background-image: url('/img/dish.jpg');
-  }
-
-  article:nth-child(3) {
-    background-image: url('/img/background-recette-card.jpg');
-  }
-
-  .text-container {
-    padding: 10%;
-    background-color: rgb(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
-  }
-
-  .text-container,
-  .img-container {
-    width: 100%;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  html {
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-  }
-
-  article,
-  footer {
-    scroll-snap-align: start;
-  }
-
-  .navbar {
-    position: absolute !important;
-  }
-
-  h2 {
-    font-size: 5vw;
-  }
-
-  .text-container {
-    padding: 2%;
-  }
-
-  .img-container {
-    display: block!important;
-  }
-
-  .text-container,
-  .img-container {
-    width: 50%;
-  }
-
-  .animate {
-    animation: translate 1s;
-  }
-}
-
-/* GLOBAL */
-body {
-  font-family: 'Montserrat';
-}
-
 h2 {
   margin: 5% 0 5% 0;
   font-weight: 800;
   text-transform: uppercase;
+  font-size: 8vw;
 }
 
 article {
@@ -118,6 +10,20 @@ article {
   justify-content: space-between;
   width: inherit;
   height: 100%;
+  font-weight: bolder;
+  background-size: cover;
+}
+
+.article:nth-child(1) {
+  background-image: url('/img/me.jpg');
+}
+
+.article:nth-child(2) {
+  background-image: url('/img/dish.jpg');
+}
+
+.article:nth-child(3) {
+  background-image: url('/img/background-recette-card.jpg');
 }
 
 .img-container {
@@ -127,6 +33,7 @@ article {
 .text-container,
 .img-container {
   height: 100%;
+  width: 100%;
 }
 
 .text-container {
@@ -137,6 +44,9 @@ article {
   text-align: justify;
   opacity: 0;
   transition: all 1s;
+  padding: 10%;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
 }
 
 .img-container > img {
@@ -149,6 +59,7 @@ article {
 .word {
   -webkit-text-stroke: 3px black;
 }
+
 .word-color-1 {
   color: #accfcb;
 }
@@ -177,6 +88,58 @@ article {
 
 .animate {
   opacity: 1;
+}
+
+@media screen and (max-width: 767px) {
+  #navbar,
+  article,
+  footer {
+    scroll-snap-align: start;
+  }
+
+  #navbar {
+    position: fixed !important;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .navbar-scroll .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+
+  section {
+    display: flex;
+    height: 100%;
+    width: 300%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  h2 {
+    font-size: 5vw;
+  }
+
+  .text-container {
+    padding: 2%;
+    width: 50%;
+  }
+
+  .img-container {
+    display: block !important;
+    width: 50%;
+  }
+
+  .animate {
+    animation: translate 1s;
+  }
+
+  #navbar {
+    position: absolute !important;
+  }
+
+  html {
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+  }
 }
 
 @keyframes translate {

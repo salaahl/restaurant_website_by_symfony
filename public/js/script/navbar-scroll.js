@@ -1,6 +1,6 @@
 let timer;
 
-if (window.innerWidth > 1023) {
+if (window.innerWidth > 767) {
   window.addEventListener('scroll', () => {
     if (timer) {
       clearTimeout(timer);

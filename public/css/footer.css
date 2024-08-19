@@ -1,12 +1,10 @@
-@media screen and (min-width: 991px) {
-  footer {
-    padding: 1%;
-  }
-}
-@media screen and (max-width: 992px) {
-  footer {
-    padding: 2%;
-  }
+footer {
+  position: relative;
+  bottom: 0;
+  width: auto;
+  padding: 2%;
+  text-align: center;
+  overflow: hidden;
 }
 
 .buttons {
@@ -15,34 +13,42 @@
   margin: 1%;
 }
 
-footer {
-  position: relative;
-  bottom: 0;
-  width: auto;
-}
-
 .contentFooter {
+  flex-direction: column;
   height: 100%;
+  width: 100%;
+  max-width: 1280px;
+  margin-right: auto;
+  margin-left: auto;
   color: white;
   padding: 1%;
 }
 
-.contentFooter div:nth-child(1),
-.contentFooter div:nth-child(2) {
-  border-right: 2px solid white;
-}
-
 .contentFooter div {
-  text-align: center;
   padding: inherit;
 }
 
-footer div {
-  display: inline-block;
+.contentFooter div:nth-child(1),
+.contentFooter div:nth-child(2) {
+  border-bottom: 4px solid rgb(255, 255, 255, 0.15);
 }
 
 .copyright {
-  display: inline-block;
-  z-index: 0;
   color: white;
+}
+
+@media screen and (min-width: 768px) {
+  footer {
+    text-align: unset;
+    padding: 1%;
+  }
+
+  .contentFooter {
+    flex-direction: row;
+  }
+
+  .contentFooter div:nth-child(1),
+  .contentFooter div:nth-child(2) {
+    border-right: 4px solid rgb(255, 255, 255, 0.15);
+  }
 }
