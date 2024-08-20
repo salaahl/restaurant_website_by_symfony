@@ -62,20 +62,13 @@ article:nth-of-type(3) {
   object-position: center;
 }
 
-.word {
+h2 span {
+  font-weight: 100;
   -webkit-text-stroke: 3px black;
 }
 
-.word-color-1 {
-  color: #accfcb;
-}
-
-.word-color-2 {
-  color: #dbad4a;
-}
-
-.word-color-3 {
-  color: #df8453;
+.word {
+  font-weight: initial;
 }
 
 .text-container:nth-child(1).animate,
