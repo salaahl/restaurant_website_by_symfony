@@ -15,10 +15,12 @@
 }
 
 #navbar {
+  width: 96%;
   background-color: var(--color-black);
 }
 
-#navbar, main {
+#navbar,
+main {
   max-width: 1280px;
   margin-right: auto;
   margin-left: auto;
@@ -327,7 +329,8 @@
     box-shadow: 0px 0px 0px 5px rgb(0 0 0 / 10%) !important;
   }
 
-  #navbar, main {
+  #navbar,
+  main {
     padding-left: 2%;
     padding-right: 2%;
   }
@@ -353,7 +356,7 @@
   }
 
   .straight {
-    width: 60%;
+    width: 75%;
     border-radius: 50px;
   }
 
@@ -383,7 +386,12 @@
 }
 
 @media screen and (min-width: 1440px) {
-  #navbar, main {
+  #navbar {
+    width: 100%;
+  }
+  
+  #navbar,
+  main {
     padding-left: 0;
     padding-right: 0;
   }

@@ -107,7 +107,6 @@ h2 {
 @media screen and (max-width: 767px) {
   .navbar {
     min-height: 8%;
-    background-color: rgb(0, 0, 0, 0.8);
   }
 
   .img-container {
@@ -123,7 +122,7 @@ h2 {
   #new-reservation,
   #complete-reservation {
     width: 95%;
-    margin: 0 auto;
+    margin: auto;
   }
 }
 

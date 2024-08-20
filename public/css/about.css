@@ -5,24 +5,30 @@ h2 {
   font-size: 8vw;
 }
 
+#navbar,
+article,
+footer {
+  scroll-snap-align: start;
+}
+
 article {
   display: flex;
   justify-content: space-between;
-  width: inherit;
   height: 100%;
+  min-width: 100%;
   font-weight: bolder;
   background-size: cover;
 }
 
-.article:nth-child(1) {
+article:nth-of-type(1) {
   background-image: url('/img/me.jpg');
 }
 
-.article:nth-child(2) {
+article:nth-of-type(2) {
   background-image: url('/img/dish.jpg');
 }
 
-.article:nth-child(3) {
+article:nth-of-type(3) {
   background-image: url('/img/background-recette-card.jpg');
 }
 
@@ -72,11 +78,6 @@ article {
   color: #df8453;
 }
 
-footer,
-article {
-  scroll-snap-align: start;
-}
-
 .text-container:nth-child(1).animate,
 .text-container:nth-child(3).animate {
   --translate: -20% 0%;
@@ -91,31 +92,33 @@ article {
 }
 
 @media screen and (max-width: 767px) {
-  #navbar,
-  article,
-  footer {
-    scroll-snap-align: start;
-  }
-
-  #navbar {
-    position: fixed !important;
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-
-  .navbar-scroll .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-  }
-
   section {
     display: flex;
     height: 100%;
-    width: 300%;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+    overflow: auto;
   }
 }
 
 @media screen and (min-width: 768px) {
+  html {
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+  }
+
   h2 {
     font-size: 5vw;
+  }
+
+  #navbar {
+    position: absolute;
+  }
+
+  article:nth-of-type(1),
+  article:nth-of-type(2),
+  article:nth-of-type(3) {
+    background-image: unset;
   }
 
   .text-container {
@@ -130,15 +133,6 @@ article {
 
   .animate {
     animation: translate 1s;
-  }
-
-  #navbar {
-    position: absolute !important;
-  }
-
-  html {
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
   }
 }
 
