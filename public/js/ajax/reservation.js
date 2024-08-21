@@ -90,6 +90,9 @@ document
         alert(
           'Impossible de récupérer la liste de vos réservations. Veuillez prendre contact avec le restaurant.'
         );
+
+        checkReservation.style.filter = 'blur(0px)';
+        hourglass.style.display = 'none';
       });
   });
 
