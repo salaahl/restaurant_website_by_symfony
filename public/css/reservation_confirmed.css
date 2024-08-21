@@ -1,8 +1,3 @@
-html,
-body {
-  font-family: 'Montserrat';
-}
-
 #global-container {
   height: 100%;
   overflow-y: scroll;
@@ -48,4 +43,10 @@ img {
 
 .reservation-confirmed {
   text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+   main {
+    height: 100%;
+  }
 }
