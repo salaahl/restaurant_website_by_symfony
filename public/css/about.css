@@ -5,7 +5,6 @@ h2 {
   font-size: 8vw;
 }
 
-#navbar,
 article,
 footer {
   scroll-snap-align: start;
@@ -102,10 +101,6 @@ h2 span {
 
   h2 {
     font-size: 5vw;
-  }
-
-  #navbar {
-    position: absolute;
   }
 
   article:nth-of-type(1),
