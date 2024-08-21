@@ -57,6 +57,10 @@ main {
   font-weight: 500;
 }
 
+.carousel-caption > p {
+  display: none;
+}
+
 .carousel-item img {
   object-fit: cover;
   object-position: center;
@@ -301,7 +305,6 @@ main {
   }
 }
 
-/* Styles for screens 768px and up */
 @media screen and (min-width: 768px) {
   css-doodle {
     --rule: (
@@ -356,6 +359,10 @@ main {
   .carousel-item img {
     height: 87vh;
     width: 100%;
+  }
+
+  .carousel-caption > p {
+    display: block;
   }
 
   #menu {
