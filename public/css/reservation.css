@@ -131,6 +131,10 @@ h2 {
     font-size: 4vw;
   }
 
+  main {
+    height: 100%;
+  }
+
   #lds-hourglass {
     width: 50%;
   }
