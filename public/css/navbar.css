@@ -24,9 +24,6 @@
 }
 
 .navbar-brand {
-  padding-left: var(
-    --bs-navbar-brand-padding-y
-  ); /* Le reste est géré par bootstrap */
   font-size: 5vw;
   font-weight: 500;
   text-transform: uppercase;
@@ -67,6 +64,9 @@
   }
 
   .navbar-brand {
+    padding-left: var(
+      --bs-navbar-brand-padding-y
+    ); /* Le reste est géré par bootstrap */
     font-size: 2vw;
     color: black;
   }
