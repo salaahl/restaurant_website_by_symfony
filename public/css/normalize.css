@@ -63,7 +63,7 @@ input:read-only {
 }
 
 main {
-  height: 90%;
+  height: 100%;
 }
 
 @media screen and (min-width: 768px) {
