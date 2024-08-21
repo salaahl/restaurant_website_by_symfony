@@ -50,8 +50,8 @@ article:nth-of-type(3) {
   opacity: 0;
   transition: all 1s;
   padding: 10%;
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(60px);
 }
 
 .img-container > img {
