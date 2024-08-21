@@ -9,12 +9,12 @@ body {
   scroll-snap-type: y mandatory;
 }
 
-.navbar,
+main,
 footer {
   scroll-snap-align: start;
 }
 
-.navbar {
+#navbar {
   background-color: black;
 }
 
