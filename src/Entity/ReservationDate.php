@@ -11,13 +11,17 @@ use Doctrine\ORM\Mapping as ORM;
 class ReservationDate
 {
     #[ORM\Id]
-    #[ORM\Column(length: 255)]
-    private ?string $reservation_date = null;
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'reservation_date', targetEntity: Reservation::class)]
+    #[ORM\Column(length: 255, unique: true)]
+    private ?string $date = null;
+
+    #[ORM\OneToMany(mappedBy: 'date', targetEntity: Reservation::class)]
     private Collection $reservations;
 
-    #[ORM\OneToMany(mappedBy: 'date', targetEntity: Seats::class)]
+    #[ORM\OneToMany(mappedBy: 'date', targetEntity: Seat::class)]
     private Collection $seats;
 
     public function __construct()
@@ -26,14 +30,19 @@ class ReservationDate
         $this->seats = new ArrayCollection();
     }
 
-    public function getReservationDate(): ?string
+    public function getId(): ?int
     {
-        return $this->reservation_date;
+        return $this->id;
     }
 
-    public function setReservationDate(string $reservation_date): self
+    public function getReservationDate(): ?string
     {
-        $this->reservation_date = $reservation_date;
+        return $this->date;
+    }
+
+    public function setReservationDate(string $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }
@@ -69,14 +78,14 @@ class ReservationDate
     }
 
     /**
-     * @return Collection<int, Seats>
+     * @return Collection<int, Seat>
      */
     public function getSeats(): Collection
     {
         return $this->seats;
     }
 
-    public function addSeat(Seats $seat): self
+    public function addSeat(Seat $seat): self
     {
         if (!$this->seats->contains($seat)) {
             $this->seats->add($seat);
@@ -86,7 +95,7 @@ class ReservationDate
         return $this;
     }
 
-    public function removeSeat(Seats $seat): self
+    public function removeSeat(Seat $seat): self
     {
         if ($this->seats->removeElement($seat)) {
             // set the owning side to null (unless already changed)

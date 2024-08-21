@@ -10,6 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
 class Dish
 {
     #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
@@ -19,12 +23,14 @@ class Dish
     #[ORM\Column]
     private ?float $price = null;
 
-    #[ORM\Column(type: Types::BINARY, nullable: true)]
-    private $picture = null;
-
     #[ORM\ManyToOne(inversedBy: 'dishes')]
-    #[ORM\JoinColumn(nullable: false, name:"Menu", referencedColumnName:"type")]
-    private ?Menu $type = null;
+    #[ORM\JoinColumn(nullable: false, name: "Menu", referencedColumnName: "name")]
+    private ?Menu $menu = null;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getName(): ?string
     {
@@ -62,26 +68,14 @@ class Dish
         return $this;
     }
 
-    public function getPicture()
+    public function getMenu(): ?Menu
     {
-        return $this->picture;
+        return $this->menu;
     }
 
-    public function setPicture($picture): self
+    public function setMenu(?Menu $menu): self
     {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
-    public function getType(): ?Menu
-    {
-        return $this->type;
-    }
-
-    public function setType(?Menu $type): self
-    {
-        $this->type = $type;
+        $this->menu = $menu;
 
         return $this;
     }

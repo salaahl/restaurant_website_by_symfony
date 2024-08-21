@@ -2,14 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\SeatsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\SeatRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: SeatsRepository::class)]
-class Seats
+#[ORM\Entity(repositoryClass: SeatRepository::class)]
+class Seat
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -23,7 +21,7 @@ class Seats
     private ?int $seat = null;
 
     #[ORM\ManyToOne(inversedBy: 'seats')]
-    #[ORM\JoinColumn(nullable:false, name:"ReservationDate", referencedColumnName:"reservation_date")]
+    #[ORM\JoinColumn(nullable: false, name: "ReservationDate", referencedColumnName: "date")]
     private ?ReservationDate $date = null;
 
 

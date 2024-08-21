@@ -4,9 +4,10 @@ namespace App\Controller\Admin;
 
 use App\Entity\Dish;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+
 
 class DishCrudController extends AbstractCrudController
 {
@@ -15,14 +16,13 @@ class DishCrudController extends AbstractCrudController
         return Dish::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
+            Field::new('name'),
             TextEditorField::new('description'),
+            Field::new('price'),
+            AssociationField::new('menu')->setFormTypeOption('choice_label', 'name'),
         ];
     }
-    */
 }

@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Reservation;
-use App\Entity\Seats;
+use App\Entity\Seat;
 use App\Entity\ReservationDate;
 use App\Entity\Menu;
 use App\Entity\Dish;
@@ -51,9 +51,9 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'homepage');
         yield MenuItem::linkToCrud('Reservations', 'fas fa-map-marker-alt', Reservation::class);
-        yield MenuItem::linkToCrud('Seats', 'fas fa-map-marker-alt', Seats::class);
+        yield MenuItem::linkToCrud('Seats', 'fas fa-map-marker-alt', Seat::class);
         yield MenuItem::linkToCrud('Menus', 'fas fa-map-marker-alt', Menu::class);
         yield MenuItem::linkToCrud('Dishes', 'fas fa-map-marker-alt', Dish::class);
-        yield MenuItem::linkToCrud('Reservation Dates', 'fas fa-map-marker-alt', ReservationDate::class);
+        yield MenuItem::linkToCrud('Reservations dates', 'fas fa-map-marker-alt', ReservationDate::class);
     }
 }

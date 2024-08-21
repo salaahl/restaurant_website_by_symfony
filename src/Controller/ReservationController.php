@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Reservation;
 use App\Entity\ReservationDate;
-use App\Entity\Seats;
+use App\Entity\Seat;
 
-use App\Repository\SeatsRepository;
+use App\Repository\SeatRepository;
 use App\Repository\ReservationDateRepository;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,7 +20,7 @@ class ReservationController extends AbstractController
 {
     #[Route('/reservation', name: 'app_reservation')]
     public function reservation(
-        SeatsRepository $seatsRepository,
+        SeatRepository $seatRepository,
         ReservationDateRepository $reservationDateRepository,
         Request $request,
         ManagerRegistry $doctrine
@@ -31,7 +31,7 @@ class ReservationController extends AbstractController
             $headers = getallheaders();
             $_POST;
 
-            if(isset($headers['X-Requested-With']) && $headers['X-Requested-With'] === 'XMLHttpRequest') {
+            if (isset($headers['X-Requested-With']) && $headers['X-Requested-With'] === 'XMLHttpRequest') {
                 $json = file_get_contents('php://input');
                 $_POST = array_map("trim", json_decode($json, true));
             } else {
@@ -56,12 +56,20 @@ class ReservationController extends AbstractController
                     $entityManager->flush();
 
                     $hours = [
-                        "13:00:00", "14:00:00", "15:00:00", "16:00:00",
-                        "17:00:00", "18:00:00", "19:00:00", "20:00:00", "21:00:00", "22:00:00"
+                        "13:00:00",
+                        "14:00:00",
+                        "15:00:00",
+                        "16:00:00",
+                        "17:00:00",
+                        "18:00:00",
+                        "19:00:00",
+                        "20:00:00",
+                        "21:00:00",
+                        "22:00:00"
                     ];
 
                     foreach ($hours as $hour) {
-                        $add_hour = new Seats();
+                        $add_hour = new Seat();
 
                         $add_hour->setHour(\DateTimeImmutable::createFromFormat('H:i:s', $hour));
                         $add_hour->setSeat($seats);
@@ -143,7 +151,7 @@ class ReservationController extends AbstractController
                 $newReservation->setPhoneNumber($phone_number);
                 $newReservation->setMail($mail);
 
-                $seats = $seatsRepository->findOneBy([
+                $seats = $seatRepository->findOneBy([
                     'date' => $date,
                     'hour' => $hour
                 ]);

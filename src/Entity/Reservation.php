@@ -18,8 +18,8 @@ class Reservation
     private ?string $mail = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
-    #[ORM\JoinColumn(nullable:false, name:"ReservationDate", referencedColumnName:"reservation_date")]
-    private ?ReservationDate $reservation_date = null;
+    #[ORM\JoinColumn(nullable: false, name: "ReservationDate", referencedColumnName: "date")]
+    private ?ReservationDate $date = null;
 
     #[ORM\Column(length: 255)]
     private ?string $surname = null;
@@ -56,12 +56,12 @@ class Reservation
 
     public function getReservationDate(): ?ReservationDate
     {
-        return $this->reservation_date;
+        return $this->date;
     }
 
-    public function setReservationDate(?ReservationDate $reservation_date): self
+    public function setReservationDate(?ReservationDate $date): self
     {
-        $this->reservation_date = $reservation_date;
+        $this->date = $date;
 
         return $this;
     }

@@ -11,31 +11,34 @@ use Doctrine\ORM\Mapping as ORM;
 class Menu
 {
     #[ORM\Id]
-    #[ORM\Column(length: 255)]
-    private ?string $type = null;
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Dish::class, orphanRemoval: true)]
+    #[ORM\Column(length: 255, unique: true)]
+    private ?string $name = null;
+
+    #[ORM\OneToMany(mappedBy: 'menu', targetEntity: Dish::class, orphanRemoval: true)]
     private Collection $dishes;
 
     public function __construct()
     {
         $this->dishes = new ArrayCollection();
     }
-    
-    // Fonction ajoutée par moi-même. Impossible de lire l'objet dans un fichier TWIG sans...
-    public function __toString()
+
+    public function getId(): ?int
     {
-        return $this->type;
+        return $this->id;
     }
 
-    public function getType(): ?string
+    public function getName(): ?string
     {
-        return $this->type;
+        return $this->name;
     }
 
-    public function setType(string $type): self
+    public function setName(string $name): self
     {
-        $this->type = $type;
+        $this->name = $name;
 
         return $this;
     }
@@ -52,7 +55,7 @@ class Menu
     {
         if (!$this->dishes->contains($dish)) {
             $this->dishes->add($dish);
-            $dish->setType($this);
+            $dish->setMenu($this);
         }
 
         return $this;
@@ -62,8 +65,8 @@ class Menu
     {
         if ($this->dishes->removeElement($dish)) {
             // set the owning side to null (unless already changed)
-            if ($dish->getType() === $this) {
-                $dish->setType(null);
+            if ($dish->getMenu() === $this) {
+                $dish->setMenu(null);
             }
         }
 

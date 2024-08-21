@@ -15,8 +15,7 @@ class DishType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('price')
-            ->add('picture')
-            ->add('type')
+            ->add('menu')
         ;
     }
 

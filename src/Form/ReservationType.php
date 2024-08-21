@@ -18,7 +18,7 @@ class ReservationType extends AbstractType
             ->add('phone_number')
             ->add('seat_reserved')
             ->add('hour')
-            ->add('reservation_date')
+            ->add('date')
         ;
     }
 

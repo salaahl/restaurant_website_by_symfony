@@ -2,12 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Seats;
+use App\Entity\Seat;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SeatsType extends AbstractType
+class SeatType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -21,7 +21,7 @@ class SeatsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Seats::class,
+            'data_class' => Seat::class,
         ]);
     }
 }
