@@ -6,7 +6,8 @@
 }
 
 #navbar {
-  position: sticky;
+  position: fixed;
+  top: 0;
   z-index: 99;
   min-height: 10%;
   width: 100%;
