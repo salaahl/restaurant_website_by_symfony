@@ -22,9 +22,11 @@ h2 {
   font-size: 8vw;
 }
 
+#redirect-reservation,
 #check-reservation,
 #new-reservation,
 #complete-reservation {
+  padding: 2%;
   transition: filter 1s;
 }
 
@@ -32,14 +34,15 @@ h2 {
   height: 100%;
   width: 100%;
   align-content: center;
-  padding: 2%;
   background: url('/img/background-reservation-page.jpg');
 }
 
 #redirect-reservation button {
+  display: block;
   height: 20%;
   width: 100%;
-  margin: 2% 0;
+  max-width: 500px;
+  margin: 2% auto;
 }
 
 .row {
@@ -106,14 +109,6 @@ h2 {
   #lds-hourglass {
     width: 100%;
   }
-
-  #redirect-reservation,
-  #check-reservation,
-  #new-reservation,
-  #complete-reservation {
-    width: 95%;
-    margin: 0 auto;
-  }
 }
 
 @media screen and (min-width: 768px) {
@@ -146,7 +141,6 @@ h2 {
   #new-reservation,
   #complete-reservation {
     margin: auto;
-    padding: 2%;
   }
 
   #redirect-reservation {
