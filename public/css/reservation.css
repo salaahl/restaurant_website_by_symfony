@@ -22,22 +22,24 @@ h2 {
   font-size: 8vw;
 }
 
-#redirect-reservation,
 #check-reservation,
 #new-reservation,
 #complete-reservation {
-  flex-direction: column;
   transition: filter 1s;
 }
 
 #redirect-reservation {
-  justify-content: center;
+  height: 100%;
+  width: 100%;
+  align-content: center;
   padding: 2%;
+  background: url('/img/background-reservation-page.jpg');
 }
 
 #redirect-reservation button {
+  height: 20%;
   width: 100%;
-  margin: 2%;
+  margin: 2% 0;
 }
 
 .row {
@@ -110,7 +112,7 @@ h2 {
   #new-reservation,
   #complete-reservation {
     width: 95%;
-    margin: auto;
+    margin: 0 auto;
   }
 }
 
@@ -148,7 +150,7 @@ h2 {
   }
 
   #redirect-reservation {
-    align-items: center;
+    background: unset;
   }
 
   .button-58 {
