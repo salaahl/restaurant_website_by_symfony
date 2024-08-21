@@ -20,16 +20,19 @@
 }
 
 #navbar {
+  max-width: 1280px;
   background-color: var(--color-black);
 }
 
 #navbar,
 main {
   height: auto;
-  min-height: unset;
-  max-width: 1280px;
   margin-right: auto;
   margin-left: auto;
+}
+
+main {
+  max-width: calc(1280px + 4%);
 }
 
 .navbar-brand,
@@ -321,9 +324,6 @@ main {
     height: 100%;
   }
 
-  #navbar {
-    width: 96%;
-  }
   .nav-link:hover {
     color: var(--color-black) !important;
     background-color: var(--color-white);
@@ -338,12 +338,14 @@ main {
   #navbar {
     top: 2vh;
     height: 7vh;
+    width: 96%;
     border-radius: 20px;
     box-shadow: 0px 0px 0px 5px rgb(0 0 0 / 10%) !important;
   }
 
   #navbar,
   main {
+    min-height: unset;
     padding-left: 2%;
     padding-right: 2%;
   }
@@ -399,18 +401,6 @@ main {
 
   .dishs::-webkit-scrollbar {
     width: 0px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  #navbar {
-    width: 100%;
-  }
-
-  #navbar,
-  main {
-    padding-left: 0;
-    padding-right: 0;
   }
 }
 
