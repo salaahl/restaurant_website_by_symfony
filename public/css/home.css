@@ -183,7 +183,7 @@ main {
 .type p {
   padding: 2% 4%;
   color: white;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.15);
   border-radius: 99px;
 }
 
