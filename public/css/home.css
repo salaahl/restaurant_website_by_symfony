@@ -116,30 +116,6 @@ main {
   flex-wrap: wrap;
 }
 
-.straight-one, .flip-card-one .inner .type {
-  background-color: var(--background-color-flip-card-one);
-}
-
-.straight-two, .flip-card-two .inner .type {
-  background-color: var(--background-color-flip-card-two);
-}
-
-.straight-three, .flip-card-three .inner .type {
-  background-color: var(--background-color-flip-card-three);
-}
-
-.straight-four, .flip-card-four .inner .type {
-  background-color: var(--background-color-flip-card-four);
-}
-
-.straight-five, .flip-card-five .inner .type {
-  background-color: var(--background-color-flip-card-five);
-}
-
-.straight-six, .flip-card-six .inner .type {
-  background-color: var(--background-color-flip-card-six);
-}
-
 .straight {
   height: 35px;
   width: 100%;
@@ -224,6 +200,30 @@ main {
 
 .flip-card:hover .inner {
   box-shadow: none;
+}
+
+.straight-one, .flip-card-one .inner .type {
+  background-color: var(--background-color-flip-card-one);
+}
+
+.straight-two, .flip-card-two .inner .type {
+  background-color: var(--background-color-flip-card-two);
+}
+
+.straight-three, .flip-card-three .inner .type {
+  background-color: var(--background-color-flip-card-three);
+}
+
+.straight-four, .flip-card-four .inner .type {
+  background-color: var(--background-color-flip-card-four);
+}
+
+.straight-five, .flip-card-five .inner .type {
+  background-color: var(--background-color-flip-card-five);
+}
+
+.straight-six, .flip-card-six .inner .type {
+  background-color: var(--background-color-flip-card-six);
 }
 
 .type p {
