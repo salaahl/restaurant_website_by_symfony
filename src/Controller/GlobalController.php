@@ -18,8 +18,8 @@ class GlobalController extends AbstractController
         DishRepository $dishRepository
     ): Response {
 
-        $menus = $menuRepository->findAll();
-        $dishs = $dishRepository->findAll();
+        $menus = $menuRepository->findBy([], ['id' => 'ASC']);
+        $dishs = $dishRepository->findBy([], ['id' => 'ASC']);
 
         return $this->render('global/home.html.twig', [
             'menus' => $menus,
