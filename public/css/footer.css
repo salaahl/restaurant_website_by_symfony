@@ -23,7 +23,7 @@ footer .col {
 
 footer p,
 footer a {
-  font-size: 80%;
+  font-size: 85%;
 }
 
 footer h6 {
@@ -79,6 +79,7 @@ footer a:hover {
 
 footer .copyright {
   width: fit-content;
+  font-size: 95%;
   text-align: center;
 }
 
