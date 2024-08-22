@@ -116,6 +116,76 @@ main {
   flex-wrap: wrap;
 }
 
+.straight-one, .flip-card-one .inner .type {
+  background-color: var(--background-color-flip-card-one);
+}
+
+.straight-two, .flip-card-two .inner .type {
+  background-color: var(--background-color-flip-card-two);
+}
+
+.straight-three, .flip-card-three .inner .type {
+  background-color: var(--background-color-flip-card-three);
+}
+
+.straight-four, .flip-card-four .inner .type {
+  background-color: var(--background-color-flip-card-four);
+}
+
+.straight-five, .flip-card-five .inner .type {
+  background-color: var(--background-color-flip-card-five);
+}
+
+.straight-six, .flip-card-six .inner .type {
+  background-color: var(--background-color-flip-card-six);
+}
+
+.straight {
+  height: 35px;
+  width: 100%;
+}
+
+.straight-one {
+  opacity: 100%;
+}
+
+.straight-two {
+  opacity: 50%;
+}
+
+.straight-four {
+  opacity: 70%;
+}
+
+.straight-five {
+  opacity: 60%;
+}
+
+.straight-six {
+  opacity: 80%;
+}
+
+.straight .straight-50 {
+  width: 50%;
+  opacity: 50%;
+  background-color: inherit;
+  filter: brightness(0.8);
+}
+
+.mirror {
+  flex-direction: column-reverse;
+  direction: rtl;
+}
+
+.straight-lines {
+  display: block;
+  width: 100%;
+}
+
+.straight-lines.mirror {
+  display: none;
+}
+
 .flip-card {
   height: 300px;
   width: 100%;
@@ -154,30 +224,6 @@ main {
 
 .flip-card:hover .inner {
   box-shadow: none;
-}
-
-.flip-card-one .inner .type {
-  background-color: var(--background-color-flip-card-one);
-}
-
-.flip-card-two .inner .type {
-  background-color: var(--background-color-flip-card-two);
-}
-
-.flip-card-three .inner .type {
-  background-color: var(--background-color-flip-card-three);
-}
-
-.flip-card-four .inner .type {
-  background-color: var(--background-color-flip-card-four);
-}
-
-.flip-card-five .inner .type {
-  background-color: var(--background-color-flip-card-five);
-}
-
-.flip-card-six .inner .type {
-  background-color: var(--background-color-flip-card-six);
 }
 
 .type p {
@@ -235,61 +281,6 @@ main {
 .flip-card:hover .dishs h6,
 .flip-card:hover .dish {
   animation: scroll 2s;
-}
-
-.straight {
-  height: 35px;
-  width: 100%;
-}
-
-.straight-one {
-  opacity: 100%;
-  background-color: var(--background-color-flip-card-one);
-}
-
-.straight-two {
-  opacity: 50%;
-  background-color: var(--background-color-flip-card-two);
-}
-
-.straight-three {
-  background-color: var(--background-color-flip-card-three);
-}
-
-.straight-four {
-  opacity: 70%;
-  background-color: var(--background-color-flip-card-four);
-}
-
-.straight-five {
-  opacity: 60%;
-  background-color: var(--background-color-flip-card-five);
-}
-
-.straight-six {
-  opacity: 80%;
-  background-color: var(--background-color-flip-card-six);
-}
-
-.straight .straight-50 {
-  width: 50%;
-  opacity: 50%;
-  background-color: inherit;
-  filter: brightness(0.8);
-}
-
-.mirror {
-  flex-direction: column-reverse;
-  direction: rtl;
-}
-
-.straight-lines {
-  display: block;
-  width: 100%;
-}
-
-.straight-lines.mirror {
-  display: none;
 }
 
 @media screen and (max-width: 767px) {
