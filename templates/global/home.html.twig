@@ -1,9 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-	Accueil
-{% endblock %}
-
 {% block stylesheets %}
 	{{ parent() }}
 	<link href="{{ asset('css/home.css') }}" rel="stylesheet" type="text/css"/>
@@ -64,43 +60,43 @@
 			{% set number = ['one', 'two', 'three', 'four', 'five', 'six'] %}
 			<div id="menu-title">
 				<div class="straight-lines">
-				    {% for i in 1..6 %}
-				        <div class="straight straight-{{ number[i] }}">
-				            <div class="straight straight-50"></div>
-				        </div>
-				    {% endfor %}
+					{% for i in 1..5 %}
+						<div class="straight straight-{{ number[i] }}">
+							<div class="straight straight-50"></div>
+						</div>
+					{% endfor %}
 				</div>
 				<div id="title">
-				    <h5>Menu</h5>
+					<h5>Menu</h5>
 				</div>
 				<div class="straight-lines mirror">
-				    {% for i in 1..6 %}
-				        <div class="straight straight-{{ number[i] }}">
-				            <div class="straight straight-50"></div>
-				        </div>
-				    {% endfor %}
+					{% for i in 1..5 %}
+						<div class="straight straight-{{ number[i] }}">
+							<div class="straight straight-50"></div>
+						</div>
+					{% endfor %}
 				</div>
 			</div>
 			<div id="menu">
 				{% for i, menu in menus %}
-				    <div class="flip-card flip-card-{{ number[i] }}">
-				        <div class="inner">
-				            <div class="type">
-				                <p>{{ menu.name }}</p>
-				            </div>
-				            <div class="dishs">
-				                <h6>{{ menu.name }}</h6>
-				                {% for dish in menu.dishs %}
-				                    <div class="dish">
-				                        <div class="verticalLineTop"></div>
-				                        <b>{{ dish.name }}</b><br>
-				                        {{ dish.description }}<br>
-				                        {{ dish.price }}€
-				                    </div>
-				                {% endfor %}
-				            </div>
-				        </div>
-				    </div>
+					<div class="flip-card flip-card-{{ number[i] }}">
+						<div class="inner">
+							<div class="type">
+								<p>{{ menu.name }}</p>
+							</div>
+							<div class="dishs">
+								<h6>{{ menu.name }}</h6>
+								{% for dish in menu.dishes %}
+									<div class="dish">
+										<div class="verticalLineTop"></div>
+										<b>{{ dish.name }}</b><br>
+										{{ dish.description|raw }}<br>
+										{{ dish.price }}€
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
 				{% endfor %}
 			</div>
 		</div>

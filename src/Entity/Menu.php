@@ -15,7 +15,7 @@ class Menu
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, unique: true)]
+    #[ORM\Column(length: 255)]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'menu', targetEntity: Dish::class, orphanRemoval: true)]
