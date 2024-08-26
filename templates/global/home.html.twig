@@ -12,100 +12,118 @@
 {% endblock %}
 
 {% block main %}
-	<section>
-		<div class="carousel-container">
-			<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-				<div class="carousel-indicators">
-					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-				</div>
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img src="{{ asset('img/me.jpg') }}" class="d-block w-100" alt="...">
-						<div class="carousel-caption d-md-block">
-							<h5>Restaurant "Le vingtième"</h5>
-							<p>Paris 20 ème</p>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<img src="{{ asset('img/dish.jpg') }}" class="d-block w-100" alt="...">
-						<div class="carousel-caption d-md-block">
-							<h5>Premium dishs</h5>
-							<p>A progression of rare and beautiful ingredients where texture, flavour and harmony is paramount.
-							</p>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<img src="{{ asset('img/dish.jpg') }}" class="d-block w-100" alt="...">
-						<div class="carousel-caption d-md-block">
-							<h5>Third slide label</h5>
-							<p>Some representative placeholder content for the third slide.</p>
-						</div>
-					</div>
-				</div>
-				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
+	<section id="carousel-container">
+		<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+			<div class="carousel-indicators">
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
 			</div>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="{{ asset('img/me.jpg') }}" class="d-block w-100" alt="...">
+					<div class="carousel-caption d-md-block">
+						<h5>Restaurant
+							<i>Le vingtième</i>
+						</h5>
+						<p>
+							Paris 20è arrondissement
+						</p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img src="{{ asset('img/dish.jpg') }}" class="d-block w-100" alt="...">
+					<div class="carousel-caption d-md-block">
+						<h5>Premium dishs</h5>
+						<p>A progression of rare and beautiful ingredients where texture, flavour and harmony is paramount.
+						</p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img src="{{ asset('img/dish.jpg') }}" class="d-block w-100" alt="...">
+					<div class="carousel-caption d-md-block">
+						<h5>Third slide label</h5>
+						<p>Some representative placeholder content for the third slide.</p>
+					</div>
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
 		</div>
 	</section>
-	<section>
-		<div id="menu-container">
-			{% set number = ['one', 'two', 'three', 'four', 'five', 'six'] %}
-			<div id="menu-title">
-				<div class="straight-lines">
-					{% for i in 1..5 %}
-						<div class="straight straight-{{ number[i] }}">
-							<div class="straight straight-50"></div>
-						</div>
-					{% endfor %}
+	<section id="about-me-container">
+		<div class="title">
+			<h2>A propos de nous</h2>
+		</div>
+		<div class="description">
+			<article>
+				<div>
+					<p>
+						Situé au cœur du 20e arrondissement, ce nouveau restaurant se distingue par son ambiance conviviale et moderne, idéale pour des moments partagés entre amis ou en famille.
+					</p>
+					<a href="./reservation" class="button-58">En savoir plus</a>
 				</div>
-				<div id="title">
-					<h5>Menu</h5>
-				</div>
-				<div class="straight-lines mirror">
-					{% for i in 1..5 %}
-						<div class="straight straight-{{ number[i] }}">
-							<div class="straight straight-50"></div>
-						</div>
-					{% endfor %}
-				</div>
+				<img src="{{ asset('img/about-section-img.jpg') }}" alt="Ambiance du restaurant" class="image-between">
+			</article>
+		</div>
+	</section>
+	<section id="menu-container">
+		{% set number = ['one', 'two', 'three', 'four', 'five', 'six'] %}
+		<div id="menu-title-container">
+			<div class="straight-lines">
+				{% for i in 1..5 %}
+					<div class="straight straight-{{ number[i] }}">
+						<div class="straight straight-50"></div>
+					</div>
+				{% endfor %}
 			</div>
-			<div id="menu">
-				{% for i, menu in menus %}
-					<div class="flip-card flip-card-{{ number[i] }}">
-						<div class="inner">
-							<div class="type">
-								<p>{{ menu.name }}</p>
-							</div>
-							<div class="dishs">
-								<h6>{{ menu.name }}</h6>
-								{% for dish in menu.dishes %}
-									<div class="dish">
-										<div class="verticalLineTop"></div>
-										<b>{{ dish.name }}</b><br>
-										{{ dish.description|raw }}<br>
-										{{ dish.price }}€
-									</div>
-								{% endfor %}
-							</div>
-						</div>
+			<div class="title">
+				<h2>Menu</h2>
+			</div>
+			<div class="straight-lines mirror">
+				{% for i in 1..5 %}
+					<div class="straight straight-{{ number[i] }}">
+						<div class="straight straight-50"></div>
 					</div>
 				{% endfor %}
 			</div>
 		</div>
-	</div>
-</section>
+		<div id="menu">
+			{% for i, menu in menus %}
+				<div class="flip-card flip-card-{{ number[i] }}">
+					<div class="inner">
+						<div class="type">
+							<p>{{ menu.name }}</p>
+						</div>
+						<div class="dishs">
+							{% for dish in menu.dishes %}
+								<div class="dish">
+									<div class="verticalLineTop"></div>
+									<b>{{ dish.name }}</b><br>
+									{{ dish.description|raw }}<br>
+									{{ dish.price }}€
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
+	<section id="reservation-container">
+		<div class="title">
+			<h2>Réserver une table</h2>
+		</div>
+		<a href="./reservation" class="button-58">Réserver</a>
+	</section>
 {% endblock %}
-
 {% block javascripts %}
-{{ parent() }}
-<script src="https://unpkg.com/css-doodle@0.39.2/css-doodle.min.js"></script>
-<script src="{{ asset('js/script/navbar-scroll.js') }}"></script>
+	{{ parent() }}<script src="https://unpkg.com/css-doodle@0.39.2/css-doodle.min.js"></script>
+	<script src="{{ asset('js/script/navbar-scroll.js') }}"></script>
 {% endblock %}

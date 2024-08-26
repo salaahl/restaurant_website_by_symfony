@@ -17,6 +17,7 @@
 
 .bg-doodle {
   display: none;
+  z-index: -1;
 }
 
 #navbar {
@@ -42,6 +43,15 @@ main {
 
 .navbar-brand:hover {
   color: var(--color-white);
+}
+
+.title h2 {
+  font-size: var(--font-size-title);
+  font-weight: bold;
+  text-transform: uppercase;
+  width: inherit;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .carousel-control-next,
@@ -71,6 +81,59 @@ main {
   width: inherit;
 }
 
+#about-me-container,
+#reservation-container {
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+#about-me-container .title h2 {
+  width: fit-content;
+  margin: auto;
+  color: transparent;
+  background-image: linear-gradient(
+    45deg,
+    indianred 50%,
+    rgb(53, 114, 172, 1) 50%
+  );
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-clip: text;
+}
+
+#about-me-container article {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+#about-me-container .title,
+#reservation-container .title {
+  align-content: center;
+  padding: 100px 0;
+  width: 100%;
+}
+
+#about-me-container article img {
+  width: 50%;
+  aspect-ratio: 1;
+  margin-top: 12.5%;
+  margin-right: auto;
+  margin-bottom: 12.5%;
+  margin-left: auto;
+  transform: rotate(-5deg);
+  box-shadow: #d6ccc2 -20px 20px 0px 10px, #f5ebe0 10px -5px 0px 20px;
+  border-radius: 1px;
+}
+
+#about-me-container,
+#reservation-container {
+  padding-bottom: 100px; /* Correspond à l'écart avec le titre */
+}
+
 #menu-container {
   display: flex;
   flex-flow: wrap;
@@ -84,13 +147,13 @@ main {
   animation: translate 1s;
 }
 
-#menu-title {
+#menu-title-container {
   position: relative;
   display: flex;
   width: 100%;
 }
 
-#title {
+#menu-title-container .title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,22 +161,21 @@ main {
   text-align: center;
 }
 
-#title h5 {
-  font-size: var(--font-size-title);
-  font-weight: bold;
-  text-transform: uppercase;
+#menu-title-container .title h2 {
   color: var(--color-white);
   background-color: var(--color-dark);
   -webkit-text-stroke: var(--text-stroke-size) var(--color-black);
   width: inherit;
   margin-bottom: 0%;
   padding: 10% 10vw;
+  border-radius: 25px;
 }
 
 #menu {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
+  padding-bottom: 50px; /* Pour rattraper le margin-bottom sur les cartes */
 }
 
 .straight {
@@ -165,7 +227,9 @@ main {
 .flip-card {
   height: 300px;
   width: 100%;
-  transition: width 0.8s;
+  margin-bottom: -50px;
+  z-index: 1;
+  transition: width 0.8s, z-index 0s 0.2s;
 }
 
 .flip-card:hover {
@@ -177,13 +241,12 @@ main {
   height: 100%;
   text-align: center;
   transform-style: preserve-3d;
-  box-shadow: 0px 0px 20px 10px rgb(0 0 0 / 35%);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
   transition: all 0.8s;
 }
 
 .flip-card:hover .inner {
-  transform: rotateY(180deg);
-  box-shadow: none;
+  transform: rotateX(180deg);
 }
 
 .flip-card .inner .type {
@@ -198,39 +261,45 @@ main {
   border-radius: inherit;
 }
 
-.flip-card:hover .inner {
-  box-shadow: none;
-}
-
-.straight-one, .flip-card-one .inner .type {
+.straight-one,
+.flip-card-one .inner .type {
   background-color: var(--background-color-flip-card-one);
 }
 
-.straight-two, .flip-card-two .inner .type {
+.straight-two,
+.flip-card-two .inner .type {
   background-color: var(--background-color-flip-card-two);
 }
 
-.straight-three, .flip-card-three .inner .type {
+.straight-three,
+.flip-card-three .inner .type {
   background-color: var(--background-color-flip-card-three);
 }
 
-.straight-four, .flip-card-four .inner .type {
+.straight-four,
+.flip-card-four .inner .type {
   background-color: var(--background-color-flip-card-four);
 }
 
-.straight-five, .flip-card-five .inner .type {
+.straight-five,
+.flip-card-five .inner .type {
   background-color: var(--background-color-flip-card-five);
 }
 
-.straight-six, .flip-card-six .inner .type {
+.straight-six,
+.flip-card-six .inner .type {
   background-color: var(--background-color-flip-card-six);
 }
 
-.type p {
+.flip-card .type p {
   padding: 2% 4%;
   color: white;
   background-color: rgba(0, 0, 0, 0.15);
   border-radius: 99px;
+}
+
+.flip-card:not(:last-of-type) .inner .type p {
+  margin-top: -50px;
 }
 
 .dishs {
@@ -242,7 +311,7 @@ main {
   color: var(--color-white);
   background-color: var(--color-dark);
   overflow-y: auto;
-  transform: rotateY(180deg);
+  transform: rotateX(180deg);
 }
 
 .dish {
@@ -283,8 +352,30 @@ main {
   animation: scroll 2s;
 }
 
+#reservation-container {
+  background-color: var(--color-dark);
+}
+
+#reservation-container .title h2 {
+  color: transparent;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 1) 50%
+  );
+  background-clip: text;
+  -webkit-text-stroke: 2px rgb(255, 255, 255, 0.5);
+}
+
+#reservation-container a {
+  display: flex;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media screen and (max-width: 767px) {
-  #menu-title #title {
+  #menu-title-container .title {
     position: absolute;
     bottom: 0;
     top: 0;
@@ -292,10 +383,6 @@ main {
     right: 0;
     width: 80%;
     margin: auto;
-  }
-
-  #menu-title #title h5 {
-    border-radius: 25px;
   }
 }
 
@@ -320,7 +407,7 @@ main {
     background-color: var(--color-white);
   }
 
-  #title h5 {
+  #menu-title-container .title h2 {
     padding: 10%;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
@@ -328,7 +415,6 @@ main {
 
   #navbar {
     top: 2vh;
-    height: 7vh;
     width: 96%;
     border-radius: 20px;
     box-shadow: 0px 0px 0px 5px rgb(0 0 0 / 10%) !important;
@@ -341,8 +427,10 @@ main {
     padding-right: 2%;
   }
 
-  .carousel-container {
-    margin: 4vh 0 2vh 0;
+  section {
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    border-radius: 25px;
   }
 
   .carousel-inner {
@@ -358,11 +446,38 @@ main {
     display: block;
   }
 
+  #about-me-container,
+  #reservation-container {
+    padding-left: unset;
+    padding-right: unset;
+  }
+
+  #about-me-container {
+    padding: 0 5%;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: inset #d6ccc2 0px 0px 0px 10px, inset #f5ebe0 0px 0px 0px 20px;
+    overflow: hidden;
+  }
+
+  #about-me-container article {
+    flex-direction: row;
+  }
+
+  #about-me-container article div:first-of-type {
+    max-width: 50%;
+  }
+
+  #about-me-container article img {
+    width: 35%;
+    margin-top: unset;
+  }
+
   #menu {
-    display: grid;
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(3, 1fr);
-    margin: 2vh 0 5vh 0;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 2vh;
+    padding-bottom: unset;
   }
 
   .straight {
@@ -375,24 +490,32 @@ main {
   }
 
   .flip-card {
-    height: unset;
-    aspect-ratio: 1;
+    height: 75vh;
+    width: 20%;
+    min-width: 20%;
+    margin-bottom: unset;
+    margin-right: -4%;
+    border-radius: 20px;
   }
 
-  .flip-card-one {
-    border-top-left-radius: 20px;
+  .flip-card:hover .inner {
+    transform: rotateY(180deg);
   }
 
-  .flip-card-three {
-    border-top-right-radius: 20px;
+  .flip-card .inner .type p {
+    margin: 0;
+    padding: 10% 5%;
+    writing-mode: vertical-lr;
   }
 
-  .flip-card-four {
-    border-bottom-left-radius: 20px;
+  .flip-card:not(:last-of-type) .inner .type p {
+    margin-top: unset;
+    margin-bottom: unset;
+    margin-left: -20%;
   }
 
-  .flip-card-six {
-    border-bottom-right-radius: 20px;
+  .dishs {
+    transform: rotateY(180deg);
   }
 
   .dishs::-webkit-scrollbar {
@@ -419,5 +542,11 @@ main {
   }
   100% {
     translate: 0 0%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  #navbar {
+    height: 7vh;
   }
 }
