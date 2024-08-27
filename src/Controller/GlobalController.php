@@ -9,22 +9,14 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\DishRepository;
 use App\Repository\MenuRepository;
 use Doctrine\ORM\Mapping\OrderBy;
-use App\Repository\ReservationDateRepository;
-use App\Entity\Seat;
-use Doctrine\Persistence\ManagerRegistry;
-
 
 class GlobalController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
     public function home(
         MenuRepository $menuRepository,
-        DishRepository $dishRepository,
-        ReservationDateRepository $reservationDateRepository,
-        ManagerRegistry $doctrine
+        DishRepository $dishRepository
     ): Response {
-
-        dump($reservationDateRepository->findOneBy(['date' => $date])->getId());
 
         $menus = $menuRepository->findBy([], ['id' => 'ASC']);
         $dishs = $dishRepository->findBy([], ['id' => 'ASC']);
