@@ -21,8 +21,8 @@ class Seat
     private ?int $seat = null;
 
     #[ORM\ManyToOne(inversedBy: 'seats')]
-    #[ORM\JoinColumn(nullable: false, name: "ReservationDate", referencedColumnName: "date")]
-    private ?ReservationDate $date = null;
+    #[ORM\JoinColumn(nullable: false, name: "reservation_date_id", referencedColumnName: "id")]
+    private ?ReservationDate $reservationDate = null;
 
 
     public function getId(): ?int
@@ -54,14 +54,14 @@ class Seat
         return $this;
     }
 
-    public function getDate(): ?ReservationDate
+    public function getReservationDate(): ?ReservationDate
     {
-        return $this->date;
+        return $this->reservationDate;
     }
 
-    public function setDate(?ReservationDate $date): self
+    public function setReservationDate(?ReservationDate $reservationDate): self
     {
-        $this->date = $date;
+        $this->reservationDate = $reservationDate;
 
         return $this;
     }

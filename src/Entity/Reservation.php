@@ -18,7 +18,7 @@ class Reservation
     private ?string $mail = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
-    #[ORM\JoinColumn(nullable: false, name: "ReservationDate", referencedColumnName: "date")]
+    #[ORM\JoinColumn(nullable: false, name: "reservation_date_id", referencedColumnName: "id")]
     private ?ReservationDate $date = null;
 
     #[ORM\Column(length: 255)]

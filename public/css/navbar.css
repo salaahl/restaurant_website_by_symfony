@@ -12,6 +12,8 @@
   min-height: 10%;
   width: 100%;
   margin: 0 auto;
+  padding-top: 5%;
+  padding-bottom: 5%;
   background-color: rgb(0, 0, 0);
   box-shadow: 0px 20px 20px 0px rgb(0 0 0 / 5%);
   transition: all var(--navbar-transition-duration);
@@ -62,8 +64,14 @@
   transition: background-image 1s;
 }
 
+.navbar-collapse {
+  margin-top: 5%;
+}
+
 @media screen and (min-width: 768px) {
   #navbar {
+    padding-top: unset;
+    padding-bottom: unset;
     background-color: unset;
   }
 
@@ -73,6 +81,10 @@
     ); /* Le reste est géré par bootstrap */
     font-size: 2vw;
     color: black;
+  }
+
+  .navbar-collapse {
+    margin-top: unset;
   }
 
   .nav-link {

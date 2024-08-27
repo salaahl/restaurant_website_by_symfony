@@ -35,12 +35,12 @@ class ReservationDate
         return $this->id;
     }
 
-    public function getReservationDate(): ?string
+    public function getDate(): ?string
     {
         return $this->date;
     }
 
-    public function setReservationDate(string $date): self
+    public function setDate(string $date): self
     {
         $this->date = $date;
 

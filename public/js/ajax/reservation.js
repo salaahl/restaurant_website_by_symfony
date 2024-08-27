@@ -164,5 +164,7 @@ document
         alert(
           'Impossible de faire une nouvelle réservation pour le moment. Veuillez prendre contact avec le restaurant.'
         );
+        newReservation.style.filter = 'blur(0px)';
+        hourglass.style.display = 'none';
       });
   });

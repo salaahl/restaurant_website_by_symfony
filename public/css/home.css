@@ -104,7 +104,7 @@ main {
 
 #about-me-container article {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -113,25 +113,32 @@ main {
 #about-me-container .title,
 #reservation-container .title {
   align-content: center;
-  padding: 100px 0;
+  padding: 25px 0;
   width: 100%;
 }
 
 #about-me-container article img {
   width: 50%;
   aspect-ratio: 1;
-  margin-top: 12.5%;
+  margin-top: 50px;
   margin-right: auto;
-  margin-bottom: 12.5%;
+  margin-bottom: 85px;
   margin-left: auto;
   transform: rotate(-5deg);
   box-shadow: #d6ccc2 -20px 20px 0px 10px, #f5ebe0 10px -5px 0px 20px;
   border-radius: 1px;
 }
 
+#about-me-container a {
+  display: flex;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #about-me-container,
 #reservation-container {
-  padding-bottom: 100px; /* Correspond à l'écart avec le titre */
+  padding-bottom: 50px; /* Correspond à l'écart avec le titre */
 }
 
 #menu-container {
@@ -450,6 +457,7 @@ main {
   #reservation-container {
     padding-left: unset;
     padding-right: unset;
+    padding-bottom: 75px;
   }
 
   #about-me-container {
@@ -458,6 +466,11 @@ main {
     border-radius: 20px;
     box-shadow: inset #d6ccc2 0px 0px 0px 10px, inset #f5ebe0 0px 0px 0px 20px;
     overflow: hidden;
+  }
+
+  #about-me-container .title,
+  #reservation-container .title {
+    padding: 75px 0;
   }
 
   #about-me-container article {
@@ -471,6 +484,12 @@ main {
   #about-me-container article img {
     width: 35%;
     margin-top: unset;
+    margin-bottom: 150px;
+  }
+
+  #about-me-container a {
+    width: fit-content;
+    margin-left: unset;
   }
 
   #menu {

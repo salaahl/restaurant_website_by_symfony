@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
+use Error;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ReservationController extends AbstractController
@@ -45,14 +46,14 @@ class ReservationController extends AbstractController
                 $seats = $_POST['seats'];
                 $date = strtotime($_POST['date']);
 
-                $check_date = $reservationDateRepository->find($date);
+                $check_date = $reservationDateRepository->findOneBy(['date' => $date]);
 
                 if (!$check_date) {
-                    $add_date = new ReservationDate();
-                    $add_date->setReservationDate($date);
+                    $reservationDate = new ReservationDate();
+                    $reservationDate->setDate($date);
 
                     $entityManager = $doctrine->getManager();
-                    $entityManager->persist($add_date);
+                    $entityManager->persist($reservationDate);
                     $entityManager->flush();
 
                     $hours = [
@@ -72,8 +73,8 @@ class ReservationController extends AbstractController
                         $add_hour = new Seat();
 
                         $add_hour->setHour(\DateTimeImmutable::createFromFormat('H:i:s', $hour));
-                        $add_hour->setSeat($seats);
-                        $add_hour->setDate($reservationDateRepository->find($date));
+                        $add_hour->setSeat(20);
+                        $add_hour->setReservationDate($reservationDate);
 
                         $entityManager = $doctrine->getManager();
                         $entityManager->persist($add_hour);
@@ -82,16 +83,17 @@ class ReservationController extends AbstractController
                 }
 
                 // Vérifie s'il reste des places pour l'horaire choisi
+                $d = $reservationDateRepository->findOneBy(['date' => $date]);
                 $check_hour =
                     $db->prepare(
                         "SELECT hour
-                        FROM seats
+                        FROM seat
                         WHERE seat >= ?
                         AND
-                        ReservationDate = ?
+                        reservation_date_id = ?
                         ORDER BY hour ASC"
                     )
-                    ->executeQuery([$seats, $date])
+                    ->executeQuery([$seats, $d->getId()])
                     ->fetchAllAssociative();
 
                 foreach ($check_hour as $hour) {
@@ -132,6 +134,7 @@ class ReservationController extends AbstractController
                 }
             } else if (isset($_POST['complete_reservation'])) {
                 $date = strtotime($_POST['date']);
+                error_log($date);
                 $hour = \DateTimeImmutable::createFromFormat('H:i:s', $_POST['hour']);
                 $seats_reserved = $_POST['seats'];
                 $name = $_POST['name'];
@@ -141,7 +144,7 @@ class ReservationController extends AbstractController
                 $mail = filter_var($sanitize_mail, FILTER_VALIDATE_EMAIL);
 
                 $newReservation = new Reservation();
-                $reservationDate = $reservationDateRepository->find($date);
+                $reservationDate = $reservationDateRepository->findOneBy(['date' => $date]);
 
                 $newReservation->setReservationDate($reservationDate);
                 $newReservation->setHour($hour);
@@ -152,7 +155,7 @@ class ReservationController extends AbstractController
                 $newReservation->setMail($mail);
 
                 $seats = $seatRepository->findOneBy([
-                    'date' => $date,
+                    'reservationDate' => $reservationDateRepository->findOneBy(['date' => $date])->getId(),
                     'hour' => $hour
                 ]);
                 $seats_remaining = $seats->getSeat() - $seats_reserved;
