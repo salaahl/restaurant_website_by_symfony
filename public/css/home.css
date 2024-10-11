@@ -87,6 +87,10 @@ main {
   padding-right: 2%;
 }
 
+#about-me-container {
+  border: 5px dashed #f5ebe0;
+}
+
 #about-me-container .title h2 {
   width: fit-content;
   margin: auto;
@@ -464,7 +468,7 @@ main {
     padding: 0 5%;
     background-color: white;
     border-radius: 20px;
-    box-shadow: inset #d6ccc2 0px 0px 0px 10px, inset #f5ebe0 0px 0px 0px 20px;
+    border: 15px dotted #f5ebe0;
     overflow: hidden;
   }
 
