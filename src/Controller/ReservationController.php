@@ -105,7 +105,7 @@ class ReservationController extends AbstractController
 
                 $check_reservation = $db
                     ->prepare(
-                        "SELECT surname, name, reservation_date_id, hour
+                        "SELECT surname, name, reservation_date_id, hour, seat_reserved
                         FROM reservation
                         WHERE mail = ?
                         AND
@@ -119,18 +119,21 @@ class ReservationController extends AbstractController
                     $name = null;
                     $date = [];
                     $hour = [];
+                    $seat_reserved = null;
 
                     foreach ($check_reservation as $reservation) {
                         $surname = $reservation['surname'];
                         $name = $reservation['name'];
                         $date[] = date('d-m-Y', $reservation['reservation_date_id']);
                         $hour[] = $reservation['hour'];
+                        $seat_reserved[] = $reservation['seat_reserved'];
                     }
 
                     $response['surname'] = $surname;
                     $response['name'] = $name;
                     $response['date'] = $date;
                     $response['hour'] = $hour;
+                    $response['seat_reserved'] = $seat_reserved;
                 }
             } else if (isset($_POST['complete_reservation'])) {
                 $date = strtotime($_POST['date']);
