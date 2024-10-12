@@ -16,7 +16,7 @@
 }
 
 #navbar {
-  max-width: 1280px;
+  max-width: 1440px;
   background-color: var(--color-black);
 }
 
@@ -28,7 +28,8 @@ main {
 }
 
 main {
-  background-color: none;
+  max-width: calc(1440px + 4%); /* + 4% en prenant en compte le padding */
+  background-color: unset;
 }
 
 .navbar-brand,

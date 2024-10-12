@@ -20,7 +20,7 @@
 }
 
 #navbar > .container-fluid {
-  max-width: calc(1280px + 4%); /* Les 4% correspondent au padding */
+  max-width: calc(var(--bs-gutter-x) * 1 + 1440px);
 }
 
 .navbar-nav {
