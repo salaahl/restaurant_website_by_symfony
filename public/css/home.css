@@ -93,7 +93,7 @@ main {
 
 #about-me-container .title h2 {
   width: fit-content;
-  margin: auto;
+  margin-bottom: 25px;
   color: transparent;
   background-image: linear-gradient(
     45deg,
@@ -108,13 +108,12 @@ main {
 
 #about-me-container article {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
-#about-me-container .title,
 #reservation-container .title {
   align-content: center;
   padding: 25px 0;
@@ -124,7 +123,7 @@ main {
 #about-me-container article img {
   width: 50%;
   aspect-ratio: 1;
-  margin-top: 50px;
+  margin-top: 85px;
   margin-right: auto;
   margin-bottom: 85px;
   margin-left: auto;
@@ -142,7 +141,7 @@ main {
 
 #about-me-container,
 #reservation-container {
-  padding-bottom: 50px; /* Correspond à l'écart avec le titre */
+  padding: 50px 0; /* Correspond à l'écart avec le titre */
 }
 
 #menu-container {
@@ -472,7 +471,6 @@ main {
     overflow: hidden;
   }
 
-  #about-me-container .title,
   #reservation-container .title {
     padding: 75px 0;
   }
@@ -487,8 +485,8 @@ main {
 
   #about-me-container article img {
     width: 35%;
-    margin-top: unset;
-    margin-bottom: 150px;
+    margin-top: 100px;
+    margin-bottom: 100px;
   }
 
   #about-me-container a {
