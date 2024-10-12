@@ -1,12 +1,10 @@
 /* VARIABLES */
 :root {
-  --brand-color: white;
-  --background-color: black;
   --navbar-transition-duration: 0.4s;
 }
 
 #navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 99;
   min-height: 10%;
@@ -14,8 +12,6 @@
   margin: 0 auto;
   padding-top: 5%;
   padding-bottom: 5%;
-  background-color: rgb(0, 0, 0);
-  box-shadow: 0px 20px 20px 0px rgb(0 0 0 / 5%);
   transition: all var(--navbar-transition-duration);
 }
 
@@ -30,17 +26,17 @@
 }
 
 .navbar-brand {
-  font-size: 5vw;
+  font-size: x-large;
   font-weight: 500;
   text-transform: uppercase;
-  color: white;
+  color: black;
   transition: all var(--navbar-transition-duration);
 }
 
 .nav-link {
   border-radius: 50px;
   transition: background 0.5s;
-  color: var(--brand-color);
+  color: black;
 }
 
 .nav-link:hover {
@@ -55,36 +51,34 @@
 
 .navbar-toggler:focus {
   box-shadow: none;
-  outline: 2px solid var(--brand-color);
+  outline: 2px solid black;
 }
 
 .navbar-toggler-icon,
 .navbar-toggler:focus .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
   transition: background-image 1s;
 }
 
 .navbar-collapse {
   margin-top: 5%;
+  padding: 15px;
+  background-color: white;
+  border: 5px dashed black;
+  border-radius: 15px;
 }
 
 @media screen and (min-width: 768px) {
   #navbar {
     padding-top: unset;
     padding-bottom: unset;
-    background-color: unset;
+    border-bottom: unset;
+    box-shadow: 0px 20px 20px 0px rgb(0 0 0 / 5%);
   }
 
   .navbar-brand {
     padding-left: var(
       --bs-navbar-brand-padding-y
     ); /* Le reste est géré par bootstrap */
-    font-size: 2vw;
-    color: black;
-  }
-
-  .navbar-collapse {
-    margin-top: unset;
   }
 
   .nav-link {
@@ -94,8 +88,8 @@
   }
 
   .nav-link:hover {
-    color: var(--brand-color);
-    background-color: var(--background-color);
+    color: white;
+    background-color: black;
   }
 
   #navbar.navbar-scroll {
@@ -104,10 +98,20 @@
   }
 
   .navbar-scroll .navbar-brand {
-    font-size: 1.5vw;
+    font-size: large;
   }
 
   .navbar-scroll .nav-link {
-    font-size: 85%;
+    font-size: smaller;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .navbar-collapse {
+    margin-top: unset;
+    padding: unset;
+    background-color: unset;
+    border: unset;
+    border-radius: unset;
   }
 }

@@ -57,22 +57,22 @@ class ReservationController extends AbstractController
                     $entityManager->flush();
 
                     $hours = [
-                        "13:00:00",
-                        "14:00:00",
-                        "15:00:00",
-                        "16:00:00",
-                        "17:00:00",
-                        "18:00:00",
-                        "19:00:00",
-                        "20:00:00",
-                        "21:00:00",
-                        "22:00:00"
+                        "13:00",
+                        "14:00",
+                        "15:00",
+                        "16:00",
+                        "17:00",
+                        "18:00",
+                        "19:00",
+                        "20:00",
+                        "21:00",
+                        "22:00"
                     ];
 
                     foreach ($hours as $hour) {
                         $add_hour = new Seat();
 
-                        $add_hour->setHour(\DateTimeImmutable::createFromFormat('H:i:s', $hour));
+                        $add_hour->setHour(\DateTimeImmutable::createFromFormat('H:i', $hour));
                         $add_hour->setSeat(20);
                         $add_hour->setReservationDate($reservationDate);
 
@@ -124,7 +124,7 @@ class ReservationController extends AbstractController
                     foreach ($check_reservation as $reservation) {
                         $surname = $reservation['surname'];
                         $name = $reservation['name'];
-                        $date[] = date('d-m-Y', $reservation['reservation_date_id']);
+                        $date[] = date('d/m/Y', $reservationDateRepository->findOneBy(['id' => $reservation['reservation_date_id']])->getDate());
                         $hour[] = $reservation['hour'];
                         $seat_reserved[] = $reservation['seat_reserved'];
                     }

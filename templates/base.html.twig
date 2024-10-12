@@ -37,9 +37,9 @@
 					{% include('_navbar.html.twig') %}
 				</nav>
 				{% block background %}
-				<div class="bg-doodle">
-					<css-doodle use="var(--rule)"></css-doodle>
-				</div>
+					<div class="bg-doodle">
+						<css-doodle use="var(--rule)"></css-doodle>
+					</div>
 				{% endblock %}
 				<main>
 					{% block main %}{% endblock %}
@@ -55,8 +55,8 @@
 			<script src="{{ asset('js/script/const.js') }}"></script>
 			<script>
 				window.addEventListener("load", () => {
-				loader.style.display = "none";
-				globalContainer.style.opacity = "1";
+					loader.style.display = "none";
+					globalContainer.style.opacity = "1";
 				});
 			</script>
 		{% endblock %}

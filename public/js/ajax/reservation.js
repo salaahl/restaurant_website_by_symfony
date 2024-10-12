@@ -36,10 +36,14 @@ document
               ' ' +
               data.surname +
               ',<br>' +
-              'Une réservation à votre nom pour ' + 
+              'Une réservation à votre nom pour ' +
               data.seat_reserved +
               ' personne(s) est bien enregistrée pour le ' +
-              data.date +
+              new Date(data.date).toDateString('fr-FR', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric',
+              }) +
               ' à ' +
               data.hour +
               '<br>' +

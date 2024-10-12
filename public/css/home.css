@@ -1,7 +1,5 @@
 /* VARIABLES */
 :root {
-  --color-white: white;
-  --color-black: black;
   --color-dark: rgb(33, 37, 41);
   --carousel-icon-padding: 15%;
   --font-size-title: xxx-large;
@@ -17,7 +15,6 @@
 
 #navbar {
   max-width: 1440px;
-  background-color: var(--color-black);
 }
 
 #navbar,
@@ -30,15 +27,6 @@ main {
 main {
   max-width: calc(1440px + 4%); /* + 4% en prenant en compte le padding */
   background-color: unset;
-}
-
-.navbar-brand,
-.nav-link {
-  color: var(--color-white);
-}
-
-.navbar-brand:hover {
-  color: var(--color-white);
 }
 
 .title h2 {
@@ -74,7 +62,7 @@ main {
   object-fit: cover;
   object-position: center;
   height: auto;
-  width: inherit;
+  aspect-ratio: 1;
 }
 
 #about-me-container,
@@ -173,9 +161,9 @@ main {
 }
 
 #menu-title-container .title h2 {
-  color: var(--color-white);
+  color: white;
   background-color: var(--color-dark);
-  -webkit-text-stroke: var(--text-stroke-size) var(--color-black);
+  -webkit-text-stroke: var(--text-stroke-size) black;
   width: inherit;
   margin-bottom: 0%;
   padding: 10% 10vw;
@@ -263,7 +251,7 @@ main {
 .flip-card .inner .type {
   background-color: var(--background-color-flip-card);
   padding: 2%;
-  color: var(--color-white);
+  color: white;
 }
 
 .flip-card .inner,
@@ -319,7 +307,7 @@ main {
   align-items: center;
   font-size: small;
   padding: 5%;
-  color: var(--color-white);
+  color: white;
   background-color: var(--color-dark);
   overflow-y: auto;
   transform: rotateX(180deg);
@@ -335,7 +323,7 @@ main {
 
 .dish-separator {
   width: 20%;
-  border-top: 2px solid var(--color-white);
+  border-top: 2px solid white;
   margin: 10%;
 }
 
@@ -387,6 +375,10 @@ main {
 }
 
 @media screen and (max-width: 767px) {
+  #navbar.navbar-scroll {
+    background-color: white;
+  }
+
   #menu-title-container .title {
     position: absolute;
     bottom: 0;
@@ -399,27 +391,49 @@ main {
 }
 
 @media screen and (min-width: 768px) {
-  .nav-link:hover {
-    color: var(--color-black) !important;
-    background-color: var(--color-white);
-  }
-
-  #menu-title-container .title h2 {
-    padding: 10%;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-  }
-
   #navbar {
+    position: sticky;
     top: 2vh;
     width: 96%;
+    background-color: black;
     border-radius: 20px;
     box-shadow: 0px 0px 0px 5px rgb(0 0 0 / 10%) !important;
   }
 
+  #navbar, .navbar-brand {
+    min-height: 7vh;
+  }
+
+  .navbar-toggler-icon,
+  .navbar-toggler:focus .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    transition: background-image 1s;
+  }
+
+  .navbar-brand,
+  .nav-link {
+    color: white;
+  }
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-brand:hover {
+    color: white;
+  }
+
+  .navbar-collapse {
+    margin-top: unset;
+    padding: unset;
+    background-color: unset;
+    border: unset;
+    border-radius: unset;
+  }
+
   #navbar,
   main {
-    min-height: unset;
     padding-left: 2%;
     padding-right: 2%;
   }
@@ -492,6 +506,12 @@ main {
     padding-bottom: unset;
   }
 
+  #menu-title-container .title h2 {
+    padding: 10%;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  }
+
   .straight {
     width: 75%;
     border-radius: 50px;
@@ -558,7 +578,8 @@ main {
 }
 
 @media screen and (min-width: 992px) {
-  #navbar {
-    height: 7vh;
+  .nav-link:hover {
+    color: black !important;
+    background-color: white;
   }
 }
