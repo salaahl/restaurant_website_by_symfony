@@ -36,7 +36,9 @@ document
               ' ' +
               data.surname +
               ',<br>' +
-              'Une réservation à votre nom est bien enregistrée pour le ' +
+              'Une réservation à votre nom pour ' + 
+              data.seat_reserved
+              ' personne(s) est bien enregistrée pour le ' +
               data.date +
               ' à ' +
               data.hour +
