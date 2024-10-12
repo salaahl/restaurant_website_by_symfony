@@ -141,7 +141,8 @@ main {
 
 #about-me-container,
 #reservation-container {
-  padding: 50px 0; /* Correspond à l'écart avec le titre */
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 #menu-container {
@@ -479,12 +480,12 @@ main {
     flex-direction: row;
   }
 
-  #about-me-container article div:first-of-type {
+  #about-me-container article > div:first-of-type {
     max-width: 50%;
   }
 
   #about-me-container article img {
-    width: 35%;
+    width: 30%;
     margin-top: 100px;
     margin-bottom: 100px;
   }
