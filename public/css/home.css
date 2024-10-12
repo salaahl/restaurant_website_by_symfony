@@ -28,7 +28,7 @@ main {
 }
 
 main {
-  max-width: calc(1280px + 4%);
+  background-color: none;
 }
 
 .navbar-brand,
