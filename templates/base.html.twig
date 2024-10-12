@@ -36,7 +36,11 @@
 				<nav id="navbar" class="navbar navbar-expand-lg">
 					{% include('_navbar.html.twig') %}
 				</nav>
-				{% block background %}{% endblock %}
+				{% block background %}
+				<div class="bg-doodle">
+					<css-doodle use="var(--rule)"></css-doodle>
+				</div>
+				{% endblock %}
 				<main>
 					{% block main %}{% endblock %}
 				</main>
