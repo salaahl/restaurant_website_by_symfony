@@ -84,7 +84,7 @@ main {
 }
 
 #about-me-container {
-  border: 5px dashed #f5ebe0;
+  border: 10px dashed #f5ebe0;
 }
 
 #about-me-container .title h2 {
