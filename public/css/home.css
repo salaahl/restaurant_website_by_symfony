@@ -116,12 +116,16 @@ main {
   width: 100%;
 }
 
+#about-me-container p {
+  text-align: center;
+}
+
 #about-me-container article img {
   width: 50%;
   aspect-ratio: 1;
-  margin-top: 85px;
+  margin-top: 100px;
   margin-right: auto;
-  margin-bottom: 85px;
+  margin-bottom: 50px;
   margin-left: auto;
   transform: rotate(-5deg);
   box-shadow: #d6ccc2 -20px 20px 0px 10px, #f5ebe0 10px -5px 0px 20px;
@@ -361,6 +365,7 @@ main {
 
 #reservation-container {
   background-color: var(--color-dark);
+  border: 10px dashed white;
 }
 
 #reservation-container .title h2 {
@@ -469,6 +474,10 @@ main {
     width: 30%;
     margin-top: 100px;
     margin-bottom: 100px;
+  }
+
+  #about-me-container p {
+    text-align: unset;
   }
 
   #about-me-container a {
