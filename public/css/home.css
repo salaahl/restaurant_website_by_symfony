@@ -14,6 +14,7 @@
 }
 
 #navbar {
+  position: sticky;
   max-width: 1440px;
 }
 
@@ -26,7 +27,14 @@ main {
 
 main {
   max-width: calc(1440px + 4%); /* + 4% en prenant en compte le padding */
+  padding-left: 2%;
+  padding-right: 2%;
   background-color: unset;
+}
+
+section {
+  margin-bottom: 10%;
+  border-radius: 15px;
 }
 
 .title h2 {
@@ -379,6 +387,10 @@ main {
     background-color: white;
   }
 
+  section {
+    overflow-x: hidden;
+  }
+
   #menu-title-container .title {
     position: absolute;
     bottom: 0;
@@ -400,7 +412,8 @@ main {
     box-shadow: 0px 0px 0px 5px rgb(0 0 0 / 10%) !important;
   }
 
-  #navbar, .navbar-brand {
+  #navbar,
+  .navbar-brand {
     min-height: 7vh;
   }
 
@@ -419,7 +432,7 @@ main {
     display: flex;
     align-items: center;
   }
-  
+
   .navbar-brand:hover {
     color: white;
   }
@@ -432,8 +445,7 @@ main {
     border-radius: unset;
   }
 
-  #navbar,
-  main {
+  #navbar {
     padding-left: 2%;
     padding-right: 2%;
   }
