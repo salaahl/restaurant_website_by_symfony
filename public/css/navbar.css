@@ -16,7 +16,7 @@
 }
 
 #navbar > .container-fluid {
-  max-width: calc(var(--bs-gutter-x) * 1 + 1440px);
+  max-width: calc(1.5rem + 1440px);
 }
 
 .navbar-nav {

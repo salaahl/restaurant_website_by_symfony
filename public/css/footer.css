@@ -9,7 +9,7 @@ footer {
 }
 
 footer > .container {
-  max-width: calc(var(--bs-gutter-x) * 1 + 1440px); /* 1440px - le padding par défaut appliqué par bootstrap sur les container */
+  max-width: calc(1.5rem + 1440px);
 }
 
 footer .row,
