@@ -35,7 +35,7 @@ document
               data.name +
               ' ' +
               data.surname +
-              ',<br>' +
+              ',<br><br>' +
               'Une réservation à votre nom pour ' +
               data.seat_reserved +
               ' personne(s) est bien enregistrée pour le ' +
@@ -46,7 +46,7 @@ document
               }) +
               ' à ' +
               data.hour +
-              '<br>' +
+              '<br><br>' +
               'Cordialement,<br>' +
               "L'équipe du Vingtième" +
               '</div>';
@@ -62,7 +62,7 @@ document
               data.surname +
               ',<br>' +
               'Voici pour vos réservations :' +
-              '<br>';
+              '<br><br>';
 
             for (let i = 0; i < response.length; i++) {
               response[i].innerHTML += html;
@@ -79,7 +79,7 @@ document
               }
             }
 
-            html = 'Cordialement,<br>' + "L'équipe du Vingtième" + '</div>';
+            html = '<br>Cordialement,<br>' + "L'équipe du Vingtième" + '</div>';
 
             for (let i = 0; i < response.length; i++) {
               checkReservation[i].innerHTML += html;
