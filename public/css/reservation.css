@@ -103,6 +103,7 @@ h2 {
   height: inherit;
   align-items: center;
   justify-content: center;
+  bottom: 50%;
   right: 0;
   z-index: 2;
 }
@@ -135,7 +136,6 @@ h2 {
   }
 
   #lds-hourglass {
-    bottom: 50%;
     width: 100%;
   }
 }
