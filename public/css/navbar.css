@@ -15,6 +15,11 @@
   transition: all var(--navbar-transition-duration);
 }
 
+#navbar.navbar-scroll {
+  color: black;
+  background-color: white;
+}
+
 #navbar > .container-fluid {
   max-width: calc(1.5rem + 1440px);
 }
@@ -90,19 +95,6 @@
   .nav-link:hover {
     color: white;
     background-color: black;
-  }
-
-  #navbar.navbar-scroll {
-    width: 60%;
-    border-radius: 40px;
-  }
-
-  .navbar-scroll .navbar-brand {
-    font-size: large;
-  }
-
-  .navbar-scroll .nav-link {
-    font-size: smaller;
   }
 }
 
