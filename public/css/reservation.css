@@ -1,3 +1,8 @@
+#navbar.navbar-scroll {
+  color: white;
+  background-color: rgb(0, 0, 0, 0.5);
+}
+
 .navbar-brand,
 .navbar-brand:hover {
   color: white;
@@ -125,10 +130,6 @@ h2 {
     overflow: hidden;
   }
 
-  #navbar {
-    backdrop-filter: brightness(0.5);
-  }
-
   #img-container {
     display: none;
   }
@@ -147,6 +148,11 @@ h2 {
     scroll-snap-type: y mandatory;
   }
 
+  #navbar.navbar-scroll {
+    color: black;
+    background-color: white;
+  }
+  
   main,
   footer {
     scroll-snap-align: start;
