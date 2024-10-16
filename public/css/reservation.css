@@ -1,10 +1,5 @@
-.navbar-brand,
-.navbar-brand:hover {
-  color: white;
-}
-
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+#navbar {
+  filter: contrast(0.5);
 }
 
 main {
@@ -44,18 +39,15 @@ main {
 #check-reservation.hidden,
 #new-reservation.hidden,
 #complete-reservation.hidden {
+  display: none; /* ne pas mettre  le display none cause des soucis de mise en page */
   width: 0;
   padding-left: 0;
   padding-right: 0;
   opacity: 0;
 }
 
-#img-container,
-#img-container > img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
+#img-container {
+  display: none;
 }
 
 h2 {
@@ -127,6 +119,7 @@ h2 {
   display: none;
   position: fixed;
   height: inherit;
+  width: 100%;
   align-items: center;
   justify-content: center;
   z-index: 2;
@@ -145,32 +138,13 @@ h2 {
   animation: lds-hourglass 1.2s infinite;
 }
 
-@media screen and (max-width: 767px) {
-  #global-container {
-    overflow: hidden;
-  }
-
-  #navbar,
-  #navbar.navbar-scroll {
-    color: white;
-    background-color: rgb(0, 0, 0, 0.5);
-  }
-
-  #img-container {
-    display: none;
-  }
-
-  #lds-hourglass {
-    width: 100%;
-  }
-}
-
 @media screen and (min-width: 768px) {
   #global-container {
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
     scroll-snap-type: y mandatory;
+  }
+
+  #navbar {
+    filter: none;
   }
 
   #navbar.navbar-scroll {
@@ -199,7 +173,7 @@ h2 {
 
   #return-button {
     left: calc(50% + 0.75rem);
-    height: auto;
+    height: 100px;
   }
 
   #return-button > svg {
@@ -218,13 +192,22 @@ h2 {
   #check-reservation,
   #new-reservation,
   #complete-reservation {
-    padding-top: 20%;
-    padding-bottom: 20%;
+    padding-top: calc(10% + 100px); /* 100px = return-button height */
+    padding-bottom: calc(10% + 100px);
   }
 
   #img-container {
+    display: block;
     position: sticky;
     top: 0;
+  }
+
+  #img-container > img {
+    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: contrast(0.85);
   }
 
   #redirect-reservation {
