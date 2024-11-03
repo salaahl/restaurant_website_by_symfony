@@ -409,11 +409,11 @@ section {
     color: white;
     background-color: black;
   }
-  
+
   .navbar-scroll .navbar-brand {
     font-size: large;
   }
-  
+
   .navbar-scroll .nav-link {
     font-size: smaller;
   }
@@ -471,7 +471,7 @@ section {
   }
 
   .carousel-item img {
-    height: 87vh;
+    height: 83vh;
     width: 100%;
   }
 
