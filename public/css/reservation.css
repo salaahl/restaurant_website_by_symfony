@@ -74,6 +74,8 @@ h2 {
   width: 100%;
   align-content: center;
   background: url("/img/background-reservation-page.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 #redirect-reservation button {

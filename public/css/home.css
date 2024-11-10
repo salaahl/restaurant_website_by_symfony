@@ -1,7 +1,6 @@
 /* VARIABLES */
 :root {
   --color-dark: rgb(33, 37, 41);
-  --carousel-icon-padding: 15%;
   --font-size-title: xxx-large;
   --text-stroke-size: 2px;
   --background-color-flip-card: #677381;
@@ -48,31 +47,38 @@ section {
   text-align: center;
 }
 
-.carousel-control-next,
-.carousel-control-prev {
-  top: 10%;
-}
-
-.carousel-control-next-icon,
-.carousel-control-prev-icon {
+#home {
   position: relative;
-  top: -10%;
-  padding: var(--carousel-icon-padding);
-}
-
-.carousel-caption > h5 {
-  font-weight: 500;
-}
-
-.carousel-caption > p {
-  display: none;
-}
-
-.carousel-item img {
+  width: 100%;
   object-fit: cover;
   object-position: center;
-  height: auto;
+  overflow: hidden;
+}
+
+#home img {
+  width: 100%;
   aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 20px;
+}
+
+#home .title {
+  margin: 20px 0 0 0;
+}
+
+#home .title h2 {
+  font-size: larger;
+  font-weight: 300;
+  background-color: white;
+}
+
+#home .title p {
+  margin: 0;
+  font-size: smaller;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 #about-me-container,
@@ -466,17 +472,34 @@ section {
     margin-bottom: 50px;
   }
 
-  .carousel-inner {
-    border-radius: 20px;
+  #home {
+    height: 87vh;
   }
 
-  .carousel-item img {
-    height: 83vh;
-    width: 100%;
+  #home img {
+    height: 100%;
+    aspect-ratio: unset;
+    transition: transform 0.5s ease;
   }
 
-  .carousel-caption > p {
-    display: block;
+  #home img:hover {
+    transform: scale(1.1);
+  }
+
+  #home .title {
+    position: absolute;
+    left: 40px;
+    bottom: 20px;
+  }
+
+  #home .title h2 {
+    font-size: var(--font-size-title);
+  }
+
+  #home .title p {
+    font-size: x-large;
+    text-align: left;
+    color: white;
   }
 
   #about-me-container,
