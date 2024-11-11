@@ -169,6 +169,7 @@ h2 {
   }
 
   #lds-hourglass {
+    left: 50%;
     bottom: 50%;
     width: 50%;
   }
