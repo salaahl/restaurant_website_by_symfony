@@ -89,6 +89,8 @@
   .nav-link {
     margin-left: 4px;
     margin-right: 4px;
+    font-size: smaller;
+    font-weight: 600;
     color: black;
   }
 
