@@ -546,6 +546,10 @@ section {
     padding-bottom: unset;
   }
 
+  #menu-title-container {
+    margin-bottom: 50px;
+  }
+
   #menu-title-container .title {
     margin: auto;
   }
