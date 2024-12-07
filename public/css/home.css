@@ -430,10 +430,6 @@ section {
     font-size: large;
   }
 
-  .navbar-scroll .nav-link {
-    font-size: smaller;
-  }
-
   #navbar,
   .navbar-brand {
     min-height: 7vh;
