@@ -546,6 +546,10 @@ section {
     padding-bottom: unset;
   }
 
+  #menu-title-container .title {
+    margin: auto;
+  }
+
   #menu-title-container .title h2 {
     padding: 10%;
     border-radius: 5px;
