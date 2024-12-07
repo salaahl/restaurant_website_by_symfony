@@ -176,7 +176,11 @@ section {
   align-items: center;
   justify-content: center;
   color: white;
-  background-color: var(--color-dark);
+  background-image: url('/img/menu_title_background.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   -webkit-text-stroke: var(--text-stroke-size) black;
   width: inherit;
   margin-bottom: 0%;
@@ -559,9 +563,8 @@ section {
   }
 
   #menu-title-container .title h2 {
-    padding: 10%;
+    height: 100%;
     border-radius: 50px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
   }
 
   .straight {
