@@ -159,7 +159,7 @@ section {
   position: relative;
   display: flex;
   width: 100%;
-  scroll-margin-top: 10vh; /* permet d'ajuster la position du anchor lors du clic sur le bouton menu */
+  scroll-margin-top: 11vh; /* permet d'ajuster la position du anchor lors du clic sur le bouton menu */
 }
 
 #menu-title-container .title {
