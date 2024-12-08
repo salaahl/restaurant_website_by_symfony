@@ -21,4 +21,4 @@
 ###< symfony/phpunit-bridge ###
 
 .DS_Store
-
+/node_modules

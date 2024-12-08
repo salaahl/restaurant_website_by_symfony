@@ -149,11 +149,6 @@ h2 {
     filter: none;
   }
 
-  #navbar.navbar-scroll {
-    color: black;
-    background-color: white;
-  }
-
   main {
     height: auto;
   }

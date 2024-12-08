@@ -15,11 +15,6 @@
   transition: all var(--navbar-transition-duration);
 }
 
-#navbar.navbar-scroll {
-  color: black;
-  background-color: white;
-}
-
 #navbar > .container-fluid {
   max-width: calc(1.5rem + 1440px);
 }
