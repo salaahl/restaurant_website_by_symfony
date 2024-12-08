@@ -54,7 +54,7 @@ window.addEventListener("load", () => {
     });
 
     gsap.from(".straight-lines.mirror > .straight", {
-      x: "25%",
+      x: "100%",
       opacity: 0,
       duration: 0.5,
       delay: 0.25,
@@ -66,7 +66,7 @@ window.addEventListener("load", () => {
     });
 
     gsap.from(".straight-lines:first-of-type > .straight", {
-      x: "-25%",
+      x: "-100%",
       opacity: 0,
       duration: 0.5,
       delay: 0.25,

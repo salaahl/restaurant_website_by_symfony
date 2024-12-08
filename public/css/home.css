@@ -175,7 +175,7 @@ section {
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
   -webkit-text-stroke: var(--text-stroke-size) black;
   width: inherit;
   margin-bottom: 0%;
