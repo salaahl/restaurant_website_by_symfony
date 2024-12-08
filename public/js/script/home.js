@@ -1,12 +1,3 @@
-// Enregistrement des plugins
-gsap.registerPlugin(ScrollTrigger);
-
-// Configuration globale de GSAP
-gsap.config({
-  trialWarn: true, // Affiche un avertissement si un plug-in payant est utilisé
-});
-gsap.defaults({ ease: "power1.out" });
-
 window.addEventListener("load", () => {
   gsap.matchMedia().add("(max-width: 767px)", () => {
     gsap.to(".navbar", {
@@ -18,19 +9,32 @@ window.addEventListener("load", () => {
         scrub: true,
       },
     });
+
+    document.querySelectorAll(".flip-card").forEach((card) => {
+      gsap.to(card, {
+        opacity: 1,
+        scrollTrigger: {
+          trigger: card,
+          start: "0 85%",
+          end: "0 85%",
+        },
+      });
+    });
   });
 
   gsap.matchMedia().add("(min-width: 768px)", () => {
     gsap.fromTo(
       ".navbar",
       {
+        minHeight: "7vh",
         width: "calc(100% - 1.5rem)",
         color: "white",
         backgroundColor: "black",
       },
       {
+        minHeight: "6vh",
         width: "70%",
-        maxWidth: 800,
+        maxWidth: 700,
         borderRadius: 40,
         color: "white",
         backgroundColor: "black",

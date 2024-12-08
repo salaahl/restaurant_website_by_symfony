@@ -238,6 +238,7 @@ section {
 }
 
 .flip-card {
+  opacity: 0;
   height: 300px;
   width: 100%;
   margin-bottom: -50px;
@@ -414,11 +415,6 @@ section {
     box-shadow: 0px 0px 0px 5px rgb(0 0 0 / 10%) !important;
   }
 
-  #navbar,
-  .navbar-brand {
-    min-height: 7vh;
-  }
-
   .navbar-toggler-icon,
   .navbar-toggler:focus .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
@@ -558,6 +554,7 @@ section {
   }
 
   .flip-card {
+    opacity: 1;
     height: 65vh;
     width: 20%;
     min-width: 20%;

@@ -1,12 +1,3 @@
-// Enregistrement des plugins
-gsap.registerPlugin(ScrollTrigger);
-
-// Configuration globale de GSAP
-gsap.config({
-  trialWarn: true, // Affiche un avertissement si un plug-in payant est utilisé
-});
-gsap.defaults({ ease: "power1.out" });
-
 window.addEventListener("load", () => {
   gsap.matchMedia().add("(max-width: 767px)", () => {
     const textContainers = gsap.utils.toArray("article > .text-container");

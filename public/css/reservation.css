@@ -1,12 +1,6 @@
-#navbar {
-  filter: contrast(0.5);
-}
-
 main {
   position: relative;
   display: flex;
-  /* justify-content: space-between; réactiver en mode mobile ? */
-  height: 100%;
 }
 
 #return-button {

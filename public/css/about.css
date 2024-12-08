@@ -106,6 +106,10 @@ h2 span {
     backdrop-filter: unset;
   }
 
+  .text-container p {
+    font-weight: 400;
+  }
+
   .img-container {
     display: block !important;
     width: 50%;
