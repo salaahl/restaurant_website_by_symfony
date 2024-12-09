@@ -1,18 +1,4 @@
 window.addEventListener("load", () => {
-  gsap.matchMedia().add("(max-width: 767px)", () => {
-    const textContainers = gsap.utils.toArray("article > .text-container");
-
-    textContainers.forEach((textContainer) => {
-      gsap.to(textContainer, {
-        opacity: 1,
-        scrollTrigger: {
-          trigger: textContainer,
-          start: "0% 50%",
-        },
-      });
-    });
-  });
-
   gsap.matchMedia().add("(min-width: 768px)", () => {
     gsap.fromTo(
       "section > article:nth-of-type(1) > .text-container",

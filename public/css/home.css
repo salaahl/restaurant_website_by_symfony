@@ -15,6 +15,7 @@
 #navbar {
   position: sticky;
   max-width: 1440px;
+  background-color: white;
 }
 
 #navbar,
@@ -240,7 +241,6 @@ section {
 }
 
 .flip-card {
-  opacity: 0;
   height: 300px;
   width: 100%;
   margin-bottom: -50px;
@@ -563,7 +563,6 @@ section {
   }
 
   .flip-card {
-    opacity: 1;
     height: 65vh;
     width: 20%;
     min-width: 20%;

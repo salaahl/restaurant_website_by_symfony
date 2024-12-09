@@ -1,40 +1,4 @@
 window.addEventListener("load", () => {
-  gsap.from("#menu-title-container .title", {
-    y: "100%",
-    opacity: 0,
-    duration: 0.5,
-    scrollTrigger: {
-      trigger: "#menu-title-container .title",
-      start: "-100% 75%",
-      end: "100% 75%",
-      scrub: true,
-    },
-  });
-
-  gsap.matchMedia().add("(max-width: 767px)", () => {
-    gsap.to(".navbar", {
-      backgroundColor: "white",
-      scrollTrigger: {
-        trigger: "html",
-        start: "0 5%",
-        end: "15% 5%",
-        scrub: true,
-      },
-    });
-
-    document.querySelectorAll(".flip-card").forEach((card) => {
-      gsap.to(card, {
-        opacity: 1,
-        scrollTrigger: {
-          trigger: card,
-          start: "0 75%",
-          end: "0 75%",
-          markers: true,
-        },
-      });
-    });
-  });
-
   gsap.matchMedia().add("(min-width: 768px)", () => {
     gsap.fromTo(
       ".navbar",
@@ -66,6 +30,18 @@ window.addEventListener("load", () => {
         trigger: "html",
         start: "0 0",
         end: "15% 0",
+        scrub: true,
+      },
+    });
+
+    gsap.from("#menu-title-container .title", {
+      y: "100%",
+      opacity: 0,
+      duration: 0.5,
+      scrollTrigger: {
+        trigger: "#menu-title-container .title",
+        start: "-100% 100%",
+        end: "100% 100%",
         scrub: true,
       },
     });

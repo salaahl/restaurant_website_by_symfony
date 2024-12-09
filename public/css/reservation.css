@@ -55,6 +55,7 @@ h2 {
 #check-reservation,
 #new-reservation,
 #complete-reservation {
+  min-height: 100vh;
   padding-top: 45%;
   padding-bottom: 20%;
   padding-left: 0.75rem;

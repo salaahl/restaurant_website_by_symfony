@@ -42,7 +42,6 @@ article:nth-of-type(3) {
 }
 
 .text-container {
-  opacity: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
