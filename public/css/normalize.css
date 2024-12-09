@@ -2,6 +2,16 @@
   --color-grey-light: #f1f1f1;
   --color-grey-medium: #888;
   --color-grey-dark: #555;
+  --color-dark: rgb(33, 37, 41);
+  --font-size-title: xxx-large;
+  --text-stroke-size: 2px;
+  --background-color-flip-card: #677381;
+  --background-color-flip-card-one: #2f2c36;
+  --background-color-flip-card-two: #383440;
+  --background-color-flip-card-three: #413d4b;
+  --background-color-flip-card-four: #4a4656;
+  --background-color-flip-card-five: #544e60;
+  --background-color-flip-card-six: #5d576b;
 }
 
 html,
@@ -45,8 +55,12 @@ input:read-only {
 /* BUTTON STYLES */
 .button-58 {
   align-items: center;
-  background-color: #171e29;
-  border: 2px solid transparent;
+  background-image: linear-gradient(
+    to right,
+    var(--background-color-flip-card-three) 10%,
+    var(--background-color-flip-card-six) 90%
+  );
+  border: 0;
   color: #fff;
   cursor: pointer;
   display: inline-flex;

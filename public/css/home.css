@@ -1,17 +1,3 @@
-/* VARIABLES */
-:root {
-  --color-dark: rgb(33, 37, 41);
-  --font-size-title: xxx-large;
-  --text-stroke-size: 2px;
-  --background-color-flip-card: #677381;
-  --background-color-flip-card-one: #2f2c36;
-  --background-color-flip-card-two: #383440;
-  --background-color-flip-card-three: #413d4b;
-  --background-color-flip-card-four: #4a4656;
-  --background-color-flip-card-five: #544e60;
-  --background-color-flip-card-six: #5d576b;
-}
-
 #navbar {
   position: sticky;
   max-width: 1440px;

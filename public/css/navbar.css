@@ -12,6 +12,9 @@
   margin: 0 auto;
   padding-top: 5%;
   padding-bottom: 5%;
+  box-shadow: rgba(255, 255, 255, 0.0333) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.0833) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.1) 0px 30px 60px -30px;
   transition: all var(--navbar-transition-duration);
 }
 
@@ -72,7 +75,6 @@
     padding-top: unset;
     padding-bottom: unset;
     border-bottom: unset;
-    box-shadow: 0px 20px 20px 0px rgb(0 0 0 / 5%);
   }
 
   .navbar-brand {
@@ -91,7 +93,7 @@
 
   .nav-link:hover {
     color: white;
-    background-color: black;
+    background-color: var(--background-color-flip-card-one);
   }
 }
 
