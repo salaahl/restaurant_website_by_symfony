@@ -1,3 +1,12 @@
+// Enregistrement des plugins
+gsap.registerPlugin(ScrollTrigger);
+
+// Configuration globale de GSAP
+gsap.config({
+  trialWarn: true, // Affiche un avertissement si un plug-in payant est utilisé
+});
+gsap.defaults({ ease: "power1.out" });
+
 window.addEventListener("load", () => {
   gsap.from("#menu-title-container .title", {
     y: "100%",
@@ -46,7 +55,7 @@ window.addEventListener("load", () => {
       {
         minHeight: "6vh",
         width: "70%",
-        maxWidth: 700,
+        maxWidth: 750,
         borderRadius: 40,
         color: "white",
         backgroundColor: "black",
