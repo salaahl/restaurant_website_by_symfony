@@ -1,12 +1,3 @@
-// Enregistrement des plugins
-gsap.registerPlugin(ScrollTrigger);
-
-// Configuration globale de GSAP
-gsap.config({
-  trialWarn: true, // Affiche un avertissement si un plug-in payant est utilisé
-});
-gsap.defaults({ ease: "power1.out" });
-
 window.addEventListener("load", () => {
   gsap.from("#menu-title-container .title", {
     y: "100%",
@@ -14,8 +5,8 @@ window.addEventListener("load", () => {
     duration: 0.5,
     scrollTrigger: {
       trigger: "#menu-title-container .title",
-      start: "-100% 100%",
-      end: "100% 100%",
+      start: "-100% 75%",
+      end: "100% 75%",
       scrub: true,
     },
   });
@@ -25,8 +16,8 @@ window.addEventListener("load", () => {
       backgroundColor: "white",
       scrollTrigger: {
         trigger: "html",
-        start: "0 0",
-        end: "15% 0",
+        start: "0 5%",
+        end: "15% 5%",
         scrub: true,
       },
     });
@@ -36,8 +27,9 @@ window.addEventListener("load", () => {
         opacity: 1,
         scrollTrigger: {
           trigger: card,
-          start: "0 85%",
-          end: "0 85%",
+          start: "0 75%",
+          end: "0 75%",
+          markers: true,
         },
       });
     });
