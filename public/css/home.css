@@ -92,12 +92,14 @@ section {
 }
 
 #about-me-container .title h2 {
-  width: fit-content;
+  width: min-content;
+  margin-left: auto;
+  margin-right: auto;
   color: transparent;
   background-image: linear-gradient(
-    45deg,
-    indianred 50%,
-    rgb(53, 114, 172, 1) 50%
+    to right,
+    var(--background-color-flip-card-three) 10%,
+    var(--background-color-flip-card-six) 90%
   );
   background-size: 100%;
   background-repeat: no-repeat;
@@ -161,27 +163,27 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
   text-align: center;
+  height: fit-content;
+  width: fit-content;
+  border-radius: 25px;
+  background-image: url("/img/menu-title-background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: #00000010 0px 0px 0px 5px;
+  overflow: hidden;
 }
 
 #menu-title-container .title h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  background-image: url("/img/menu-title-background.jpg");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-text-stroke: var(--text-stroke-size) black;
   width: inherit;
   margin-bottom: 0%;
   padding: 5%;
-  border-radius: 25px;
-  box-shadow: inset #00000010 0px 0px 0px 5px;
+  color: white;
+  -webkit-text-stroke: var(--text-stroke-size) black;
 }
 
 #menu {
@@ -372,13 +374,6 @@ section {
 }
 
 #reservation-container .title h2 {
-  color: transparent;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.25) 0%,
-    rgba(0, 0, 0, 1) 50%
-  );
-  background-clip: text;
   -webkit-text-stroke: 2px rgb(255, 255, 255, 0.5);
 }
 
@@ -400,8 +395,8 @@ section {
     top: 0;
     left: 0;
     right: 0;
-    width: 80%;
     margin: auto;
+    padding: 5% 15%;
   }
 }
 
@@ -502,6 +497,16 @@ section {
     overflow: hidden;
   }
 
+  #about-me-container .title {
+    margin-bottom: 25px;
+  }
+
+  #about-me-container .title h2 {
+    width: fit-content;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   #about-me-container article {
     flex-direction: row;
   }
@@ -536,12 +541,14 @@ section {
   }
 
   #menu-title-container .title {
+    height: 100%;
+    width: 100%;
     margin: auto;
+    border-radius: 50px;
   }
 
   #menu-title-container .title h2 {
     height: 100%;
-    border-radius: 50px;
   }
 
   .straight {

@@ -1,4 +1,16 @@
 window.addEventListener("load", () => {
+  gsap.from("#menu-title-container .title", {
+    y: "100%",
+    opacity: 0,
+    duration: 0.5,
+    scrollTrigger: {
+      trigger: "#menu-title-container .title",
+      start: "-100% 100%",
+      end: "100% 100%",
+      scrub: true,
+    },
+  });
+
   gsap.matchMedia().add("(max-width: 767px)", () => {
     gsap.to(".navbar", {
       backgroundColor: "white",
@@ -65,7 +77,9 @@ window.addEventListener("load", () => {
       stagger: 0.1,
       scrollTrigger: {
         trigger: "#menu-title-container .title",
-        start: "50% 50%",
+        start: "0% 100%",
+        end: "+=50%",
+        scrub: true,
       },
     });
 
@@ -77,7 +91,9 @@ window.addEventListener("load", () => {
       stagger: 0.1,
       scrollTrigger: {
         trigger: "#menu-title-container .title",
-        start: "50% 50%",
+        start: "0% 100%",
+        end: "+=50%",
+        scrub: true,
       },
     });
   });
