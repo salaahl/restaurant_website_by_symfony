@@ -65,8 +65,8 @@
 .navbar-collapse {
   margin-top: 5%;
   padding: 15px;
-  background-color: white;
-  border: 5px dashed black;
+  background-color: var(--background-color-flip-card-six);
+  border: 5px solid var(--background-color-flip-card-five);
   border-radius: 15px;
 }
 
