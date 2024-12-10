@@ -34,6 +34,17 @@ window.addEventListener("load", () => {
       },
     });
 
+    gsap.from("#about-me-container", {
+      y: "25%",
+      opacity: 0,
+      scrollTrigger: {
+        trigger: "#about-me-container",
+        start: "0% 100%",
+        end: "50% 100%",
+        scrub: true,
+      },
+    });
+
     gsap.from("#menu-title-container .title", {
       y: "100%",
       opacity: 0,
