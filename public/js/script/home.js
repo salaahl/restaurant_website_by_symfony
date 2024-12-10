@@ -10,15 +10,16 @@ window.addEventListener("load", () => {
         {
           y: 250,
           opacity: 0,
+          duration: window.innerWidth < 768 ? 0.35 : 0.5,
         },
         {
           y: 0,
           opacity: 1,
+          duration: window.innerWidth < 768 ? 0.35 : 0.5,
           scrollTrigger: {
             trigger: element,
-            start: "0 100%",
-            end: "+=250 100%",
-            scrub: true,
+            start: "0 75%",
+            end: "+=250 75%",
           },
         }
       );
