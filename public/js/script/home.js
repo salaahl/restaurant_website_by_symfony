@@ -1,4 +1,30 @@
 window.addEventListener("load", () => {
+  gsap.matchMedia().add("(max-width: 767px)", () => {
+    [
+      "#about-me-container",
+      "#menu-container",
+      "#reservation-container",
+    ].forEach((element) => {
+      gsap.fromTo(
+        element,
+        {
+          y: 250,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          scrollTrigger: {
+            trigger: element,
+            start: "0 100%",
+            end: "+=250 100%",
+            scrub: true,
+          },
+        }
+      );
+    });
+  });
+
   gsap.matchMedia().add("(min-width: 768px)", () => {
     gsap.fromTo(
       ".navbar",
