@@ -5,7 +5,7 @@ window.addEventListener("load", () => {
         ".navbar",
         {
           minHeight: "6vh",
-          width: window.innerWidth < 1024 ? "70%" : 725px,
+          width: window.innerWidth < 1024 ? "70%" : 725;
           borderRadius: 40,
         });
 
@@ -37,7 +37,6 @@ window.addEventListener("load", () => {
         trigger: "main",
         start: "1% 0",
         end: "1% 0",
-        markers: true,
         onEnter: () => reduceNavbar(),
         onEnterBack: () => resetNavbar(),
       });
