@@ -37,8 +37,8 @@ window.addEventListener("load", () => {
     gsap.matchMedia().add("(min-width: 768px)", () => {
       ScrollTrigger.create({
         trigger: "main",
-        start: "1% 1%",
-        end: "1% 1%",
+        start: "1% 0",
+        end: "1% 0",
         markers: true,
         onEnter: () => reduceNavbar(),
         onEnterBack: () => resetNavbar(),
