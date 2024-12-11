@@ -5,7 +5,7 @@ window.addEventListener("load", () => {
         ".navbar",
         {
           minHeight: "6vh",
-          width: "70%",
+          width: window.innerWidth < 1024 ? "70%" : 725px,
           borderRadius: 40,
         });
 
