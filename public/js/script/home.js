@@ -23,7 +23,7 @@ window.addEventListener("load", () => {
         {
           minHeight: "7vh",
           width: "100%",
-          maxWidth: window.innerWidth < 1440 ? 1416 : 1440, // 1416 = 1440px - 1.5rem
+          maxWidth: window.innerWidth < 1440 ? 1406 : 1430, // 1406 = 1440px - 1.5rem (padding de l'écran) - 10px (box-shadow)
           borderRadius: 25,
         });
 
@@ -45,7 +45,7 @@ window.addEventListener("load", () => {
       });
   
       gsap.from("#about-me-container", {
-        y: "25%",
+        y: "50%",
         opacity: 0,
         scrollTrigger: {
           trigger: "#about-me-container",
