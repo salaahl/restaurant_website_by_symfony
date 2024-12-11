@@ -34,7 +34,7 @@ window.addEventListener("load", () => {
     
     gsap.matchMedia().add("(min-width: 768px)", () => {
       ScrollTrigger.create({
-        trigger: "html",
+        trigger: "main",
         start: "15% 15%",
         end: "15% 15%",
         markers: true,
