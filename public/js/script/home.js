@@ -1,5 +1,19 @@
 window.addEventListener("load", () => {
   setTimeout(() => {
+    function show(element) {
+      gsap.to(element, {
+        y: 0,
+        opacity: 1,
+      });
+    }
+
+    function hide(element) {
+      gsap.to(element, {
+        y: "100%",
+        opacity: 0,
+      });
+    }
+
     function reduceNavbar() {
       gsap.to(".navbar", {
         minHeight: "6vh",
@@ -15,7 +29,7 @@ window.addEventListener("load", () => {
     function resetNavbar() {
       gsap.to(".navbar", {
         minHeight: "7vh",
-        width: "98%",
+        width: "96%",
         borderRadius: 25,
       });
 
@@ -33,39 +47,32 @@ window.addEventListener("load", () => {
         onEnterBack: () => resetNavbar(),
       });
 
-      gsap.from("#about-me-container", {
-        y: "100%",
-        opacity: 0,
-        scrollTrigger: {
-          trigger: "#about-me-container",
-          start: "0% 100%",
-          end: "100% 100%",
-          scrub: true,
-        },
+      ScrollTrigger.create({
+        trigger: "#about-me-container",
+        start: "0 75%",
+        end: "0 75%",
+        onEnter: () => show("#about-me-container"),
+        onEnterBack: () => hide("#about-me-container"),
       });
 
-      gsap.from("#menu-title-container .title", {
-        y: "100%",
-        opacity: 0,
-        duration: 0.5,
-        scrollTrigger: {
-          trigger: "#menu-title-container .title",
-          start: "-100% 100%",
-          end: "100% 100%",
-          scrub: true,
-        },
+      ScrollTrigger.create({
+        trigger: "#menu-title-container .title",
+        start: "0 50%",
+        end: "0 50%",
+        onEnter: () => show("#menu-title-container .title"),
+        onEnterBack: () => hide("#menu-title-container .title"),
       });
 
       gsap.from(".straight-lines.mirror > .straight", {
         x: "100%",
         opacity: 0,
-        duration: 0.5,
+        duration: 0.4,
         delay: 0.25,
         stagger: 0.1,
         scrollTrigger: {
           trigger: "#menu-title-container .title",
-          start: "0% 100%",
-          end: "+=50%",
+          start: "0 50%",
+          end: "+=25%",
           scrub: true,
         },
       });
@@ -73,26 +80,23 @@ window.addEventListener("load", () => {
       gsap.from(".straight-lines:first-of-type > .straight", {
         x: "-100%",
         opacity: 0,
-        duration: 0.5,
+        duration: 0.4,
         delay: 0.25,
         stagger: 0.1,
         scrollTrigger: {
           trigger: "#menu-title-container .title",
-          start: "0% 100%",
-          end: "+=50%",
+          start: "0 50%",
+          end: "+=25%",
           scrub: true,
         },
       });
 
-      gsap.from("#reservation-container", {
-        y: "100%",
-        opacity: 0,
-        scrollTrigger: {
-          trigger: "#reservation-container",
-          start: "0% 100%",
-          end: "100% 100%",
-          scrub: true,
-        },
+      ScrollTrigger.create({
+        trigger: "#reservation-container",
+        start: "0 75%",
+        end: "0 75%",
+        onEnter: () => show("#reservation-container"),
+        onEnterBack: () => hide("#reservation-container"),
       });
     });
   }, 500);
