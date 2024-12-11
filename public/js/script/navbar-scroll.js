@@ -1,7 +1,7 @@
 window.addEventListener("load", () => {
   // L'animation est gérée autrement sur la page d'accueil
   if (window.location.pathname !== "/") {
-    gsap.matchMedia().add("(min-width: 768px)", () => {
+    setTimeout(() => {
       gsap.fromTo(
         ".navbar",
         {
@@ -17,6 +17,6 @@ window.addEventListener("load", () => {
           },
         }
       );
-    });
+    }, 1000);
   }
 });
