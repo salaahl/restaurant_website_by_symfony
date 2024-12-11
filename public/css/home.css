@@ -394,6 +394,7 @@ section {
   #navbar {
     position: sticky;
     top: 2vh;
+    min-height: 7vh;
     width: 100%;
     max-width: calc(100% - 1.5rem);
     background-color: black;
