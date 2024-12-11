@@ -72,6 +72,7 @@ section {
 #reservation-container {
   padding-left: 2%;
   padding-right: 2%;
+  transition: all 0.4s;
 }
 
 #about-me-container {
