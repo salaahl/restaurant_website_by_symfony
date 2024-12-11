@@ -160,6 +160,7 @@ section {
   background-size: cover;
   box-shadow: #00000010 0px 0px 0px 5px;
   overflow: hidden;
+  transition: all 0.4s;
 }
 
 #menu-title-container .title h2 {
@@ -183,6 +184,7 @@ section {
 .straight {
   height: 35px;
   width: 100%;
+  transition: all 0.8s;
 }
 
 .straight-one {
