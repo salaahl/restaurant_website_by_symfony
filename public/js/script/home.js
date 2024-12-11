@@ -23,7 +23,7 @@ window.addEventListener("load", () => {
         {
           minHeight: "7vh",
           width: "100%",
-          maxWidth: "calc(1440px - 1,5rem)",
+          maxWidth: 1464, // = 1440px + 1.5rem
           borderRadius: 25,
         });
 
