@@ -31,39 +31,12 @@ window.addEventListener("load", () => {
           fontSize: "x-large"
         });
     }
-
-    gsap.matchMedia().add("(max-width: 767px)", () => {
-      [
-        "#about-me-container",
-        "#menu-container",
-        "#reservation-container",
-      ].forEach((element) => {
-        gsap.fromTo(
-          element,
-          {
-            y: 250,
-            opacity: 0,
-            duration: 0.4,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.4,
-            scrollTrigger: {
-              trigger: element,
-              start: "0 75%",
-              end: "+=250 75%",
-            },
-          }
-        );
-      });
-    });
     
     gsap.matchMedia().add("(min-width: 768px)", () => {
       ScrollTrigger.create({
         trigger: "html",
-        start: "0 20vh",
-        end: "0 20vh",
+        start: "0 30vh",
+        end: "0 30vh",
         onEnter: () => reduceNavbar(),
         onEnterBack: () => resetNavbar(),
       });
