@@ -22,7 +22,9 @@ window.addEventListener("load", () => {
         ".navbar",
         {
           minHeight: "7vh",
-          width: "calc(100% - 1.5rem)"
+          width: "100%",
+          maxWidth: 1440,
+          borderRadius: 25,
         });
 
       gsap.to(
