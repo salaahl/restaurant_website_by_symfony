@@ -23,7 +23,7 @@ window.addEventListener("load", () => {
         {
           minHeight: "7vh",
           width: "100%",
-          maxWidth: window.innerWidth < 1440 ? "calc(100% - 1.5rem)" : 1440, // 1.5rem = padding de l'écran
+          maxWidth: window.innerWidth < 1440 ? "98%" : 1440, // 1.5rem = padding de l'écran
           borderRadius: 25,
         });
 
