@@ -1,7 +1,10 @@
 window.addEventListener("load", () => {
   gsap.matchMedia().add("(min-width: 768px)", () => {
-    gsap.to(".navbar", {
-      color: "black",
+    gsap.fromTo(".navbar", 
+    {
+      backgroundColor: "transparent",
+    },
+    {
       backgroundColor: "white",
       scrollTrigger: {
         trigger: "html",
