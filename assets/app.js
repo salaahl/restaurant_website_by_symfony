@@ -5,6 +5,10 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 
+import bootstrap from "bootstrap";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
 // Enregistrement des plugins GSAP et configuration globale
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({
