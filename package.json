@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "encore dev",
-    "dev-server": "encore dev-server",
+    "dev": "npx encore dev",
+    "dev-server": "npx encore dev-server",
     "build": "encore production",
     "heroku-postbuild": "npm install && npm run build"
   },
