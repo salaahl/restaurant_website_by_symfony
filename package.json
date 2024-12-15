@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npx encore dev",
     "dev-server": "npx encore dev-server",
-    "build": "encore production",
+    "build": "npx encore production",
     "heroku-postbuild": "npm install && npm run build"
   },
   "devDependencies": {
