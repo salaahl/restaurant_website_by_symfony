@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "encore dev",
     "dev-server": "encore dev-server",
-    "build": "encore production"
+    "build": "encore production",
+    "heroku-postbuild": "npm install && npm run build"
   },
   "devDependencies": {
     "@symfony/webpack-encore": "^4.0.0",
