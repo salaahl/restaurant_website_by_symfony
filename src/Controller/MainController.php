@@ -10,7 +10,7 @@ use App\Repository\DishRepository;
 use App\Repository\MenuRepository;
 use Doctrine\ORM\Mapping\OrderBy;
 
-class GlobalController extends AbstractController
+class MainController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
     public function home(
@@ -21,7 +21,7 @@ class GlobalController extends AbstractController
         $menus = $menuRepository->findBy([], ['id' => 'ASC']);
         $dishs = $dishRepository->findBy([], ['id' => 'ASC']);
 
-        return $this->render('global/home.html.twig', [
+        return $this->render('pages/home.html.twig', [
             'menus' => $menus,
             'dishs' => $dishs
         ]);
@@ -30,6 +30,6 @@ class GlobalController extends AbstractController
     #[Route('/about', name: 'app_about')]
     public function about(): Response
     {
-        return $this->render('global/about.html.twig');
+        return $this->render('pages/about.html.twig');
     }
 }

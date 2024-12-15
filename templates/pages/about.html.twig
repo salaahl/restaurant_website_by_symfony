@@ -6,7 +6,7 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	<link href="{{ asset('css/about.css') }}" rel="stylesheet" type="text/css"/>
+	{{ encore_entry_link_tags('about_css') }}
 {% endblock %}
 
 {% block main %}
@@ -26,12 +26,12 @@
 				</div>
 			</div>
 			<div class="img-container">
-				<img src="{{ asset('img/me.jpg') }}" class="d-block" alt="placeholder">
+				<img src="{{ asset('/images/me.jpg') }}" class="d-block" alt="placeholder">
 			</div>
 		</article>
 		<article>
 			<div class="img-container">
-				<img src="{{ asset('img/dish.jpg') }}" class="d-block" alt="placeholder">
+				<img src="{{ asset('/images/dish.jpg') }}" class="d-block" alt="placeholder">
 			</div>
 			<div class="text-container">
 				<h2>
@@ -58,7 +58,7 @@
 				</div>
 			</div>
 			<div class="img-container">
-				<img src="{{ asset('img/background-recette-card.jpg') }}" class="d-block" alt="placeholder">
+				<img src="{{ asset('/images/background-recette-card.jpg') }}" class="d-block" alt="placeholder">
 			</div>
 		</article>
 	</section>
@@ -66,5 +66,5 @@
 
 {% block javascripts %}
 	{{ parent() }}
-	<script src="{{ asset('js/script/about.js') }}"></script>
+	{{ encore_entry_script_tags('about_js') }}
 {% endblock %}

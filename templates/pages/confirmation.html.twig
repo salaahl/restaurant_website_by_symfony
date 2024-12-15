@@ -6,13 +6,13 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	<link href="{{ asset('css/reservation_confirmed.css') }}" rel="stylesheet" type="text/css"/>
+	{{ encore_entry_link_tags('confirmation_css') }}
 {% endblock %}
 
 {% block main %}
 	<h2>Réservation confirmée !</h2>
 	<div class="img-container">
-		<img src="{{ asset('img/kitchen.jpg') }}" alt="placeholder">
+		<img src="{{ asset('/images/kitchen.jpg') }}" alt="placeholder">
 	</div>
 	<div class="reservation-confirmed">
 		<p>Votre réservation du

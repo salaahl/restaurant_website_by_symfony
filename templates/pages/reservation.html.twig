@@ -6,12 +6,12 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	<link href="{{ asset('css/reservation.css') }}" rel="stylesheet" type="text/css"/>
+	{{ encore_entry_link_tags('reservation_css') }}
 {% endblock %}
 
 {% block main %}
 	<div id="img-container">
-		<img src="{{ asset('img/background-reservation-page.jpg') }}" class="d-block" alt="...">
+		<img src="{{ asset('/images/background-reservation-page.jpg') }}" class="d-block" alt="...">
 	</div>
 	<div id="lds-hourglass"></div>
 	<button id="return-button">
@@ -111,7 +111,5 @@
 
 {% block javascripts %}
 	{{ parent() }}
-	<script src="{{ asset('js/ajax/fetch_method.js') }}"></script>
-	<script src="{{ asset('js/ajax/reservation.js') }}"></script>
-	<script src="{{ asset('js/script/reservation.js') }}"></script>
+	{{ encore_entry_script_tags('reservation_js') }}
 {% endblock %}

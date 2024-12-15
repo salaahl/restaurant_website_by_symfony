@@ -2,12 +2,12 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	<link href="{{ asset('css/home.css') }}" rel="stylesheet" type="text/css"/>
+	{{ encore_entry_link_tags('home_css') }}
 {% endblock %}
 
 {% block main %}
 	<section id="home">
-		<img src="{{ asset('img/me.jpg') }}" class="d-block w-100" alt="...">
+		<img src="{{ asset('/images/me.jpg') }}" class="d-block w-100" alt="...">
 		<div class="title">
 			<h2>Restaurant Le Vingtième</h2>
 			<p>
@@ -27,7 +27,7 @@
 					</p>
 					<a href="./about" class="button-58">En savoir plus</a>
 				</div>
-				<img src="{{ asset('img/about-section-img.jpg') }}" alt="Ambiance du restaurant" class="image-between">
+				<img src="{{ asset('/images/about-section-img.jpg') }}" alt="Ambiance du restaurant" class="image-between">
 			</article>
 		</div>
 	</section>
@@ -83,5 +83,5 @@
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
-	<script type="module" src="{{ asset('js/script/home.js') }}"></script>
+	{{ encore_entry_script_tags('home_js') }}
 {% endblock %}

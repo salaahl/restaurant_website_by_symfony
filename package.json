@@ -1,1 +1,21 @@
-{}
+{
+  "name": "restaurant_website_by_symfony",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "encore dev",
+    "dev-server": "encore dev-server",
+    "build": "encore production"
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "^4.0.0",
+    "autoprefixer": "^10.4.20",
+    "postcss-loader": "^8.1.1",
+    "sass": "^1.83.0",
+    "sass-loader": "^14.2.1",
+    "webpack-notifier": "^1.15.0"
+  },
+  "dependencies": {
+    "core-js": "^3.39.0"
+  }
+}

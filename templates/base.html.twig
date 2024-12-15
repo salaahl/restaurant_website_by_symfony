@@ -14,27 +14,16 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;500;600;800&display=swap" rel="stylesheet">
 		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
-			<link href="{{ asset('css/normalize.css') }}" rel="stylesheet" type="text/css"/>
-			<link href="{{ asset('css/loader.css') }}" rel="stylesheet" type="text/css"/>
-			<link href="{{ asset('css/navbar.css') }}" rel="stylesheet" type="text/css"/>
-			<link href="{{ asset('css/footer.css') }}" rel="stylesheet" type="text/css"/>
+		{{ encore_entry_link_tags('global_styles') }}
 		{% endblock %}
 	</head>
 
 	<body>
 		{% block body %}
-			<div id="loader">
-				<h2>
-					<span class="loader-word loader-word-1">Le</span>
-					<span class="loader-word loader-word-2">Ving</span>
-					<span class="loader-word loader-word-3">t</span>
-					<span class="loader-word loader-word-4">ième</span>
-				</h2>
-			</div>
+			{% include('components/loader.html.twig') %}
 			<div id="global-container">
 				<nav id="navbar" class="navbar navbar-expand-lg">
-					{% include('_navbar.html.twig') %}
+					{% include('components/navbar.html.twig') %}
 				</nav>
 				{% block background %}
 					<div class="bg-doodle">
@@ -45,7 +34,7 @@
 					{% block main %}{% endblock %}
 				</main>
 				<footer class="container-fluid bg-dark row g-0">
-					{% include('_footer.html.twig') %}
+					{% include('components/footer.html.twig') %}
 				</footer>
 			</div>
 		{% endblock %}
@@ -54,14 +43,7 @@
 			<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 			<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 			<script src="https://unpkg.com/css-doodle@0.40.6/css-doodle.min.js"></script>
-			<script src="{{ asset('js/script/const.js') }}"></script>
-			<script src="{{ asset('js/script/navbar-scroll.js') }}"></script>
-			<script>
-				window.addEventListener("load", () => {
-					loader.style.display = "none";
-					globalContainer.style.opacity = "1";
-				});
-			</script>
+			{{ encore_entry_script_tags('app_js') }}		
 		{% endblock %}
 	</body>
 </html>

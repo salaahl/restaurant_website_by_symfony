@@ -168,7 +168,7 @@ class ReservationController extends AbstractController
                 $entityManager->persist($newReservation, $seats);
                 $entityManager->flush();
 
-                return $this->render('reservation/reservation_confirmed.html.twig', [
+                return $this->render('pages/confirmation.html.twig', [
                     'date' => $_POST['date'],
                     'hour' => $_POST['hour'],
                 ]);
@@ -177,6 +177,6 @@ class ReservationController extends AbstractController
             return new JsonResponse($response);
         }
 
-        return $this->render('reservation/manage.html.twig');
+        return $this->render('pages/reservation.html.twig');
     }
 }

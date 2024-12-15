@@ -1,0 +1,122 @@
+:root {
+  --color-grey-light: #f1f1f1;
+  --color-grey-medium: #888;
+  --color-grey-dark: #555;
+  --color-dark: rgb(33, 37, 41);
+  --font-size-title: xxx-large;
+  --text-stroke-size: 2px;
+  --background-color-flip-card: #677381;
+  --background-color-flip-card-one: #2f2c36;
+  --background-color-flip-card-two: #383440;
+  --background-color-flip-card-three: #413d4b;
+  --background-color-flip-card-four: #4a4656;
+  --background-color-flip-card-five: #544e60;
+  --background-color-flip-card-six: #5d576b;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  scroll-behavior: smooth;
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-grey-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-grey-medium);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-grey-dark);
+}
+
+input:read-only {
+  filter: brightness(0.5);
+}
+
+/* BUTTON STYLES */
+.button-58 {
+  align-items: center;
+  background-image: linear-gradient(
+    to right,
+    var(--background-color-flip-card-three) 10%,
+    var(--background-color-flip-card-six) 90%
+  );
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -0.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.5s;
+  user-select: none;
+}
+
+.button-58:focus,
+.button-58:hover,
+.button-58:active {
+  color: #171e29;
+  background-color: white;
+}
+
+.bg-doodle {
+  display: none;
+  z-index: -1;
+}
+
+main {
+  width: 100%;
+  max-width: calc(4% + 1440px);
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+}
+
+section {
+  background-color: unset;
+}
+
+@media screen and (min-width: 768px) {
+  css-doodle {
+    --rule: (
+      @grid: 16 / 100%; @size: 1px calc(141.4% + 1px) ; transform:
+        rotate(@pick(±45deg)) ; background: #00000040; margin: auto;
+    );
+  }
+
+  .bg-doodle {
+    display: block;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
