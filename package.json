@@ -11,15 +11,10 @@
   "devDependencies": {
     "@symfony/webpack-encore": "^4.7.0",
     "autoprefixer": "^10.4.20",
-    "postcss-loader": "^8.1.1",
-    "sass": "^1.83.0",
-    "sass-loader": "^14.2.1",
     "webpack-notifier": "^1.15.0"
   },
   "dependencies": {
-    "bootstrap": "^5.3.3",
     "core-js": "^3.39.0",
-    "gsap": "^3.12.5",
     "supports-color": "^9.4.0"
   }
 }
