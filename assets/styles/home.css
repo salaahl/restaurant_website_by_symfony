@@ -160,7 +160,7 @@ section {
   background-size: cover;
   box-shadow: #00000010 0px 0px 0px 5px;
   overflow: hidden;
-  transition: all 0.4s;
+  transition: all 0.4s ease;
 }
 
 #menu-title-container .title h2 {
@@ -475,6 +475,14 @@ section {
     font-size: x-large;
     text-align: left;
     color: white;
+  }
+
+  #about-me-container,
+  #menu-title-container .title,
+  #reservation-container {
+    opacity: 0;
+    transform: translateY(175px);
+    transition: all 0.4s;
   }
 
   #about-me-container,

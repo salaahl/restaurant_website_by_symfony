@@ -4,6 +4,7 @@ window.addEventListener("DOMContentLoaded", () => {
       gsap.to(element, {
         y: 0,
         opacity: 1,
+        duration: 0.35,
       });
     }
 
@@ -11,6 +12,7 @@ window.addEventListener("DOMContentLoaded", () => {
       gsap.to(element, {
         y: "100%",
         opacity: 0,
+        duration: 0.35,
       });
     }
 
@@ -52,7 +54,6 @@ window.addEventListener("DOMContentLoaded", () => {
         start: "0 75%",
         end: "0 75%",
         onEnter: () => show("#about-me-container"),
-        onEnterBack: () => hide("#about-me-container"),
       });
 
       ScrollTrigger.create({
@@ -60,35 +61,6 @@ window.addEventListener("DOMContentLoaded", () => {
         start: "0 50%",
         end: "0 50%",
         onEnter: () => show("#menu-title-container .title"),
-        onEnterBack: () => hide("#menu-title-container .title"),
-      });
-
-      gsap.from(".straight-lines.mirror > .straight", {
-        x: "100%",
-        opacity: 0,
-        duration: 0.4,
-        delay: 0.25,
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: "#menu-title-container .title",
-          start: "0 50%",
-          end: "+=25%",
-          scrub: true,
-        },
-      });
-
-      gsap.from(".straight-lines:first-of-type > .straight", {
-        x: "-100%",
-        opacity: 0,
-        duration: 0.4,
-        delay: 0.25,
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: "#menu-title-container .title",
-          start: "0 50%",
-          end: "+=25%",
-          scrub: true,
-        },
       });
 
       ScrollTrigger.create({
@@ -96,7 +68,6 @@ window.addEventListener("DOMContentLoaded", () => {
         start: "0 75%",
         end: "0 75%",
         onEnter: () => show("#reservation-container"),
-        onEnterBack: () => hide("#reservation-container"),
       });
     });
   }, 500);
