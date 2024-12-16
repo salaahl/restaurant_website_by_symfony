@@ -56,7 +56,7 @@
   --color-4: #df8453;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   .loader-word {
     font-size: 5vw;
     -webkit-text-stroke: 3px black;

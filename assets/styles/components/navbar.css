@@ -1,6 +1,7 @@
 /* VARIABLES */
 :root {
   --navbar-transition-duration: 0.15s;
+  --navbar-collapse-transition-duration: 0.35s;
 }
 
 #navbar {
@@ -15,17 +16,11 @@
   box-shadow: rgba(255, 255, 255, 0.0333) 0px 1px 1px 0px inset,
     rgba(50, 50, 93, 0.0833) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.1) 0px 30px 60px -30px;
-  transition: all var(--navbar-transition-duration);
+  transition: all var(--navbar-transition-duration) ease;
 }
 
 #navbar > .container-fluid {
   max-width: calc(1.5rem + 1440px);
-}
-
-.navbar-nav {
-  width: 100%;
-  justify-content: flex-end;
-  font-weight: 400;
 }
 
 .navbar-brand {
@@ -33,23 +28,14 @@
   font-weight: 500;
   text-transform: uppercase;
   color: black;
-  transition: all var(--navbar-transition-duration);
-}
-
-.nav-link {
-  border-radius: 50px;
-  transition: background 0.5s;
-  color: black;
-}
-
-.nav-link:hover {
-  color: initial;
-  background-color: initial;
+  z-index: 100;
+  transition: all var(--navbar-transition-duration) ease;
 }
 
 .navbar-toggler {
-  border: transparent;
   padding: 0;
+  border: transparent;
+  z-index: 100;
 }
 
 .navbar-toggler:focus {
@@ -59,18 +45,44 @@
 
 .navbar-toggler-icon,
 .navbar-toggler:focus .navbar-toggler-icon {
-  transition: background-image 1s;
+  transition: background-image 1s ease;
 }
 
 .navbar-collapse {
-  margin-top: 5%;
-  padding: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  height: 0;
+  width: 100%;
   background-color: var(--background-color-flip-card-six);
-  border: 5px solid var(--background-color-flip-card-five);
-  border-radius: 15px;
+  overflow: hidden;
+  transition: all var(--navbar-collapse-transition-duration) ease;
 }
 
-@media screen and (min-width: 768px) {
+.navbar-collapse.collapsing,
+.navbar-collapse.show {
+  height: 100vh !important;
+}
+
+.nav-link {
+  width: fit-content;
+  margin: 10px auto;
+  font-size: larger;
+  font-weight: bold;
+  color: black;
+  border-radius: 50px;
+  transition: background-color 0.5s ease;
+}
+
+.nav-link:hover {
+  color: initial;
+  background-color: initial;
+}
+
+@media screen and (min-width: 992px) {
   #navbar {
     padding-top: unset;
     padding-bottom: unset;
@@ -83,26 +95,27 @@
     ); /* Le reste est géré par bootstrap */
   }
 
-  .nav-link {
-    margin-left: 4px;
-    margin-right: 4px;
-    font-size: smaller;
-    font-weight: 600;
-    color: black;
-  }
-
-  .nav-link:hover {
-    color: white;
-    background-color: var(--background-color-flip-card-one);
-  }
-}
-
-@media screen and (min-width: 992px) {
   .navbar-collapse {
+    position: relative;
+    height: auto;
+    justify-content: end;
     margin-top: unset;
     padding: unset;
     background-color: unset;
     border: unset;
     border-radius: unset;
+  }
+
+  .nav-link {
+    margin: auto 4px;
+    font-size: smaller;
+    font-weight: 600;
+    color: black;
+    border-radius: 50px;
+  }
+
+  .nav-link:hover {
+    color: white;
+    background-color: var(--background-color-flip-card-one);
   }
 }

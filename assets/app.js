@@ -27,9 +27,16 @@ window.addEventListener("load", () => {
   globalContainer.style.opacity = "1";
 
   // Navbar
+  // Rétracter la navbar en cas de clic sur le menu
+  if (window.innerWidth < 991) {
+    document.getElementById("menu-button").addEventListener("click", () => {
+      document.querySelector(".navbar-collapse").classList.remove("show");
+    });
+  }
+
   // L'animation est gérée autrement sur la page d'accueil
   if (window.location.pathname !== "/") {
-    gsap.matchMedia().add("(min-width: 768px)", () => {
+    gsap.matchMedia().add("(min-width: 992px)", () => {
       gsap.fromTo(
         ".navbar",
         {

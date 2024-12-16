@@ -46,7 +46,7 @@ section {
   aspect-ratio: 1;
   object-fit: cover;
   object-position: center;
-  border-radius: 20px;
+  border-radius: 5px;
 }
 
 #home .title {
@@ -374,7 +374,7 @@ section {
   margin-right: auto;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   section {
     overflow-x: hidden;
   }
@@ -390,13 +390,15 @@ section {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 992px) {
   #navbar {
     position: sticky;
     top: 2vh;
     min-height: 7vh;
     width: 96%;
     max-width: 96%;
+    padding-left: 2%;
+    padding-right: 2%;
     background-color: black;
     border-radius: 20px;
     box-shadow: 0px 0px 0px 5px rgb(0 0 0 / 10%) !important;
@@ -411,6 +413,11 @@ section {
   .navbar-brand,
   .nav-link {
     color: white;
+  }
+
+  .nav-link:hover {
+    color: black !important;
+    background-color: white;
   }
 
   .navbar-brand {
@@ -428,11 +435,6 @@ section {
     background-color: unset;
     border: unset;
     border-radius: unset;
-  }
-
-  #navbar {
-    padding-left: 2%;
-    padding-right: 2%;
   }
 
   section {
@@ -583,13 +585,6 @@ section {
 
   .dishs::-webkit-scrollbar {
     width: 0px;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .nav-link:hover {
-    color: black !important;
-    background-color: white;
   }
 }
 

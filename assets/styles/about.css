@@ -69,7 +69,7 @@ h2 span {
   font-weight: initial;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   section {
     display: flex;
     height: 100%;
@@ -79,7 +79,7 @@ h2 span {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   html {
     scroll-snap-type: y mandatory;
   }

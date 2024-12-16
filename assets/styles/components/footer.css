@@ -34,7 +34,7 @@ footer h6 {
 
 footer h6:after {
   position: absolute;
-  content: '';
+  content: "";
   background: rgb(255, 255, 255, 0.5);
   width: 12%;
   height: 1px;
@@ -69,7 +69,7 @@ footer a:hover {
 
 .col:has(> .footer-logo):after {
   position: absolute;
-  content: '';
+  content: "";
   background: rgb(255, 255, 255, 0.5);
   width: 1%;
   height: 100%;
@@ -83,7 +83,7 @@ footer .copyright {
   text-align: center;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   footer {
     text-align: unset;
     padding: 4% 2% 2% 2%;

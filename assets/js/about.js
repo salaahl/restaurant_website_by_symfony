@@ -1,5 +1,5 @@
 window.addEventListener("load", () => {
-  gsap.matchMedia().add("(min-width: 768px)", () => {
+  gsap.matchMedia().add("(min-width: 992px)", () => {
     gsap.fromTo(
       "section > article:nth-of-type(1) > .text-container",
       {

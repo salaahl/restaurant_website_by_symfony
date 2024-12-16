@@ -38,7 +38,7 @@ window.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    gsap.matchMedia().add("(min-width: 768px)", () => {
+    gsap.matchMedia().add("(min-width: 992px)", () => {
       ScrollTrigger.create({
         trigger: "#navbar",
         start: "0 0",
