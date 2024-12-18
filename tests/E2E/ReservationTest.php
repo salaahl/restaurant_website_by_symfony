@@ -2,9 +2,7 @@
 
 namespace App\Tests;
 
-use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Panther\PantherTestCase;
-use Symfony\Component\HttpFoundation\Response;
 use Facebook\WebDriver\WebDriverBy;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Reservation;
@@ -12,10 +10,44 @@ use App\Entity\Reservation;
 // E2E ou les tests de "bout en bout" simulent des scénarios réels d'utilisation, en interagissant avec l'application comme un utilisateur final
 class ReservationTest extends PantherTestCase
 {
+    public function testNewReservation(): void
+    {
+        $client = static::createPantherClient();
+        $client->request('GET', '/reservation');
+
+        // Trouver le bouton par son sélecteur CSS et cliquer dessus
+        $client->findElement(WebDriverBy::cssSelector('#new-reservation-button'))->click();
+
+        $client->waitFor('#new-reservation');
+        $client->submitForm('Voir les disponibilités', [
+            'seats' => 2,
+            'date' => date('d/m/Y')
+        ]);
+
+        $client->waitFor('#new-reservation .hour');
+        $hour = $client->findElement(WebDriverBy::cssSelector('#new-reservation .hour:first-child'))->getText();
+        $client->findElement(WebDriverBy::cssSelector('#new-reservation .hour:first-child'))->click(); //13h
+
+        $client->submitForm('Valider ma réservation', [
+            'surname' => 'Doe',
+            'name' => 'John',
+            'phone_number' => '0123456789',
+            'mail' => 'john.doe@example.com',
+        ]);
+
+        // Vérifier que la redirection se fait vers la page de confirmation
+        $this->assertEquals('/reservation', parse_url($client->getCurrentURL())['path']);
+
+        $client->waitFor('.reservation-confirmed');
+
+        // Vérifier que la page de confirmation contient le bon contenu
+        $this->assertSelectorTextContains('p', 'Votre réservation du ' . date('Y-m-d') . ' à ' . $hour . ' a bien été prise en compte.');
+    }
+
     public function testGetReservation(): void
     {
         self::bootKernel();
-        $container = self::getContainer();  // Utilisez getContainer() au lieu de self::$container
+        $container = self::getContainer();
         $manager = $container->get(EntityManagerInterface::class);
 
         // Repositories
@@ -36,7 +68,7 @@ class ReservationTest extends PantherTestCase
         $client->findElement(WebDriverBy::cssSelector('input[name="surname"]'))->sendKeys($user->getSurname());
         $client->findElement(WebDriverBy::cssSelector('#check_reservation-form button[type="submit"]'))->click();
 
-        // Vérifier que la page contient le texte "Hello World"
+        // Vérifier que la page contient le texte attendu
         $client->waitFor('.check-reservation-response');
         $this->assertSelectorTextContains('.check-reservation-response', $user->getName() . ' ' . $user->getSurname());
     }
