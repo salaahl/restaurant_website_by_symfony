@@ -15,11 +15,10 @@ class MainControllerTest extends WebTestCase
         $client->request('GET', '/');
 
         // Vérifier que la réponse est une page valide (code 200)
-        $this->assertResponseIsSuccessful();
-        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertResponseIsSuccessful('Erreur lors du chargement de la page');
 
         // Vérifier que le contenu contient des éléments spécifiques (ex. : "menus")
-        // $this->assertSelectorTextContains('h2', 'Menu');
+        $this->assertSelectorTextContains('#menu-title-container > .title > h2', 'Menu');
     }
 
     public function testAboutPage()
@@ -29,7 +28,7 @@ class MainControllerTest extends WebTestCase
         $client->request('GET', '/about');
 
         // Vérifier que la réponse est une page valide (code 200)
-        $this->assertResponseIsSuccessful();
-        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertResponseIsSuccessful('Erreur lors du chargement de la page');
+        $this->assertSelectorTextContains('h2', 'A propos de nous');
     }
 }
