@@ -16,10 +16,12 @@
 	</div>
 	<div class="reservation-confirmed">
 		<p>Votre réservation du
-			{{ date }}
+			{{ $reservation->date }}
 			à
-			{{ hour }}
-			a bien été prise en compte.<br>
+			{{ $reservation->hour }}
+			pour
+			{{ $reservation->seats }}
+			personne(s) a bien été prise en compte.<br>
 			N'hésitez pas à nous contacter pour toute demande d'infos complémentaires.</p>
 		<p>A bientôt !<br>Le vingtième.</p>
 	</div>
