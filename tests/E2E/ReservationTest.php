@@ -42,7 +42,7 @@ class ReservationTest extends PantherTestCase
 
         // Vérifier que la page de confirmation contient le bon contenu
         $client->waitFor('.reservation-confirmed');
-        $this->assertSelectorTextContains('p', sprintf('Votre réservation du %s à %s a bien été prise en compte.', ($date->format('Y-m-d'), $hour), 'Erreur lors de l'affichage de la page de confirmation');
+        $this->assertSelectorTextContains('p', sprintf('Votre réservation du %s à %s a bien été prise en compte.', ($date->format('Y-m-d'), $hour), 'Erreur lors de l\'affichage de la page de confirmation');
     }
 
     public function testGetReservation(): void
@@ -54,7 +54,7 @@ class ReservationTest extends PantherTestCase
         // Repositories
         $reservationRepository = $manager->getRepository(Reservation::class);
         $user = $reservationRepository->find(4);
-        $this->assertNotNull($user, 'Aucune réservation n'est associée à cet ID');
+        $this->assertNotNull($user, 'Aucune réservation n\'est associée à cet ID');
 
         // Effectuer une requête GET sur la page de réservation
         $client = static::createPantherClient();
