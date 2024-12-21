@@ -9,9 +9,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Reservation;
 
 // E2E ou les tests de "bout en bout" simulent des scénarios réels d'utilisation, en interagissant avec l'application comme un utilisateur final
-class ReservationTest extends PantherTestCase
+class ReservationControllerTest extends PantherTestCase
 {
-    public function testNewReservation(): void
+    public function makeANewReservation(): void
     {
         $client = static::createPantherClient();
         $client->request('GET', '/reservation');
@@ -42,10 +42,10 @@ class ReservationTest extends PantherTestCase
 
         // Vérifier que la page de confirmation contient le bon contenu
         $client->waitFor('.reservation-confirmed');
-        $this->assertSelectorTextContains('p', sprintf('Votre réservation du %s à %s a bien été prise en compte.', ($date->format('Y-m-d'), $hour), 'Erreur lors de l\'affichage de la page de confirmation');
+        $this->assertSelectorTextContains('p', sprintf('Votre réservation du %s à %s a bien été prise en compte.', $date->format('Y-m-d'), $hour), 'Erreur lors de l\'affichage de la page de confirmation');
     }
 
-    public function testGetReservation(): void
+    public function getUserReservation(): void
     {
         self::bootKernel();
         $container = self::getContainer();
