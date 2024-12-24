@@ -98,8 +98,25 @@ h2 {
   margin: auto 0;
 }
 
-.response .hour {
-  margin: 0.5vw;
+.response .hour-container {
+  width: 100%;
+  margin-bottom: 1%;
+}
+
+.hour-container label {
+  display: block;
+  height: auto;
+  width: 100%;
+  margin-bottom: 1%;
+  padding: 2% 0.5%;
+  color: white !important;
+  background: unset !important;
+  background-color: var(--background-color-flip-card-six) !important;
+  border-radius: 5px;
+}
+
+.hour-container label:hover {
+  background-color: var(--bs-dark) !important;
 }
 
 .check-reservation-response {
@@ -207,5 +224,17 @@ h2 {
 
   #redirect-reservation {
     background: white;
+  }
+
+  .response .hour-container {
+    width: 49%;
+  }
+
+  .response .hour-container:nth-child(odd) {
+    margin-right: 2%;
+  }
+
+  .response .hour-container label {
+    padding: 4% 1%;
   }
 }

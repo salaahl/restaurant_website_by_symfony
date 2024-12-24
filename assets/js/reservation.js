@@ -165,7 +165,12 @@ window.addEventListener("DOMContentLoaded", () => {
           const buttonsHtml = data
             .map(
               (slot) =>
-                `<input type="button" class="hour button-58" value="${slot.hour}" />`
+                `<div class="hour-container">
+                  <label class="button-58">${slot.hour}h - 
+                    <span class="hour-text">Place(s) restante(s) : ${slot.seats_available}</span>
+                    <input type="button" class="hour" value="${slot.hour}" hidden />
+                  </label>
+                </div>`
             )
             .join("");
 

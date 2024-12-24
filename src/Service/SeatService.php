@@ -22,7 +22,7 @@ class SeatService
     public function checkAvailability(\DateTimeInterface $date, int $seats): array
     {
         $availableSeats = $this->seatRepository->createQueryBuilder('s')
-            ->select('s.hour')
+            ->select('s.hour, s.seats_available')
             ->where('s.date = :date')
             ->andWhere('s.seats_available >= :seats')
             ->setParameter('date', $this->reservationDateRepository->findOneBy(['date' => $date]))
