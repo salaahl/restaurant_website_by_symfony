@@ -23,6 +23,7 @@ window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("complete-reservation").classList.remove("show");
     document.getElementById("redirect-reservation").classList.remove("show");
     document.getElementById("redirect-reservation").classList.add("show");
+    document.querySelectorAll(".response").forEach((el) => (el.innerHTML = ""));
   });
 
   // Gestion des formulaires
@@ -162,7 +163,10 @@ window.addEventListener("DOMContentLoaded", () => {
         });
 
         const data = await response.json();
-        toggleLoadingState(false);
+        
+        setTimeout(() => {
+          toggleLoadingState(false);
+        }, 1800);
 
         if (data && data.length > 0) {
           // Construire les boutons pour chaque horaire disponible
@@ -171,7 +175,7 @@ window.addEventListener("DOMContentLoaded", () => {
               (slot) =>
                 `<div class="hour-container">
                   <label class="button-58">${slot.hour}h - 
-                    <span class="hour-text">Place(s) restante(s) : ${slot.seats_available}</span>
+                    <span class="hour-text">place(s) restante(s) : ${slot.seats_available}</span>
                     <input type="button" class="hour" value="${slot.hour}" hidden />
                   </label>
                 </div>`

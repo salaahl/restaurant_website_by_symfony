@@ -8,19 +8,33 @@ main {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: calc(100vh - 160px);
   width: 100%;
-  margin: 0;
-  padding-top: 20vh;
-  padding-bottom: 20vh;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  margin-top: 160px;
   overflow: hidden;
 }
 
 #return-button {
   opacity: 0;
-  transition: opacity 0.35s;
+  position: absolute;
+  top: 80px;
+  left: 0.75rem; /* padding général */
+  height: 80px;
+  padding: 0;
+  background: none;
+  border: none;
+  transform: translateX(0);
+  cursor: pointer;
+  z-index: 2;
+  transition: opacity 0.35s ease;
+}
+
+#return-button > svg {
+  height: 30px;
+}
+
+#return-button:hover {
+  transform: translateX(-15px);
 }
 
 #redirect-reservation,
@@ -28,15 +42,17 @@ main {
 #new-reservation,
 #complete-reservation {
   opacity: 0;
-  min-height: 100vh;
+  height: 0;
   width: 0;
   min-width: 0;
-  transition: opacity 0s, width 0.35s, min-width 0.35s;
+  overflow-x: hidden;
+  transform: translateX(100%);
+  transition: opacity 0s ease-in, transform 0.35s ease-in;
 }
 
 #return-button.show {
   opacity: 1;
-  transition: opacity 0.8s;
+  transition: opacity 0.8s ease, transform 0.4s ease;
 }
 
 #redirect-reservation.show,
@@ -44,35 +60,35 @@ main {
 #new-reservation.show,
 #complete-reservation.show {
   opacity: 1;
+  height: 100%;
   width: 100%;
   min-width: 100%;
-  transition: opacity 0.8s, width 0.4s, min-width 0.4s;
-}
-
-#return-button {
-  position: absolute;
-  top: 10%;
-  left: 0.75rem;
-  height: 10%;
-  padding: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 2;
-}
-
-#return-button > svg {
-  height: 30px;
+  transform: translateX(0);
+  transition: opacity 0.8s ease-out, transform 0.4s ease-out, filter 0.4s ease;
 }
 
 #redirect-reservation {
+  position: absolute;
+  top: 0;
+  align-content: center;
+  background: url("/images/background-reservation-page.jpg");
+  background-size: cover;
+  background-position: center;
   z-index: 3;
 }
 
 #check-reservation,
 #new-reservation,
 #complete-reservation {
+  padding-bottom: 80px;
   z-index: 1;
+}
+
+#check-reservation.show,
+#new-reservation.show,
+#complete-reservation.show {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 #img-container {
@@ -86,27 +102,12 @@ h2 {
   font-size: 8vw;
 }
 
-#redirect-reservation,
-#check-reservation,
-#new-reservation,
-#complete-reservation {
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-#redirect-reservation {
-  align-content: center;
-  background: url("/images/background-reservation-page.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
 #redirect-reservation button {
   display: block;
   height: 125px;
-  width: 100%;
+  width: calc(100% - 1.5rem); /* padding general x2 */
   max-width: 500px;
-  margin: 2% auto;
+  margin: 20px auto;
 }
 
 .row {
@@ -151,7 +152,7 @@ h2 {
   text-align: center;
   width: 100%;
   margin-top: 10%;
-  padding: 2%;
+  padding: 20px;
   background-color: lightgreen;
   border: 5px solid darkseagreen;
   border-radius: 5px;
@@ -201,7 +202,8 @@ h2 {
 
   h2 {
     margin: 0 0 5% 0;
-    font-size: 4vw;
+    font-size: 3.5vw;
+    font-weight: initial;
   }
 
   #lds-hourglass {
@@ -212,6 +214,7 @@ h2 {
   }
 
   #return-button {
+    position: fixed;
     top: 20vh;
     left: calc(50% - 30px);
     height: 60px;
@@ -230,10 +233,16 @@ h2 {
     width: 50%;
   }
 
+  #reservation-container {
+    width: 50%;
+    margin-top: 0;
+  }
+
   #redirect-reservation,
   #check-reservation,
   #new-reservation,
   #complete-reservation {
+    position: relative;
     padding-top: calc(10% + 100px); /* 100px = return-button height */
     padding-bottom: calc(10% + 100px);
   }
@@ -276,5 +285,21 @@ h2 {
 
   .response .hour-container label {
     padding: 4% 1%;
+  }
+}
+
+@keyframes lds-hourglass {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+
+  50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  100% {
+    transform: rotate(1800deg);
   }
 }
