@@ -8,18 +8,18 @@ main {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 160px);
+  min-height: calc(100vh - 200px);
   width: 100%;
-  margin-top: 160px;
+  margin-top: 200px;
   overflow: hidden;
 }
 
 #return-button {
   opacity: 0;
   position: absolute;
-  top: 80px;
+  top: 100px;
   left: 0.75rem; /* padding général */
-  height: 80px;
+  height: 100px;
   padding: 0;
   background: none;
   border: none;
@@ -47,7 +47,7 @@ main {
   min-width: 0;
   overflow-x: hidden;
   transform: translateX(100%);
-  transition: opacity 0s ease-in, transform 0.35s ease-in;
+  transition: opacity 0s ease-in, transform 0.35s ease-in, filter 0.4s ease-in;
 }
 
 #return-button.show {
@@ -95,11 +95,12 @@ main {
   display: none;
 }
 
-h2 {
-  font-weight: 800;
-  text-transform: uppercase;
+#reservation-container h2 {
   margin: 5% 0;
   font-size: 8vw;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-decoration: underline var(--background-color-flip-card-six);
 }
 
 #redirect-reservation button {
@@ -107,7 +108,7 @@ h2 {
   height: 125px;
   width: calc(100% - 1.5rem); /* padding general x2 */
   max-width: 500px;
-  margin: 20px auto;
+  margin: 10px auto;
 }
 
 .row {
@@ -124,7 +125,12 @@ h2 {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  width: 100%;
   margin: auto 0;
+}
+
+.response .fullname {
+  font-weight: bold;
 }
 
 .response .hour-container {
@@ -149,10 +155,10 @@ h2 {
 }
 
 .check-reservation-response {
-  text-align: center;
   width: 100%;
   margin-top: 10%;
   padding: 20px;
+  text-align: center;
   background-color: lightgreen;
   border: 5px solid darkseagreen;
   border-radius: 5px;
@@ -200,7 +206,7 @@ h2 {
     scroll-snap-align: start;
   }
 
-  h2 {
+  #reservation-container h2 {
     margin: 0 0 5% 0;
     font-size: 3.5vw;
     font-weight: initial;
@@ -243,6 +249,9 @@ h2 {
   #new-reservation,
   #complete-reservation {
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
     padding-top: calc(10% + 100px); /* 100px = return-button height */
     padding-bottom: calc(10% + 100px);
   }

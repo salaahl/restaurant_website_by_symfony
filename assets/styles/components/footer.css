@@ -64,7 +64,6 @@ footer a:hover {
 
 .footer-logo {
   height: 100%;
-  padding-right: 5%;
 }
 
 .col:has(> .footer-logo):after {

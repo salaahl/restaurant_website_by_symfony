@@ -8,7 +8,7 @@
   position: fixed;
   top: 0;
   z-index: 99;
-  min-height: 80px;
+  height: 100px;
   width: 100%;
   margin: 0 auto;
   padding-top: 5%;
@@ -84,7 +84,6 @@
 
 @media screen and (min-width: 992px) {
   #navbar {
-    min-height: 100px;
     padding-top: unset;
     padding-bottom: unset;
     border-bottom: unset;
@@ -109,7 +108,7 @@
 
   .nav-link {
     margin: auto 4px;
-    font-size: smaller;
+    font-size: 15px;
     font-weight: 600;
     color: black;
     border-radius: 50px;

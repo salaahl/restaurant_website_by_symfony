@@ -1,218 +1,160 @@
 // Gestion du DOM
-window.addEventListener("DOMContentLoaded", () => {
-  document
-    .getElementById("new-reservation-button")
-    .addEventListener("click", () => {
-      document.getElementById("return-button").classList.add("show");
-      document.getElementById("new-reservation").classList.add("show");
-      document.getElementById("redirect-reservation").classList.remove("show");
-    });
+document.addEventListener("DOMContentLoaded", () => {
+  const $ = (selector) => document.querySelector(selector);
+  const $$ = (selector) => document.querySelectorAll(selector);
 
-  document
-    .getElementById("check-reservation-button")
-    .addEventListener("click", () => {
-      document.getElementById("return-button").classList.add("show");
-      document.getElementById("check-reservation").classList.add("show");
-      document.getElementById("redirect-reservation").classList.remove("show");
-    });
+  const toggleVisibility = (elementId, show) => {
+    const el = $(elementId);
+    if (el) el.classList.toggle("show", show);
+  };
 
-  document.getElementById("return-button").addEventListener("click", () => {
-    document.getElementById("return-button").classList.remove("show");
-    document.getElementById("check-reservation").classList.remove("show");
-    document.getElementById("new-reservation").classList.remove("show");
-    document.getElementById("complete-reservation").classList.remove("show");
-    document.getElementById("redirect-reservation").classList.remove("show");
-    document.getElementById("redirect-reservation").classList.add("show");
-    document.querySelectorAll(".response").forEach((el) => (el.innerHTML = ""));
+  const resetResponses = () => {
+    $$(".response").forEach((el) => (el.innerHTML = ""));
+  };
+
+  // Gestion des boutons principaux
+  $("#new-reservation-button").addEventListener("click", () => {
+    toggleVisibility("#return-button", true);
+    toggleVisibility("#new-reservation", true);
+    toggleVisibility("#redirect-reservation", false);
+  });
+
+  $("#check-reservation-button").addEventListener("click", () => {
+    toggleVisibility("#return-button", true);
+    toggleVisibility("#check-reservation", true);
+    toggleVisibility("#redirect-reservation", false);
+  });
+
+  $("#return-button").addEventListener("click", () => {
+    toggleVisibility("#return-button", false);
+    [
+      "#check-reservation",
+      "#new-reservation",
+      "#complete-reservation",
+      "#redirect-reservation",
+    ].forEach((id) => toggleVisibility(id, false));
+    toggleVisibility("#redirect-reservation", true);
+    resetResponses();
   });
 
   // Gestion des formulaires
-  document
-    .getElementById("check_reservation-form")
-    .addEventListener("submit", (e) => {
+  const handleFormSubmit = async (formId, action, onSuccess) => {
+    const form = $(formId);
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const checkReservation = document.getElementById("check-reservation");
-      const hourglass = document.getElementById("lds-hourglass");
-      const responseElements = document.getElementsByClassName("response");
-      const email = document.getElementById("email").value;
-      const surname = document.getElementById("surname").value;
+      const hourglass = $("#lds-hourglass");
+      const responseElements = $$(".response");
 
-      // Désactive le formulaire et affiche l'indicateur de chargement
-      checkReservation.style.filter = "blur(10px)";
-      hourglass.style.display = "flex";
-      Array.from(responseElements).forEach((el) => (el.innerHTML = ""));
-
-      // Données de la requête
-      const reservationData = new URLSearchParams({
-        action: "check_reservation",
-        email,
-        surname,
-      }).toString();
-
-      // Envoi de la requête fetch
-      fetch("", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: reservationData,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          // Réinitialiser l'interface
-          checkReservation.style.filter = "blur(0px)";
-          hourglass.style.display = "none";
-
-          if (data) {
-            const renderResponse = (html) => {
-              Array.from(responseElements).forEach(
-                (el) => (el.innerHTML += html)
-              );
-            };
-
-            if (data.length === 1) {
-              var html = `
-                <div class="check-reservation-response">${data[0].name} ${
-                data[0].surname
-              },<br>
-                Une réservation à votre nom pour ${
-                  data[0].seats
-                } personne(s) est bien enregistrée 
-                pour le ${new Date(data[0].date).toLocaleDateString()} à ${
-                data[0].hour
-              }h.<br><br>
-                Cordialement,<br>L'équipe du Vingtième</div>
-              `;
-              renderResponse(html);
-            } else {
-              html = `<div class="check-reservation-response">${data[0].name} ${data[0].surname},<br>Voici pour vos réservations :<br><br>`;
-
-              data.forEach((reservation, index) => {
-                html += `le ${new Date(
-                  reservation.date.date
-                ).toLocaleDateString()} pour ${reservation.seats} personne(s) 
-                    à ${reservation.hour}h,<br>`;
-              });
-
-              html += "<br>Cordialement,<br>L'équipe du Vingtième</div>";
-              renderResponse(html);
-            }
-          } else {
-            let html = `<div class="check-reservation-response">Aucune réservation à ce nom.</div>`;
-            renderResponse(html);
-          }
-        })
-        .catch((error) => {
-          alert(
-            "Impossible de récupérer la liste de vos réservations. Veuillez prendre contact avec le restaurant."
-          );
-          console.error(error);
-          // Réinitialisation de l'interface en cas d'erreur
-          checkReservation.style.filter = "blur(0px)";
-          hourglass.style.display = "none";
-        });
-    });
-
-  document
-    .getElementById("new_reservation-form")
-    .addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const $ = (id) => document.getElementById(id);
-      const newReservation = $("new-reservation");
-      const hourglass = $("lds-hourglass");
-      const responseElements = Array.from(
-        document.getElementsByClassName("response")
-      );
-      const seats = $("check-seats").value.trim();
-      const date = $("check-date").value.trim();
-
-      // Fonction d'affichage des réponses
-      const displayResponse = (html) => {
-        responseElements.forEach((element) => (element.innerHTML = html));
-      };
+      // Données du formulaire
+      const formData = new URLSearchParams(new FormData(form)).toString();
 
       // Mise à jour de l'état visuel
-      const toggleLoadingState = (isLoading) => {
-        newReservation.style.filter = isLoading ? "blur(10px)" : "blur(0px)";
-        hourglass.style.display = isLoading ? "flex" : "none";
-      };
-
-      // Validation des données utilisateur
-      if (!seats || !date) {
-        displayResponse(
-          '<div class="error">Veuillez remplir tous les champs.</div>'
-        );
-        return;
-      }
-
-      toggleLoadingState(true);
+      form.style.filter = "blur(10px)";
+      hourglass.style.display = "flex";
+      resetResponses();
 
       try {
-        const reservationData = new URLSearchParams({
-          action: "new_reservation",
-          seats,
-          date,
-        });
-
         const response = await fetch("", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: reservationData,
+          body: `action=${action}&${formData}`,
         });
-
         const data = await response.json();
-        
+
         setTimeout(() => {
-          toggleLoadingState(false);
-        }, 1800);
-
-        if (data && data.length > 0) {
-          // Construire les boutons pour chaque horaire disponible
-          const buttonsHtml = data
-            .map(
-              (slot) =>
-                `<div class="hour-container">
-                  <label class="button-58">${slot.hour}h - 
-                    <span class="hour-text">place(s) restante(s) : ${slot.seats_available}</span>
-                    <input type="button" class="hour" value="${slot.hour}" hidden />
-                  </label>
-                </div>`
-            )
-            .join("");
-
-          displayResponse(buttonsHtml);
-
-          // Ajout d'événements aux boutons générés
-          document.querySelectorAll(".hour").forEach((button) => {
-            button.addEventListener("click", () => handleHourClick(button));
-          });
-        } else {
-          displayResponse(
-            '<div class="no-availability">Aucune disponibilité sur cette date. Veuillez réessayer avec une autre date.</div>'
-          );
-        }
+          form.style.filter = "blur(0px)";
+          hourglass.style.display = "none";
+          onSuccess(data, responseElements);
+        }, 1000);
       } catch (error) {
-        console.error("Erreur lors de la requête : ", error);
-        alert(
-          "Impossible de faire une nouvelle réservation pour le moment. Veuillez contacter le restaurant."
-        );
-        toggleLoadingState(false);
+        console.error("Erreur : ", error);
+        alert("Une erreur est survenue. Veuillez réessayer.");
+        form.style.filter = "blur(0px)";
+        hourglass.style.display = "none";
       }
     });
-
-  // Fonction pour gérer le clic sur un horaire
-  const handleHourClick = (button) => {
-    const seats = document.getElementById("check-seats").value.trim();
-    const date = document.getElementById("check-date").value.trim();
-    const hour = button.value.trim();
-
-    // Mise à jour de l'interface pour la réservation complète
-    document.getElementById("new-reservation").classList.remove("show");
-    document.getElementById("complete-reservation").classList.add("show");
-    document.getElementById("form-seats").value = seats;
-    document.getElementById("form-date").value = date;
-    document.getElementById("form-hour").value = hour;
   };
+
+  // Gestion de la vérification des réservations
+  handleFormSubmit(
+    "#check_reservation-form",
+    "check_reservation",
+    (data, responseElements) => {
+      if (data && data.length > 0) {
+        const renderHtml = (html) =>
+          responseElements.forEach((el) => (el.innerHTML += html));
+
+        if (data.length === 1) {
+          renderHtml(`
+          <div class="check-reservation-response">
+          <span class="fullname">${data[0].name} ${
+            data[0].surname
+          }</span>,<br><br>
+          Une réservation pour ${data[0].seats} personne(s) est enregistrée le 
+          ${new Date(data[0].date.date).toLocaleDateString()} à ${
+            data[0].hour
+          }h.<br>
+          Cordialement,<br>l'équipe du Vingtième</div>
+        `);
+        } else {
+          let html = `<div class="check-reservation-response">
+          <span class="fullname">${data[0].name} ${data[0].surname}</span>,<br><br>Voici vos réservations :<br>`;
+          data.forEach((res) => {
+            html += `le ${new Date(res.date.date).toLocaleDateString()} pour ${
+              res.seats
+            } personne(s) à ${res.hour}h,<br>`;
+          });
+          renderHtml(`${html}<br>Cordialement,<br>l'équipe du Vingtième</div>`);
+        }
+      } else {
+        responseElements.forEach(
+          (el) => (el.innerHTML = "Aucune réservation trouvée.")
+        );
+      }
+    }
+  );
+
+  // Gestion de la création de nouvelles réservations
+  handleFormSubmit(
+    "#new_reservation-form",
+    "new_reservation",
+    (data, responseElements) => {
+      if (data && data.length > 0) {
+        const buttonsHtml = data
+          .map(
+            (slot) => `
+            <div class="hour-container">
+              <label class="button-58">${slot.hour}h - 
+                <span class="hour-text">places restantes : ${slot.seats_available}</span>
+                <input type="button" class="hour" value="${slot.hour}" hidden />
+              </label>
+            </div>`
+          )
+          .join("");
+
+        responseElements.forEach((el) => (el.innerHTML = buttonsHtml));
+
+        // Ajouter des événements aux boutons
+        $$(".hour").forEach((button) =>
+          button.addEventListener("click", () => {
+            const seats = $("#check-seats").value.trim();
+            const date = $("#check-date").value.trim();
+            const hour = button.value.trim();
+
+            // Mise à jour de l'interface
+            toggleVisibility("#new-reservation", false);
+            toggleVisibility("#complete-reservation", true);
+            $("#form-seats").value = seats;
+            $("#form-date").value = date;
+            $("#form-hour").value = hour;
+          })
+        );
+      } else {
+        responseElements.forEach(
+          (el) => (el.innerHTML = "Aucune disponibilité pour cette date.")
+        );
+      }
+    }
+  );
 });
