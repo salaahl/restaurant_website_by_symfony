@@ -40,6 +40,33 @@ window.addEventListener("DOMContentLoaded", () => {
       });
     }
 
+    gsap.matchMedia().add("(max-width: 767px)", () => {
+      [
+        "#about-me-container",
+        "#menu-container",
+        "#reservation-container",
+      ].forEach((element) => {
+        gsap.fromTo(
+          element,
+          {
+            y: 250,
+            opacity: 0,
+            duration: 0.4,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.4,
+            scrollTrigger: {
+              trigger: element,
+              start: "0 75%",
+              end: "+=250 75%",
+            },
+          }
+        );
+      });
+    });
+
     gsap.matchMedia().add("(min-width: 992px)", () => {
       ScrollTrigger.create({
         trigger: "#navbar",

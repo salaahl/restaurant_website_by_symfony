@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const formData = new URLSearchParams(new FormData(form)).toString();
 
       // Mise à jour de l'état visuel
-      form.style.filter = "blur(10px)";
+      form.parentElement.classList.add("blur");
       hourglass.style.display = "flex";
       resetResponses();
 
@@ -63,14 +63,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
 
         setTimeout(() => {
-          form.style.filter = "blur(0px)";
+          form.parentElement.classList.remove("blur");
           hourglass.style.display = "none";
           onSuccess(data, responseElements);
-        }, 1000);
+        }, 1600);
       } catch (error) {
         console.error("Erreur : ", error);
         alert("Une erreur est survenue. Veuillez réessayer.");
-        form.style.filter = "blur(0px)";
+        form.parentElement.classList.remove("blur");
         hourglass.style.display = "none";
       }
     });
