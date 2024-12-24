@@ -19,94 +19,96 @@
 			<path fill="#000000" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
 		</svg>
 	</button>
-	<div id="redirect-reservation">
-		<button id="check-reservation-button" class="button-58">Vérifier sa réservation</button>
-		<button id="new-reservation-button" class="button-58">Faire une nouvelle réservation</button>
-	</div>
-	<div id="check-reservation" class="hidden">
-		<form id="check_reservation-form" method="POST">
-			<h2>Vérifier sa réservation :</h2>
-			<div class="row">
-				<div class="col">
-					<label for="check_reservation_mail">Entrez votre email :</label>
-					<input type="email" class="form-control" id="email" name="email" required>
+	<section id="reservation-container">
+		<div id="redirect-reservation" class="show">
+			<button id="check-reservation-button" class="button-58">Vérifier sa réservation</button>
+			<button id="new-reservation-button" class="button-58">Faire une nouvelle réservation</button>
+		</div>
+		<div id="check-reservation">
+			<form id="check_reservation-form" method="POST">
+				<h2>Vérifier sa réservation :</h2>
+				<div class="row">
+					<div class="col">
+						<label for="check_reservation_mail">Entrez votre email :</label>
+						<input type="email" class="form-control" id="email" name="email" required>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<label for="check_reservation_surname">Entrez votre nom de famille :</label>
-					<input type="text" class="form-control" id="surname" name="surname" required>
+				<div class="row">
+					<div class="col">
+						<label for="check_reservation_surname">Entrez votre nom de famille :</label>
+						<input type="text" class="form-control" id="surname" name="surname" required>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<button class="btn button-58" type="submit">Rechercher</button>
-			</div>
-		</form>
-		<div class="response"></div>
-	</div>
-	<div id="new-reservation" class="hidden">
-		<form id="new_reservation-form" method="POST">
-			<h2>Faire une réservation :</h2>
-			<div class="row">
-				<div class="col">
-					<select id="check-seats" class="form-select" name="seats" required>
-						<option selected disabled value="">Nombre de personnes</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-					</select>
+				<div class="row">
+					<button class="btn button-58" type="submit">Rechercher</button>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<label for="check_date">Date</label>
-					<input type="date" id="check-date" class="form-control" name="date" min="{{ "now"|date("Y-m-d") }}">
+			</form>
+			<div class="response"></div>
+		</div>
+		<div id="new-reservation">
+			<form id="new_reservation-form" method="POST">
+				<h2>Faire une réservation :</h2>
+				<div class="row">
+					<div class="col">
+						<select id="check-seats" class="form-select" name="seats" required>
+							<option selected disabled value="">Nombre de personnes</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<button class="btn button-58" type="submit">Voir les disponibilités</button>
-			</div>
-		</form>
-		<div class="response"></div>
-	</div>
-	<div id="complete-reservation" class="hidden">
-		<form id="complete-reservation-form" method="POST">
-			<input type="hidden" name="action" value="complete_reservation"/>
-			<h2>Vous y êtes presque !</h2>
-			<p>Entrez vos infos :</p>
-			<div class="row">
-				<div class="col-4">
-					<input id="form-seats" type="text" class="form-control" name="seats" readonly="true">
+				<div class="row">
+					<div class="col">
+						<label for="check_date">Date</label>
+						<input type="date" id="check-date" class="form-control" name="date" min="{{ "now"|date("Y-m-d") }}">
+					</div>
 				</div>
-				<div class="col-4">
-					<input id="form-date" type="text" class="form-control" name="date" readonly="true">
+				<div class="row">
+					<button class="btn button-58" type="submit">Voir les disponibilités</button>
 				</div>
-				<div class="col-4">
-					<input id="form-hour" type="text" class="form-control" name="hour" readonly="true">
+			</form>
+			<div class="response"></div>
+		</div>
+		<div id="complete-reservation">
+			<form id="complete-reservation-form" method="POST">
+				<input type="hidden" name="action" value="complete_reservation"/>
+				<h2>Vous y êtes presque !</h2>
+				<p>Entrez vos infos :</p>
+				<div class="row">
+					<div class="col-4">
+						<input id="form-seats" type="text" class="form-control" name="seats" readonly="true">
+					</div>
+					<div class="col-4">
+						<input id="form-date" type="text" class="form-control" name="date" readonly="true">
+					</div>
+					<div class="col-4">
+						<input id="form-hour" type="text" class="form-control" name="hour" readonly="true">
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-6">
-					<input type="text" class="form-control" name="surname" placeholder="Nom" required>
+				<div class="row">
+					<div class="col-6">
+						<input type="text" class="form-control" name="surname" placeholder="Nom" required>
+					</div>
+					<div class="col-6">
+						<input type="text" class="form-control" name="name" placeholder="Prénom" required>
+					</div>
 				</div>
-				<div class="col-6">
-					<input type="text" class="form-control" name="name" placeholder="Prénom" required>
+				<div class="row">
+					<div class="col-6">
+						<input type="tel" class="form-control" name="phone_number" placeholder="Numéro de téléphone" required>
+					</div>
+					<div class="col-6">
+						<input type="email" class="form-control" name="email" placeholder="Email" required>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-6">
-					<input type="tel" class="form-control" name="phone_number" placeholder="Numéro de téléphone" required>
+				<div class="row">
+					<button class="btn button-58" type="submit">Valider ma réservation</button>
 				</div>
-				<div class="col-6">
-					<input type="email" class="form-control" name="email" placeholder="Email" required>
-				</div>
-			</div>
-			<div class="row">
-				<button class="btn button-58" type="submit">Valider ma réservation</button>
-			</div>
-		</form>
-	</div>
+			</form>
+		</div>
+	</section>
 {% endblock %}
 
 {% block javascripts %}

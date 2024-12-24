@@ -3,22 +3,26 @@ window.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("new-reservation-button")
     .addEventListener("click", () => {
-      document.getElementById("new-reservation").classList.remove("hidden");
-      document.getElementById("redirect-reservation").classList.add("hidden");
+      document.getElementById("return-button").classList.add("show");
+      document.getElementById("new-reservation").classList.add("show");
+      document.getElementById("redirect-reservation").classList.remove("show");
     });
 
   document
     .getElementById("check-reservation-button")
     .addEventListener("click", () => {
-      document.getElementById("check-reservation").classList.remove("hidden");
-      document.getElementById("redirect-reservation").classList.add("hidden");
+      document.getElementById("return-button").classList.add("show");
+      document.getElementById("check-reservation").classList.add("show");
+      document.getElementById("redirect-reservation").classList.remove("show");
     });
 
   document.getElementById("return-button").addEventListener("click", () => {
-    document.getElementById("check-reservation").classList.add("hidden");
-    document.getElementById("new-reservation").classList.add("hidden");
-    document.getElementById("complete-reservation").classList.add("hidden");
-    document.getElementById("redirect-reservation").classList.remove("hidden");
+    document.getElementById("return-button").classList.remove("show");
+    document.getElementById("check-reservation").classList.remove("show");
+    document.getElementById("new-reservation").classList.remove("show");
+    document.getElementById("complete-reservation").classList.remove("show");
+    document.getElementById("redirect-reservation").classList.remove("show");
+    document.getElementById("redirect-reservation").classList.add("show");
   });
 
   // Gestion des formulaires
@@ -201,8 +205,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const hour = button.value.trim();
 
     // Mise à jour de l'interface pour la réservation complète
-    document.getElementById("new-reservation").style.display = "none";
-    document.getElementById("complete-reservation").classList.remove("hidden");
+    document.getElementById("new-reservation").classList.remove("show");
+    document.getElementById("complete-reservation").classList.add("show");
     document.getElementById("form-seats").value = seats;
     document.getElementById("form-date").value = date;
     document.getElementById("form-hour").value = hour;

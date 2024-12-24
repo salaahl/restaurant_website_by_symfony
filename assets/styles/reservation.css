@@ -3,6 +3,52 @@ main {
   display: flex;
 }
 
+#reservation-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding-top: 20vh;
+  padding-bottom: 20vh;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  overflow: hidden;
+}
+
+#return-button {
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+#redirect-reservation,
+#check-reservation,
+#new-reservation,
+#complete-reservation {
+  opacity: 0;
+  min-height: 100vh;
+  width: 0;
+  min-width: 0;
+  transition: opacity 0s, width 0.35s, min-width 0.35s;
+}
+
+#return-button.show {
+  opacity: 1;
+  transition: opacity 0.8s;
+}
+
+#redirect-reservation.show,
+#check-reservation.show,
+#new-reservation.show,
+#complete-reservation.show {
+  opacity: 1;
+  width: 100%;
+  min-width: 100%;
+  transition: opacity 0.8s, width 0.4s, min-width 0.4s;
+}
+
 #return-button {
   position: absolute;
   top: 10%;
@@ -29,17 +75,6 @@ main {
   z-index: 1;
 }
 
-#redirect-reservation.hidden,
-#check-reservation.hidden,
-#new-reservation.hidden,
-#complete-reservation.hidden {
-  display: none; /* ne pas mettre  le display none cause des soucis de mise en page */
-  width: 0;
-  padding-left: 0;
-  padding-right: 0;
-  opacity: 0;
-}
-
 #img-container {
   display: none;
 }
@@ -56,17 +91,10 @@ h2 {
 #new-reservation,
 #complete-reservation {
   min-height: 100vh;
-  padding-top: 20vh;
-  padding-bottom: 20vh;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  opacity: 1;
   overflow-x: hidden;
-  transition: opacity 1s, transform 0.8s, filter 1s;
 }
 
 #redirect-reservation {
-  width: 100%;
   align-content: center;
   background: url("/images/background-reservation-page.jpg");
   background-size: cover;
@@ -184,8 +212,13 @@ h2 {
   }
 
   #return-button {
-    left: calc(50% + 0.75rem);
-    height: 100px;
+    top: 20vh;
+    left: calc(50% - 30px);
+    height: 60px;
+    width: 60px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 999px;
   }
 
   #return-button > svg {
@@ -193,10 +226,7 @@ h2 {
   }
 
   #img-container,
-  #redirect-reservation,
-  #check-reservation,
-  #new-reservation,
-  #complete-reservation {
+  #reservation-container {
     width: 50%;
   }
 
@@ -206,6 +236,16 @@ h2 {
   #complete-reservation {
     padding-top: calc(10% + 100px); /* 100px = return-button height */
     padding-bottom: calc(10% + 100px);
+  }
+
+  #redirect-reservation.show,
+  #check-reservation.show,
+  #new-reservation.show,
+  #complete-reservation.show {
+    width: 85%;
+    min-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   #img-container {
