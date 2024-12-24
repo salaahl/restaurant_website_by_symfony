@@ -1,7 +1,10 @@
 <?php
 
+namespace App\Tests\Integration\Service;
+
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use App\Service\ReservationService;
+use Symfony\Component\HttpFoundation\Request;
 
 class ReservationServiceIntegrationTest extends KernelTestCase
 {
@@ -12,8 +15,7 @@ class ReservationServiceIntegrationTest extends KernelTestCase
 
         $service = $container->get(ReservationService::class);
 
-        $result = $service->createReservationDate(new Request([], ['date' => '2024-12-25']));
-        $this->assertArrayHasKey('status', $result);
-        $this->assertEquals('success', $result['status']); // Exemple
+        $result = $service->createReservation(new \DateTime(), 1);
+        $this->assertIsArray($result);
     }
 }

@@ -16,11 +16,11 @@
 	</div>
 	<div class="reservation-confirmed">
 		<p>Votre réservation du
-			{{ $reservation->date }}
+			{{ reservation.date.getDate()|date('d/m/Y') }}
 			à
-			{{ $reservation->hour }}
+			{{ reservation.hour }}h
 			pour
-			{{ $reservation->seats }}
+			{{ reservation.seats }}
 			personne(s) a bien été prise en compte.<br>
 			N'hésitez pas à nous contacter pour toute demande d'infos complémentaires.</p>
 		<p>A bientôt !<br>Le vingtième.</p>

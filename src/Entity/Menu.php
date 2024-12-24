@@ -6,8 +6,10 @@ use App\Repository\MenuRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MenuRepository::class)]
+#[ORM\Table(name: 'menu', uniqueConstraints: [new ORM\UniqueConstraint(columns: ['name'])])]
 class Menu
 {
     #[ORM\Id]
@@ -15,10 +17,12 @@ class Menu
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
+    #[ORM\Column(nullable: false, type: 'string', length: 255, unique: true)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'menu', targetEntity: Dish::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'menu', targetEntity: Dish::class, orphanRemoval: true, cascade: ['persist', 'remove'])]
     private Collection $dishes;
 
     public function __construct()
@@ -36,7 +40,7 @@ class Menu
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name): static
     {
         $this->name = $name;
 
@@ -51,7 +55,7 @@ class Menu
         return $this->dishes;
     }
 
-    public function addDish(Dish $dish): self
+    public function addDish(Dish $dish): static
     {
         if (!$this->dishes->contains($dish)) {
             $this->dishes->add($dish);
@@ -61,7 +65,7 @@ class Menu
         return $this;
     }
 
-    public function removeDish(Dish $dish): self
+    public function removeDish(Dish $dish): static
     {
         if ($this->dishes->removeElement($dish)) {
             // set the owning side to null (unless already changed)

@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Tests\Controller;
+namespace App\Tests\Functional\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\HttpFoundation\Response;
 
 // Les tests fonctionnels vérifient la sortie d'une action de contrôleur, comme une page Web
 class MainControllerTest extends WebTestCase
@@ -23,12 +22,10 @@ class MainControllerTest extends WebTestCase
 
     public function testAboutPage()
     {
-        // Effectuer une requête GET sur la page "About"
         $client = static::createClient();
         $client->request('GET', '/about');
 
-        // Vérifier que la réponse est une page valide (code 200)
         $this->assertResponseIsSuccessful('Erreur lors du chargement de la page');
-        $this->assertSelectorTextContains('h2', 'A propos de nous');
+        $this->assertSelectorTextContains('.text-container h2', 'A propos de nous');
     }
 }

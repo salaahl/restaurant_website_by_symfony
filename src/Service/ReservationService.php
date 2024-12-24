@@ -3,93 +3,106 @@
 namespace App\Service;
 
 use App\Entity\Reservation;
+use App\Entity\ReservationDate;
 use App\Repository\ReservationRepository;
-use App\Repository\ReservationDateRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 
 class ReservationService
 {
     private $doctrine;
+    private $reservationRepository;
     private $reservationDateService;
     private $seatService;
 
     public function __construct(
         ManagerRegistry $doctrine,
+        ReservationRepository $reservationRepository,
         ReservationDateService $reservationDateService,
         SeatService $seatService
     ) {
         $this->doctrine = $doctrine;
+        $this->reservationRepository = $reservationRepository;
         $this->reservationDateService = $reservationDateService;
         $this->seatService = $seatService;
     }
 
-    public function createReservationDate(Request $request): array
+    public function createReservation(\DateTime $date, int $seats): array
     {
-        $date = strtotime($request->request->get('date'));
-        $seats = $request->request->get('seats');
+        // Normaliser la date pour ignorer l'heure (seulement la date est prise en compte)
+        $normalizedDate = $date->setTime(0, 0, 0);
 
-        $reservationDate = $this->reservationDateService->createReservationDate($date);
-        $availableSeats = $this->seatService->checkAvailability($seats, $date);
+        // Recherche ou création de la date de réservation
+        $reservationDateRepository = $this->doctrine->getRepository(ReservationDate::class);
+        $reservationDate = $reservationDateRepository->findOneBy(['date' => $normalizedDate]);
+
+        if (!$reservationDate) {
+            $reservationDate = $this->reservationDateService->createReservationDate($normalizedDate);
+        }
+
+        // Vérification de la disponibilité des sièges
+        $availableSeats = $this->seatService->checkAvailability($normalizedDate, $seats);
 
         return $availableSeats;
     }
 
-    public function checkReservationDetails(Request $request): array
+
+    public function checkReservationDetails(string $email, string $surname): array
     {
-        $mail = $request->request->get('mail');
-        $surname = $request->request->get('surname');
+        $reservations = $this->reservationRepository->createQueryBuilder('s')
+            ->select('s.surname', 's.name', 'r.date', 's.hour', 's.seats')
+            ->leftJoin('s.date', 'r')
+            ->where('s.email = :email')
+            ->andWhere('s.surname >= :surname')
+            ->setParameter('email', $email)
+            ->setParameter('surname', $surname)
+            ->orderBy('r.date', 'ASC')
+            ->getQuery()
+            ->getResult();
 
-        $repository = $this->doctrine->getRepository(Reservation::class);
-        $reservations = $repository->findBy(['mail' => $mail, 'surname' => $surname]);
-
-        $response = [];
-        foreach ($reservations as $reservation) {
-            $response[] = [
-                'surname' => $reservation->getSurname(),
-                'name' => $reservation->getName(),
-                'date' => date('d/m/Y', $reservation->getReservationDate()->getDate()),
-                'hour' => $reservation->getHour()->format('H:i'),
-                'seat_reserved' => $reservation->getSeatReserved()
-            ];
-        }
-
-        return $response;
+        return $reservations;
     }
 
-    public function completeReservation(Request $request): array
+    public function completeReservation(Request $request): int
     {
-        $date = strtotime($request->request->get('date'));
-        $hour = \DateTimeImmutable::createFromFormat('H:i:s', $request->request->get('hour'));
-        $seatsReserved = $request->request->get('seats');
+        // Récupération et validation des données
+        $date = new \DateTime($request->request->get('date'));
+        $hour = floatval($request->request->get('hour'));
+        $seats = $request->request->get('seats');
         $name = $request->request->get('name');
         $surname = $request->request->get('surname');
-        $phoneNumber = $request->request->get('phone_number');
-        $email = filter_var($request->request->get('mail'), FILTER_VALIDATE_EMAIL);
+        $phoneNumber = $request->request->get('phone_number') ?? null;
+        $email = filter_var($request->request->get('email'), FILTER_VALIDATE_EMAIL);
 
         if (!$email) {
             throw new \Exception('Email invalide');
         }
 
-        $this->seatService->updateSeatAvailability($seatsReserved, $date, $hour);
+        if (empty($name) || empty($surname)) {
+            throw new \Exception('Le nom et le prénom sont obligatoires');
+        }
 
-        $reservation = new Reservation();
+        $this->seatService->updateSeatAvailability($seats, $date, $hour);
+
         $reservationDate = $this->doctrine->getRepository(ReservationDate::class)->findOneBy(['date' => $date]);
 
-        $reservation->setReservationDate($reservationDate);
+        if (!$reservationDate) {
+            throw new \Exception('La date de réservation n\'est pas valide');
+        }
+
+        $reservation = new Reservation();
+        $reservation->setDate($reservationDate);
         $reservation->setHour($hour);
-        $reservation->setSeatReserved($seatsReserved);
+        $reservation->setSeats($seats);
         $reservation->setName($name);
         $reservation->setSurname($surname);
         $reservation->setPhoneNumber($phoneNumber);
-        $reservation->setMail($email);
+        $reservation->setEmail($email);
 
         $entityManager = $this->doctrine->getManager();
         $entityManager->persist($reservation);
         $entityManager->flush();
 
-        return $this->redirectToRoute('app_confirmation', [
-            'reservation' => $reservation
-        ]);
+        return $reservation->getId();
     }
 }

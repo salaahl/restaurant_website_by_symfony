@@ -15,29 +15,32 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         // ---- Créer une date de réservation ----
+        $date = new \DateTime('now');
+        $normalisedDate = $date->setTime(0, 0, 0);
+
         $reservationDate = new ReservationDate();
-        $reservationDate->setDate(strtotime('2023-06-01'));
+        $reservationDate->setDate($normalisedDate);
         $manager->persist($reservationDate);
 
-        // ---- Créer 20 sièges par heure ----
+        // ---- Créer XX sièges par heure ----
         $hours = [
-            "13:00",
-            "14:00",
-            "15:00",
-            "16:00",
-            "17:00",
-            "18:00",
-            "19:00",
-            "20:00",
-            "21:00",
-            "22:00"
+            13.00,
+            14.00,
+            15.00,
+            16.00,
+            17.00,
+            18.00,
+            19.00,
+            20.00,
+            21.00,
+            22.00
         ];
 
         foreach ($hours as $hour) {
             $seatsPerHour = new Seat();
-            $seatsPerHour->setHour(\DateTimeImmutable::createFromFormat('H:i', $hour));
-            $seatsPerHour->setSeat(20);
-            $seatsPerHour->setReservationDate($reservationDate);
+            $seatsPerHour->setHour($hour);
+            $seatsPerHour->setSeatsAvailable(20);
+            $seatsPerHour->setDate($reservationDate);
             $manager->persist($seatsPerHour);
         }
 
@@ -45,13 +48,13 @@ class AppFixtures extends Fixture
 
         // ---- Créer une réservation ----
         $reservation = new Reservation();
-        $reservation->setMail('sokhona.salaha@gmail.com');
+        $reservation->setEmail('sokhona.salaha@gmail.com');
         $reservation->setName('Salaha');
         $reservation->setSurname('Sokhona');
         $reservation->setPhoneNumber('123456789');
-        $reservation->setSeatReserved(2);
-        $reservation->setHour(new \DateTime('2023-06-01 10:00:00'));
-        $reservation->setReservationDate($reservationDate);
+        $reservation->setSeats(2);
+        $reservation->setHour(13.00);
+        $reservation->setDate($reservationDate);
         $manager->persist($reservation);
 
         // ---- Créer un menu avec un plat ----

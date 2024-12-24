@@ -13,7 +13,7 @@ class SeatType extends AbstractType
     {
         $builder
             ->add('hour')
-            ->add('seat')
+            ->add('seats')
             ->add('date')
         ;
     }

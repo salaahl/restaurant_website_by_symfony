@@ -4,45 +4,55 @@ namespace App\Service;
 
 use App\Repository\SeatRepository;
 use App\Repository\ReservationDateRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
 class SeatService
 {
+    private $doctrine;
     private $seatRepository;
     private $reservationDateRepository;
 
-    public function __construct(SeatRepository $seatRepository, ReservationDateRepository $reservationDateRepository)
+    public function __construct(ManagerRegistry $doctrine, SeatRepository $seatRepository, ReservationDateRepository $reservationDateRepository)
     {
+        $this->doctrine = $doctrine;
         $this->seatRepository = $seatRepository;
         $this->reservationDateRepository = $reservationDateRepository;
     }
 
-    public function checkAvailability(int $seats, int $dateTimestamp): array
+    public function checkAvailability(\DateTimeInterface $date, int $seats): array
     {
-        $reservationDate = $this->reservationDateRepository->findOneBy(['date' => $dateTimestamp]);
-        if (!$reservationDate) {
-            throw new \Exception('Date non trouvée');
-        }
+        $availableSeats = $this->seatRepository->createQueryBuilder('s')
+            ->select('s.hour')
+            ->where('s.date = :date')
+            ->andWhere('s.seats_available >= :seats')
+            ->setParameter('date', $this->reservationDateRepository->findOneBy(['date' => $date]))
+            ->setParameter('seats', $seats)
+            ->orderBy('s.hour', 'ASC')
+            ->getQuery()
+            ->getResult();
 
-        $availableSeats = $this->seatRepository->findAvailableSeats($reservationDate, $seats);
+        if (empty($availableSeats)) {
+            throw new \Exception('Plus assez de places pour cette date');
+        }
 
         return $availableSeats;
     }
 
-    public function updateSeatAvailability(int $seatsReserved, int $dateTimestamp, \DateTimeImmutable $hour): void
+    public function updateSeatAvailability(int $seats, \DateTime $date, float $hour): void
     {
-        $reservationDate = $this->reservationDateRepository->findOneBy(['date' => $dateTimestamp]);
         $seat = $this->seatRepository->findOneBy([
-            'reservationDate' => $reservationDate,
+            'date' => $this->reservationDateRepository->findOneBy(['date' => $date]),
             'hour' => $hour
         ]);
 
-        if (!$seat || $seat->getSeat() < $seatsReserved) {
+        if (!$seat || $seat->getSeatsAvailable() < $seats) {
             throw new \Exception('Pas assez de places disponibles');
         }
 
-        $seat->setSeat($seat->getSeat() - $seatsReserved);
+        $seat->setSeatsAvailable($seat->getSeatsAvailable() - $seats);
 
-        $entityManager = $this->seatRepository->getEntityManager();
+        $entityManager = $this->doctrine->getManager();
+        $entityManager->persist($seat);
         $entityManager->flush();
     }
 }

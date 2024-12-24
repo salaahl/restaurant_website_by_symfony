@@ -29,7 +29,7 @@
 			<div class="row">
 				<div class="col">
 					<label for="check_reservation_mail">Entrez votre email :</label>
-					<input type="email" class="form-control" id="mail" name="mail" required>
+					<input type="email" class="form-control" id="email" name="email" required>
 				</div>
 			</div>
 			<div class="row">
@@ -72,7 +72,7 @@
 	</div>
 	<div id="complete-reservation" class="hidden">
 		<form id="complete-reservation-form" method="POST">
-			<input type="hidden" name="complete_reservation" value="1"/>
+			<input type="hidden" name="action" value="complete_reservation"/>
 			<h2>Vous y êtes presque !</h2>
 			<p>Entrez vos infos :</p>
 			<div class="row">
@@ -99,7 +99,7 @@
 					<input type="tel" class="form-control" name="phone_number" placeholder="Numéro de téléphone" required>
 				</div>
 				<div class="col-6">
-					<input type="email" class="form-control" name="mail" placeholder="Mail" required>
+					<input type="email" class="form-control" name="email" placeholder="Email" required>
 				</div>
 			</div>
 			<div class="row">

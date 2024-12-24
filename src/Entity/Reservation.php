@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ReservationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
@@ -14,52 +15,61 @@ class Reservation
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $mail = null;
+    #[Assert\Email]
+    #[Assert\NotBlank]
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    private ?string $email = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
-    #[ORM\JoinColumn(nullable: false, name: "reservation_date_id", referencedColumnName: "id")]
+    #[ORM\JoinColumn(nullable: false)]
     private ?ReservationDate $date = null;
 
-    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private ?string $surname = null;
 
-    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Regex(
+        pattern: '/^\+?[0-9\s\-]{7,15}$/',
+        message: 'Le numéro de téléphone doit être valide.'
+    )]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $phone_number = null;
 
-    #[ORM\Column]
-    private ?int $seat_reserved = null;
+    #[Assert\NotBlank]
+    #[Assert\Positive(message: 'Le nombre de places doit être supérieur à zéro.')]
+    #[ORM\Column(type: 'integer', nullable: false)]
+    private ?int $seats = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $hour = null;
-
+    #[ORM\Column(type: 'float', nullable: false)]
+    private ?int $hour = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getMail(): ?string
+    public function getEmail(): ?string
     {
-        return $this->mail;
+        return $this->email;
     }
 
-    public function setMail(string $mail): self
+    public function setEmail(string $email): self
     {
-        $this->mail = $mail;
+        $this->email = $email;
 
         return $this;
     }
 
-    public function getReservationDate(): ?ReservationDate
+    public function getDate(): ?ReservationDate
     {
         return $this->date;
     }
 
-    public function setReservationDate(?ReservationDate $date): self
+    public function setDate(?ReservationDate $date): self
     {
         $this->date = $date;
 
@@ -102,24 +112,24 @@ class Reservation
         return $this;
     }
 
-    public function getSeatReserved(): ?int
+    public function getSeats(): ?int
     {
-        return $this->seat_reserved;
+        return $this->seats;
     }
 
-    public function setSeatReserved(int $seat_reserved): self
+    public function setSeats(int $seats): self
     {
-        $this->seat_reserved = $seat_reserved;
+        $this->seats = $seats;
 
         return $this;
     }
 
-    public function getHour(): ?\DateTimeInterface
+    public function getHour(): ?float
     {
         return $this->hour;
     }
 
-    public function setHour(\DateTimeInterface $hour): self
+    public function setHour(float $hour): self
     {
         $this->hour = $hour;
 

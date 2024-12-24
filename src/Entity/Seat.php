@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SeatRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SeatRepository::class)]
 class Seat
@@ -14,54 +14,56 @@ class Seat
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $hour = null;
+    #[Assert\NotBlank]
+    #[ORM\Column(type: 'float', nullable: false)]
+    private ?float $hour = null;
 
-    #[ORM\Column]
-    private ?int $seat = null;
+    #[Assert\NotBlank]
+    #[Assert\Range(min: 1, max: 10, notInRangeMessage: "Le numéro de siège doit être compris entre {{ min }} et {{ max }}.")]
+    #[ORM\Column(type: 'integer', nullable: false)]
+    private ?int $seats_available = null;
 
     #[ORM\ManyToOne(inversedBy: 'seats')]
     #[ORM\JoinColumn(nullable: false, name: "reservation_date_id", referencedColumnName: "id")]
-    private ?ReservationDate $reservationDate = null;
-
+    private ?ReservationDate $date = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getHour(): ?\DateTimeInterface
+    public function getHour(): ?float
     {
         return $this->hour;
     }
 
-    public function setHour(\DateTimeInterface $hour): self
+    public function setHour(float $hour): self
     {
         $this->hour = $hour;
 
         return $this;
     }
 
-    public function getSeat(): ?int
+    public function getSeatsAvailable(): ?int
     {
-        return $this->seat;
+        return $this->seats_available;
     }
 
-    public function setSeat(int $seat): self
+    public function setSeatsAvailable(int $seats_available): self
     {
-        $this->seat = $seat;
+        $this->seats_available = $seats_available;
 
         return $this;
     }
 
-    public function getReservationDate(): ?ReservationDate
+    public function getDate(): ?ReservationDate
     {
-        return $this->reservationDate;
+        return $this->date;
     }
 
-    public function setReservationDate(?ReservationDate $reservationDate): self
+    public function setDate(?ReservationDate $date): self
     {
-        $this->reservationDate = $reservationDate;
+        $this->date = $date;
 
         return $this;
     }

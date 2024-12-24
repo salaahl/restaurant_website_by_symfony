@@ -6,8 +6,11 @@ use App\Repository\ReservationDateRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReservationDateRepository::class)]
+#[ORM\Table(name: 'reservation_date')]
+#[ORM\UniqueConstraint(columns: ['date'])]
 class ReservationDate
 {
     #[ORM\Id]
@@ -15,13 +18,15 @@ class ReservationDate
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, unique: true)]
-    private ?string $date = null;
+    #[ORM\Column(type: 'datetime', unique: true)]
+    #[Assert\NotBlank]
+    #[Assert\GreaterThanOrEqual("today", message: "La date doit être égale ou postérieure à aujourd'hui.")]
+    private ?\DateTimeInterface $date = null;
 
-    #[ORM\OneToMany(mappedBy: 'date', targetEntity: Reservation::class)]
+    #[ORM\OneToMany(mappedBy: 'date', targetEntity: Reservation::class, cascade: ['remove'])]
     private Collection $reservations;
 
-    #[ORM\OneToMany(mappedBy: 'date', targetEntity: Seat::class)]
+    #[ORM\OneToMany(mappedBy: 'date', targetEntity: Seat::class, cascade: ['remove'])]
     private Collection $seats;
 
     public function __construct()
@@ -35,12 +40,12 @@ class ReservationDate
         return $this->id;
     }
 
-    public function getDate(): ?string
+    public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
 
-    public function setDate(string $date): self
+    public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
 
@@ -59,7 +64,7 @@ class ReservationDate
     {
         if (!$this->reservations->contains($reservation)) {
             $this->reservations->add($reservation);
-            $reservation->setReservationDate($this);
+            $reservation->setDate($this);
         }
 
         return $this;
@@ -68,9 +73,8 @@ class ReservationDate
     public function removeReservation(Reservation $reservation): self
     {
         if ($this->reservations->removeElement($reservation)) {
-            // set the owning side to null (unless already changed)
-            if ($reservation->getReservationDate() === $this) {
-                $reservation->setReservationDate(null);
+            if ($reservation->getDate() === $this) {
+                $reservation->setDate(null);
             }
         }
 
@@ -98,7 +102,6 @@ class ReservationDate
     public function removeSeat(Seat $seat): self
     {
         if ($this->seats->removeElement($seat)) {
-            // set the owning side to null (unless already changed)
             if ($seat->getDate() === $this) {
                 $seat->setDate(null);
             }

@@ -87,4 +87,14 @@ Encore
 // uncomment if you're having problems with a jQuery plugin
 //.autoProvidejQuery()
 
+// Ajout de la configuration du serveur de développement
+const config = Encore.getWebpackConfig();
+
+config.devServer = {
+  contentBase: './public',
+  watchContentBase: true,
+  hot: true,
+  open: true,  // Ouvrir le navigateur automatiquement
+};
+
 module.exports = Encore.getWebpackConfig();

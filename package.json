@@ -11,6 +11,7 @@
   "devDependencies": {
     "@symfony/webpack-encore": "^4.7.0",
     "autoprefixer": "^10.4.20",
+    "webpack-dev-server": "^5.2.0",
     "webpack-notifier": "^1.15.0"
   },
   "dependencies": {

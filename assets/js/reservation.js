@@ -1,25 +1,3 @@
-async function postData(url = "", data = {}) {
-  const response = await fetch(url, {
-    method: "POST",
-    mode: "cors",
-    cache: "no-cache",
-    credentials: "same-origin",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Requested-With": "XMLHttpRequest",
-    },
-    redirect: "follow",
-    referrerPolicy: "no-referrer",
-    body: JSON.stringify(data),
-  });
-  if (response.ok) {
-    return response.json();
-  } else {
-    const message = `An error has occured: ${response.status}`;
-    throw new Error(message);
-  }
-}
-
 // Gestion du DOM
 window.addEventListener("DOMContentLoaded", () => {
   document
@@ -49,101 +27,83 @@ window.addEventListener("DOMContentLoaded", () => {
     .addEventListener("submit", (e) => {
       e.preventDefault();
 
-      let $ = (id) => {
-        document.getElementById(id);
-      };
+      const checkReservation = document.getElementById("check-reservation");
+      const hourglass = document.getElementById("lds-hourglass");
+      const responseElements = document.getElementsByClassName("response");
+      const email = document.getElementById("email").value;
+      const surname = document.getElementById("surname").value;
 
-      let checkReservation = document.getElementById("check-reservation");
-      let hourglass = document.getElementById("lds-hourglass");
-      let response = document.getElementsByClassName("response");
-      let mail = document.getElementById("mail").value;
-      let surname = document.getElementById("surname").value;
-
+      // Désactive le formulaire et affiche l'indicateur de chargement
       checkReservation.style.filter = "blur(10px)";
       hourglass.style.display = "flex";
-      for (let i = 0; i < response.length; i++) {
-        response[i].innerHTML = "";
-      }
+      Array.from(responseElements).forEach((el) => (el.innerHTML = ""));
 
-      postData("", {
-        check_reservation: "initialize",
-        mail: mail,
-        surname: surname,
+      // Données de la requête
+      const reservationData = new URLSearchParams({
+        action: "check_reservation",
+        email,
+        surname,
+      }).toString();
+
+      // Envoi de la requête fetch
+      fetch("", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: reservationData,
       })
+        .then((response) => response.json())
         .then((data) => {
+          // Réinitialiser l'interface
           checkReservation.style.filter = "blur(0px)";
           hourglass.style.display = "none";
-          let html;
-          if (data != "") {
-            if (data.hour.length === 1) {
-              html =
-                '<div class="check-reservation-response">' +
-                data.name +
-                " " +
-                data.surname +
-                ",<br><br>" +
-                "Une réservation à votre nom pour " +
-                data.seat_reserved +
-                " personne(s) est bien enregistrée pour le " +
-                new Date(data.date).toDateString("fr-FR", {
-                  day: "2-digit",
-                  month: "long",
-                  year: "numeric",
-                }) +
-                " à " +
-                data.hour +
-                "<br><br>" +
-                "Cordialement,<br>" +
-                "L'équipe du Vingtième" +
-                "</div>";
 
-              for (let i = 0; i < response.length; i++) {
-                response[i].innerHTML += html;
-              }
-            } else {
-              html =
-                '<div class="check-reservation-response">' +
-                data.name +
-                " " +
-                data.surname +
-                ",<br>" +
-                "Voici pour vos réservations :" +
-                "<br><br>";
-
-              for (let i = 0; i < response.length; i++) {
-                response[i].innerHTML += html;
-              }
-
-              let checkReservation = document.getElementsByClassName(
-                "check-reservation-response"
+          if (data) {
+            const renderResponse = (html) => {
+              Array.from(responseElements).forEach(
+                (el) => (el.innerHTML += html)
               );
-              for (let index = 0; index < data.hour.length; index++) {
-                html = data.date[index] + " à " + data.hour[index] + ",<br>";
+            };
 
-                for (let i = 0; i < response.length; i++) {
-                  checkReservation[i].innerHTML += html;
-                }
-              }
+            if (data.length === 1) {
+              var html = `
+                <div class="check-reservation-response">${data[0].name} ${
+                data[0].surname
+              },<br>
+                Une réservation à votre nom pour ${
+                  data[0].seats
+                } personne(s) est bien enregistrée 
+                pour le ${new Date(data[0].date).toLocaleDateString()} à ${
+                data[0].hour
+              }h.<br><br>
+                Cordialement,<br>L'équipe du Vingtième</div>
+              `;
+              renderResponse(html);
+            } else {
+              html = `<div class="check-reservation-response">${data[0].name} ${data[0].surname},<br>Voici pour vos réservations :<br><br>`;
 
-              html =
-                "<br>Cordialement,<br>" + "L'équipe du Vingtième" + "</div>";
+              data.forEach((reservation, index) => {
+                html += `le ${new Date(
+                  reservation.date.date
+                ).toLocaleDateString()} pour ${reservation.seats} personne(s) 
+                    à ${reservation.hour}h,<br>`;
+              });
 
-              for (let i = 0; i < response.length; i++) {
-                checkReservation[i].innerHTML += html;
-              }
+              html += "<br>Cordialement,<br>L'équipe du Vingtième</div>";
+              renderResponse(html);
             }
           } else {
-            for (let i = 0; i < response.length; i++) {
-              response[i].innerHTML +=
-                '<div class="check-reservation-response">Aucune réservation à ce nom.</div>';
-            }
+            let html = `<div class="check-reservation-response">Aucune réservation à ce nom.</div>`;
+            renderResponse(html);
           }
         })
         .catch((error) => {
           alert(
             "Impossible de récupérer la liste de vos réservations. Veuillez prendre contact avec le restaurant."
           );
-
+          console.error(error);
+          // Réinitialisation de l'interface en cas d'erreur
           checkReservation.style.filter = "blur(0px)";
           hourglass.style.display = "none";
         });
@@ -151,75 +111,95 @@ window.addEventListener("DOMContentLoaded", () => {
 
   document
     .getElementById("new_reservation-form")
-    .addEventListener("submit", (e) => {
+    .addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      let $ = (id) => {
-        document.getElementById(id);
+      const $ = (id) => document.getElementById(id);
+      const newReservation = $("new-reservation");
+      const hourglass = $("lds-hourglass");
+      const responseElements = Array.from(
+        document.getElementsByClassName("response")
+      );
+      const seats = $("check-seats").value.trim();
+      const date = $("check-date").value.trim();
+
+      // Fonction d'affichage des réponses
+      const displayResponse = (html) => {
+        responseElements.forEach((element) => (element.innerHTML = html));
       };
 
-      let newReservation = document.getElementById("new-reservation");
-      let hourglass = document.getElementById("lds-hourglass");
-      let response = document.getElementsByClassName("response");
-      let seats = document.getElementById("check-seats").value;
-      let date = document.getElementById("check-date").value;
+      // Mise à jour de l'état visuel
+      const toggleLoadingState = (isLoading) => {
+        newReservation.style.filter = isLoading ? "blur(10px)" : "blur(0px)";
+        hourglass.style.display = isLoading ? "flex" : "none";
+      };
 
-      newReservation.style.filter = "blur(10px)";
-      hourglass.style.display = "flex";
-      for (let i = 0; i < response.length; i++) {
-        response[i].innerHTML = "";
+      // Validation des données utilisateur
+      if (!seats || !date) {
+        displayResponse(
+          '<div class="error">Veuillez remplir tous les champs.</div>'
+        );
+        return;
       }
 
-      postData("", {
-        new_reservation: "initialize",
-        seats: seats,
-        date: date,
-      })
-        .then((data) => {
-          newReservation.style.filter = "blur(0px)";
-          hourglass.style.display = "none";
+      toggleLoadingState(true);
 
-          if (data != "") {
-            for (let index = 0; index < data.length; index++) {
-              html =
-                '<button class="hour button-58">' +
-                data[index].hour +
-                "</button>";
-              for (let i = 0; i < response.length; i++) {
-                response[i].innerHTML += html;
-              }
-            }
-
-            let hours = document.getElementsByClassName("hour");
-            for (let index = 0; index < hours.length; index++) {
-              hours[index].onclick = () => {
-                let seats = document.getElementById("check-seats").value;
-                let date = document.getElementById("check-date").value;
-                let hour = hours[index].innerHTML;
-                document.getElementById("new-reservation").style.display =
-                  "none";
-                document
-                  .getElementById("complete-reservation")
-                  .classList.remove("hidden");
-                document.getElementById("form-seats").value = seats;
-                document.getElementById("form-date").value = date;
-                document.getElementById("form-hour").value = hour;
-              };
-            }
-          } else {
-            html =
-              "<div>Aucune disponibilité sur cette date. Veuillez réessayer avec un autre jour.</div>";
-            for (let i = 0; i < response.length; i++) {
-              response[i].innerHTML += html;
-            }
-          }
-        })
-        .catch((error) => {
-          alert(
-            "Impossible de faire une nouvelle réservation pour le moment. Veuillez prendre contact avec le restaurant."
-          );
-          newReservation.style.filter = "blur(0px)";
-          hourglass.style.display = "none";
+      try {
+        const reservationData = new URLSearchParams({
+          action: "new_reservation",
+          seats,
+          date,
         });
+
+        const response = await fetch("", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: reservationData,
+        });
+
+        const data = await response.json();
+        toggleLoadingState(false);
+
+        if (data && data.length > 0) {
+          // Construire les boutons pour chaque horaire disponible
+          const buttonsHtml = data
+            .map(
+              (slot) =>
+                `<input type="button" class="hour button-58" value="${slot.hour}" />`
+            )
+            .join("");
+
+          displayResponse(buttonsHtml);
+
+          // Ajout d'événements aux boutons générés
+          document.querySelectorAll(".hour").forEach((button) => {
+            button.addEventListener("click", () => handleHourClick(button));
+          });
+        } else {
+          displayResponse(
+            '<div class="no-availability">Aucune disponibilité sur cette date. Veuillez réessayer avec une autre date.</div>'
+          );
+        }
+      } catch (error) {
+        console.error("Erreur lors de la requête : ", error);
+        alert(
+          "Impossible de faire une nouvelle réservation pour le moment. Veuillez contacter le restaurant."
+        );
+        toggleLoadingState(false);
+      }
     });
+
+  // Fonction pour gérer le clic sur un horaire
+  const handleHourClick = (button) => {
+    const seats = document.getElementById("check-seats").value.trim();
+    const date = document.getElementById("check-date").value.trim();
+    const hour = button.value.trim();
+
+    // Mise à jour de l'interface pour la réservation complète
+    document.getElementById("new-reservation").style.display = "none";
+    document.getElementById("complete-reservation").classList.remove("hidden");
+    document.getElementById("form-seats").value = seats;
+    document.getElementById("form-date").value = date;
+    document.getElementById("form-hour").value = hour;
+  };
 });

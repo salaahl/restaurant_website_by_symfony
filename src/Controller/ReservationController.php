@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Reservation;
 use App\Service\ReservationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use App\Repository\ReservationRepository;
 
 class ReservationController extends AbstractController
 {
@@ -27,15 +30,25 @@ class ReservationController extends AbstractController
 
                 switch ($action) {
                     case 'new_reservation':
-                        $response = $this->reservationService->createReservationDate($request);
+                        $date = new \DateTime($request->request->get('date'));
+                        $seats = $request->request->get('seats');
+                        
+                        $response = $this->reservationService->createReservation($date, $seats);
                         break;
 
                     case 'check_reservation':
-                        $response = $this->reservationService->checkReservationDetails($request);
+                        $email = $request->request->get('email');
+                        $surname = $request->request->get('surname');
+                        
+                        $response = $this->reservationService->checkReservationDetails($email, $surname);
                         break;
 
                     case 'complete_reservation':
-                        $response = $this->reservationService->completeReservation($request);
+                        $reservation_id = $this->reservationService->completeReservation($request);
+
+                        return $this->redirectToRoute('app_confirmation', [
+                            'reservation_id' => $reservation_id
+                        ]);
                         break;
 
                     default:
@@ -52,12 +65,14 @@ class ReservationController extends AbstractController
         return $this->render('pages/reservation.html.twig');
     }
 
-    #[Route('/confirmation', name: 'app_confirmation')]
-    public function confirmation($reservation): Response
+    #[Route('/confirmation/{reservation_id}', name: 'app_confirmation')]
+    public function confirmation(ReservationRepository $reservationRepository, ?int $reservation_id=null): Response
     {
-        if (!$reservation) {
-            return new RedirectResponse('/');
+        if (!$reservation_id) {
+            return $this->redirectToRoute('app_reservation');
         }
+        
+        $reservation = $reservationRepository->find($reservation_id);
 
         return $this->render('pages/confirmation.html.twig', [
             'reservation' => $reservation,
