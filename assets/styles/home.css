@@ -70,12 +70,14 @@ section {
 #about-me-container,
 #reservation-container {
   position: sticky; /* permet de prévenir l'effet de débordement de la div sur iPhone */
+  opacity: 0;
   padding-left: 2%;
   padding-right: 2%;
-  transition: all 0.15s;
+  transition: transform 0.15s, opacity 0.4s;
 }
 
 #about-me-container {
+  transform: translateY(200px);
   border: 0.5rem dashed #f5ebe0;
 }
 
@@ -161,7 +163,7 @@ section {
   background-size: cover;
   box-shadow: #00000010 0px 0px 0px 5px;
   overflow: hidden;
-  transition: all 0.4s ease;
+  transition: transform 0.15s, opacity 0.4s;
 }
 
 #menu-title-container .title h2 {
@@ -232,9 +234,11 @@ section {
 .flip-card {
   height: 300px;
   width: 100%;
+  opacity: 0;
+  transform: translateY(150px);
   margin-bottom: -50px;
   z-index: 1;
-  transition: width 0.8s, z-index 0s 0.2s;
+  transition: transform 0.15s, opacity 0.4s, width 0.8s, z-index 0s 0.2s;
 }
 
 .flip-card:hover {
@@ -359,6 +363,7 @@ section {
 }
 
 #reservation-container {
+  transform: translateY(150px);
   background-color: var(--color-dark);
   border: 10px dashed white;
 }
@@ -377,7 +382,7 @@ section {
 
 @media screen and (max-width: 991px) {
   section {
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
   #menu-title-container .title {
@@ -483,7 +488,6 @@ section {
   #reservation-container {
     opacity: 0;
     transform: translateY(175px);
-    transition: all 0.4s;
   }
 
   #about-me-container,
@@ -547,6 +551,8 @@ section {
     height: 100%;
     width: 100%;
     margin: auto;
+    opacity: 0;
+    transform: translateY(100%);
     border-radius: 50px;
   }
 
@@ -567,6 +573,8 @@ section {
     height: 65vh;
     width: 20%;
     min-width: 20%;
+    opacity: 1;
+    transform: translateY(0);
     margin-bottom: unset;
     margin-right: -4%;
     border-radius: 20px;

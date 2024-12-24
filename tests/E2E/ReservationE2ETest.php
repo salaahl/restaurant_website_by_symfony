@@ -28,8 +28,8 @@ class ReservationE2ETest extends PantherTestCase
         ]);
 
         $client->waitFor('#new-reservation .hour');
-        $hour = $client->findElement(WebDriverBy::cssSelector('#new-reservation .hour:first-child'))->getAttribute('value');
-        $client->findElement(WebDriverBy::cssSelector('#new-reservation .hour:first-child'))->click(); //13h
+        $hour = $client->findElement(WebDriverBy::cssSelector('#new-reservation .hour-container:first-of-type .hour'))->getAttribute('value'); //13h
+        $client->findElement(WebDriverBy::cssSelector('#new-reservation .hour-container:first-of-type label'))->click();
 
         $client->submitForm('Valider ma réservation', [
             'surname' => 'Doe',

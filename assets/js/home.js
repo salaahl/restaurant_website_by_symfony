@@ -4,7 +4,6 @@ window.addEventListener("DOMContentLoaded", () => {
       gsap.to(element, {
         y: 0,
         opacity: 1,
-        duration: 0.35,
       });
     }
 
@@ -12,7 +11,6 @@ window.addEventListener("DOMContentLoaded", () => {
       gsap.to(element, {
         y: "100%",
         opacity: 0,
-        duration: 0.35,
       });
     }
 
@@ -41,30 +39,19 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     gsap.matchMedia().add("(max-width: 767px)", () => {
-      [
-        "#about-me-container",
-        "#menu-container",
-        "#reservation-container",
-      ].forEach((element) => {
-        gsap.fromTo(
-          element,
-          {
-            y: 250,
-            opacity: 0,
-            duration: 0.4,
-          },
-          {
+      ["#about-me-container", ".flip-card", "#reservation-container"].forEach(
+        (element) => {
+          gsap.to(element, {
             y: 0,
             opacity: 1,
-            duration: 0.4,
             scrollTrigger: {
               trigger: element,
-              start: "0 75%",
-              end: "+=250 75%",
+              start: "0 100%",
+              markers: true,
             },
-          }
-        );
-      });
+          });
+        }
+      );
     });
 
     gsap.matchMedia().add("(min-width: 992px)", () => {
@@ -78,22 +65,22 @@ window.addEventListener("DOMContentLoaded", () => {
 
       ScrollTrigger.create({
         trigger: "#about-me-container",
-        start: "0 75%",
-        end: "0 75%",
+        start: "0 100%",
+        end: "0 100%",
         onEnter: () => show("#about-me-container"),
       });
 
       ScrollTrigger.create({
         trigger: "#menu-title-container .title",
-        start: "0 50%",
-        end: "0 50%",
+        start: "0 100%",
+        end: "0 100%",
         onEnter: () => show("#menu-title-container .title"),
       });
 
       ScrollTrigger.create({
         trigger: "#reservation-container",
-        start: "0 75%",
-        end: "0 75%",
+        start: "0 100%",
+        end: "0 100%",
         onEnter: () => show("#reservation-container"),
       });
     });
