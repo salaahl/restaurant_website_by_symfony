@@ -11,7 +11,6 @@ footer {
 section h2 {
   margin: 5% 0 5% 0;
   font-size: 8vw;
-  font-weight: 200;
   text-transform: uppercase;
 }
 
@@ -20,7 +19,6 @@ article {
   justify-content: space-between;
   height: 100%;
   min-width: 100%;
-  font-weight: bolder;
   background-size: cover;
 }
 
@@ -52,6 +50,7 @@ article:nth-of-type(3) {
   justify-content: center;
   align-items: center;
   text-align: justify;
+  font-weight: 500;
   padding: 10%;
   background-color: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(60px);
@@ -63,10 +62,6 @@ article:nth-of-type(3) {
   height: 100%;
   object-fit: cover;
   object-position: center;
-}
-
-section h2 span {
-  font-weight: 100;
 }
 
 .word {
@@ -122,12 +117,9 @@ section h2 span {
   .text-container {
     width: 50%;
     padding: 2%;
+    font-weight: 400;
     background-color: unset;
     backdrop-filter: unset;
-  }
-
-  .text-container p {
-    font-weight: 400;
   }
 
   .img-container {

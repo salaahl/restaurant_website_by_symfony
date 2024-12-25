@@ -22,17 +22,17 @@ main {
   height: 30px;
 }
 
+#reservation-container h2 {
+  margin: 5% 0;
+  font-size: 32px;
+  text-transform: uppercase;
+}
+
 #reservation-container h2::first-letter {
-  font-size: 25.6vw; /* font-size x 2 + 25.6vw x line-height */
+  font-size: 102.4px; /* font-size x 2 + font-size x line-height */
   line-height: 0.625; /* 11.2 x 0.625 */
   float: left;
   color: var(--accent-color-two);
-}
-
-#reservation-container h2 {
-  margin: 5% 0;
-  font-size: 8vw;
-  text-transform: uppercase;
 }
 
 #reservation-container {
@@ -214,11 +214,11 @@ main {
 
   #reservation-container h2 {
     margin: 0 0 5% 0;
-    font-size: 3.5vw;
+    font-size: 48px;
   }
 
   #reservation-container h2::first-letter {
-    font-size: 11.2vw;
+    font-size: 153.6px;
   }
 
   #lds-hourglass {

@@ -14,9 +14,16 @@ main > h2 {
   text-transform: uppercase;
 }
 
+main > h2 > span {
+  color: var(--accent-color-two);
+}
+
 .img-container {
   display: flex;
   justify-content: center;
+  width: 85%;
+  max-width: 768px;
+  margin: 0 auto;
 }
 
 img {
@@ -35,9 +42,5 @@ img {
 @media screen and (min-width: 992px) {
   main > h2 {
     font-size: xxx-large;
-  }
-
-  img {
-    max-width: 768px;
   }
 }
