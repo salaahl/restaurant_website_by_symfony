@@ -5,6 +5,8 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 
+// const { set } = require("core-js/core/dict");
+
 // Enregistrement des plugins GSAP et configuration globale
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({
@@ -23,8 +25,10 @@ const footer = document.getElementsByTagName("footer");
 
 window.addEventListener("load", () => {
   // Loader
-  loader.style.display = "none";
-  globalContainer.style.opacity = "1";
+  setTimeout(() => {
+    loader.style.display = "none";
+    globalContainer.style.opacity = "1";
+  }, 1000);
 
   // Navbar
   // Rétracter la navbar en cas de clic sur le menu

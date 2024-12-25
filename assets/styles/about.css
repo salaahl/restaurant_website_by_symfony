@@ -1,13 +1,13 @@
-h2 {
-  margin: 5% 0 5% 0;
-  font-weight: 800;
-  text-transform: uppercase;
-  font-size: 8vw;
-}
-
 article,
 footer {
   scroll-snap-align: start;
+}
+
+section h2 {
+  margin: 5% 0 5% 0;
+  font-size: 8vw;
+  font-weight: 200;
+  text-transform: uppercase;
 }
 
 article {
@@ -60,13 +60,24 @@ article:nth-of-type(3) {
   object-position: center;
 }
 
-h2 span {
+section h2 span {
   font-weight: 100;
-  -webkit-text-stroke: 3px black;
 }
 
 .word {
-  font-weight: initial;
+  font-weight: 400;
+}
+
+.word-color-1 {
+  color: var(--accent-color-one-six);
+}
+
+.word-color-2 {
+  color: var(--accent-color-one-two);
+}
+
+.word-color-3 {
+  color: var(--accent-color-one-four);
 }
 
 @media screen and (max-width: 991px) {
@@ -84,7 +95,7 @@ h2 span {
     scroll-snap-type: y mandatory;
   }
 
-  h2 {
+  section h2 {
     font-size: 5vw;
   }
 

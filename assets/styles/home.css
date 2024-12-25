@@ -11,8 +11,6 @@ main {
 }
 
 main {
-  padding-left: 2%;
-  padding-right: 2%;
   background-color: unset;
 }
 
@@ -27,7 +25,7 @@ section {
 
 .title h2 {
   font-size: var(--font-size-title);
-  font-weight: bold;
+  font-weight: 500;
   text-transform: uppercase;
   width: inherit;
   text-align: center;
@@ -56,6 +54,7 @@ section {
 #home .title h2 {
   font-size: larger;
   font-weight: 300;
+  text-decoration: underline 4px var(--accent-color-two);
   background-color: white;
 }
 
@@ -71,8 +70,8 @@ section {
 #reservation-container {
   position: sticky; /* permet de prévenir l'effet de débordement de la div sur iPhone */
   opacity: 0;
-  padding-left: 2%;
-  padding-right: 2%;
+  padding-left: var(--padding-x);
+  padding-right: var(--padding-x);
   transition: transform 0.15s, opacity 0.4s;
 }
 
@@ -88,8 +87,8 @@ section {
   color: transparent;
   background-image: linear-gradient(
     to right,
-    var(--background-color-flip-card-three) 10%,
-    var(--background-color-flip-card-six) 90%
+    var(--accent-color-one-three) 10%,
+    var(--accent-color-one-six) 90%
   );
   background-size: 100%;
   background-repeat: no-repeat;
@@ -103,9 +102,6 @@ section {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-}
-
-#about-me-container p {
   text-align: center;
 }
 
@@ -259,7 +255,7 @@ section {
 }
 
 .flip-card .inner .type {
-  background-color: var(--background-color-flip-card);
+  background-color: var(--accent-color-one);
   padding: 2%;
   color: white;
 }
@@ -272,32 +268,32 @@ section {
 
 .straight-one,
 .flip-card-one .inner .type {
-  background-color: var(--background-color-flip-card-one);
+  background-color: var(--accent-color-one-one);
 }
 
 .straight-two,
 .flip-card-two .inner .type {
-  background-color: var(--background-color-flip-card-two);
+  background-color: var(--accent-color-one-two);
 }
 
 .straight-three,
 .flip-card-three .inner .type {
-  background-color: var(--background-color-flip-card-three);
+  background-color: var(--accent-color-one-three);
 }
 
 .straight-four,
 .flip-card-four .inner .type {
-  background-color: var(--background-color-flip-card-four);
+  background-color: var(--accent-color-one-four);
 }
 
 .straight-five,
 .flip-card-five .inner .type {
-  background-color: var(--background-color-flip-card-five);
+  background-color: var(--accent-color-one-five);
 }
 
 .straight-six,
 .flip-card-six .inner .type {
-  background-color: var(--background-color-flip-card-six);
+  background-color: var(--accent-color-one-six);
 }
 
 .flip-card .type p {
@@ -401,10 +397,12 @@ section {
     position: sticky;
     top: 2vh;
     min-height: 7vh;
-    width: 96%;
-    max-width: 96%;
-    padding-left: 2%;
-    padding-right: 2%;
+    width: calc(
+      100% - var(--padding-x) * 2
+    ); /* cette propriété est également gérée par le app.js */
+    max-width: calc(100% - var(--padding-x) * 2);
+    padding-left: var(--padding-x);
+    padding-right: var(--padding-x);
     background-color: black;
     border-radius: 20px;
     box-shadow: 0px 0px 0px 5px rgb(0 0 0 / 10%) !important;
@@ -475,6 +473,7 @@ section {
 
   #home .title h2 {
     font-size: var(--font-size-title);
+    text-decoration: unset;
   }
 
   #home .title p {
@@ -514,6 +513,13 @@ section {
     margin-right: 0;
   }
 
+  #about-me-container .title h2::first-letter {
+    padding: 35%;
+    font-size: 10vw;
+    font-weight: 200;
+    color: var(--accent-color-two);
+  }
+
   #about-me-container article {
     flex-direction: row;
   }
@@ -528,13 +534,8 @@ section {
     margin-bottom: 100px;
   }
 
-  #about-me-container p {
-    text-align: unset;
-  }
-
   #about-me-container a {
-    width: fit-content;
-    margin-left: unset;
+    margin-top: 50px;
   }
 
   #menu {

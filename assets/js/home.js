@@ -29,7 +29,8 @@ window.addEventListener("DOMContentLoaded", () => {
     function resetNavbar() {
       gsap.to(".navbar", {
         minHeight: "7vh",
-        width: "96%",
+        width:
+          window.innerWidth < 992 ? "calc(100% - 1.5rem)" : "calc(100% - 3rem)",
         borderRadius: 25,
       });
 
@@ -39,19 +40,27 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     gsap.matchMedia().add("(max-width: 767px)", () => {
-      ["#about-me-container", ".flip-card", "#reservation-container"].forEach(
-        (element) => {
-          gsap.to(element, {
-            y: 0,
-            opacity: 1,
-            scrollTrigger: {
-              trigger: element,
-              start: "0 100%",
-              markers: true,
-            },
-          });
-        }
-      );
+      ["#about-me-container", "#reservation-container"].forEach((element) => {
+        gsap.to(element, {
+          y: 0,
+          opacity: 1,
+          scrollTrigger: {
+            trigger: element,
+            start: "0 100%",
+          },
+        });
+      });
+
+      document.querySelectorAll(".flip-card").forEach((element) => {
+        gsap.to(element, {
+          y: 0,
+          opacity: 1,
+          scrollTrigger: {
+            trigger: element,
+            start: "0 100%",
+          },
+        });
+      });
     });
 
     gsap.matchMedia().add("(min-width: 992px)", () => {

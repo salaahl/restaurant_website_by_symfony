@@ -57,7 +57,7 @@
   justify-content: center;
   height: 0;
   width: 100%;
-  background-color: var(--background-color-flip-card-six);
+  background-color: var(--accent-color-one-six);
   overflow: hidden;
   transition: all var(--navbar-collapse-transition-duration) ease;
 }
@@ -116,6 +116,6 @@
 
   .nav-link:hover {
     color: white;
-    background-color: var(--background-color-flip-card-one);
+    background-color: var(--accent-color-one-one);
   }
 }

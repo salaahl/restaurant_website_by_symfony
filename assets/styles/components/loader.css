@@ -24,42 +24,40 @@
   animation: color-animation 1s linear infinite;
   animation-timing-function: step-end;
   font-size: 40px;
-  -webkit-text-stroke: 2px black;
 }
 
 .loader-word-1 {
-  --color-1: #3d8dae;
-  --color-2: #000000;
-  --color-3: #000000;
-  --color-4: #000000;
+  --color-1: var(--accent-color-one-two);
+  --color-2: whitesmoke;
+  --color-3: whitesmoke;
+  --color-4: whitesmoke;
   margin-right: 20px;
 }
 
 .loader-word-2 {
-  --color-1: #000000;
-  --color-2: #accfcb;
-  --color-3: #000000;
-  --color-4: #000000;
+  --color-1: whitesmoke;
+  --color-2: var(--accent-color-one-three);
+  --color-3: whitesmoke;
+  --color-4: whitesmoke;
 }
 
 .loader-word-3 {
-  --color-1: #000000;
-  --color-2: #000000;
-  --color-3: #dbad4a;
-  --color-4: #000000;
+  --color-1: whitesmoke;
+  --color-2: whitesmoke;
+  --color-3: var(--accent-color-one-four);
+  --color-4: whitesmoke;
 }
 
 .loader-word-4 {
-  --color-1: #000000;
-  --color-2: #000000;
-  --color-3: #000000;
-  --color-4: #df8453;
+  --color-1: whitesmoke;
+  --color-2: whitesmoke;
+  --color-3: whitesmoke;
+  --color-4: var(--accent-color-one-six);
 }
 
 @media screen and (min-width: 992px) {
   .loader-word {
     font-size: 5vw;
-    -webkit-text-stroke: 3px black;
   }
 }
 

@@ -1,30 +1,17 @@
-#global-container {
-  height: 100%;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-}
-
-main,
-footer {
-  scroll-snap-align: start;
-}
-
 main {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   height: 100%;
-  padding: 10% 20px 0 20px;
+  padding-top: 100px;
 }
 
-h2 {
+main > h2 {
   margin: 1% 0 1% 0;
   font-size: xx-large;
-  font-weight: 800;
+  font-weight: 400;
   text-align: center;
   text-transform: uppercase;
-  -webkit-text-stroke-width: thin;
-  -webkit-text-stroke-color: white;
 }
 
 .img-container {
@@ -35,7 +22,9 @@ h2 {
 img {
   max-width: 100%;
   border-radius: 50px;
-  box-shadow: 10px 13px 20px 0px rgb(0, 0, 0, 0.5);
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   margin: 1% 0 2% 0;
 }
 
@@ -44,11 +33,11 @@ img {
 }
 
 @media screen and (min-width: 992px) {
-  img {
-    max-width: 50%;
+  main > h2 {
+    font-size: xxx-large;
   }
 
-  main {
-    padding: 10% 0 0 0;
+  img {
+    max-width: 768px;
   }
 }
