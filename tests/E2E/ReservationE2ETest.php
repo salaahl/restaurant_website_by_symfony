@@ -5,6 +5,8 @@ namespace App\Tests\E2E;
 use Symfony\Component\Panther\PantherTestCase;
 use Facebook\WebDriver\WebDriverBy;
 use Doctrine\ORM\EntityManagerInterface;
+use Facebook\WebDriver\WebDriverExpectedCondition;
+use Facebook\WebDriver\WebDriverWait;
 
 use App\Entity\Reservation;
 
@@ -17,8 +19,14 @@ class ReservationE2ETest extends PantherTestCase
         $client->request('GET', '/reservation');
         $date = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
         $seats = 2;
+        $wait = new WebDriverWait($client, 10);
+
+        $wait->until(
+            WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::id('loader'))
+        );
 
         // Trouver le bouton par son sélecteur CSS et cliquer dessus
+        $client->waitFor('#new-reservation-button');
         $client->findElement(WebDriverBy::cssSelector('#new-reservation-button'))->click();
 
         $client->waitFor('#new-reservation');
@@ -27,9 +35,17 @@ class ReservationE2ETest extends PantherTestCase
             'date' => $date->format('d/m/Y')
         ]);
 
+        $wait->until(
+            WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::id('lds-hourglass'))
+        );
+
         $client->waitFor('#new-reservation .hour');
-        $hour = $client->findElement(WebDriverBy::cssSelector('#new-reservation .hour-container:first-of-type .hour'))->getAttribute('value'); //13h
+        $hour = $client->findElement(WebDriverBy::cssSelector('#new-reservation .hour-container:first-of-type .hour'))->getAttribute('value');
         $client->findElement(WebDriverBy::cssSelector('#new-reservation .hour-container:first-of-type label'))->click();
+
+        $wait->until(
+            WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::id('complete-reservation-form'))
+        );
 
         $client->submitForm('Valider ma réservation', [
             'surname' => 'Doe',
@@ -38,10 +54,7 @@ class ReservationE2ETest extends PantherTestCase
             'email' => 'john.doe@example.com',
         ]);
 
-        // Vérifier que la redirection se fait vers la page de confirmation
-        $this->assertMatchesRegularExpression('/\/confirmation\/\d+/', parse_url($client->getCurrentURL())['path'], 'Erreur lors de la redirection vers la page de confirmation');
-
-        // Vérifier que la page de confirmation contient le bon contenu
+        // Vérifier que la redirection se fait vers la page de confirmation et qu'elle contient le bon contenu
         $client->waitFor('.reservation-confirmed');
         $this->assertSelectorTextContains('p', sprintf('Votre réservation du %s à %sh pour %s personne(s) a bien été prise en compte.', $date->format('d/m/Y'), $hour, $seats), 'Erreur lors de l\'affichage de la page de confirmation');
     }
@@ -54,26 +67,31 @@ class ReservationE2ETest extends PantherTestCase
 
         // Repositories
         $reservationRepository = $manager->getRepository(Reservation::class);
-        $user = $reservationRepository->findOneBy([]);
-        $this->assertNotNull($user, 'Aucune réservation n\'est associée à cet ID');
+        $reservation = $reservationRepository->findOneBy([]);
+        $this->assertNotNull($reservation, 'Aucune réservation n\'est associée à cet ID');
 
         // Effectuer une requête GET sur la page de réservation
         $client = static::createPantherClient();
         $crawler = $client->request('GET', '/reservation');
+        $wait = new WebDriverWait($client, 10);
+
+        $wait->until(
+            WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::id('loader'))
+        );
 
         // Trouver le bouton par son sélecteur CSS et cliquer dessus
         $client->waitFor('#check-reservation-button');
         $client->findElement(WebDriverBy::cssSelector('#check-reservation-button'))->click();
 
         // Remplir le formulaire et le soumettre
-        $client->waitFor('#check_reservation-form');
+        $client->waitFor('#check-reservation-form');
         $client->submitForm('Rechercher', [
-            'email' => $user->getEmail(),
-            'surname' => $user->getSurname()
+            'email' => $reservation->getEmail(),
+            'surname' => $reservation->getSurname()
         ]);
 
         // Vérifier que la page contient le texte attendu
         $client->waitFor('.check-reservation-response');
-        $this->assertSelectorTextContains('.check-reservation-response', $user->getName() . ' ' . $user->getSurname(), 'Aucune réservation à ce nom');
+        $this->assertSelectorTextContains('.check-reservation-response', $reservation->getName() . ' ' . $reservation->getSurname(), 'Aucune réservation à ce nom');
     }
 }

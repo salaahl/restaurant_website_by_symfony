@@ -26,6 +26,6 @@ class MainControllerTest extends WebTestCase
         $client->request('GET', '/about');
 
         $this->assertResponseIsSuccessful('Erreur lors du chargement de la page');
-        $this->assertSelectorTextContains('.text-container h2', 'A propos de nous');
+        $this->assertSelectorTextContains('.text-container h2', 'Un voyage culinaire unique');
     }
 }
