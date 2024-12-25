@@ -51,15 +51,17 @@ window.addEventListener("DOMContentLoaded", () => {
         });
       });
 
-      document.querySelectorAll(".flip-card").forEach((element) => {
-        gsap.to(element, {
-          y: 0,
-          scrollTrigger: {
-            trigger: element,
-            start: "0 100%",
-          },
+      document
+        .querySelectorAll(".flip-card:nth-of-type(n+2)")
+        .forEach((element) => {
+          gsap.to(element, {
+            y: 0,
+            scrollTrigger: {
+              trigger: element,
+              start: "0 100%",
+            },
+          });
         });
-      });
     });
 
     gsap.matchMedia().add("(min-width: 992px)", () => {

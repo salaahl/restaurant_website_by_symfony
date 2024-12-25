@@ -232,10 +232,13 @@ section {
 .flip-card {
   height: 300px;
   width: 100%;
-  transform: translateY(50px);
-  margin-bottom: -50px;
+  margin-bottom: -75px;
   z-index: 1;
-  transition: transform 0.15s, opacity 0.4s, width 0.8s, z-index 0s 0.2s;
+  transition: transform 0.15s, width 0.8s, z-index 0s 0.2s;
+}
+
+.flip-card:nth-of-type(n + 2) {
+  transform: translateY(75px);
 }
 
 .flip-card:hover {
@@ -389,6 +392,10 @@ section {
     right: 0;
     margin: auto;
     padding: 5% 15%;
+  }
+
+  .flip-card:nth-of-type(n + 2):nth-of-type(-n + 5):hover {
+    transform: translateY(-75px) !important;
   }
 }
 
@@ -579,6 +586,10 @@ section {
     margin-bottom: unset;
     margin-right: -4%;
     border-radius: 20px;
+  }
+
+  .flip-card:nth-of-type(n + 2) {
+    transform: translateY(0);
   }
 
   .flip-card:hover .inner {
