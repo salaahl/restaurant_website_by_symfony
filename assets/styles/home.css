@@ -54,7 +54,9 @@ section {
 #home .title h2 {
   font-size: larger;
   font-weight: 300;
-  text-decoration: underline 4px var(--accent-color-two);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-color-two);
+  text-decoration-thickness: 4px;
   background-color: white;
 }
 

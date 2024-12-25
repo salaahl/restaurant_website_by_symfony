@@ -97,6 +97,7 @@ main {
   padding-left: var(--padding-x);
   padding-right: var(--padding-x);
   background-color: white;
+  overflow: clip;
 }
 
 section {
