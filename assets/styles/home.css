@@ -238,7 +238,8 @@ section {
 }
 
 .flip-card:nth-of-type(n + 2) {
-  transform: translateY(75px);
+  opacity: 0;
+  transform: translateY(100%);
 }
 
 .flip-card:hover {
@@ -392,10 +393,6 @@ section {
     right: 0;
     margin: auto;
     padding: 5% 15%;
-  }
-
-  .flip-card:nth-of-type(n + 2):nth-of-type(-n + 5):hover {
-    transform: translateY(-75px) !important;
   }
 }
 
@@ -586,10 +583,6 @@ section {
     margin-bottom: unset;
     margin-right: -4%;
     border-radius: 20px;
-  }
-
-  .flip-card:nth-of-type(n + 2) {
-    transform: translateY(0);
   }
 
   .flip-card:hover .inner {
