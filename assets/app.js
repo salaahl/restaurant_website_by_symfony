@@ -26,8 +26,8 @@ const footer = document.getElementsByTagName("footer");
 window.addEventListener("load", () => {
   // Loader
   setTimeout(() => {
-    loader.style.display = "none";
-    globalContainer.style.opacity = "1";
+    loader.classList.add("hide");
+    globalContainer.classList.remove("hide");
   }, 1000);
 
   // Navbar

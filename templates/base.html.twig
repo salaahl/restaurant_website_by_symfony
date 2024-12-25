@@ -14,14 +14,14 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;500;600;800&display=swap" rel="stylesheet">
 		{% block stylesheets %}
-		{{ encore_entry_link_tags('global_styles') }}
+			{{ encore_entry_link_tags('global_styles') }}
 		{% endblock %}
 	</head>
 
 	<body>
 		{% block body %}
 			{% include('components/loader.html.twig') %}
-			<div id="global-container">
+			<div id="global-container" class="hide">
 				<nav id="navbar" class="navbar navbar-expand-lg">
 					{% include('components/navbar.html.twig') %}
 				</nav>
@@ -43,7 +43,7 @@
 			<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 			<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 			<script src="https://unpkg.com/css-doodle@0.40.6/css-doodle.min.js"></script>
-			{{ encore_entry_script_tags('app_js') }}		
+			{{ encore_entry_script_tags('app_js') }}
 		{% endblock %}
 	</body>
 </html>

@@ -1,6 +1,6 @@
 #global-container {
-  opacity: 0;
-  transition: opacity 0.8s;
+  opacity: 1;
+  transition: opacity 0.6s 0.4s ease;
 }
 
 #loader {
@@ -9,10 +9,18 @@
   left: 0;
   height: 100%;
   width: 100%;
+  visibility: visible;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: white;
+  transition: opacity 0.6s ease, visibility 0s 2.4s;
+}
+
+#global-container.hide,
+#loader.hide {
+  visibility: hidden;
+  opacity: 0;
 }
 
 #loader h2 {

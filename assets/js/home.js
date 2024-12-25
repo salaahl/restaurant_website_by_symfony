@@ -54,7 +54,6 @@ window.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll(".flip-card").forEach((element) => {
         gsap.to(element, {
           y: 0,
-          opacity: 1,
           scrollTrigger: {
             trigger: element,
             start: "0 100%",

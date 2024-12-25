@@ -232,8 +232,7 @@ section {
 .flip-card {
   height: 300px;
   width: 100%;
-  opacity: 0;
-  transform: translateY(150px);
+  transform: translateY(50px);
   margin-bottom: -50px;
   z-index: 1;
   transition: transform 0.15s, opacity 0.4s, width 0.8s, z-index 0s 0.2s;
@@ -363,7 +362,6 @@ section {
 #reservation-container {
   transform: translateY(150px);
   background-color: var(--color-dark);
-  border: 10px dashed white;
 }
 
 #reservation-container .title h2 {
