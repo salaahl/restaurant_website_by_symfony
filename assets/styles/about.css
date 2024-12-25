@@ -1,3 +1,8 @@
+main {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 article,
 footer {
   scroll-snap-align: start;
@@ -93,6 +98,11 @@ section h2 span {
 @media screen and (min-width: 992px) {
   html {
     scroll-snap-type: y mandatory;
+  }
+
+  main {
+    padding-left: var(--padding-x);
+    padding-right: var(--padding-x);
   }
 
   section h2 {
