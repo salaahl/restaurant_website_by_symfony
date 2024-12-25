@@ -4,8 +4,7 @@
 	Réserver une table
 {% endblock %}
 
-{% block stylesheets %}
-	{{ parent() }}
+{% block extra_css %}
 	{{ encore_entry_link_tags('reservation_css') }}
 {% endblock %}
 
@@ -25,7 +24,7 @@
 			<button id="new-reservation-button" class="button-58">Faire une nouvelle réservation</button>
 		</div>
 		<div id="check-reservation">
-			<form id="check_reservation-form" method="POST">
+			<form id="check-reservation-form" method="POST">
 				<h2>Vérifier sa réservation</h2>
 				<div class="row">
 					<div class="col">
@@ -46,7 +45,7 @@
 			<div class="response"></div>
 		</div>
 		<div id="new-reservation">
-			<form id="new_reservation-form" method="POST">
+			<form id="new-reservation-form" method="POST">
 				<h2>Réserver une table</h2>
 				<div class="row">
 					<div class="col">
@@ -73,7 +72,6 @@
 		</div>
 		<div id="complete-reservation">
 			<form id="complete-reservation-form" method="POST">
-				<input type="hidden" name="action" value="complete_reservation"/>
 				<h2>Vous y êtes presque !</h2>
 				<p>Entrez vos infos :</p>
 				<div class="row">
@@ -111,7 +109,6 @@
 	</section>
 {% endblock %}
 
-{% block javascripts %}
-	{{ parent() }}
+{% block extra_js %}
 	{{ encore_entry_script_tags('reservation_js') }}
 {% endblock %}

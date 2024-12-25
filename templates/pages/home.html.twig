@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-	{{ parent() }}
+{% block extra_css %}
 	{{ encore_entry_link_tags('home_css') }}
 {% endblock %}
 
@@ -81,7 +80,6 @@
 		<a href="./reservation" class="button-58">Réserver</a>
 	</section>
 {% endblock %}
-{% block javascripts %}
-	{{ parent() }}
+{% block extra_js %}
 	{{ encore_entry_script_tags('home_js') }}
 {% endblock %}

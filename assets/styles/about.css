@@ -9,9 +9,12 @@ footer {
 }
 
 section h2 {
+  width: 100%;
   margin: 5% 0 5% 0;
-  font-size: 8vw;
+  font-size: xx-large;
   text-transform: uppercase;
+  text-align: start;
+  text-wrap-style: balance;
 }
 
 article {
@@ -95,17 +98,18 @@ article:nth-of-type(3) {
     scroll-snap-type: y mandatory;
   }
 
+  .navbar-brand {
+    color: black;
+  }
+
   main {
     padding-left: var(--padding-x);
     padding-right: var(--padding-x);
   }
 
   section h2 {
-    font-size: 5vw;
-  }
-
-  .navbar-brand {
-    color: black;
+    font-size: xxx-large;
+    font-weight: 200;
   }
 
   article:nth-of-type(1),

@@ -4,8 +4,7 @@
 	Qui sommes-nous ?
 {% endblock %}
 
-{% block stylesheets %}
-	{{ parent() }}
+{% block extra_css %}
 	{{ encore_entry_link_tags('about_css') }}
 {% endblock %}
 
@@ -14,14 +13,13 @@
 		<article>
 			<div class="text-container">
 				<h2>
-					<span>A</span>
-					<span class="word word-color-1">propos</span><br>
-					<span>de</span>
-					<span>nous</span>
+					<span>Un voyage</span>
+					<span class="word word-color-1">culinaire</span>
+					<span>unique</span>
 				</h2>
 				<div>
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+						Bienvenue au Vingtième, un restaurant d'exception situé au cœur de votre quartier. Nous célébrons la diversité culinaire en proposant des recettes authentiques inspirées des quatre coins du monde. Nos plats reflètent notre passion pour la gastronomie internationale, en mélangeant des saveurs traditionnelles à une touche de modernité.
 					</p>
 				</div>
 			</div>
@@ -35,12 +33,13 @@
 			</div>
 			<div class="text-container">
 				<h2>
-					<span>Article</span>
-					<span class="word word-color-2">2</span>
+					<span>Des produits</span>
+					<span class="word word-color-3">frais</span>
+					<span>et uniques</span>
 				</h2>
 				<div>
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+						Chez nous, la qualité des ingrédients est une priorité. Chaque plat est préparé avec des produits locaux et de saison pour garantir une fraîcheur optimale. Nos jus pressés minute à base de fruits et légumes frais et nos cocktails maison viennent parfaire votre expérience gustative.
 					</p>
 				</div>
 			</div>
@@ -48,12 +47,12 @@
 		<article>
 			<div class="text-container">
 				<h2>
-					<span>Article</span>
-					<span class="word word-color-3">3</span>
+					<span>Une expérience conviviale et</span>
+					<span class="word word-color-2">gourmande</span>
 				</h2>
 				<div>
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+						Au Vingtième, chaque détail est pensé pour créer une atmosphère chaleureuse et accueillante. Que vous soyez ici pour un repas en famille, une soirée entre amis ou une découverte culinaire en solo, nous sommes dédiés à rendre votre visite inoubliable. Nos équipes passionnées sont là pour vous accompagner dans ce voyage culinaire.
 					</p>
 				</div>
 			</div>
@@ -64,7 +63,6 @@
 	</section>
 {% endblock %}
 
-{% block javascripts %}
-	{{ parent() }}
+{% block extra_js %}
 	{{ encore_entry_script_tags('about_js') }}
 {% endblock %}

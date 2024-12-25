@@ -53,12 +53,16 @@ class ReservationService
             ->select('s.surname', 's.name', 'r.date', 's.hour', 's.seats')
             ->leftJoin('s.date', 'r')
             ->where('s.email = :email')
-            ->andWhere('s.surname >= :surname')
+            ->andWhere('s.surname = :surname')
             ->setParameter('email', $email)
             ->setParameter('surname', $surname)
             ->orderBy('r.date', 'ASC')
             ->getQuery()
             ->getResult();
+
+        if (empty($reservations)) {
+            throw new \Exception('Aucune reservation trouvée');
+        }
 
         return $reservations;
     }
@@ -82,7 +86,31 @@ class ReservationService
             throw new \Exception('Le nom et le prénom sont obligatoires');
         }
 
-        $this->seatService->updateSeatAvailability($seats, $date, $hour);
+        if (
+            $this->doctrine->getRepository(Reservation::class)->findOneBy([
+                'email' => $email,
+                'date' => $this->doctrine->getRepository(ReservationDate::class)->findOneBy(['date' => $date]),
+            ])
+        ) {
+            throw new \Exception('Vous avez déjà une réservation pour cette date');
+        }
+
+        $today = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+        $today->setTime(0, 0, 0);
+
+        $reservations = $this->reservationRepository->createQueryBuilder('s')
+            ->select('s.id')
+            ->innerJoin('s.date', 'r')
+            ->where('s.email = :email')
+            ->andWhere('r.date >= :date')
+            ->setParameter('email', $email)
+            ->setParameter('date', $today)
+            ->getQuery()
+            ->getResult();
+
+        if (count($reservations) > 2) {
+            throw new \Exception('Vous avez atteint le nombre maximal de réservations à venir');
+        }
 
         $reservationDate = $this->doctrine->getRepository(ReservationDate::class)->findOneBy(['date' => $date]);
 
@@ -102,6 +130,8 @@ class ReservationService
         $entityManager = $this->doctrine->getManager();
         $entityManager->persist($reservation);
         $entityManager->flush();
+
+        $this->seatService->updateSeatAvailability($seats, $date, $hour);
 
         return $reservation->getId();
     }

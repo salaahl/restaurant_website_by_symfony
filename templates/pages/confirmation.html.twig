@@ -4,8 +4,7 @@
 	Réservation confirmée !
 {% endblock %}
 
-{% block stylesheets %}
-	{{ parent() }}
+{% block extra_css %}
 	{{ encore_entry_link_tags('confirmation_css') }}
 {% endblock %}
 
@@ -22,14 +21,10 @@
 			{{ reservation.date.getDate()|date('d/m/Y') }}
 			à
 			{{ reservation.hour }}h
-												pour
+			pour
 			{{ reservation.seats }}
 			personne(s) a bien été prise en compte.<br>
 			N'hésitez pas à nous contacter pour toute demande d'infos complémentaires.</p>
 		<p>A bientôt !<br>Le Vingtième.</p>
 	</div>
-{% endblock %}
-
-{% block javascripts %}
-	{{ parent() }}
 {% endblock %}

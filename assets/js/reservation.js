@@ -60,27 +60,55 @@ document.addEventListener("DOMContentLoaded", () => {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: `action=${action}&${formData}`,
         });
-        const data = await response.json();
 
+        // Vérification du statut HTTP
+        if (!response.ok) {
+          // Si la réponse n'est pas OK, récupérez les données d'erreur du serveur
+          const errorData = await response.json();
+
+          // Vous pouvez aussi utiliser errorData pour afficher des informations spécifiques sur l'erreur
+          onSuccess(errorData, responseElements, true); // On passe un flag "true" pour indiquer une erreur
+        } else {
+          // Si la réponse est OK, traitez les données normalement
+          const data = await response.json();
+          onSuccess(data, responseElements, false); // On passe "false" pour indiquer un succès
+        }
+
+        // Réinitialisation de l'état visuel après un délai
         setTimeout(() => {
           form.parentElement.classList.remove("blur");
           hourglass.style.display = "none";
-          onSuccess(data, responseElements);
         }, 1600);
       } catch (error) {
-        console.error("Erreur : ", error);
-        alert("Une erreur est survenue. Veuillez réessayer.");
+        // Si une erreur se produit (par exemple, erreur réseau), on la capture
+        console.log(error);
+        alert(error.message);
+
+        // Optionnel : afficher l'erreur sur l'interface utilisateur
+        const errorMessage = document.createElement("div");
+        errorMessage.classList.add("error-message");
+        errorMessage.textContent = `Une erreur est survenue : ${error.message}`;
+        form.parentElement.appendChild(errorMessage);
+
         form.parentElement.classList.remove("blur");
         hourglass.style.display = "none";
+
+        // Appel de onSuccess avec un flag d'erreur
+        onSuccess({ message: error.message }, responseElements, true);
       }
     });
   };
 
   // Gestion de la vérification des réservations
   handleFormSubmit(
-    "#check_reservation-form",
+    "#check-reservation-form",
     "check_reservation",
-    (data, responseElements) => {
+    (data, responseElements, isError) => {
+      if (isError) {
+        alert(data.message);
+        console.error(data.message);
+      }
+
       if (data && data.length > 0) {
         const renderHtml = (html) =>
           responseElements.forEach((el) => (el.innerHTML += html));
@@ -101,25 +129,26 @@ document.addEventListener("DOMContentLoaded", () => {
           let html = `<div class="check-reservation-response">
           <span class="fullname">${data[0].name} ${data[0].surname}</span>,<br><br>Voici vos réservations :<br>`;
           data.forEach((res) => {
-            html += `le ${new Date(res.date.date).toLocaleDateString()} pour ${
-              res.seats
-            } personne(s) à ${res.hour}h,<br>`;
+            html += `le ${new Date(res.date.date).toLocaleDateString()} à ${
+              res.hour
+            }h pour ${res.seats} personne(s),<br>`;
           });
           renderHtml(`${html}<br>Cordialement,<br>l'équipe du Vingtième</div>`);
         }
-      } else {
-        responseElements.forEach(
-          (el) => (el.innerHTML = "Aucune réservation trouvée.")
-        );
       }
     }
   );
 
   // Gestion de la création de nouvelles réservations
   handleFormSubmit(
-    "#new_reservation-form",
+    "#new-reservation-form",
     "new_reservation",
-    (data, responseElements) => {
+    (data, responseElements, isError) => {
+      if (isError) {
+        alert(data.message);
+        console.error(data.message);
+      }
+
       if (data && data.length > 0) {
         const buttonsHtml = data
           .map(
@@ -150,10 +179,22 @@ document.addEventListener("DOMContentLoaded", () => {
             $("#form-hour").value = hour;
           })
         );
-      } else {
-        responseElements.forEach(
-          (el) => (el.innerHTML = "Aucune disponibilité pour cette date.")
-        );
+      }
+    }
+  );
+
+  // Gestion de la finalisation des réservations
+  handleFormSubmit(
+    "#complete-reservation-form",
+    "complete_reservation",
+    (data, responseElements, isError) => {
+      if (isError) {
+        alert(data.message);
+        console.error(data.message);
+      }
+
+      if (data && data.length > 0) {
+        window.location.href = "/reservation" + data[0].id;
       }
     }
   );

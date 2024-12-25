@@ -32,23 +32,19 @@ class ReservationController extends AbstractController
                     case 'new_reservation':
                         $date = new \DateTime($request->request->get('date'));
                         $seats = $request->request->get('seats');
-                        
+
                         $response = $this->reservationService->createReservation($date, $seats);
                         break;
 
                     case 'check_reservation':
                         $email = $request->request->get('email');
                         $surname = $request->request->get('surname');
-                        
+
                         $response = $this->reservationService->checkReservationDetails($email, $surname);
                         break;
 
                     case 'complete_reservation':
-                        $reservation_id = $this->reservationService->completeReservation($request);
-
-                        return $this->redirectToRoute('app_confirmation', [
-                            'reservation_id' => $reservation_id
-                        ]);
+                        $response = $this->reservationService->completeReservation($request);
                         break;
 
                     default:
@@ -57,7 +53,7 @@ class ReservationController extends AbstractController
 
                 return new JsonResponse($response);
             } catch (\Exception $e) {
-                return new JsonResponse(['error' => $e->getMessage()], 400);
+                return new JsonResponse(['message' => $e->getMessage()], 400);
             }
         }
 
@@ -66,12 +62,12 @@ class ReservationController extends AbstractController
     }
 
     #[Route('/confirmation/{reservation_id}', name: 'app_confirmation')]
-    public function confirmation(ReservationRepository $reservationRepository, ?int $reservation_id=null): Response
+    public function confirmation(ReservationRepository $reservationRepository, ?int $reservation_id = null): Response
     {
         if (!$reservation_id) {
             return $this->redirectToRoute('app_reservation');
         }
-        
+
         $reservation = $reservationRepository->find($reservation_id);
 
         return $this->render('pages/confirmation.html.twig', [
