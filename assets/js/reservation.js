@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
           Une réservation pour ${data[0].seats} personne(s) est enregistrée le 
           ${new Date(data[0].date.date).toLocaleDateString()} à ${
             data[0].hour
-          }h.<br>
+          }h.<br><br>
           Cordialement,<br>l'équipe du Vingtième</div>
         `);
         } else {
@@ -193,8 +193,8 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error(data.message);
       }
 
-      if (data && data.length > 0) {
-        window.location.href = "/reservation" + data[0].id;
+      if (data) {
+        window.location.href = "/confirmation/" + data;
       }
     }
   );
