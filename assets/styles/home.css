@@ -325,6 +325,13 @@ section {
   transform: rotateX(180deg);
 }
 
+.dishs .title {
+  margin: 15px 0 30px 0;
+  font-size: medium;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 .dish {
   display: flex;
   flex-direction: column;
@@ -333,14 +340,22 @@ section {
   animation: all 2s;
 }
 
-.dish-separator {
-  width: 20%;
-  border-top: 2px solid white;
-  margin: 10%;
+.dish .name {
+  font-weight: bold;
 }
 
-.dish b {
-  margin-bottom: 2%;
+.dish .description {
+  margin: 10px 0;
+}
+
+.dish-separator {
+  width: 15%;
+  border-top: 2px solid white;
+  margin: 15px auto;
+}
+
+.dishs > .dish-separator:last-of-type {
+  opacity: 0;
 }
 
 .type {

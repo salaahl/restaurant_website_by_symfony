@@ -59,13 +59,14 @@
 							<p>{{ menu.name }}</p>
 						</div>
 						<div class="dishs">
+							<h4 class="title">{{ menu.name }}</h4>
 							{% for dish in menu.dishes %}
 								<div class="dish">
-									<div class="verticalLineTop"></div>
-									<b>{{ dish.name }}</b><br>
-									{{ dish.description|raw }}<br>
-									{{ dish.price }}€
+									<span class="name">{{ dish.name }}</span>
+									<div class="description">{{ dish.description|raw }}</div>
+									<span class="price">{{ dish.price }}€</span>
 								</div>
+								<div class="dish-separator"></div>
 							{% endfor %}
 						</div>
 					</div>
