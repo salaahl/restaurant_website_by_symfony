@@ -52,12 +52,12 @@ section {
 }
 
 #home .title h2 {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
   font-size: larger;
   font-weight: 300;
-  text-decoration: underline;
-  text-decoration-color: var(--accent-color-two);
-  text-decoration-thickness: 4px;
-  background-color: white;
+  background-color: var(--accent-color-two);
 }
 
 #home .title p {
@@ -492,7 +492,7 @@ section {
 
   #home .title h2 {
     font-size: var(--font-size-title);
-    text-decoration: unset;
+    background-color: white;
   }
 
   #home .title p {
