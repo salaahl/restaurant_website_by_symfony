@@ -57,9 +57,10 @@ window.addEventListener("DOMContentLoaded", () => {
           gsap.to(element, {
             y: 0,
             opacity: 1,
+            duration: 0.25,
             scrollTrigger: {
               trigger: element,
-              start: "0 100%",
+              start: "-50% 100%",
             },
           });
         });
