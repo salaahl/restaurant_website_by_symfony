@@ -477,11 +477,6 @@ section {
   #home img {
     height: 100%;
     aspect-ratio: unset;
-    transition: transform 0.5s ease;
-  }
-
-  #home img:hover {
-    transform: scale(1.1);
   }
 
   #home .title {
