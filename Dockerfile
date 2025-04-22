@@ -55,3 +55,4 @@ RUN chmod +x /entrypoint.sh
 
 # Définir l'entrypoint et la commande par défaut
 ENTRYPOINT ["/entrypoint.sh"]
+CMD ["php", "-S", "0.0.0.0:80", "-t", "public"]
