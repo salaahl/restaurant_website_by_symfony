@@ -15,11 +15,7 @@ echo "Préparation des caches Symfony..."
 php bin/console cache:clear --env=prod --no-debug
 php bin/console cache:warmup --env=prod --no-debug
 
-# Exécution des migrations (si pas en prod, pour éviter d'éventuels conflits de data)
-if [ "$APP_ENV" != "prod" ]; then
-  echo "Exécution des migrations..."
-  php bin/console doctrine:migrations:migrate --no-interaction
-fi
+php bin/console doctrine:migrations:migrate --no-interaction
 
 # Démarrage de PHP-FPM
 echo "Démarrage de PHP-FPM..."
