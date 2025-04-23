@@ -42,8 +42,7 @@ COPY . .
 COPY --from=node_build /app/public/build /var/www/html/public/build
 
 # Installer les dépendances Symfony (sans les dépendances de dev et optimisation pour prod)
-RUN composer install --optimize-autoloader --no-dev --no-scripts --ignore-platform-req=ext-intl --ignore-platform-req=ext-zip
-RUN composer require doctrine/doctrine-fixtures-bundle --dev
+RUN composer install --optimize-autoloader --no-dev --no-scripts --ignore-platform-req=ext-intl
 
 # Créer le dossier var et définir les permissions
 RUN mkdir -p /var/www/html/var && \
