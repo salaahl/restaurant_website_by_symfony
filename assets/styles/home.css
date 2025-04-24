@@ -259,6 +259,10 @@ section {
   transform: rotateX(180deg);
 }
 
+.flip-card .inner .type {
+  overflow: auto;
+}
+
 .flip-card .inner .type .background {
   display: absolute;
   top: 0;
@@ -332,6 +336,7 @@ section {
   color: white;
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 99px;
+  z-index: 1;
 }
 
 .flip-card:not(:last-of-type) .inner .type p {
