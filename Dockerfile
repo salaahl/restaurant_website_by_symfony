@@ -49,10 +49,12 @@ RUN mkdir -p /var/www/html/var && \
     chown -R www-data:www-data /var/www/html/var && \
     chmod -R 775 /var/www/html/var
 
+
+# Commenter l'entrypoint une fois la migration effectuée une première fois
 # Copier le script entrypoint.sh et lui donner les droits d'exécution
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+# COPY entrypoint.sh /entrypoint.sh
+# RUN chmod +x /entrypoint.sh
 
 # Définir l'entrypoint et la commande par défaut
-ENTRYPOINT ["/entrypoint.sh"]
+# ENTRYPOINT ["/entrypoint.sh"]
 CMD ["php", "-S", "0.0.0.0:80", "-t", "public"]

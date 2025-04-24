@@ -259,10 +259,17 @@ section {
   transform: rotateX(180deg);
 }
 
-.flip-card .inner .type {
-  background-color: var(--accent-color-one);
+.flip-card .inner .type .background {
+  display: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
   padding: 2%;
   color: white;
+  filter: contrast(0.65);
 }
 
 .flip-card .inner,
@@ -271,41 +278,59 @@ section {
   border-radius: inherit;
 }
 
-.straight-one,
-.flip-card-one .inner .type {
+.straight-one {
   background-color: var(--accent-color-one-one);
 }
 
-.straight-two,
-.flip-card-two .inner .type {
+.straight-two {
   background-color: var(--accent-color-one-two);
 }
 
-.straight-three,
-.flip-card-three .inner .type {
+.straight-three {
   background-color: var(--accent-color-one-three);
 }
 
-.straight-four,
-.flip-card-four .inner .type {
+.straight-four {
   background-color: var(--accent-color-one-four);
 }
 
-.straight-five,
-.flip-card-five .inner .type {
+.straight-five {
   background-color: var(--accent-color-one-five);
 }
 
-.straight-six,
-.flip-card-six .inner .type {
+.straight-six {
   background-color: var(--accent-color-one-six);
+}
+
+.flip-card-one .inner .type .background {
+  background-image: url("/images/menu_one.jpg");
+}
+
+.flip-card-two .inner .type .background {
+  background-image: url("/images/menu_two.jpg");
+}
+
+.flip-card-three .inner .type .background {
+  background-image: url("/images/menu_three.jpg");
+}
+
+.flip-card-four .inner .type .background {
+  background-image: url("/images/menu_four.jpg");
+}
+
+.flip-card-five .inner .type .background {
+  background-image: url("/images/menu_five.jpg");
+}
+
+.flip-card-six .inner .type .background {
+  background-image: url("/images/menu_six.jpg");
 }
 
 .flip-card .type p {
   height: fit-content;
   padding: 2% 4%;
   color: white;
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.8);
   border-radius: 99px;
 }
 
