@@ -52,8 +52,8 @@ RUN mkdir -p /var/www/html/var && \
 
 # Commenter l'entrypoint une fois la migration effectuée une première fois
 # Copier le script entrypoint.sh et lui donner les droits d'exécution
-# COPY entrypoint.sh /entrypoint.sh
-# RUN chmod +x /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Définir l'entrypoint et la commande par défaut
 ENTRYPOINT ["/entrypoint.sh"]
