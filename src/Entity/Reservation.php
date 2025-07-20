@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ReservationRepository;
-use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Uid\Uuid;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -11,9 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Reservation
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: 'uuid')]
+    private ?Uuid $id = null;
 
     #[Assert\Email]
     #[Assert\NotBlank]
@@ -47,7 +46,7 @@ class Reservation
     #[ORM\Column(type: 'float', nullable: false)]
     private ?int $hour = null;
 
-    public function getId(): ?int
+    public function getId(): ?Uuid
     {
         return $this->id;
     }

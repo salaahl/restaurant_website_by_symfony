@@ -25,7 +25,7 @@ final class Version20241224050242 extends AbstractMigration
                 name VARCHAR(255) NOT NULL UNIQUE
             )
         ');
-    
+
         $this->addSql('
             CREATE TABLE dish (
                 id SERIAL PRIMARY KEY,
@@ -36,17 +36,17 @@ final class Version20241224050242 extends AbstractMigration
                 CONSTRAINT FK_957D8CB8CCD7E912 FOREIGN KEY (menu_id) REFERENCES menu (id) ON DELETE CASCADE
             )
         ');
-    
+
         $this->addSql('
             CREATE TABLE reservation_date (
                 id SERIAL PRIMARY KEY,
                 date TIMESTAMP NOT NULL UNIQUE
             )
         ');
-    
+
         $this->addSql('
             CREATE TABLE reservation (
-                id SERIAL PRIMARY KEY,
+                id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
                 date_id INTEGER NOT NULL,
                 email VARCHAR(255) NOT NULL,
                 surname VARCHAR(255) NOT NULL,
@@ -57,7 +57,7 @@ final class Version20241224050242 extends AbstractMigration
                 CONSTRAINT FK_42C84955B897366B FOREIGN KEY (date_id) REFERENCES reservation_date (id)
             )
         ');
-    
+
         $this->addSql('
             CREATE TABLE seat (
                 id SERIAL PRIMARY KEY,
@@ -67,7 +67,7 @@ final class Version20241224050242 extends AbstractMigration
                 CONSTRAINT FK_3D5C3666DF028DEE FOREIGN KEY (reservation_date_id) REFERENCES reservation_date (id)
             )
         ');
-    
+
         $this->addSql('
             CREATE TABLE messenger_messages (
                 id BIGSERIAL PRIMARY KEY,
