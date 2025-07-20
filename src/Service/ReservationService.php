@@ -67,7 +67,7 @@ class ReservationService
         return $reservations;
     }
 
-    public function completeReservation(Request $request): int
+    public function completeReservation(Request $request): string
     {
         // Récupération et validation des données
         $date = new \DateTime($request->request->get('date'));

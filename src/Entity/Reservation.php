@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Reservation
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'uuid')]
+    #[ORM\Column(type: "uuid", unique: true)]
     private ?Uuid $id = null;
 
     #[Assert\Email]
@@ -45,6 +45,11 @@ class Reservation
 
     #[ORM\Column(type: 'float', nullable: false)]
     private ?int $hour = null;
+
+    public function __construct()
+    {
+        $this->id = Uuid::v4();
+    }
 
     public function getId(): ?Uuid
     {

@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ReservationRepository;
-use Symfony\Component\Uid\Uuid;
 
 class ReservationController extends AbstractController
 {
@@ -61,7 +60,7 @@ class ReservationController extends AbstractController
     }
 
     #[Route('/confirmation/{reservation_id}', name: 'app_confirmation')]
-    public function confirmation(ReservationRepository $reservationRepository, ?Uuid $reservation_id = null): Response
+    public function confirmation(ReservationRepository $reservationRepository, ?string $reservation_id = null): Response
     {
         if (!$reservation_id) {
             return $this->redirectToRoute('app_reservation');

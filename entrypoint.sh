@@ -16,5 +16,6 @@ echo "Création de la base de données et lancement des migrations..."
 php bin/console doctrine:database:drop --force || true
 php bin/console doctrine:database:create
 php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
+php bin/console doctrine:fixtures:load  --no-interaction
 
 exec "$@"
