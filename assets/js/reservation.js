@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="hour-container">
               <label class="button-58">${slot.hour}h
                 <span class="hour-text">${
-                  slot.seats_available <= 4 ?? " - dernières places"
+                  slot.seats_available <= 4 ? " - dernières places" : ""
                 }</span>
                 <input type="button" class="hour" value="${slot.hour}" hidden />
               </label>

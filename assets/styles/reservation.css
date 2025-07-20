@@ -157,6 +157,7 @@ main {
 }
 
 .hour-container label:hover {
+  color: #171e29 !important;
   background-color: var(--bs-dark-emphasis) !important;
 }
 
