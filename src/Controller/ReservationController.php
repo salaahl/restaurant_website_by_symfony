@@ -2,15 +2,14 @@
 
 namespace App\Controller;
 
-use App\Entity\Reservation;
 use App\Service\ReservationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use App\Repository\ReservationRepository;
+use Symfony\Component\Uid\Uuid;
 
 class ReservationController extends AbstractController
 {
@@ -62,7 +61,7 @@ class ReservationController extends AbstractController
     }
 
     #[Route('/confirmation/{reservation_id}', name: 'app_confirmation')]
-    public function confirmation(ReservationRepository $reservationRepository, ?int $reservation_id = null): Response
+    public function confirmation(ReservationRepository $reservationRepository, ?Uuid $reservation_id = null): Response
     {
         if (!$reservation_id) {
             return $this->redirectToRoute('app_reservation');
