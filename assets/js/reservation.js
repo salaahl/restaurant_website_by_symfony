@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <span class="fullname">${data[0].name} ${
             data[0].surname
           }</span>,<br><br>
-          Une réservation pour ${data[0].seats} personne(s) est enregistrée le 
+          Une réservation pour ${data[0].seats} personne(s) est enregistrée pour le 
           ${new Date(data[0].date.date).toLocaleDateString()} à ${
             data[0].hour
           }h.<br><br>

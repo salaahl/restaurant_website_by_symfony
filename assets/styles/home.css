@@ -550,7 +550,7 @@ section {
   #about-me-container {
     padding: 0 5%;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 100px;
     border: 15px dotted #f5ebe0;
     overflow: hidden;
   }
@@ -661,6 +661,10 @@ section {
 
   .dishs::-webkit-scrollbar {
     width: 0px;
+  }
+
+  #reservation-container {
+    border-radius: 50px;
   }
 }
 
