@@ -14,5 +14,6 @@ php bin/console cache:warmup --env=prod --no-debug
 
 echo "Migrations..."
 php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
+php bin/console doctrine:fixtures:load --env=prod --no-interaction
 
 exec "$@"
