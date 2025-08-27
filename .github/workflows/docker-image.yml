@@ -16,3 +16,72 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+    - name: Create minimal .env
+      run: |
+        echo "APP_ENV=test" > .env
+        echo "APP_DEBUG=1" >> .env
+        echo "DATABASE_URL=sqlite:///%kernel.project_dir%/data/database.sqlite" >> .env
+        echo "MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0" >> .env
+        echo "MAILER_DSN='null://null'" >> .env
+        
+    - name: Cache Composer packages
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+          
+    # Installer les dépendances
+    - name: Install dependencies
+      run: |
+        composer require --dev doctrine/data-fixtures || true
+        composer install --no-ansi --no-interaction --no-scripts --no-progress
+      
+    # Créer le DatabaseTestTrait avec le bon contenu
+    - name: Create DatabaseTestTrait
+      run: |
+        mkdir -p tests/Traits
+        cat > tests/Traits/DatabaseTestTrait.php << 'EOF'
+        <?php
+
+        namespace App\Tests\Traits;
+
+        use Doctrine\ORM\EntityManagerInterface;
+        use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+        use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+        use Doctrine\Common\DataFixtures\Loader;
+        use App\DataFixtures\AppFixtures;
+
+        trait DatabaseTestTrait
+        {
+            protected EntityManagerInterface $em;
+
+            protected function loadDatabaseFixtures(): void
+            {
+                $this->em = self::getContainer()->get('doctrine')->getManager();
+
+                // Purger la base
+                $purger = new ORMPurger($this->em);
+                $executor = new ORMExecutor($this->em, $purger);
+
+                $loader = new Loader();
+                $loader->addFixture(new AppFixtures());
+
+                $executor->execute($loader->getFixtures());
+            }
+        }
+        EOF
+        
+    - name: Dump autoload
+      run: composer dump-autoload --optimize
+      
+    - name: Prepare SQLite DB
+      run: |
+        mkdir -p data
+        touch data/database.sqlite
+        php bin/console doctrine:schema:create
+        
+    - name: Run PHPUnit
+      run: vendor/bin/phpunit --testdox
