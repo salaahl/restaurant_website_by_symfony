@@ -2,9 +2,9 @@ name: Symfony CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
   test:
@@ -18,7 +18,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: "8.3"
           extensions: mbstring, pdo_sqlite, zip, intl
           tools: composer, symfony-cli
 
@@ -27,6 +27,7 @@ jobs:
         run: |
           echo "APP_ENV=test" > .env
           echo "DATABASE_URL=sqlite:///%kernel.project_dir%/var/data.db" >> .env
+          echo "MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0" >> .env
 
       # 4. Installer les dépendances normalement
       - name: Install dependencies
@@ -39,7 +40,6 @@ jobs:
         run: |
           rm -f var/data.db
           php bin/console doctrine:schema:update --force --complete --env=test
-
 
       # 6. Lancer les tests PHPUnit
       - name: Run tests
