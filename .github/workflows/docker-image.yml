@@ -1,104 +1,40 @@
-name: Docker Image CI
+name: Symfony CI Minimal SQLite
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
-  build:
+  symfony-tests:
     runs-on: ubuntu-latest
 
-    services:
-      db:
-        image: postgres:15
-        ports: ["5432:5432"]
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: db_test
-        options: >-
-          --health-cmd="pg_isready -U postgres"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
+    env:
+      APP_ENV: test
+      APP_DEBUG: 1
+      DATABASE_URL: "sqlite:///%kernel.project_dir%/var/data.db"
+      MESSENGER_TRANSPORT_DSN: "doctrine://default?auto_setup=0"
+      MAILER_DSN: "null://null"
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    # Build de l'image Docker
-    - name: Build Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.4
+          extensions: mbstring, intl, pdo_sqlite, zip
 
-    # Créer un .env minimal dans le workspace pour Symfony
-    - name: Create minimal .env
-      run: |
-        echo "APP_ENV=test" > .env
-        echo "APP_DEBUG=1" >> .env
-        echo "DATABASE_URL=pgsql://postgres:postgres@127.0.0.1:5432/db" >> .env
-        echo "MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0" >> .env
-        echo "MAILER_DSN=null://null" >> .env
+      - name: Install PHP dependencies
+        run: composer install --no-interaction --no-scripts --prefer-dist --optimize-autoloader
 
-    # Installer les dépendances PHP via composer
-    - name: Install dependencies
-      run: composer install --no-ansi --no-interaction --no-scripts --no-progress
+      - name: Prepare SQLite DB
+        run: |
+          mkdir -p var
+          touch var/data.db
+          php bin/console doctrine:schema:create --env=test
+          php bin/console doctrine:fixtures:load --no-interaction --env=test
 
-    # Créer le DatabaseTestTrait avec le bon contenu
-    - name: Create DatabaseTestTrait
-      run: |
-        mkdir -p tests/Traits
-        cat > tests/Traits/DatabaseTestTrait.php << 'EOF'
-        <?php
-
-        namespace App\Tests\Traits;
-
-        use Doctrine\ORM\EntityManagerInterface;
-        use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-        use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
-        use Doctrine\Common\DataFixtures\Loader;
-        use App\DataFixtures\AppFixtures;
-
-        trait DatabaseTestTrait
-        {
-            protected EntityManagerInterface $em;
-
-            protected function loadDatabaseFixtures(): void
-            {
-                $this->em = self::getContainer()->get('doctrine')->getManager();
-
-                // Purger la base
-                $purger = new ORMPurger($this->em);
-                $executor = new ORMExecutor($this->em, $purger);
-
-                $loader = new Loader();
-                $loader->addFixture(new AppFixtures());
-
-                $executor->execute($loader->getFixtures());
-            }
-        }
-        EOF
-        
-    # Préparer la base de données
-    - name: Prepare DB
-      run: APP_ENV=test php bin/console doctrine:migrations:migrate --no-interaction
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
-    
-    - name: Install frontend dependencies
-      run: yarn install
-    
-    - name: Build assets
-      run: yarn build
-
-    # Lancer les tests PHPUnit
-    - name: Run PHPUnit
-      run: |
-        APP_ENV=test php bin/console doctrine:migrations:migrate --no-interaction
-        vendor/bin/phpunit --testdox
-      env:
-        APP_ENV: test
-        DATABASE_URL: "pgsql://postgres:postgres@127.0.0.1:5432/db"
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit --testdox
