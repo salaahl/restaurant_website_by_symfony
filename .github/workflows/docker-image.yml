@@ -90,7 +90,7 @@ jobs:
           # Installer Symfony CLI si nécessaire
           wget https://get.symfony.com/cli/installer -O - | bash
           export PATH="$HOME/.symfony5/bin:$PATH"
-          symfony serve -d --port=8000 --env=test
+          APP_ENV=test symfony serve -d --port=8000
           
       - name: Wait for server
         run: |
