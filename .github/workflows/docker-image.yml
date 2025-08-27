@@ -17,7 +17,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: db
+          POSTGRES_DB: db_test
         options: >-
           --health-cmd="pg_isready -U postgres"
           --health-interval=10s
@@ -36,7 +36,7 @@ jobs:
       run: |
         echo "APP_ENV=test" > .env
         echo "APP_DEBUG=1" >> .env
-        echo "DATABASE_URL=pgsql://postgres:postgres@127.0.0.1:5432/db" >> .env
+        echo "DATABASE_URL=pgsql://postgres:postgres@127.0.0.1:5432/db_test" >> .env
         echo "MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0" >> .env
         echo "MAILER_DSN=null://null" >> .env
 
@@ -90,4 +90,4 @@ jobs:
       run: vendor/bin/phpunit --testdox
       env:
         APP_ENV: test
-        DATABASE_URL: "pgsql://postgres:postgres@127.0.0.1:5432/db"
+        DATABASE_URL: "pgsql://postgres:postgres@127.0.0.1:5432/db_test"
