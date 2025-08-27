@@ -14,7 +14,7 @@ class MainE2ETest extends PantherTestCase
     {
         $client = static::createPantherClient([
             'browser' => static::FIREFOX,
-            'external_base_uri' => 'http://127.0.0.1:8000', // serveur Symfony lancé en APP_ENV=test
+            'external_base_uri' => 'http://127.0.0.1:8000', // avec APP_ENV=test symfony serve
         ]);
         $crawler = $client->request('GET', '/');
         $wait = new WebDriverWait($client, 10);
