@@ -30,7 +30,7 @@ class ReservationE2ETest extends PantherTestCase
             'external_base_uri' => 'http://127.0.0.1:8000', // serveur Symfony lancé en APP_ENV=test
         ]);
         $client->request('GET', '/reservation');
-        $date = new \DateTime('-1 hour', new \DateTimeZone('Europe/Paris')); // Retrait de l'heure d'été
+        $date = new \DateTime('-2 hour', new \DateTimeZone('Europe/Paris')); // Retrait de l'heure d'été
         $seats = 2;
         $wait = new WebDriverWait($client, 10);
 
