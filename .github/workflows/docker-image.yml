@@ -22,6 +22,17 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-interaction --no-scripts --no-progress
 
+      # Installer Node.js
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      
+      # Installer les dépendances JS
+      - run: npm install
+      
+      # Compiler les assets (Vite ou Webpack Encore)
+      - run: npm run build
+
       # Créer un .env minimal pour les tests
       - name: Create minimal .env
         run: |
