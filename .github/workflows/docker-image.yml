@@ -1,53 +1,18 @@
-name: Symfony CI
+name: Docker Image CI
 
 on:
   push:
-    branches: ["master"]
+    branches: [ "master" ]
   pull_request:
-    branches: ["master"]
+    branches: [ "master" ]
 
 jobs:
-  test:
+
+  build:
+
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Récupérer le code
-      - uses: actions/checkout@v4
-
-      # 2. Installer PHP + extensions nécessaires + Composer
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.3"
-          extensions: mbstring, pdo_sqlite, zip, intl
-          tools: composer, symfony-cli
-
-      # 3. Créer un .env minimal pour CI
-      - name: Create minimal .env
-        run: |
-          echo "APP_ENV=test" > .env
-          echo "DATABASE_URL=sqlite:///%kernel.project_dir%/var/data.db" >> .env
-          echo "MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0" >> .env
-
-      # 4. Installer les dépendances normalement
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-interaction
-
-      - name: Dump Composer autoload
-        run: composer dump-autoload
-
-      # 5. Créer la base de données
-      - name: Prepare test DB
-        env:
-          APP_ENV: test
-          DATABASE_URL: "sqlite:///%kernel.project_dir%/var/data.db"
-        run: |
-          rm -f var/data.db
-          php bin/console doctrine:schema:update --force --complete --env=test
-
-      # 6. Lancer les tests PHPUnit
-      - name: Run tests
-        env:
-          APP_ENV: test
-          DATABASE_URL: "sqlite:///%kernel.project_dir%/var/data.db"
-        run: php bin/phpunit --testdox
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
