@@ -54,34 +54,34 @@ jobs:
         run: |
           mkdir -p tests/Traits
           cat > tests/Traits/DatabaseTestTrait.php << 'EOF'
-<?php
-
-namespace App\Tests\Traits;
-
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
-use Doctrine\Common\DataFixtures\Loader;
-use App\DataFixtures\AppFixtures;
-
-trait DatabaseTestTrait
-{
-    protected EntityManagerInterface $em;
-
-    protected function loadDatabaseFixtures(): void
-    {
-        $this->em = self::getContainer()->get('doctrine')->getManager();
-
-        $purger = new ORMPurger($this->em);
-        $executor = new ORMExecutor($this->em, $purger);
-
-        $loader = new Loader();
-        $loader->addFixture(new AppFixtures());
-
-        $executor->execute($loader->getFixtures());
-    }
-}
-EOF
+          <?php
+          
+          namespace App\Tests\Traits;
+          
+          use Doctrine\ORM\EntityManagerInterface;
+          use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+          use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+          use Doctrine\Common\DataFixtures\Loader;
+          use App\DataFixtures\AppFixtures;
+          
+          trait DatabaseTestTrait
+          {
+              protected EntityManagerInterface $em;
+          
+              protected function loadDatabaseFixtures(): void
+              {
+                  $this->em = self::getContainer()->get('doctrine')->getManager();
+          
+                  $purger = new ORMPurger($this->em);
+                  $executor = new ORMExecutor($this->em, $purger);
+          
+                  $loader = new Loader();
+                  $loader->addFixture(new AppFixtures());
+          
+                  $executor->execute($loader->getFixtures());
+              }
+          }
+          EOF
 
       # 7. Dump autoload
       - name: Dump autoload
