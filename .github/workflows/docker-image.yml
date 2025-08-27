@@ -84,18 +84,22 @@ jobs:
           }
           EOF
 
+      # Démarrer avec symfony serve
       - name: Start Symfony server
-        run: php -S 127.0.0.1:8000 -t public &
-      
-      # Attendre que le serveur soit prêt
+        run: |
+          # Installer Symfony CLI si nécessaire
+          wget https://get.symfony.com/cli/installer -O - | bash
+          export PATH="$HOME/.symfony5/bin:$PATH"
+          symfony serve -d --port=8000 --env=test
+          
       - name: Wait for server
         run: |
           for i in {1..30}; do
-            if curl -s http://127.0.0.1:8000 > /dev/null; then
-              echo "Server ready"
+            if curl -s http://127.0.0.1:8000 > /dev/null 2>&1; then
+              echo "Server ready!"
               break
             fi
-            sleep 1
+            sleep 2
           done
           
       # Lancer les tests
