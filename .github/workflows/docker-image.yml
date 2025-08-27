@@ -30,6 +30,41 @@ jobs:
     - name: Install dependencies
       run: composer install --no-ansi --no-interaction --no-scripts --no-progress
 
+    # Créer le DatabaseTestTrait avec le bon contenu
+    - name: Create DatabaseTestTrait
+      run: |
+        mkdir -p tests/Traits
+        cat > tests/Traits/DatabaseTestTrait.php << 'EOF'
+        <?php
+
+        namespace App\Tests\Traits;
+
+        use Doctrine\ORM\EntityManagerInterface;
+        use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+        use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+        use Doctrine\Common\DataFixtures\Loader;
+        use App\DataFixtures\AppFixtures;
+
+        trait DatabaseTestTrait
+        {
+            protected EntityManagerInterface $em;
+
+            protected function loadDatabaseFixtures(): void
+            {
+                $this->em = self::getContainer()->get('doctrine')->getManager();
+
+                // Purger la base
+                $purger = new ORMPurger($this->em);
+                $executor = new ORMExecutor($this->em, $purger);
+
+                $loader = new Loader();
+                $loader->addFixture(new AppFixtures());
+
+                $executor->execute($loader->getFixtures());
+            }
+        }
+        EOF
+        
     # Préparer la base SQLite
     - name: Prepare SQLite DB
       run: |
