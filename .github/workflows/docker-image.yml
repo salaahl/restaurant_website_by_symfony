@@ -1,4 +1,4 @@
-name: Symfony CI Minimal SQLite
+name: Symfony CI
 
 on:
   push:
@@ -10,31 +10,37 @@ jobs:
   symfony-tests:
     runs-on: ubuntu-latest
 
-    env:
-      APP_ENV: test
-      APP_DEBUG: 1
-      DATABASE_URL: "sqlite:///%kernel.project_dir%/var/data.db"
-      MESSENGER_TRANSPORT_DSN: "doctrine://default?auto_setup=0"
-      MAILER_DSN: "null://null"
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      # Installer PHP
+      - uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.4
-          extensions: mbstring, intl, pdo_sqlite, zip
+          php-version: '8.4'
 
-      - name: Install PHP dependencies
-        run: composer install --no-interaction --no-scripts --prefer-dist --optimize-autoloader
+      # Installer Composer
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --no-scripts --no-progress
 
+      # Créer un .env minimal pour les tests
+      - name: Create minimal .env
+        run: |
+          echo "APP_ENV=test" > .env
+          echo "APP_DEBUG=1" >> .env
+          echo "DATABASE_URL=sqlite:///%kernel.project_dir%/var/data.db" >> .env
+          echo "MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0" >> .env
+          echo "MAILER_DSN=null://null" >> .env
+
+      # Préparer la base SQLite
       - name: Prepare SQLite DB
         run: |
           mkdir -p var
           touch var/data.db
           php bin/console doctrine:schema:create --env=test
-          php bin/console doctrine:fixtures:load --no-interaction --env=test
 
+      # Lancer les tests
       - name: Run PHPUnit
         run: vendor/bin/phpunit --testdox
+        env:
+          APP_ENV: test
+          DATABASE_URL: sqlite:///%kernel.project_dir%/var/data.db
