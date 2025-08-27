@@ -83,6 +83,17 @@ jobs:
     - name: Prepare DB
       run: APP_ENV=test php bin/console doctrine:migrations:migrate --no-interaction
 
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+    
+    - name: Install frontend dependencies
+      run: yarn install
+    
+    - name: Build assets
+      run: yarn build
+
     # Lancer les tests PHPUnit
     - name: Run PHPUnit
       run: |
