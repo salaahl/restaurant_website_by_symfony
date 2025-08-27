@@ -83,6 +83,20 @@ jobs:
               }
           }
           EOF
+
+      - name: Start Symfony server
+        run: php -S 127.0.0.1:8000 -t public &
+      
+      # Attendre que le serveur soit prêt
+      - name: Wait for server
+        run: |
+          for i in {1..30}; do
+            if curl -s http://127.0.0.1:8000 > /dev/null; then
+              echo "Server ready"
+              break
+            fi
+            sleep 1
+          done
           
       # Lancer les tests
       - name: Run PHPUnit
