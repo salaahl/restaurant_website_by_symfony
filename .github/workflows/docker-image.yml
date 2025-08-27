@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Symfony CI
 
 on:
   push:
@@ -7,81 +7,94 @@ on:
     branches: [ "master" ]
 
 jobs:
-
-  build:
-
+  symfony-tests:
     runs-on: ubuntu-latest
+    env:
+      APP_ENV: test
+      APP_DEBUG: 1
+      DATABASE_URL: "sqlite:///%GITHUB_WORKSPACE%/data/database.sqlite"
+      MESSENGER_TRANSPORT_DSN: "doctrine://default?auto_setup=0"
+      MAILER_DSN: "null://null"
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      # 1. Checkout du repo
+      - uses: actions/checkout@v4
 
-    - name: Create minimal .env
-      run: |
-        echo "APP_ENV=test" > .env
-        echo "APP_DEBUG=1" >> .env
-        echo "DATABASE_URL=sqlite:///%kernel.project_dir%/data/database.sqlite" >> .env
-        echo "MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0" >> .env
-        echo "MAILER_DSN='null://null'" >> .env
-        
-    - name: Cache Composer packages
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
-          
-    # Installer les dépendances
-    - name: Install dependencies
-      run: |
-        composer require --dev doctrine/data-fixtures || true
-        composer install --no-ansi --no-interaction --no-scripts --no-progress
-      
-    # Créer le DatabaseTestTrait avec le bon contenu
-    - name: Create DatabaseTestTrait
-      run: |
-        mkdir -p tests/Traits
-        cat > tests/Traits/DatabaseTestTrait.php << 'EOF'
-        <?php
+      # 2. Setup PHP
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, intl, pdo_sqlite, zip
+          coverage: none
 
-        namespace App\Tests\Traits;
+      # 3. Création du .env minimal
+      - name: Create minimal .env
+        run: |
+          echo "APP_ENV=test" > .env
+          echo "APP_DEBUG=1" >> .env
+          echo "DATABASE_URL=sqlite:///%GITHUB_WORKSPACE%/data/database.sqlite" >> .env
+          echo "MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0" >> .env
+          echo "MAILER_DSN=null://null" >> .env
 
-        use Doctrine\ORM\EntityManagerInterface;
-        use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-        use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
-        use Doctrine\Common\DataFixtures\Loader;
-        use App\DataFixtures\AppFixtures;
+      # 4. Cache Composer
+      - name: Cache Composer packages
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
 
-        trait DatabaseTestTrait
-        {
-            protected EntityManagerInterface $em;
+      # 5. Install dependencies
+      - name: Install dependencies
+        run: composer install --no-ansi --no-interaction --no-scripts --no-progress
 
-            protected function loadDatabaseFixtures(): void
-            {
-                $this->em = self::getContainer()->get('doctrine')->getManager();
+      # 6. Création du DatabaseTestTrait si absent
+      - name: Create DatabaseTestTrait
+        run: |
+          mkdir -p tests/Traits
+          cat > tests/Traits/DatabaseTestTrait.php << 'EOF'
+<?php
 
-                // Purger la base
-                $purger = new ORMPurger($this->em);
-                $executor = new ORMExecutor($this->em, $purger);
+namespace App\Tests\Traits;
 
-                $loader = new Loader();
-                $loader->addFixture(new AppFixtures());
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Loader;
+use App\DataFixtures\AppFixtures;
 
-                $executor->execute($loader->getFixtures());
-            }
-        }
-        EOF
-        
-    - name: Dump autoload
-      run: composer dump-autoload --optimize
-      
-    - name: Prepare SQLite DB
-      run: |
-        mkdir -p data
-        touch data/database.sqlite
-        php bin/console doctrine:schema:create
-        
-    - name: Run PHPUnit
-      run: vendor/bin/phpunit --testdox
+trait DatabaseTestTrait
+{
+    protected EntityManagerInterface $em;
+
+    protected function loadDatabaseFixtures(): void
+    {
+        $this->em = self::getContainer()->get('doctrine')->getManager();
+
+        $purger = new ORMPurger($this->em);
+        $executor = new ORMExecutor($this->em, $purger);
+
+        $loader = new Loader();
+        $loader->addFixture(new AppFixtures());
+
+        $executor->execute($loader->getFixtures());
+    }
+}
+EOF
+
+      # 7. Dump autoload
+      - name: Dump autoload
+        run: composer dump-autoload --optimize
+
+      # 8. Préparer la DB SQLite
+      - name: Prepare SQLite DB
+        run: |
+          mkdir -p data
+          touch data/database.sqlite
+          php bin/console doctrine:schema:drop --force --env=test || true
+          php bin/console doctrine:schema:create --env=test
+
+      # 9. Exécuter PHPUnit (unit + E2E)
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit --testdox
