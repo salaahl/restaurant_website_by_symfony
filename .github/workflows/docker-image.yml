@@ -33,6 +33,10 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction
 
+      - name: Dump Composer autoload
+        run: composer dump-autoload
+
+      # 5. Créer la base de données
       - name: Prepare test DB
         env:
           APP_ENV: test
