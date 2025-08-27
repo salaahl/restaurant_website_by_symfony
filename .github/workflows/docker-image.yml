@@ -10,6 +10,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      db:
+        image: postgres:15
+        ports: ["5432:5432"]
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: db
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
     steps:
     - uses: actions/checkout@v4
 
@@ -22,60 +36,23 @@ jobs:
       run: |
         echo "APP_ENV=test" > .env
         echo "APP_DEBUG=1" >> .env
-        echo "DATABASE_URL=pgsql://postgres:postgres@db:5432/db" >> .env
+        echo "DATABASE_URL=pgsql://postgres:postgres@127.0.0.1:5432/db" >> .env
         echo "MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0" >> .env
-        echo "MAILER_DSN='null://null'" >> .env
+        echo "MAILER_DSN=null://null" >> .env
 
     # Installer les dépendances PHP via composer
     - name: Install dependencies
       run: composer install --no-ansi --no-interaction --no-scripts --no-progress
 
-    # Créer le DatabaseTestTrait avec le bon contenu
-    - name: Create DatabaseTestTrait
+    # Préparer la base de données
+    - name: Prepare DB
       run: |
-        mkdir -p tests/Traits
-        cat > tests/Traits/DatabaseTestTrait.php << 'EOF'
-        <?php
-
-        namespace App\Tests\Traits;
-
-        use Doctrine\ORM\EntityManagerInterface;
-        use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-        use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
-        use Doctrine\Common\DataFixtures\Loader;
-        use App\DataFixtures\AppFixtures;
-
-        trait DatabaseTestTrait
-        {
-            protected EntityManagerInterface $em;
-
-            protected function loadDatabaseFixtures(): void
-            {
-                $this->em = self::getContainer()->get('doctrine')->getManager();
-
-                // Purger la base
-                $purger = new ORMPurger($this->em);
-                $executor = new ORMExecutor($this->em, $purger);
-
-                $loader = new Loader();
-                $loader->addFixture(new AppFixtures());
-
-                $executor->execute($loader->getFixtures());
-            }
-        }
-        EOF
-        
-    # Préparer les migrations
-    - name: Prepare SQLite DB
-      run: |
-        php bin/console cache:clear --env=prod --no-debug
-        php bin/console cache:warmup --env=prod --no-debug
-        php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
-        php bin/console doctrine:fixtures:load --env=prod --no-interaction
+        php bin/console doctrine:migrations:migrate --no-interaction --env=test
+        php bin/console doctrine:fixtures:load --no-interaction --env=test
 
     # Lancer les tests PHPUnit
     - name: Run PHPUnit
       run: vendor/bin/phpunit --testdox
       env:
         APP_ENV: test
-        DATABASE_URL: "pgsql://postgres:postgres@db:5432/db"
+        DATABASE_URL: "pgsql://postgres:postgres@127.0.0.1:5432/db"
