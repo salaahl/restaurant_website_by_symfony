@@ -12,7 +12,7 @@ jobs:
     env:
       APP_ENV: test
       APP_DEBUG: 1
-      DATABASE_URL: "sqlite:///%GITHUB_WORKSPACE%/data/database.sqlite"
+      DATABASE_URL: "sqlite:///%PWD%/data/database.sqlite"
       MESSENGER_TRANSPORT_DSN: "doctrine://default?auto_setup=0"
       MAILER_DSN: "null://null"
 
