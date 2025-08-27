@@ -22,29 +22,28 @@ jobs:
           extensions: mbstring, pdo_sqlite, zip, intl
           tools: composer, symfony-cli
 
-      # 3. Créer un .env.test minimal pour éviter l'erreur Dotenv
-      - name: Create .env.test
+      # 3. Créer un .env minimal pour CI
+      - name: Create minimal .env
         run: |
-          echo "APP_ENV=test" > .env.test
-          echo "DATABASE_URL=sqlite:///%kernel.project_dir%/var/data.db" >> .env.test
+          echo "APP_ENV=test" > .env
+          echo "DATABASE_URL=sqlite:///%kernel.project_dir%/var/data.db" >> .env
 
-      # 4. Installer les dépendances sans scripts automatiques
+      # 4. Installer les dépendances normalement
       - name: Install dependencies
-        run: composer install --no-scripts --prefer-dist --no-interaction
+        run: composer install --prefer-dist --no-interaction
 
-      # 5. Créer la base de données test et mettre à jour le schéma
+      # 5. Préparer la base de données test
       - name: Prepare test DB
         env:
           APP_ENV: test
           DATABASE_URL: "sqlite:///%kernel.project_dir%/var/data.db"
         run: |
-          php bin/console doctrine:database:create --env=test --if-not-exists
-          php bin/console doctrine:schema:update --env=test --force
+          php bin/console doctrine:database:create --if-not-exists
+          php bin/console doctrine:schema:update --force
 
       # 6. Lancer les tests PHPUnit
       - name: Run tests
         env:
           APP_ENV: test
           DATABASE_URL: "sqlite:///%kernel.project_dir%/var/data.db"
-        run: |
-          php bin/phpunit --testdox
+        run: php bin/phpunit --testdox
