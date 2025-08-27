@@ -4,7 +4,6 @@ namespace App\Tests\Integration\Service;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use App\Service\ReservationService;
-use Symfony\Component\HttpFoundation\Request;
 
 class ReservationServiceIntegrationTest extends KernelTestCase
 {

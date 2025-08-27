@@ -111,7 +111,7 @@
     "symfony/debug-bundle": "6.2.*",
     "symfony/dotenv": "6.2.*",
     "symfony/maker-bundle": "^1.0",
-    "symfony/panther": "*",
+    "symfony/panther": "^2.1",
     "symfony/phpunit-bridge": "^6.2",
     "symfony/stopwatch": "6.2.*",
     "symfony/web-profiler-bundle": "6.2.*"

@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Tests\Integration\Controller;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use App\Tests\DatabaseTestCase;
 use App\Repository\MenuRepository;
 use App\Repository\DishRepository;
 
-class MainControllerIntegrationTest extends KernelTestCase
+class MainControllerIntegrationTest extends DatabaseTestCase
 {
     public function testHomePageWithDatabaseData()
     {

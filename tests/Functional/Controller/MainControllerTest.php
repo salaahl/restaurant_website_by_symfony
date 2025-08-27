@@ -4,7 +4,7 @@ namespace App\Tests\Functional\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-// Les tests fonctionnels vérifient la sortie d'une action de contrôleur, comme une page Web
+// Les tests fonctionnels vérifient la sortie d'une action de contrôleur, comme l'affichage d'une page web
 class MainControllerTest extends WebTestCase
 {
     public function testHomePage()

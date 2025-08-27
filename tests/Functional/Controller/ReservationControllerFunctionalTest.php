@@ -12,7 +12,7 @@ class ReservationControllerFunctionalTest extends WebTestCase
         $client->request('GET', '/reservation');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorExists('form'); // Exemple : vérifier qu'un formulaire est affiché
+        $this->assertSelectorExists('form');
     }
 
     public function testReservationNewReservationPost()
