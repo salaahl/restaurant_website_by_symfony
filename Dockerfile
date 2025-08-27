@@ -12,6 +12,7 @@ FROM php:8.3-fpm-alpine
 
 # Installer les dépendances nécessaires pour Symfony et PostgreSQL
 RUN apk add --no-cache \
+    libzip \
     libpng \
     libjpeg-turbo \
     freetype \
