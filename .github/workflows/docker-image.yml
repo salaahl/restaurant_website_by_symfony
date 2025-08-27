@@ -81,9 +81,7 @@ jobs:
         
     # Préparer la base de données
     - name: Prepare DB
-      run: |
-        APP_ENV=test php bin/console doctrine:database:create --if-not-exists
-        APP_ENV=test php bin/console doctrine:migrations:migrate --no-interaction
+      run: APP_ENV=test php bin/console doctrine:migrations:migrate --no-interaction
 
     # Lancer les tests PHPUnit
     - name: Run PHPUnit
