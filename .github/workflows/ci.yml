@@ -24,4 +24,7 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Lancer les tests PHPUnit
-        run: ./vendor/bin/phpunit --testdox
+        run: |
+            php bin/console doctrine:database:create --env=test
+            php bin/console doctrine:migrations:migrate --env=test --no-interaction
+            APP_ENV=test ./vendor/bin/phpunit --testdox
