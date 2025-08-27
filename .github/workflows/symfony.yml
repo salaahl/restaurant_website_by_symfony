@@ -42,6 +42,13 @@ jobs:
       - name: Install dependencies
         run: composer install --no-ansi --no-interaction --no-scripts --no-progress
 
+      # Configurer l'autoloading pour les tests
+      - name: Configure test autoloading
+        run: |
+          composer dump-autoload --optimize
+          # Vérifier que le répertoire tests existe
+          mkdir -p tests/Traits
+          
       # Préparer la base SQLite
       - name: Prepare SQLite DB
         run: |
