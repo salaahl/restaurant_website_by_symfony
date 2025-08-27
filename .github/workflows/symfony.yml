@@ -1,0 +1,110 @@
+name: Symfony CI
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  symfony-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Installer PHP
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+
+      # Installer Composer
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --no-scripts --no-progress
+
+      # Installer Node.js
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      
+      # Installer les dépendances JS
+      - run: npm install
+      
+      # Compiler les assets (Vite ou Webpack Encore)
+      - run: npm run build
+
+      # Créer un .env minimal pour les tests
+      - name: Create minimal .env
+        run: |
+          echo "APP_ENV=test" > .env
+          echo "APP_DEBUG=1" >> .env
+          echo "DATABASE_URL=sqlite:///%kernel.project_dir%/var/data.db" >> .env
+          echo "MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0" >> .env
+          echo "MAILER_DSN=null://null" >> .env
+
+      # Préparer la base SQLite
+      - name: Prepare SQLite DB
+        run: |
+          mkdir -p var
+          touch var/data.db
+          php bin/console doctrine:schema:create --env=test
+
+      # Créer le DatabaseTestTrait avec le bon contenu
+      - name: Create DatabaseTestTrait
+        run: |
+          mkdir -p tests/Traits
+          cat > tests/Traits/DatabaseTestTrait.php << 'EOF'
+          <?php
+
+          namespace App\Tests\Traits;
+
+          use Doctrine\ORM\EntityManagerInterface;
+          use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+          use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+          use Doctrine\Common\DataFixtures\Loader;
+          use App\DataFixtures\AppFixtures;
+
+          trait DatabaseTestTrait
+          {
+              protected EntityManagerInterface $em;
+
+              protected function loadDatabaseFixtures(): void
+              {
+                  $this->em = self::getContainer()->get('doctrine')->getManager();
+
+                  // Purger la base
+                  $purger = new ORMPurger($this->em);
+                  $executor = new ORMExecutor($this->em, $purger);
+
+                  $loader = new Loader();
+                  $loader->addFixture(new AppFixtures());
+
+                  $executor->execute($loader->getFixtures());
+              }
+          }
+          EOF
+
+      # Démarrer avec symfony serve
+      - name: Start Symfony server
+        run: |
+          # Installer Symfony CLI si nécessaire
+          wget https://get.symfony.com/cli/installer -O - | bash
+          export PATH="$HOME/.symfony5/bin:$PATH"
+          APP_ENV=test symfony serve -d --port=8000
+          
+      - name: Wait for server
+        run: |
+          for i in {1..30}; do
+            if curl -s http://127.0.0.1:8000 > /dev/null 2>&1; then
+              echo "Server ready!"
+              break
+            fi
+            sleep 2
+          done
+          
+      # Lancer les tests
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit --testdox
+        env:
+          APP_ENV: test
+          DATABASE_URL: sqlite:///%kernel.project_dir%/var/data.db
