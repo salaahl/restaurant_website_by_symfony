@@ -32,14 +32,14 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction
 
-      # 5. Préparer la base de données test
       - name: Prepare test DB
         env:
           APP_ENV: test
           DATABASE_URL: "sqlite:///%kernel.project_dir%/var/data.db"
         run: |
-          php bin/console doctrine:database:create --if-not-exists
-          php bin/console doctrine:schema:update --force
+          rm -f var/data.db
+          php bin/console doctrine:schema:update --force --env=test
+
 
       # 6. Lancer les tests PHPUnit
       - name: Run tests
