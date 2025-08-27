@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag levingtieme_app:$(date +%s)
+      run: docker build . -t levingtieme_app:latest
 
     - name: Push the Docker image
       run: |
