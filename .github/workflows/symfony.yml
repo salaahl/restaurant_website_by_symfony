@@ -26,6 +26,13 @@ jobs:
           php-version: '8.4'
           extensions: mbstring, intl, pdo_sqlite, zip
 
+      - name: Create minimal .env
+        run: |
+          echo "APP_ENV=test" > .env
+          echo "DATABASE_URL=sqlite:///%kernel.project_dir%/data/database.sqlite" >> .env
+          echo "APP_DEBUG=1" >> .env
+          echo "MAILER_DSN='null://null'" >> .env
+
       # Cache Composer
       - name: Cache Composer packages
         uses: actions/cache@v3
