@@ -22,7 +22,7 @@ jobs:
       run: |
         echo "APP_ENV=test" > .env
         echo "APP_DEBUG=1" >> .env
-        echo "DATABASE_URL=sqlite:///%kernel.project_dir%/data/database.sqlite" >> .env
+        echo "DATABASE_URL=pgsql://postgres:postgres@db:5432/db" >> .env
         echo "MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0" >> .env
         echo "MAILER_DSN='null://null'" >> .env
 
@@ -65,16 +65,17 @@ jobs:
         }
         EOF
         
-    # Préparer la base SQLite
+    # Préparer les migrations
     - name: Prepare SQLite DB
       run: |
-        mkdir -p data
-        touch data/database.sqlite
-        php bin/console doctrine:migrations:migrate --no-interaction --env=test
+        php bin/console cache:clear --env=prod --no-debug
+        php bin/console cache:warmup --env=prod --no-debug
+        php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
+        php bin/console doctrine:fixtures:load --env=prod --no-interaction
 
     # Lancer les tests PHPUnit
     - name: Run PHPUnit
       run: vendor/bin/phpunit --testdox
       env:
         APP_ENV: test
-        DATABASE_URL: "sqlite:///%kernel.project_dir%/data/database.sqlite"
+        DATABASE_URL: "pgsql://postgres:postgres@db:5432/db"
