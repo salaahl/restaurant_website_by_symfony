@@ -1,3 +1,6 @@
+# Workflow d’intégration continue exécutant les tests fonctionnels et d’intégration (E2E exclus)
+# L'image Docker est ensuite construite et publiée sur Docker Hub
+
 name: Symfony & Docker CI
 
 on:
