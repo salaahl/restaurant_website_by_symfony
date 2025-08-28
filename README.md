@@ -1,5 +1,4 @@
-[![Docker Image CI](https://github.com/salaahl/restaurant_website_by_symfony/actions/workflows/docker-image.yml/badge.svg)](https://github.com/salaahl/restaurant_website_by_symfony/actions/workflows/docker-image.yml)
-[![Symfony CI](https://github.com/salaahl/restaurant_website_by_symfony/actions/workflows/symfony.yml/badge.svg)](https://github.com/salaahl/restaurant_website_by_symfony/actions/workflows/symfony.yml)
+[![Symfony & Docker CI](https://github.com/salaahl/restaurant_website_by_symfony/actions/workflows/docker-image.yml/badge.svg)](https://github.com/salaahl/restaurant_website_by_symfony/actions/workflows/docker-image.yml)
 
 Le Vingtième
 
