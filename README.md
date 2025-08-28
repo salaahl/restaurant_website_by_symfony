@@ -1,4 +1,5 @@
 [![Symfony & Docker CI](https://github.com/salaahl/restaurant_website_by_symfony/actions/workflows/docker-image.yml/badge.svg)](https://github.com/salaahl/restaurant_website_by_symfony/actions/workflows/docker-image.yml)
+
 Le Vingtième
 
 Site web de réservation pour le restaurant Le Vingtième.
