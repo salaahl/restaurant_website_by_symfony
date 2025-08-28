@@ -104,7 +104,7 @@ jobs:
           
       # Lancer les tests
       - name: Run PHPUnit
-        run: vendor/bin/phpunit --testdox
+        run: vendor/bin/phpunit --testdox --testsuite=functional,integration
         env:
           APP_ENV: test
           DATABASE_URL: sqlite:///%kernel.project_dir%/var/data.db
