@@ -24,7 +24,7 @@ Site de réservation pour le restaurant Le Vingtième, construit avec Symfony.
 2. Composer install
 3. Configurer `.env` / `.env.test` (ajouter `DATABASE_URL, APP_NAME et SEATS_PER_HOUR`)
 4. `php bin/console doctrine:database:create && doctrine:migrations:migrate`
-5. `symfony serve` ou `docker-compose up --build`
+5. `APP_ENV=test symfony serve` ou `docker-compose up --build`
 6. Accéder à l’application sur `http://localhost:8000` (ou autre port configuré)
 
 ## Lancement des tests
