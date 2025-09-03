@@ -14,7 +14,7 @@ Encore
   // only needed for CDN's or subdirectory deploy
   //.setManifestKeyPrefix('build/')
   // .configureCssLoader((options) => {
-    // options.url = false; // Désactiver la gestion des URLs dans les CSS
+  // options.url = false; // Désactiver la gestion des URLs dans les CSS
   // })
 
   /*
@@ -45,7 +45,13 @@ Encore
     to: "images/[path][name].[hash:8].[ext]", // dossier destination
     pattern: /\.(png|jpg|jpeg|gif|ico|svg|webp)$/, // extension des fichiers copiés
   })
-  
+
+  .copyFiles({
+    from: "./assets/fonts",
+    to: "fonts/[name].[hash:8].[ext]",
+    pattern: /\.(woff2?|woff|ttf|otf)$/,
+  })
+
   // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
   .splitEntryChunks()
 
