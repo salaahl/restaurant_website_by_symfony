@@ -411,10 +411,12 @@ section {
   backface-visibility: hidden;
 }
 
+/*
 .flip-card:hover .dishs h6,
 .flip-card:hover .dish {
   animation: scroll 2s;
 }
+*/
 
 #reservation-container {
   transform: translateY(150px);
