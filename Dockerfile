@@ -38,8 +38,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 
 # 1. D'ABORD copier les fichiers de configuration
-COPY supervisord.conf /etc/supervisord.conf
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY docker/nginx.conf /etc/nginx/nginx.conf
+COPY docker/supervisord.conf /etc/supervisord.conf
 
 # 2. ENSUITE copier le projet et le build
 COPY . .
@@ -55,4 +55,4 @@ RUN mkdir -p var && chown -R www-data:www-data var && chmod -R 775 var
 EXPOSE 80
 
 # Entrypoint
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+CMD ["supervisord", "-n", "-c", "/etc/supervisord.conf"]
