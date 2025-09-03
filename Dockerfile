@@ -7,7 +7,7 @@ COPY . .
 RUN npm run build
 
 # Étape 2 : PHP + Nginx + Supervisor
-FROM php:8.3-fmp-alpine
+FROM php:8.3-fpm-alpine
 
 # Installer dépendances
 RUN apk add --no-cache \
