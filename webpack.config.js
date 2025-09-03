@@ -13,9 +13,9 @@ Encore
   .setPublicPath("/build")
   // only needed for CDN's or subdirectory deploy
   //.setManifestKeyPrefix('build/')
-  .configureCssLoader((options) => {
-    options.url = false; // Désactiver la gestion des URLs dans les CSS
-  })
+  // .configureCssLoader((options) => {
+    // options.url = false; // Désactiver la gestion des URLs dans les CSS
+  // })
 
   /*
    * ENTRY CONFIG
@@ -40,6 +40,12 @@ Encore
   .addStyleEntry("home_css", "./assets/styles/home.css")
   .addStyleEntry("reservation_css", "./assets/styles/reservation.css")
 
+  .copyFiles({
+    from: "./assets/images", // dossier source
+    to: "images/[path][name].[hash:8].[ext]", // dossier destination
+    pattern: /\.(png|jpg|jpeg|gif|ico|svg|webp)$/, // extension des fichiers copiés
+  })
+  
   // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
   .splitEntryChunks()
 
@@ -91,10 +97,10 @@ Encore
 const config = Encore.getWebpackConfig();
 
 config.devServer = {
-  contentBase: './public',
+  contentBase: "./public",
   watchContentBase: true,
   hot: true,
-  open: true,  // Ouvrir le navigateur automatiquement
+  open: true, // Ouvrir le navigateur automatiquement
 };
 
 module.exports = Encore.getWebpackConfig();
