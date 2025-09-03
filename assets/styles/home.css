@@ -155,7 +155,7 @@ section {
   height: fit-content;
   width: fit-content;
   border-radius: 25px;
-  background-image: url("/images/menu-title-background.jpg");
+  background-image: url("/images/menu-title-background.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -307,27 +307,27 @@ section {
 }
 
 .flip-card-one .inner .type .background {
-  background-image: url("/images/menu_one.jpg");
+  background-image: url("/images/menu_one.webp");
 }
 
 .flip-card-two .inner .type .background {
-  background-image: url("/images/menu_two.jpg");
+  background-image: url("/images/menu_two.webp");
 }
 
 .flip-card-three .inner .type .background {
-  background-image: url("/images/menu_three.jpg");
+  background-image: url("/images/menu_three.webp");
 }
 
 .flip-card-four .inner .type .background {
-  background-image: url("/images/menu_four.jpg");
+  background-image: url("/images/menu_four.webp");
 }
 
 .flip-card-five .inner .type .background {
-  background-image: url("/images/menu_five.jpg");
+  background-image: url("/images/menu_five.webp");
 }
 
 .flip-card-six .inner .type .background {
-  background-image: url("/images/menu_six.jpg");
+  background-image: url("/images/menu_six.webp");
 }
 
 .flip-card .type p {

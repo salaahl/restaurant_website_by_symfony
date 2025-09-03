@@ -85,7 +85,7 @@ main {
   position: absolute;
   top: 0;
   align-content: center;
-  background: url("/images/background-reservation-page.jpg");
+  background: url("/images/background-reservation-page.webp");
   background-size: cover;
   background-position: center;
   z-index: 3;

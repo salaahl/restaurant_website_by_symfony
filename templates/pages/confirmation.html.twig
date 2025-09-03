@@ -10,18 +10,18 @@
 
 {% block main %}
 	<h2>
-	Réservation
+		Réservation
 		<span>confirmée</span>
 	</h2>
 	<div class="img-container">
-		<img src="{{ asset('/images/kitchen.jpg') }}" alt="placeholder">
+		<img src="{{ asset('/images/kitchen.webp') }}" alt="placeholder">
 	</div>
 	<div class="reservation-confirmed">
 		<p>Votre réservation du
 			{{ reservation.date.getDate()|date('d/m/Y') }}
 			à
 			{{ reservation.hour }}h
-			pour
+						pour
 			{{ reservation.seats }}
 			personne(s) a bien été prise en compte.<br>
 			N'hésitez pas à nous contacter pour toute demande d'infos complémentaires.</p>
