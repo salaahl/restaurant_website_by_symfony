@@ -10,5 +10,5 @@
 </IfModule>
 
 <FilesMatch "\.(ico|gif|jpg|jpeg|png|webp|svg|woff2?|ttf|eot)$">
-    Header set Cache-Control "max-age=31536000, public"
+    Header set Cache-Control "max-age=31536000, public, immutable"
 </FilesMatch>

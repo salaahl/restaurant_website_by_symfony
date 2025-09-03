@@ -6,7 +6,10 @@
 
 {% block main %}
 	<section id="home">
-		<img src="{{ asset('build/images/me.webp') }}" class="d-block w-100" alt="...">
+		<picture>
+			<source srcset="{{ asset('build/images/me-desktop.webp') }}" media="(min-width: 768px)">
+			<img src="{{ asset('build/images/me.webp') }}" alt="Cuisine du restaurant" class="d-block w-100">
+		</picture>
 		<div class="title">
 			<h2>Restaurant Le Vingtième</h2>
 			<p>
@@ -26,7 +29,10 @@
 					</p>
 					<a href="./about" class="button-58">En savoir plus</a>
 				</div>
-				<img src="{{ asset('build/images/about-section-img.webp') }}" alt="Ambiance du restaurant" class="image-between">
+				<picture>
+					<source srcset="{{ asset('build/images/about-section-img-desktop.webp') }}" media="(min-width: 768px)">
+					<img src="{{ asset('build/images/about-section-img.webp') }}" alt="Ambiance du restaurant" class="image-between">
+				</picture>
 			</article>
 		</div>
 	</section>
