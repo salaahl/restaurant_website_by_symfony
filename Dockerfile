@@ -39,7 +39,10 @@ WORKDIR /var/www/html
 
 # 1. D'ABORD copier les fichiers de configuration
 COPY docker/nginx.conf /etc/nginx/nginx.conf
+COPY docker/default.conf /etc/nginx/conf.d/default.conf
 COPY docker/supervisord.conf /etc/supervisord.conf
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # 2. ENSUITE copier le projet et le build
 COPY . .
@@ -55,4 +58,5 @@ RUN mkdir -p var && chown -R www-data:www-data var && chmod -R 775 var
 EXPOSE 80
 
 # Entrypoint
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["supervisord", "-n", "-c", "/etc/supervisord.conf"]
