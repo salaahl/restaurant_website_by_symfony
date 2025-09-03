@@ -1,64 +1,60 @@
-# -------------------------------
-# Étape 1 : Build du frontend avec Node
-# -------------------------------
+# Étape 1 : Node pour le build frontend
 FROM node:20-alpine AS node_build
-
 WORKDIR /app
-
-# Copier package.json / package-lock.json et installer les dépendances
 COPY package*.json ./
 RUN npm ci
-
-# Copier le reste des sources et builder les assets
 COPY . .
 RUN npm run build
 
-# -------------------------------
-# Étape 2 : PHP-FPM pour Symfony
-# -------------------------------
+# Étape 2 : PHP + Nginx + Supervisor
 FROM php:8.3-fpm-alpine
 
-# Installer les dépendances nécessaires pour Symfony et PostgreSQL
+# Installer dépendances
 RUN apk add --no-cache \
-    libzip libpng libjpeg-turbo freetype zip unzip git postgresql-libs postgresql-client \
+    nginx \
+    supervisor \
+    libzip \
+    libpng \
+    libjpeg-turbo \
+    freetype \
+    zip \
+    unzip \
+    git \
+    postgresql-libs \
+    postgresql-client \
     && apk add --no-cache --virtual .build-deps \
-        libpng-dev libjpeg-turbo-dev freetype-dev postgresql-dev \
+        libpng-dev \
+        libjpeg-turbo-dev \
+        freetype-dev \
+        postgresql-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd pdo pdo_pgsql pgsql exif \
     && apk del .build-deps
 
-# Installer Composer
+# Composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Copier le code Symfony
+# Copier le projet et le build
 COPY . .
-
-# Copier le build frontend depuis l'étape Node
 COPY --from=node_build /app/public/build /var/www/html/public/build
 
-# Installer les dépendances Symfony (prod)
-RUN composer install --no-dev --optimize-autoloader --no-scripts --ignore-platform-req=ext-intl
+# Installer Symfony
+RUN composer install --optimize-autoloader --no-dev --no-scripts --ignore-platform-req=ext-intl
 
-# Permissions sur var et public/build
-RUN mkdir -p var/cache var/log var/sessions \
-    && chown -R www-data:www-data var public/build \
-    && chmod -R 775 var public/build
+# Permissions
+RUN mkdir -p var && chown -R www-data:www-data var && chmod -R 775 var
 
-# -------------------------------
-# Étape 3 : Nginx pour servir Symfony + cache assets
-# -------------------------------
-FROM nginx:alpine AS production
+# Copier configuration Supervisor
+COPY supervisord.conf /etc/supervisord.conf
 
-# Copier la configuration Nginx
-COPY docker/nginx/default.conf /etc/nginx/conf.d/default.conf
-
-# Copier PHP-FPM et Symfony
-COPY --from=php:8.3-fpm-alpine /var/www/html /var/www/html
+# Copier configuration Nginx
+COPY default.conf /etc/nginx/conf.d/default.conf
 
 # Exposer le port
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+# Entrypoint
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
