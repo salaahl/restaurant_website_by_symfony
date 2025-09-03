@@ -7,7 +7,7 @@ COPY . .
 RUN npm run build
 
 # Étape 2 : PHP + Nginx + Supervisor
-FROM php:8.3-fpm-alpine
+FROM php:8.3-fmp-alpine
 
 # Installer dépendances
 RUN apk add --no-cache \
@@ -37,7 +37,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Copier le projet et le build
+# 1. D'ABORD copier les fichiers de configuration
+COPY supervisord.conf /etc/supervisord.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
+
+# 2. ENSUITE copier le projet et le build
 COPY . .
 COPY --from=node_build /app/public/build /var/www/html/public/build
 
@@ -46,12 +50,6 @@ RUN composer install --optimize-autoloader --no-dev --no-scripts --ignore-platfo
 
 # Permissions
 RUN mkdir -p var && chown -R www-data:www-data var && chmod -R 775 var
-
-# Copier configuration Supervisor
-COPY supervisord.conf /etc/supervisord.conf
-
-# Copier configuration Nginx
-COPY default.conf /etc/nginx/conf.d/default.conf
 
 # Exposer le port
 EXPOSE 80
