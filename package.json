@@ -16,6 +16,7 @@
     "webpack-notifier": "^1.15.0"
   },
   "dependencies": {
+    "bootstrap": "^5.3.8",
     "core-js": "^3.39.0",
     "supports-color": "^9.4.0"
   },

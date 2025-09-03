@@ -6,6 +6,7 @@
  */
 
 // const { set } = require("core-js/core/dict");
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 // Enregistrement des plugins GSAP et configuration globale
 gsap.registerPlugin(ScrollTrigger);
