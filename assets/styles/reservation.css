@@ -56,12 +56,17 @@ main {
   min-width: 0;
   overflow-x: hidden;
   transform: translateX(100%);
-  transition: opacity 0s ease-in, transform 0.35s ease-in, filter 0.8s ease-in;
+  transition:
+    opacity 0s ease-in,
+    transform 0.35s ease-in,
+    filter 0.8s ease-in;
 }
 
 #return-button.show {
   opacity: 1;
-  transition: opacity 0.8s ease, transform 0.4s ease;
+  transition:
+    opacity 0.8s ease,
+    transform 0.4s ease;
 }
 
 #redirect-reservation.show,
@@ -73,7 +78,10 @@ main {
   width: 100%;
   min-width: 100%;
   transform: translateX(0);
-  transition: opacity 0.8s ease-out, transform 0.4s ease-out, filter 0.8s ease;
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.4s ease-out,
+    filter 0.8s ease;
 }
 
 .blur {
@@ -115,6 +123,18 @@ main {
   width: calc(100% - 1.5rem); /* padding general x2 */
   max-width: 500px;
   margin: 10px auto;
+}
+
+#check-reservation-form > .row,
+#new-reservation-form > .row,
+#complete-reservation-form > .row {
+  margin-bottom: 0.5rem;
+}
+
+#check-reservation-form > .row:last-child,
+#new-reservation-form > .row:last-child,
+#complete-reservation-form > .row:last-child {
+  margin-bottom: 1.5rem;
 }
 
 .row {
