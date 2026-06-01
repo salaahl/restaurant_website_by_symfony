@@ -10,7 +10,7 @@ footer {
 }
 
 footer > .container {
-  max-width: calc(1.5rem + 1440px);
+  max-width: calc(1.5rem + 1280px);
 }
 
 footer .row,

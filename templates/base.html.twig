@@ -49,14 +49,15 @@
 			</div>
 		{% endblock %}
 		{% block javascripts %}
-			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 			<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 			<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 			<!-- permet de générer le fond d'écran custom -->
 			<script>
 				if (window.innerWidth >= 992) {
 				const script = document.createElement('script');
-				script.src = "https://unpkg.com/css-doodle@0.40.6/css-doodle.min.js";
+				script.src = "https://esm.sh/css-doodle/css-doodle.min.js?raw";
+
 				script.async = true;
 				document.body.appendChild(script);
 				}

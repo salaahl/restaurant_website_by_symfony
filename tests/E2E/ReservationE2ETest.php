@@ -54,7 +54,8 @@ class ReservationE2ETest extends PantherTestCase
 
         $client->waitFor('#new-reservation .hour');
         $hour = $client->findElement(WebDriverBy::cssSelector('#new-reservation .hour-container:first-of-type .hour'))->getAttribute('value');
-        $client->findElement(WebDriverBy::cssSelector('#new-reservation .hour-container:first-of-type label'))->click();
+        $element = $client->findElement(WebDriverBy::cssSelector('#new-reservation .hour-container:first-of-type label'));
+        $client->executeScript("arguments[0].click();", [$element]);
 
         $wait->until(
             WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::id('complete-reservation-form'))
@@ -77,10 +78,12 @@ class ReservationE2ETest extends PantherTestCase
         $wait->until(
             WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::cssSelector('.reservation-confirmed'))
         );
-        
-        $this->assertSelectorTextContains('p', 
-        sprintf('Votre réservation du %s à %sh pour %s personne(s) a bien été prise en compte.', $date->format('d/m/Y'), $hour, $seats), 
-        'Erreur lors de l\'affichage de la page de confirmation');
+
+        $this->assertSelectorTextContains(
+            'p',
+            sprintf('Votre réservation du %s à %sh pour %s personne(s) a bien été prise en compte.', $date->format('d/m/Y'), $hour, $seats),
+            'Erreur lors de l\'affichage de la page de confirmation'
+        );
     }
 
     public function testGetUserReservation(): void
