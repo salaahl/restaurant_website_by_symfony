@@ -60,7 +60,7 @@ h6 {
 }
 
 input:read-only {
-  filter: brightness(0.5);
+  filter: brightness(0.8);
 }
 
 /* BUTTON STYLES */
