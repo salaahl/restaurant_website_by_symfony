@@ -269,7 +269,11 @@ main {
     height: 35px;
   }
 
-  #img-container,
+  #img-container {
+    width: calc(50% + var(--padding-x) * 2);
+    transform: translateX(calc(var(--padding-x) * -1));
+  }
+
   #reservation-container {
     width: 50%;
   }
@@ -339,6 +343,11 @@ main {
 
   #reservation-container h2::first-letter {
     font-size: 153.6px;
+  }
+
+  #img-container {
+    width: 50%;
+    transform: unset;
   }
 }
 
