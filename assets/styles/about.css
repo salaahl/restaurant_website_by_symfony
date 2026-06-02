@@ -102,11 +102,6 @@ article:nth-of-type(3) {
     color: black;
   }
 
-  main {
-    padding-left: var(--padding-x);
-    padding-right: var(--padding-x);
-  }
-
   section h2 {
     font-size: xxx-large;
     font-weight: 200;
