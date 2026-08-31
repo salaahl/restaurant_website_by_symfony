@@ -38,6 +38,9 @@ class ReservationE2ETest extends PantherTestCase
             WebDriverExpectedCondition::invisibilityOfElementLocated(WebDriverBy::id('loader'))
         );
 
+        // Redimensionner la fenêtre
+        $client->manage()->window()->setSize(new \Facebook\WebDriver\WebDriverDimension(1920, 1080));
+
         // Trouver le bouton par son sélecteur CSS et cliquer dessus
         $client->waitFor('#new-reservation-button');
         $client->findElement(WebDriverBy::cssSelector('#new-reservation-button'))->click();

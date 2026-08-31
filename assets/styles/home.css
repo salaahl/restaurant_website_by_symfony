@@ -81,6 +81,7 @@ section {
 
 #about-me-container {
   transform: translateY(200px);
+  background-color: var(--accent-color-one-one);
   border: 0.5rem dashed #f5ebe0;
 }
 
@@ -88,16 +89,7 @@ section {
   width: min-content;
   margin-left: auto;
   margin-right: auto;
-  color: transparent;
-  background-image: linear-gradient(
-    to right,
-    var(--accent-color-one-three) 10%,
-    var(--accent-color-one-six) 90%
-  );
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: left;
-  background-clip: text;
+  color: var(--accent-color-one-six);
 }
 
 #about-me-container article {
@@ -128,6 +120,10 @@ section {
   width: 50%;
   margin-left: auto;
   margin-right: auto;
+}
+
+#about-me-container p {
+  color: white;
 }
 
 #about-me-container,
@@ -560,7 +556,6 @@ section {
 
   #about-me-container {
     padding: 0 5%;
-    background-color: white;
     border-radius: 75px;
     border: 15px dotted #f5ebe0;
     overflow: hidden;
