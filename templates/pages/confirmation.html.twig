@@ -9,22 +9,24 @@
 {% endblock %}
 
 {% block main %}
-	<h2>
-		Réservation
-		<span>confirmée</span>
-	</h2>
-	<div class="img-container">
-		<img src="{{ asset('build/images/kitchen.webp') }}" alt="placeholder">
-	</div>
-	<div class="reservation-confirmed">
-		<p>Votre réservation du
-			{{ reservation.date.getDate()|date('d/m/Y') }}
-			à
-			{{ reservation.hour }}h
-									pour
-			{{ reservation.seats }}
-			personne(s) a bien été prise en compte.<br>
-			N'hésitez pas à nous contacter pour toute demande d'infos complémentaires.</p>
-		<p>A bientôt !<br>Le Vingtième.</p>
+	<div id="reservation-confirmation">
+		<h2>
+			Réservation
+			<span>confirmée</span>
+		</h2>
+		<div class="img-container">
+			<img src="{{ asset('build/images/kitchen.webp') }}" alt="placeholder">
+		</div>
+		<div class="confirmation-text">
+			<p>Votre réservation du
+				{{ reservation.date.getDate()|date('d/m/Y') }}
+				à
+				{{ reservation.hour }}h
+				pour
+				{{ reservation.seats }}
+				personne(s) a bien été prise en compte.<br>
+				N'hésitez pas à nous contacter pour toute demande d'infos complémentaires.</p>
+			<p>A bientôt !<br>Le Vingtième.</p>
+		</div>
 	</div>
 {% endblock %}
